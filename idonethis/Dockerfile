@@ -1,4 +1,4 @@
-FROM ruby:1.9.3-p547
+FROM ruby:latest
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
 # update gems
