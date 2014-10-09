@@ -27,7 +27,7 @@ SENTRY_PUBLIC = False
 
 # You should configure the absolute URI to Sentry. It will attempt to guess it if you don't
 # but proxies may interfere with this.
-# SENTRY_URL_PREFIX = 'http://sentry.example.com'  # No trailing slash!
+SENTRY_URL_PREFIX = os.environ.get('SENTRY_URL_PREFIX', 'http://sentry.example.com')  # No trailing slash!
 
 SENTRY_WEB_HOST = '0.0.0.0'
 SENTRY_WEB_PORT = 9000

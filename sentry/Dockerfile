@@ -2,10 +2,11 @@ FROM debian:jessie
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
 RUN apt-get update && apt-get install -y \
-    language-pack-en \
+    g++ \
     libpq5 \
     libpq-dev \
     libxml2-dev \
+    locales \
     postgresql-client-9.4 \
     postgresql-client-common \
     python \
