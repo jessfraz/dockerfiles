@@ -1,0 +1,11 @@
+#!/bin/bash
+set -e
+
+ZNC_DIR="/znc"
+ZNC_OWNER=$(stat -c "%U" ${ZNC_DIR})
+
+if [ "${ZNC_OWNER}" != "znc" ]; then
+    chown -R znc:znc ${ZNC_DIR}
+fi
+
+exec sudo -u znc "$@"
