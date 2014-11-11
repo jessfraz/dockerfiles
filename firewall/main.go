@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
-	"time"
 
 	"github.com/Sirupsen/logrus"
 	"github.com/coreos/go-etcd/etcd"
@@ -148,18 +147,10 @@ func main() {
 		logger.Fatal(err)
 	}
 
-	// run in a loop incase we have network issues connecting to etcd
-	for i := 0; i < 100; i++ {
-		update := make(chan *etcd.Response, 10)
-		go processLoop(client, update)
+	update := make(chan *etcd.Response)
+	go processLoop(client, update)
 
-		if _, err := client.Watch("/firewall", 0, true, update, nil); err != nil {
-			logger.Error(err)
-		}
-		close(update)
-
-		time.Sleep(10 * time.Second)
-
-		logger.Infof("restarting process loop %d times", i)
+	if _, err := client.Watch("/firewall", 0, true, update, nil); err != nil {
+		logger.Error(err)
 	}
 }
