@@ -1,0 +1,159 @@
+[global]
+    font = Monospace-12
+
+    # The format of the message. Possible variables are:
+    #   %a  appname
+    #   %s  summary
+    #   %b  body
+    #   %i  iconname (including its path)
+    #   %I  iconname (without its path)
+    format = "%s %b"
+
+    # Sort messages by urgency
+    sort = yes
+
+    # Show how many messages are currently hidden (because of geometry)
+    indicate_hidden = yes
+
+    # alignment of message text.
+    # Possible values are "left", "center" and "right"
+    alignment = left
+
+    # The frequency with wich text that is longer than the notification
+    # window allows bounces back and forth.
+    # This option conflicts with 'word_wrap'.
+    # Set to 0 to disable
+    bounce_freq = 0
+
+    # show age of message if message is older than show_age_threshold seconds.
+    # set to -1 to disable
+    show_age_threshold = 60;
+
+    # split long notifications into multiple lines
+    word_wrap = yes
+
+
+    # the geometry of the window
+    # geometry [{width}]x{height}][+/-{x}+/-{y}]
+    # The geometry of the message window.
+    # The height is measured in lines everything else in pixels. If the width
+    # is omitted but the height is given ("-geometry x2"), the message window
+    # expands over the whole screen (dmenu-like). If width is 0,
+    # the window expands to the longest message displayed.
+    # A positive x is measured from the left, a negative from the
+    # right side of the screen.  Y is measured from the top and down respectevly.
+    geometry = "0x3-30+20"
+
+    # The transparency of the window. range: [0; 100]
+    # This option will only work if a compositing windowmanager is present (e.g. xcompmgr, compiz, etc..)
+    transparency = 0
+
+    # Don't remove messages, if the user is idle (no mouse or keyboard input)
+    # for longer than idle_threshold seconds.
+    # Set to 0 to disable.
+    idle_threshold = 120
+
+    # Which monitor should the notifications be displayed on.
+    monitor = 0
+
+    # Display notification on focused monitor. Possible modes are:
+    # mouse: follow mouse pointer
+    # keyboard: follow window with keyboard focus
+    # none: don't follow anything
+    #
+    # "keyboard" needs a windowmanager that exports the _NET_ACTIVE_WINDOW property.
+    # This should be the case for almost all modern windowmanagers.
+    #
+    # If this option is set to mouse or keyboard, the monitor option will be
+    # ignored.
+    follow = keyboard
+
+    # should a notification popped up from history be sticky or
+    # timeout as if it would normally do.
+    sticky_history = yes
+
+    # The height of a single line. If the height is smaller than the font height,
+    # it will get raised to the font height.
+    # This adds empty space above and under the text.
+    line_height = 0
+
+    # Draw a line of 'separatpr_height' pixel height between two notifications.
+    # Set to 0 to disable
+    separator_height = 2;
+
+    # Define a color for the separator.
+    # This can either be "auto" or "foreground". "Auto" tries to find a color
+    # that fits nicely to the background color.
+    separator_color = auto
+
+
+[shortcuts]
+    # shortcuts are specified as [modifier+][modifier+]...key
+    # available modifiers are 'ctrl', 'mod1' (the alt-key), 'mod2', 'mod3'
+    # and 'mod4' (windows-key)
+    # xev might be helpful to find names for keys
+
+    # close notification
+    close = ctrl+space
+
+    # close all notifications
+    close_all = ctrl+shift+space
+
+    # redisplay last message(s)
+    # On the US keyboard layout 'grave' is normally above TAB and left of '1'.
+    history = ctrl+grave
+
+[urgency_low]
+    # IMPORTANT: colors have to be defined in quotation marks.
+    # Otherwise the '#' and following  would be interpreted as a comment.
+    background = "#aaaaff"
+    foreground = "#000000"
+    timeout = 120
+
+[urgency_normal]
+    background = "#1793D1"
+    foreground = "#DDDDDD"
+    timeout = 120
+
+[urgency_critical]
+    background = "#ffaaaa"
+    foreground = "#000000"
+    timeout = 0
+
+
+# Every section that isn't one of the above is interpreted as a rules
+# to override settings for certain messages.
+# Messages can be matched by 'appname', 'summary', 'body' or 'icon'
+# and you can override the 'timeout', 'urgency', 'foreground', 'background'
+# and 'format'.
+# Shell-like globbing will get expanded.
+#
+# NOTE: if you don't want a notification to be displayed, set the format to ""
+# NOTE: It might be helpful to run dunst -print in a terminal in order to find
+# fitting options for rules.
+
+#[ignore]
+## This notification will not be displayed
+#    summary = "foobar"
+#    format = ""
+
+#[signed_on]
+#    appname = Pidgin
+#    summary = "*signed on*"
+#    urgency = low
+#
+#[signed_off]
+#    appname = Pidgin
+#    summary = *signed off*
+#    urgency = low
+#
+#[says]
+#    appname = Pidgin
+#    summary = *says*
+#    urgency = critical
+#
+#[twitter]
+#    appname = Pidgin
+#    summary = *twitter.com*
+#    urgency = normal
+#
