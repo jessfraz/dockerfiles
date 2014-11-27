@@ -11,15 +11,17 @@ RUN apt-get update && apt-get install -y \
     --no-install-recommends
 
 # get the source
-RUN mkdir /znc-tmp
-RUN curl -sSL http://znc.in/releases/znc-latest.tar.gz | tar -v -C /znc-tmp -xz
-RUN mv /znc-tmp/znc* /znc; rm -rf /znc-tmp
+RUN mkdir /znc-tmp && \
+    curl -sSL http://znc.in/releases/znc-latest.tar.gz | tar -v -C /znc-tmp -xz && \
+    mv /znc-tmp/znc* /znc; rm -rf /znc-tmp && \
+    cd /znc && \
+    ./configure && \
+    make -j8 && \
+    make install && \
+    rm -rf /znc && \
+    mkdir /znc
 
-# install it
-RUN cd /znc; ./configure; make -j8; make install
-RUN rm -rf /znc
-RUN mkdir /znc
-ADD znc-shim /usr/local/bin/znc-shim
+COPY ./znc-shim /usr/local/bin/znc-shim
 
 RUN adduser \
     --system \
@@ -31,11 +33,3 @@ RUN adduser \
 
 WORKDIR /znc
 ENTRYPOINT ["/usr/local/bin/znc-shim"]
-
-# make basic config
-# RUN znc --makeconf
-
-# add local config
-# ADD conf /.znc
-
-# CMD [ "znc", "-f", "-r" ]
