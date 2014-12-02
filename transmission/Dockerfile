@@ -17,8 +17,6 @@
 #     -e DISPLAY=unix$DISPLAY transmission
 #
 
-DOCKER-VERSION 1.3
-
 # Base docker image
 FROM debian:jessie
 MAINTAINER Jessica Frazelle <jess@docker.com>

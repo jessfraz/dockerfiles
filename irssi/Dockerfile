@@ -14,13 +14,9 @@ MAINTAINER Jessica Frazelle <jess@docker.com>
 ENV LANG C.UTF-8
 
 RUN apt-get update && apt-get install -y \
-    dunst \
     irssi \
     libdatetime-perl \
-    libnotify-bin \
     libwww-perl \
     --no-install-recommends
-
-COPY ./.dunstrc /root/.dunstrc
 
 CMD [ "irssi" ]
