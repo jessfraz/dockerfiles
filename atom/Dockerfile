@@ -19,8 +19,6 @@
 #     -e DISPLAY=unix$DISPLAY atom
 #
 
-DOCKER-VERSION 1.3
-
 # Base docker image
 FROM debian:jessie
 MAINTAINER Jessica Frazelle <jess@docker.com>

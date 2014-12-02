@@ -20,19 +20,25 @@
 #   docker run --volumes-from chromium-data -v /tmp/.X11-unix:/tmp/.X11-unix \
 #   -e DISPLAY=unix$DISPLAY chromium
 
-DOCKER_VERSION 1.3
-
 # Base docker image
 FROM debian:jessie
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
+COPY google-talkplugin_current_amd64.deb /src/google-talkplugin_current_amd64.deb
 # Install Chromium
-RUN apt-get update && apt-get install -y \
+RUN sed -i.bak 's/jessie main/jessie main contrib non-free/g' /etc/apt/sources.list && \
+    apt-get update && apt-get install -y \
     chromium \
     chromium-l10n \
     libcanberra-gtk-module \
     libexif-dev \
-    --no-install-recommends
+    libpango1.0-0 \
+    libv4l-0 \
+    pepperflashplugin-nonfree \
+    --no-install-recommends && \
+    mkdir -p /etc/chromium.d/ && \
+    /bin/echo -e 'export GOOGLE_API_KEY="AIzaSyCkfPOPZXDKNn8hhgu3JrA62wIgC93d44k"\nexport GOOGLE_DEFAULT_CLIENT_ID="811574891467.apps.googleusercontent.com"\nexport GOOGLE_DEFAULT_CLIENT_SECRET="kdloedMFGdGla2P1zacGjAQh"' > /etc/chromium.d/googleapikeys && \
+    dpkg -i '/src/google-talkplugin_current_amd64.deb'
 
-# Autorun chromium
+# Autorun x11vnc
 CMD ["/usr/bin/chromium", "--no-sandbox", "--user-data-dir=/data"]
