@@ -16,6 +16,7 @@ ENV LANG C.UTF-8
 RUN apt-get update && apt-get install -y \
     irssi \
     libdatetime-perl \
+    libnotify-bin \
     libwww-perl \
     --no-install-recommends
 
