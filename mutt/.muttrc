@@ -1,0 +1,66 @@
+# A basic .muttrc for use with Gmail
+
+# Change the following six lines to match your Gmail account details
+set imap_user = "%GMAIL_LOGIN%"
+set imap_pass = "%GMAIL_PASS%" # leave blank for prompt
+set smtp_url = "smtps://$imap_user@smtp.gmail.com:465/"
+set smtp_pass = "%GMAIL_PASS%" # will prompt if blank
+set from = "%GMAIL_FROM%"
+set realname = "%GMAIL_NAME%"
+
+# Change the following line to a different editor you prefer (and update the Dockerfile accordingly, of course).
+set editor = "vim"
+
+# I like seeing some headers. :)
+ignore *
+unignore date subject x- user-agent posted-to content-type
+unignore to cc bcc reply-to from
+set edit_headers = yes
+my_hdr X-Docker-Image: jess/mutt
+
+# TODO figure out how to use the sidebar more effectively :)
+set sidebar_visible = no
+
+# Tianon keybindings and settings, because he's special.
+bind pager <up> previous-line
+bind pager <down> next-line
+set resolve = no # uh, don't randomly take me to other messages when I do things
+
+# Basic config, you can leave this as is
+set folder = "imaps://imap.gmail.com:993"
+set spoolfile = "+INBOX"
+set imap_check_subscribed
+set hostname = gmail.com
+set mail_check = 120
+set timeout = 300
+set imap_keepalive = 300
+set postponed = "+[Gmail]/Drafts"
+set record = "" # gmail automatically handles saving sent emails
+set header_cache=~/.mutt/cache/headers
+set message_cachedir=~/.mutt/cache/bodies
+set certificate_file=~/.mutt/certificates
+set move = no
+set include
+set sort = 'threads'
+set sort_aux = 'reverse-last-date-received'
+set auto_tag = yes
+ignore "Authentication-Results:"
+ignore "DomainKey-Signature:"
+ignore "DKIM-Signature:"
+hdr_order Date From To Cc
+alternative_order text/plain text/html *
+auto_view text/html
+bind editor <Tab> complete-query
+bind editor ^T complete
+bind editor <space> noop
+
+# Gmail-style keyboard shortcuts
+macro index,pager y "<enter-command>unset trash\n <delete-message>" "Gmail archive message"
+macro index,pager d "<enter-command>set trash=\"imaps://imap.googlemail.com/[GMail]/Bin\"\n <delete-message>" "Gmail delete message"
+macro index,pager gi "<change-folder>=INBOX<enter>" "Go to inbox"
+macro index,pager ga "<change-folder>=[Gmail]/All Mail<enter>" "Go to all mail"
+macro index,pager gs "<change-folder>=[Gmail]/Starred<enter>" "Go to starred messages"
+macro index,pager gd "<change-folder>=[Gmail]/Drafts<enter>" "Go to drafts"
+
+# colors
+source /home/user/mutt-colors-solarized-dark-16.muttrc
