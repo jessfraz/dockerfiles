@@ -1,0 +1,12 @@
+# Patch syntax highlighting                                                     
+color   normal  white           default                                         
+color   body    brightwhite     default         ^[[:space:]].*                  
+color   body    brightwhite     default         ^(diff).*                       
+color   body    white           default         ^[\-\-\-].*                     
+color   body    white           default         ^[\+\+\+].*                     
+color   body    green           default         ^[\+].*                         
+color   body    red             default         ^[\-].*                         
+color   body    brightblue      default         [@@].*                          
+color   body    brightwhite     default         ^(\s).*                         
+color   body    brightwhite     default         ^(Signed-off-by).*              
+color   body    brightwhite     default         ^(Cc)  
