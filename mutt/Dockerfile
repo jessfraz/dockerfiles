@@ -9,7 +9,8 @@ RUN apt-get update && apt-get install -y \
     lynx \
     mutt-patched \
     vim-nox \
-    --no-install-recommends
+    --no-install-recommends 
+
 ENV BROWSER lynx
 ENV TERM xterm-256color
 
