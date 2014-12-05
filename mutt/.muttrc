@@ -64,3 +64,4 @@ macro index,pager gd "<change-folder>=[Gmail]/Drafts<enter>" "Go to drafts"
 
 # colors
 source /home/user/mutt-colors-solarized-dark-16.muttrc
+source /home/user/mutt-patch-highlighting.muttrc 
