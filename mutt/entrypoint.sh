@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-if [[ ! "$GMAIL" ]]; then
+if [ ! "$GMAIL" ]; then
 	echo >&2 'error: missing GMAIL environment variable'
 	echo >&2 '  try running again with -e GMAIL=your-email@gmail.com'
 	echo >&2 '    optionally, you can also specify -e GMAIL_FROM=email@your-domain.com'
@@ -10,10 +10,10 @@ if [[ ! "$GMAIL" ]]; then
 	exit 1
 fi
 
-if [[ ! "$GMAIL_FROM" ]]; then
+if [ ! "$GMAIL_FROM" ]; then
 	GMAIL_FROM="$GMAIL"
 fi
-if [[ ! "$GMAIL_NAME" ]]; then
+if [ ! "$GMAIL_NAME" ]; then
 	GMAIL_NAME="$GMAIL_FROM"
 fi
 
@@ -22,12 +22,12 @@ sed -i "s/%GMAIL_FROM%/$GMAIL_FROM/g" "$HOME/.muttrc"
 sed -i "s/%GMAIL_NAME%/$GMAIL_NAME/g" "$HOME/.muttrc"
 sed -i "s/%GMAIL_PASS%/$GMAIL_PASS/g" "$HOME/.muttrc"
 
-if [[ -d "$HOME/.gnupg" ]]; then
+if [ -d "$HOME/.gnupg" ]; then
 	{
 		echo
 		echo 'source /usr/share/doc/mutt/examples/gpg.rc'
 		echo 'set pgp_use_gpg_agent = yes'
-		if [[ "$GPG_ID" ]]; then
+		if [ "$GPG_ID" ]; then
 			echo "set pgp_sign_as = $GPG_ID"
 		fi
 		echo 'set crypt_replysign = yes'
@@ -36,7 +36,7 @@ if [[ -d "$HOME/.gnupg" ]]; then
 	} >> "$HOME/.muttrc"
 fi
 
-if [[ -e "$HOME/.muttrc.local" ]]; then
+if [ -e "$HOME/.muttrc.local" ]; then
 	echo "source $HOME/.muttrc.local" >> "$HOME/.muttrc"
 fi
 
