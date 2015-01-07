@@ -3,16 +3,10 @@
 # Change the following six lines to match your Gmail account details
 set imap_user = "%GMAIL_LOGIN%"
 set imap_pass = "%GMAIL_PASS%" # leave blank for prompt
-set smtp_url = "smtp://$imap_user@smtp.gmail.com:587"
-set smtp_pass = "$imap_pass"
+set smtp_url = "smtps://$imap_user@smtp.gmail.com:465/"
+set smtp_pass = "$imap_pass" # leave blank for prompt
 set from = "%GMAIL_FROM%"
 set realname = "%GMAIL_NAME%"
-
-# activate TLS if available on the server
-set ssl_starttls=yes
-
-# always use SSL when connecting to a server
-set ssl_force_tls=yes
 
 # Change the following line to a different editor you prefer (and update the Dockerfile accordingly, of course).
 set editor = "vim"
@@ -37,9 +31,9 @@ set folder = "imaps://imap.gmail.com:993"
 set spoolfile = "+INBOX"
 set imap_check_subscribed
 set hostname = gmail.com
+set mail_check = 60
 set timeout = 300
 set imap_keepalive = 300
-set mail_check = 60
 set postponed = "+[Gmail]/Drafts"
 set record = "" # gmail automatically handles saving sent emails
 
@@ -64,7 +58,7 @@ bind editor <Tab> complete-query
 bind editor ^T complete
 bind editor <space> noop
 
-set mailcap_path      = ~/.mailcap
+set mailcap_path = ~/.mailcap
 
 # Gmail-style keyboard shortcuts
 macro index,pager gi "<change-folder>=INBOX<enter>" "Go to Inbox"
@@ -80,5 +74,5 @@ macro index,pager !  <save-message>=[Gmail]/Spam<enter><enter> "Report spam"
 macro index,pager +  <save-message>=[Gmail]/Important<enter><enter> "Mark as important"
 
 # colors
-source /home/user/mutt-colors-solarized-dark-16.muttrc
-source /home/user/mutt-patch-highlighting.muttrc 
+source ~/mutt-colors-solarized-dark-16.muttrc
+source ~/mutt-patch-highlighting.muttrc
