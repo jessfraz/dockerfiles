@@ -4,23 +4,19 @@ set -e
 if [ ! "$GMAIL" ]; then
 	echo >&2 'error: missing GMAIL environment variable'
 	echo >&2 '  try running again with -e GMAIL=your-email@gmail.com'
-	echo >&2 '    optionally, you can also specify -e GMAIL_FROM=email@your-domain.com'
+	echo >&2 '    optionally, you can also specify -e GMAIL_PASS'
 	echo >&2 '    and also -e GMAIL_NAME="Your Name"'
 	echo >&2 '      if not specified, both default to the value of GMAIL'
 	exit 1
 fi
 
-if [ ! "$GMAIL_FROM" ]; then
-	GMAIL_FROM="$GMAIL"
-fi
 if [ ! "$GMAIL_NAME" ]; then
-	GMAIL_NAME="$GMAIL_FROM"
+	GMAIL_NAME="$GMAIL"
 fi
 
-sed -i "s/%GMAIL_LOGIN%/$GMAIL/g" "$HOME/.muttrc"
-sed -i "s/%GMAIL_FROM%/$GMAIL_FROM/g" "$HOME/.muttrc"
-sed -i "s/%GMAIL_NAME%/$GMAIL_NAME/g" "$HOME/.muttrc"
-sed -i "s/%GMAIL_PASS%/$GMAIL_PASS/g" "$HOME/.muttrc"
+sed -i "s/%GMAIL_LOGIN%/$GMAIL/g" "$HOME/.mutt/muttrc"
+sed -i "s/%GMAIL_NAME%/$GMAIL_NAME/g" "$HOME/.mutt/muttrc"
+sed -i "s/%GMAIL_PASS%/$GMAIL_PASS/g" "$HOME/.mutt/muttrc"
 
 if [ -d "$HOME/.gnupg" ]; then
 	{
@@ -37,7 +33,7 @@ if [ -d "$HOME/.gnupg" ]; then
 fi
 
 if [ -e "$HOME/.muttrc.local" ]; then
-	echo "source $HOME/.muttrc.local" >> "$HOME/.muttrc"
+	echo "source $HOME/.muttrc.local" >> "$HOME/.mutt/muttrc"
 fi
 
 exec "$@"
