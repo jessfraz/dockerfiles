@@ -1,12 +1,29 @@
 # Patch syntax highlighting                                                     
-color   normal  white           default                                         
+#color   normal  white           default                                         
 color   body    brightwhite     default         ^[[:space:]].*                  
-color   body    brightwhite     default         ^(diff).*                       
-color   body    white           default         ^[\-\-\-].*                     
-color   body    white           default         ^[\+\+\+].*                     
-color   body    green           default         ^[\+].*                         
-color   body    red             default         ^[\-].*                         
-color   body    brightblue      default         [@@].*                          
+color   body    yellow          default         ^(diff).*                       
+#color   body    white           default         ^[\-\-\-].*                     
+#color   body    white           default         ^[\+\+\+].*                     
+#color   body    green           default         ^[\+].*                         
+#color   body    red             default         ^[\-].*                         
+#color   body    brightblue      default         [@@].*                          
 color   body    brightwhite     default         ^(\s).*                         
-color   body    brightwhite     default         ^(Signed-off-by).*              
-color   body    brightwhite     default         ^(Cc)  
+color   body    cyan            default         ^(Signed-off-by).*
+color   body    cyan            default         ^(Docker-DCO-1.1-Signed-off-by).*
+color   body    brightwhite     default         ^(Cc)
+color   body    yellow          default         "^diff \-.*"
+color   body    brightwhite     default         "^index [a-f0-9].*"
+color   body    brightblue      default         "^---$"
+color   body    white           default         "^\-\-\- .*"
+color   body    white           default         "^[\+]{3} .*"
+color   body    green           default         "^[\+][^\+]+.*"
+color   body    red             default         "^\-[^\-]+.*"
+color   body    brightblue      default         "^@@ .*"
+color   body    green           default         "LGTM"
+color   body    brightmagenta   default         "-- Commit Summary --"
+color   body    brightmagenta   default         "-- File Changes --"
+color   body    brightmagenta   default         "-- Patch Links --"
+color   body    green           default         "^Merged #.*"
+color   body    red             default         "^Closed #.*"
+color   body    brightblue      default         "^Reply to this email.*"
+
