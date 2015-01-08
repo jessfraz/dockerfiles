@@ -5,8 +5,9 @@ set imap_user = "%GMAIL_LOGIN%"
 set imap_pass = "%GMAIL_PASS%" # leave blank for prompt
 set smtp_url = "smtps://$imap_user@smtp.gmail.com:465/"
 set smtp_pass = "$imap_pass" # leave blank for prompt
-set from = "%GMAIL_FROM%"
+set from = "%GMAIL_LOGIN%"
 set realname = "%GMAIL_NAME%"
+set signature = "~/.mutt/signature"
 
 # Change the following line to a different editor you prefer (and update the Dockerfile accordingly, of course).
 set editor = "vim"
@@ -58,21 +59,21 @@ bind editor <Tab> complete-query
 bind editor ^T complete
 bind editor <space> noop
 
-set mailcap_path = ~/.mailcap
+set mailcap_path = ~/.mutt/mailcap
 
 # Gmail-style keyboard shortcuts
-macro index,pager gi "<change-folder>=INBOX<enter>" "Go to Inbox"
-macro index,pager ga "<change-folder>=[Gmail]/All Mail<enter>" "Go to All Mail"
-macro index,pager gs "<change-folder>=[Gmail]/Starred<enter>" "Go to Starred"
-macro index,pager gd "<change-folder>=[Gmail]/Drafts<enter>" "Go to Drafts"
-macro index,pager gt "<change-folder>=[Gmail]/Sent Mail<enter>" "Go to Sent Mail"
+macro index,pager Gi "<change-folder>=INBOX<enter>" "Go to Inbox"
+macro index,pager Ga "<change-folder>=[Gmail]/All Mail<enter>" "Go to All Mail"
+macro index,pager Gd "<change-folder>=[Gmail]/Drafts<enter>" "Go to Drafts"
+macro index,pager Gs "<change-folder>=[Gmail]/Sent Mail<enter>" "Go to Sent Mail"
 
-macro index,pager y "<enter-command>unset resolve<enter><enter-command>unset trash<enter><clear-flag>N<enter-command>set resolve<enter><delete-message><enter>"
-macro index,pager d "<enter-command>set trash=\"imaps://imap.googlemail.com/[GMail]/Bin\"\n <delete-message>" "Trash"
-
+macro index,pager a "<enter-command>unset resolve<enter><enter-command>unset trash<enter><clear-flag>N<enter-command>set resolve<enter><delete-message><enter>"
+macro index,pager d ";s+[Gmail]/Trash<enter><enter>" "Trash"
+macro index,pager u ";s+INBOX<enter><enter>" "Move to Inbox"
 macro index,pager !  <save-message>=[Gmail]/Spam<enter><enter> "Report spam"
-macro index,pager +  <save-message>=[Gmail]/Important<enter><enter> "Mark as important"
+macro index,pager +  <save-message>=[Gmail]/Important<enter><enter> "Mark as Important"
+macro index,pager *  <save-message>=[Gmail]/Starred<enter><enter> "Star Message"
 
 # colors
-source ~/mutt-colors-solarized-dark-16.muttrc
-source ~/mutt-patch-highlighting.muttrc
+source ~/.mutt/mutt-colors-solarized-dark-16.muttrc
+source ~/.mutt/mutt-patch-highlighting.muttrc
