@@ -5,7 +5,7 @@ set imap_user = "%GMAIL_LOGIN%"
 set imap_pass = "%GMAIL_PASS%" # leave blank for prompt
 set smtp_url = "smtps://$imap_user@smtp.gmail.com:465/"
 set smtp_pass = "$imap_pass" # leave blank for prompt
-set from = "%GMAIL_LOGIN%"
+set from = "%GMAIL_FROM%"
 set realname = "%GMAIL_NAME%"
 set signature = "~/.mutt/signature"
 
