@@ -48,6 +48,13 @@ set sort = 'reverse-threads'
 set sort_aux = 'last-date-received'
 set auto_tag = yes
 
+# sane gpg settings to be a good encryption
+# social citizen of the world
+set pgp_replyencrypt       # auto encrypt replies to encrypted mail
+set pgp_replysign          # auto sign replies to signed mail
+set pgp_replysignencrypted # auto sign & encrypt to signed & encrypted mail
+set pgp_show_unusable=no   # show which keys are no good anymore
+
 ignore "Authentication-Results:"
 ignore "DomainKey-Signature:"
 ignore "DKIM-Signature:"
