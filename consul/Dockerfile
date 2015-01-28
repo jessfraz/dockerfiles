@@ -1,8 +1,8 @@
 FROM progrium/busybox
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
-ADD https://jesss.s3.amazonaws.com/consul/0.4.1/consul /usr/local/bin/consul
-ADD https://jesss.s3.amazonaws.com/backups/bin/curl-unix-socket /usr/local/bin/curl-unix-socket
+ADD https://jesss.s3.amazonaws.com/binaries/consul/0.4.1/consul /usr/local/bin/consul
+ADD https://jesss.s3.amazonaws.com/binaries/curl-unix-socket /usr/local/bin/curl-unix-socket
 
 COPY ./dist/ /usr/src/consul
 
