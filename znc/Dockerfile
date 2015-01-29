@@ -7,29 +7,24 @@ RUN apt-get update && apt-get install -y \
     libperl-dev \
     pkg-config \
     curl \
-    sudo \
     --no-install-recommends
 
+ENV HOME /home/user
+RUN useradd --create-home --home-dir $HOME user \
+    && mkdir -p $HOME/.irssi \
+    && chown -R user:user $HOME
+
 # get the source
-RUN mkdir /znc-tmp && \
-    curl -sSL http://znc.in/releases/znc-latest.tar.gz | tar -v -C /znc-tmp -xz && \
-    mv /znc-tmp/znc* /znc; rm -rf /znc-tmp && \
-    cd /znc && \
+RUN mkdir $HOME/src && \
+    curl -sSL http://znc.in/releases/znc-latest.tar.gz | tar -v -C $HOME/src -xz --strip-components 1 && \
+    cd $HOME/src && \
     ./configure && \
     make -j8 && \
     make install && \
-    rm -rf /znc && \
-    mkdir /znc
+    rm -rf $HOME/src
 
-COPY ./znc-shim /usr/local/bin/znc-shim
+WORKDIR $HOME
+USER user
 
-RUN adduser \
-    --system \
-    --home=/znc \
-    --shell=/bin/sh \
-    --no-create-home \
-    --group \
-    znc
-
-WORKDIR /znc
-ENTRYPOINT ["/usr/local/bin/znc-shim"]
+ENTRYPOINT [ "znc" ]
+CMD [ "-f" ]
