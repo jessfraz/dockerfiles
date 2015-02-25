@@ -7,5 +7,5 @@ a docker container.
 Run with
 
 ```
-docker run -v /dev/snd:/dev/snd -it --rm rothgar/mpsyt
+docker run -v /dev/snd:/dev/snd -it --rm --privileged rothgar/mpsyt
 ```
