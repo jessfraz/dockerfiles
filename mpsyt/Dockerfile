@@ -1,8 +1,11 @@
 FROM python:latest
 MAINTAINER Justin Garrison <justinleegarrison@gmail.com>
 
-RUN apt-get update && apt-get install -y mplayer
+RUN apt-get update && apt-get install -y \
+	mplayer \
+	--no-install-recommends \
+	&& rm -rf /var/lib/apt/lists/*
+
 RUN pip install mps-youtube
-RUN apt-get clean && apt-get purge
 
 ENTRYPOINT ["mpsyt"]
