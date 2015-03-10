@@ -12,7 +12,6 @@ RUN apt-get update && apt-get install -y \
 
 ENV HOME /home/user
 RUN useradd --create-home --home-dir $HOME user \
-    && mkdir -p $HOME/.irssi \
     && chown -R user:user $HOME
 
 ENV LANG C.UTF-8

@@ -11,4 +11,6 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /usr/src
 
-ENTRYPOINT [ "bash" ]
+COPY ./download-kernel /usr/local/bin/download-kernel
+
+CMD [ "bash" ]
