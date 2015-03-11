@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y \
 	--no-install-recommends && \
 	apt-add-repository ppa:remmina-ppa-team/remmina-next && \
 	apt-get update && apt-get install -y \
+	hicolor-icon-theme \
     remmina \
 	remmina-plugin-rdp \
     --no-install-recommends
