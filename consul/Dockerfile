@@ -1,7 +1,8 @@
 FROM debian:jessie
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
-ADD https://jesss.s3.amazonaws.com/binaries/consul/0.4.1/consul /usr/local/bin/consul
+ENV CONSUL_VERSION 0.5.0
+ADD https://jesss.s3.amazonaws.com/binaries/consul/${CONSUL_VERSION}/consul /usr/local/bin/consul
 ADD https://jesss.s3.amazonaws.com/binaries/curl-unix-socket /usr/local/bin/curl-unix-socket
 
 COPY ./dist/ /usr/src/consul
