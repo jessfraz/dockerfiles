@@ -6,10 +6,12 @@ RUN apt-get update && apt-get install -y \
     curl \
     debhelper \
     devscripts \
+    equivs \
     file \
     gcc \
     git \
     gnupg \
+    libwww-perl \
     make \
     patch \
     patchutils \
