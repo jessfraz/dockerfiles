@@ -2,8 +2,22 @@ FROM debian:jessie
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
 RUN apt-get update && apt-get install -y \
+    ca-certificates \
+    curl \
+    debhelper \
+    devscripts \
+    file \
+    gcc \
+    git \
+    gnupg \
+    make \
+    patch \
+    patchutils \
     quilt \
+    silversearcher-ag \
+    tree \
     vim \
+    xutils-dev \
     --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
