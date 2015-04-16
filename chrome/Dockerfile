@@ -40,4 +40,4 @@ COPY local.conf /etc/fonts/local.conf
 
 # Autorun chrome
 ENTRYPOINT [ "/usr/bin/google-chrome-stable" ]
-CMD [ "--user-data-dir=/data" ]
+CMD [ "--user-data-dir=/data", "--no-sandbox" ]
