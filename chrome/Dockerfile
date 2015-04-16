@@ -19,8 +19,8 @@ RUN sed -i.bak 's/jessie main/jessie main contrib non-free/g' /etc/apt/sources.l
     libcurl3 \
     libexif-dev \
     libgconf-2-4 \
-    libgl1-mesa-dri \
     libgl1-mesa-glx \
+    libgl1-mesa-dri \
     libnspr4 \
     libnss3 \
     libpango1.0-0 \
@@ -38,5 +38,6 @@ RUN sed -i.bak 's/jessie main/jessie main contrib non-free/g' /etc/apt/sources.l
 
 COPY local.conf /etc/fonts/local.conf
 
-# Autorun x11vnc
-CMD ["/usr/bin/google-chrome-stable", "--no-sandbox", "--user-data-dir=/data"]
+# Autorun chrome
+ENTRYPOINT [ "/usr/bin/google-chrome-stable" ]
+CMD [ "--user-data-dir=/data" ]
