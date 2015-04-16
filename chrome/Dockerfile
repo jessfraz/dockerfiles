@@ -19,8 +19,8 @@ RUN sed -i.bak 's/jessie main/jessie main contrib non-free/g' /etc/apt/sources.l
     libcurl3 \
     libexif-dev \
     libgconf-2-4 \
-    libgl1-mesa-glx \
     libgl1-mesa-dri \
+    libgl1-mesa-glx \
     libnspr4 \
     libnss3 \
     libpango1.0-0 \
