@@ -7,4 +7,6 @@ RUN sed -i.bak 's/jessie main/jessie main contrib/g' /etc/apt/sources.list && \
     iceweasel \
     --no-install-recommends
 
+COPY local.conf /etc/fonts/local.conf
+
 ENTRYPOINT [ "iceweasel" ]
