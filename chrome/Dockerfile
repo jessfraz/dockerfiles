@@ -1,5 +1,5 @@
 # Base docker image
-FROM debian:jessie
+FROM debian:sid
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
 COPY google-talkplugin_current_amd64.deb /src/google-talkplugin_current_amd64.deb
@@ -7,7 +7,7 @@ COPY google-talkplugin_current_amd64.deb /src/google-talkplugin_current_amd64.de
 ADD  https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb /src/google-chrome-stable_current_amd64.deb
 
 # Install Chromium
-RUN sed -i.bak 's/jessie main/jessie main contrib non-free/g' /etc/apt/sources.list && \
+RUN sed -i.bak 's/sid main/sid main contrib non-free/g' /etc/apt/sources.list && \
     mkdir -p /usr/share/icons/hicolor && \
     apt-get update && apt-get install -y \
     ca-certificates \
