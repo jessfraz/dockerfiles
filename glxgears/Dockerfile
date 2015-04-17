@@ -5,11 +5,7 @@ FROM debian:jessie
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
 # Install all the things
-RUN sed -i.bak 's/jessie main/jessie main contrib non-free/g' /etc/apt/sources.list && \
-    apt-get update && apt-get install -y \
-    glx-alternative-nvidia \
-    libgl1-mesa-glx \
-    libgl1-mesa-dri \
+RUN apt-get update && apt-get install -y \
     mesa-utils \
     --no-install-recommends
 
