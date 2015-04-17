@@ -17,5 +17,6 @@ WORKDIR $HOME
 COPY ./lolcat /usr/bin/lolcat
 
 RUN echo 'image_me() { convert $1 jpg:- | jp2a ${*:2} -; }' >> $HOME/.bashrc
+RUN echo 'figlet_lolcat() { figlet $1 | lolcat; }' >> $HOME/.bashrc
 
 ENTRYPOINT [ "bash" ]
