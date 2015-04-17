@@ -2,8 +2,7 @@ FROM debian:jessie
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
 RUN apt-get update && apt-get install -y \
-    ulimit \
+    libreoffice \
     --no-install-recommends
 
-ENTRYPOINT [ "ulimit" ]
-CMD [ "-n" ]
+ENTRYPOINT [ "libreoffice" ]
