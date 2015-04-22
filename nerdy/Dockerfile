@@ -15,6 +15,7 @@ ENV HOME /root
 WORKDIR $HOME
 
 COPY ./lolcat /usr/bin/lolcat
+COPY ./clippy.cow /usr/share/cowsay/cows/clippy.cow
 
 RUN echo 'image_me() { convert $1 jpg:- | jp2a ${*:2} -; }' >> $HOME/.bashrc
 
