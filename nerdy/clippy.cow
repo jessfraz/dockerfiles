@@ -1,0 +1,22 @@
+##
+## Would you like some assistance today?
+## https://gist.github.com/raggiskula/2351564
+##
+$the_cow = <<EOC;
+   $thoughts     ___
+    $thoughts   /   \\
+     $thoughts /     \\
+      /       \\
+    ___       ___
+   /___\\     /___\\
+   \\\@__/     \\\@__/
+     |        |
+     | |      | |
+     | |      | |
+     | |      | |
+     |  \\    /  |
+     |   \\__/   |
+      \\        /
+       \\      /
+        \\____/
+EOC
