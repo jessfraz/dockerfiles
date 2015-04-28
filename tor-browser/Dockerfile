@@ -29,8 +29,11 @@ ENV TOR_VERSION 4.5
 
 RUN curl -sSL "https://www.torproject.org/dist/torbrowser/${TOR_VERSION}/tor-browser-linux64-${TOR_VERSION}_en-US.tar.xz" | tar -v -C /usr/local/bin -xJ --strip-components 1 
 
+# good fonts
+COPY local.conf /etc/fonts/local.conf
+
 WORKDIR $HOME
 USER user
 
 ENTRYPOINT ["/bin/bash"]
-CMD [ "/usr/local/bin/start-tor-browser" ]
+CMD [ "/usr/local/bin/Browser/start-tor-browser" ]
