@@ -1,3 +1,13 @@
+# Run remmina in a container
+#
+# docker run -d \
+#   -v /etc/localtime:/etc/localtime:ro \
+#   -v /tmp/.X11-unix:/tmp/.X11-unix \
+#   -e DISPLAY=unix$DISPLAY \
+#   -v $HOME/.remmina:/root/.remmina \
+#   --name remmina \
+#   jess/remmina
+#
 FROM ubuntu:14.10
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
