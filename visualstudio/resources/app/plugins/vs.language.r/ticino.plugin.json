@@ -1,0 +1,19 @@
+{
+	"pluginId": "vs.language.r",
+	"activationEvents": ["textModel:r"],
+	"mainModule": "./rMain",
+	"contributes": {
+		"language": [{
+			"id": "r",
+			"extensions": [ ".r", ".rhistory", ".rt" ],
+			"aliases": [ "R", "r" ]
+		}]
+	},
+	"scripts": {
+		"compile": "node ../../node_modules/gulp/bin/gulp.js --gulpfile ../gulpfile.js compile --dir vs.language.r"
+	},
+	"_testing": "./tests/rTests",
+	"_bundling": [
+		{ "name": "./rMain" }
+	]
+}

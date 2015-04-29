@@ -1,0 +1,6 @@
+scopeName: 'test.injections'
+injections:
+  test:
+    patterns: [
+      { include: 'text.plain' }
+    ]

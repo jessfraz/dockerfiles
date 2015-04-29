@@ -1,0 +1,14 @@
+/*---------------------------------------------------------
+ * Copyright (C) Microsoft Corporation. All rights reserved.
+ *--------------------------------------------------------*/
+ 
+.monaco-workbench 			{ background-color: #F3F3F3; }
+.monaco-workbench .sidebar .separator 	{ background-color: #EFEFF2; }
+.monaco-workbench.vs input,
+.monaco-workbench.vs .search-viewlet .query-box,
+.monaco-workbench.vs .test-viewlet .filter { 
+	background-color: white;
+}
+.monaco-workbench.vs input:disabled {
+	background-color: #E1E1E1;
+}

@@ -1,0 +1,12 @@
+'name': 'test'
+'scopeName': 'source.imaginaryLanguage'
+'patterns': [
+  {
+    'name': 'comment-body'
+    'begin': '//'
+    'end': '\\n'
+    'beginCaptures':
+      '0':
+        'name': 'comment-start'
+  }
+]

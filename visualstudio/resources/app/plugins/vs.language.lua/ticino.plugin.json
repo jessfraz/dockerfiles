@@ -1,0 +1,19 @@
+{
+	"pluginId": "vs.language.lua",
+	"activationEvents": ["textModel:lua"],
+	"mainModule": "./luaMain",
+	"contributes": {
+		"language": [{
+			"id": "lua",
+			"extensions": [ ".lua" ],
+			"aliases": [ "Lua", "lua" ]
+		}]
+	},
+	"scripts": {
+		"compile": "node ../../node_modules/gulp/bin/gulp.js --gulpfile ../gulpfile.js compile --dir vs.language.lua"
+	},
+	"_testing": "./tests/luaTests",
+	"_bundling": [
+		{ "name": "./luaMain" }
+	]
+}

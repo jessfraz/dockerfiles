@@ -1,0 +1,31 @@
+{
+  "version": "1.0.0-*",
+  "dependencies": {
+    "OmniSharp": "1.0.0"
+  },
+  "commands": {
+    "omnisharp": "run"
+  },
+  "frameworks": {
+    "aspnet50": {
+      "dependencies": {
+        "ICSharpCode.NRefactory": "6.0.0-alpha3"
+      },
+      "frameworkAssemblies": {
+        "System.Globalization": "",
+        "Microsoft.Build": "",
+        "Microsoft.Build.Engine": "",
+        "Microsoft.Build.Framework": ""
+      }
+    },
+    "aspnetcore50": {
+      "dependencies": {
+        "System.IO.FileSystem.Watcher": "4.0.0-beta-22231",
+        "System.Net.Sockets": "4.0.0-beta-22231",
+        "System.Diagnostics.Process": "4.0.0-beta-22231"
+      }
+    }
+  },
+  "entryPoint": "OmniSharp",
+  "loadable": false
+}

@@ -1,0 +1,18 @@
+/*---------------------------------------------------------
+ * Copyright (C) Microsoft Corporation. All rights reserved.
+ *--------------------------------------------------------*/
+ 
+.monaco-workbench.hc-black { color: #FFF; background-color: #000; }
+.monaco-workbench.hc-black .sidebar .separator 	{ background-color: #000; border: 1px solid #6FC3DF; }
+.monaco-workbench.hc-black input,
+.monaco-workbench.hc-black .search-viewlet .query-box,
+.monaco-workbench.hc-black .test-viewlet .filter { 
+	background-color: #000; 
+}
+.monaco-workbench.hc-black .monaco-action-bar .action-item.disabled .action-label.disabled,
+.monaco-workbench.hc-black .monaco-action-bar .action-item.disabled .action-label.disabled:hover {
+	opacity: 1;
+}
+.monaco-workbench.hc-black .monaco-action-bar .action-item.disabled .action-label.disabled:before {
+	opacity: .4;
+}

@@ -1,0 +1,17 @@
+/*---------------------------------------------------------
+ * Copyright (C) Microsoft Corporation. All rights reserved.
+ *--------------------------------------------------------*/
+.monaco-editor.vs .current-line {
+	background: none;
+	border: 2px solid #EEE;
+	box-sizing: border-box;
+}
+.monaco-editor.vs.focus .current-line {
+	border-color: #EAEAF2;	
+}
+.monaco-editor.vs .typeInfo { 
+	color: blue;
+}
+.monaco-editor.vs .typeInfo .documentation {
+    color: #A21B1B;
+}

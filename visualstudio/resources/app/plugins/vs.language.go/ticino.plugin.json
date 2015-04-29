@@ -1,0 +1,19 @@
+{
+	"pluginId": "vs.language.go",
+	"activationEvents": ["textModel:go"],
+	"mainModule": "./goMain",
+	"contributes": {
+		"language": [{
+			"id": "go",
+			"extensions": [ ".go" ],
+			"aliases": [ "Go" ]
+		}]
+	},
+	"scripts": {
+		"compile": "node ../../node_modules/gulp/bin/gulp.js --gulpfile ../gulpfile.js compile --dir vs.language.go"
+	},
+	"_testing": "./tests/goTests",
+	"_bundling": [
+		{ "name": "./goMain" }
+	]
+}

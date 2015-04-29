@@ -1,0 +1,11 @@
+{
+  "name": "loops",
+  "scopeName": "source.loops",
+  "patterns": [
+    {
+      "match": "(.*)(?=test)",
+      "name": "variable.language.test"
+    }
+  ]
+
+}

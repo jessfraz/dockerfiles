@@ -1,0 +1,41 @@
+name: "applyEndPatternLast"
+scopeName: "source.apply-end-pattern-last"
+patterns: [
+  {
+    name: "end-pattern-last-env"
+    begin: "last"
+    end: "^$"
+    patterns: [
+      {
+        name: "scope"
+        begin: "\\{"
+        end: "\\}"
+        applyEndPatternLast: on
+        patterns: [
+          {
+            match: "\\}excentricSyntax"
+            name: "excentric"
+          }
+        ]
+      }
+    ]
+  }
+  {
+    name: "normal-env"
+    begin: "first"
+    end: "^$"
+    patterns: [
+      {
+        name: "scope"
+        begin: "\\{"
+        end: "\\}"
+        patterns: [
+          {
+            match: "\\}excentricSyntax"
+            name: "excentric"
+          }
+        ]
+      }
+    ]
+  }
+]

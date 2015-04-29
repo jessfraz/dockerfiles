@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Microsoft.AspNet.Mvc.Core</id>
+    <version>6.0.0-beta3</version>
+    <title>Microsoft.AspNet.Mvc.Core</title>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>The core runtime components of ASP.NET MVC.</description>
+    <dependencies>
+      <group targetFramework="Asp.Net5.0">
+        <dependency id="Microsoft.AspNet.FileProviders" version="1.0.0-beta3" />
+        <dependency id="Microsoft.AspNet.Hosting" version="1.0.0-beta3" />
+        <dependency id="Microsoft.AspNet.Http.Extensions" version="1.0.0-beta3" />
+        <dependency id="Microsoft.AspNet.Mvc.ModelBinding" version="6.0.0-beta3" />
+        <dependency id="Microsoft.AspNet.Routing" version="1.0.0-beta3" />
+        <dependency id="Microsoft.AspNet.Security" version="1.0.0-beta3" />
+        <dependency id="Microsoft.AspNet.Security.DataProtection" version="1.0.0-beta3" />
+      </group>
+      <group targetFramework="Asp.NetCore5.0">
+        <dependency id="Microsoft.AspNet.FileProviders" version="1.0.0-beta3" />
+        <dependency id="Microsoft.AspNet.Hosting" version="1.0.0-beta3" />
+        <dependency id="Microsoft.AspNet.Http.Extensions" version="1.0.0-beta3" />
+        <dependency id="Microsoft.AspNet.Mvc.ModelBinding" version="6.0.0-beta3" />
+        <dependency id="Microsoft.AspNet.Routing" version="1.0.0-beta3" />
+        <dependency id="Microsoft.AspNet.Security" version="1.0.0-beta3" />
+        <dependency id="Microsoft.AspNet.Security.DataProtection" version="1.0.0-beta3" />
+        <dependency id="Microsoft.CSharp" version="4.0.0-beta-22605" />
+      </group>
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="mscorlib" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="System" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="System.Core" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="Microsoft.CSharp" targetFramework="Asp.Net5.0" />
+    </frameworkAssemblies>
+    <licenseUrl>http://www.microsoft.com/web/webpi/eula/net_library_eula_enu.htm</licenseUrl>
+    <iconUrl>http://go.microsoft.com/fwlink/?LinkID=288859</iconUrl>
+    <copyright>Copyright © Microsoft Corporation</copyright>
+    <projectUrl>http://www.asp.net/</projectUrl>
+  </metadata>
+</package>

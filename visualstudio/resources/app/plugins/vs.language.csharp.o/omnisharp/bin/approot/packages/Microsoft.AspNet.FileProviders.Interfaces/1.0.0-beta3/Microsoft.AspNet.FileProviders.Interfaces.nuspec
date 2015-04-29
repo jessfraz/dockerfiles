@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Microsoft.AspNet.FileProviders.Interfaces</id>
+    <version>1.0.0-beta3</version>
+    <title>Microsoft.AspNet.FileProviders.Interfaces</title>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>ASP.NET 5 file provider interfaces.</description>
+    <dependencies>
+      <group targetFramework=".NETFramework4.5">
+        <dependency id="Microsoft.Framework.Runtime.Interfaces" version="1.0.0-beta3" />
+      </group>
+      <group targetFramework="Asp.Net5.0">
+        <dependency id="Microsoft.Framework.Runtime.Interfaces" version="1.0.0-beta3" />
+      </group>
+      <group targetFramework="Asp.NetCore5.0">
+        <dependency id="Microsoft.Framework.Runtime.Interfaces" version="1.0.0-beta3" />
+      </group>
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="mscorlib" targetFramework=".NETFramework4.5" />
+      <frameworkAssembly assemblyName="System" targetFramework=".NETFramework4.5" />
+      <frameworkAssembly assemblyName="System.Core" targetFramework=".NETFramework4.5" />
+      <frameworkAssembly assemblyName="Microsoft.CSharp" targetFramework=".NETFramework4.5" />
+      <frameworkAssembly assemblyName="mscorlib" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="System" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="System.Core" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="Microsoft.CSharp" targetFramework="Asp.Net5.0" />
+    </frameworkAssemblies>
+    <licenseUrl>http://www.microsoft.com/web/webpi/eula/net_library_eula_enu.htm</licenseUrl>
+    <iconUrl>http://go.microsoft.com/fwlink/?LinkID=288859</iconUrl>
+    <copyright>Copyright © Microsoft Corporation</copyright>
+    <projectUrl>http://www.asp.net/</projectUrl>
+  </metadata>
+</package>

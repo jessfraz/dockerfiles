@@ -1,0 +1,12 @@
+'name': 'forever'
+'scopeName': 'source.forever'
+patterns: [
+  {
+    'name': 'text'
+    'begin': '(?=forever)'
+    'end': 'whatevs'
+    'patterns': [
+      'include': '$self'
+    ]
+  }
+]

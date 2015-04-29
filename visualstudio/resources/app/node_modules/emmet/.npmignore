@@ -1,0 +1,13 @@
+/_project_src
+*.pyc
+.build-catalog
+/_docs
+/dist
+/plugins/codemirror/CodeMirror
+/plugins/tea-for-coda
+/plugins/tea-for-espresso
+
+.DS_Store
+/bower_components/
+/node_modules/
+/emmet.sublime-workspace

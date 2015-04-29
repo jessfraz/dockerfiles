@@ -1,0 +1,19 @@
+{
+	"pluginId": "vs.language.objective-c",
+	"activationEvents": ["textModel:objective-c"],
+	"mainModule": "./objective-cMain",
+	"contributes": {
+		"language": [{
+			"id": "objective-c",
+			"extensions": [ ".m" ],
+			"aliases": [ "Objective-C"]
+		}]
+	},
+	"scripts": {
+		"compile": "node ../../node_modules/gulp/bin/gulp.js --gulpfile ../gulpfile.js compile --dir vs.language.objective-c"
+	},
+	"_testing": "./tests/objective-cTests",
+	"_bundling": [
+		{ "name": "./objective-cMain" }
+	]
+}

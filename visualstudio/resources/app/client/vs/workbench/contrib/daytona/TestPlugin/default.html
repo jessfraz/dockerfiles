@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title>Scripted Host Test Plugin</title>
+    <link rel="stylesheet" href="Styles/test-plugin.css" type="text/css" id="testPlugin" data-plugin-theme="true" />
+    <script src="plugin.js" type="text/javascript"></script>
+    <script src="testObjectProxy.js" type="text/javascript"></script>
+    <script src="jquery-2.0.3.js" type="text/javascript"></script>
+    <script src="jquery.signalR.js" type="text/javascript"></script>
+    <script src="VSHubPubSub.js" type="text/javascript"></script>
+    <script src="default.js" type="text/javascript"></script>
+</head>
+<body>
+    <h1 id="testPluginHeader">SCRIPTED HOST TEST PLUGIN</h1>
+    <form name="testPlugin" action="/" aria-labelledby="testPluginHeader" onsubmit="event.preventDefault(); return false;">
+        <div>
+            <label>The following are tests against the Host Api</label>
+            <br />
+            <label>The Host version is: </label><label id="versionInfo"></label>
+            <label id="pluginReadyLabel" style="font-weight:bold;font-size:16px"><br />pluginready not fired<br /></label>
+            <br />
+            <br />
+            <label>Testing the focus state:</label>
+            <br />
+            <div id="focusStatusFocused" aria-label="Contains Focus" style="display: none">CONTAINS FOCUS</div>
+            <div id="focusStatusUnfocused" aria-label="Not Focused">NOT FOCUSED</div>
+            <br />
+            <div id="vsSpecificTests" style="display: none">
+                <label>VS Host specific tests:</label>
+                <br />
+                <div class="themedImage">
+                    Enabled:
+                    <br />
+                    <img id="vsImageConsoleEnabled" src="Images/console-icons.png" alt="Console Icons Enabled" />
+                </div>
+                <div class="themedImage">
+                    Disabled:
+                    <br />
+                    <img id="vsImageConsoleDisabled" src="Images/console-icons.png" alt="Console Icons Disabled" />
+                </div>
+                <div class="themedImage">
+                    Image with cyan pixel:
+                    <br />
+                    <img id="vsImageFileIdentifier" src="Images/FileIdentifier.png" alt="Console Icons Inversion Suppresion" />
+                </div>
+                <div class="clear"></div>
+                <label>VS Environment Tokens and Alpha</label>
+                <br />
+                <div class="alpha1"></div>
+                <div class="alpha2"></div>
+                <div class="clear"></div>
+                <br />
+                <label>Set the state for commands:</label>
+                <br />
+                <input type="checkbox" id="commandIsEnabled" name="commandIsEnabled" value="isEnabled" checked="" />
+                <label for="commandIsEnabled">Test Plugin Command enabled state (Focus)</label>
+                <br />
+                <input type="checkbox" id="commandIsVisible" name="commandIsVisible" value="isVisible" checked="" />
+                <label for="commandIsVisible">Test Plugin Command visible state (Focus)</label>
+                <br />
+                <input type="checkbox" id="copyCommandIsEnabled" name="copyCommandIsEnabled" value="isEnabled" checked="" />
+                <label for="copyCommandIsEnabled">Copy Command enabled state (Focus)</label>
+                <br />
+                <button id="commandStateButton" type="button">Set Command State</button>
+                <br />
+                <br />
+
+                <label>Number of times that commands were executed from this control:</label>
+                <br />
+                <textarea id="commandCountTextbox" name="commandCountTextbox" rows="1" cols="10" readonly="readonly" style="overflow: hidden">0</textarea>
+                <label for="commandCountTextbox">Test Plugin Command Count</label>
+                <br />
+                <br />
+                <textarea id="copyCommandCountTextbox" name="copyCommandCountTextbox" rows="1" cols="10" readonly="readonly" style="overflow: hidden">0</textarea>
+                <label for="copyCommandCountTextbox">Copy Command Count</label>
+                <br />
+                <br />
+                <textarea id="contextMenuAreaTextbox" rows="3" style="overflow: hidden; width: 336px;">Right click here to view full test context menu.</textarea>
+                <br />
+                <br />
+                <textarea id="contextMenuAreaTextbox2" rows="3" style="overflow: hidden; width: 336px;">Right click here to view test context menu with the first and third context menu commands disabled, and the second not visible.</textarea>
+                <br />
+                <br />
+                <textarea id="contextMenuAreaTextbox3" rows="3" style="overflow: hidden; width: 336px;">Right click here to show the context menu with an invalid x, y parameter, and the error should be logged at the bottom</textarea>
+                <br />
+                <br />
+                <button name="toggleCanShowPopupButton" type="button" onclick="return onToggleCanShowPopupButtonClick()">Showing tooltips in popup</button>
+                <br />
+                <button name="toggleDefaultTooltipContentToHTMLButton" type="button" onclick="return onToggleDefaultTooltipContentToHTMLButtonClick()">Allowing HTML in Tooltips</button>
+                <br />
+                <button name="invalidateDocumentCacheButton" type="button" onclick="Microsoft.Plugin.Tooltip.invalidatePopupTooltipDocumentCache()">Invalidate Document Cache</button>
+                <br />
+                <label for="tooltipParentDiv">Nested Div Elements With Tooltips:</label>
+                <br />
+                <div id="tooltipParentDiv" data-plugin-vs-tooltip='{"content":"<p style=\"margin: 0px;\"><b>Parent Div Tooltip Content</b></p>","duration":0}'>
+                    <div id="tooltipChildDivA">
+                        <p><b>CHILD DIV A</b></p>
+                        <div id="tooltipChildDivA1">
+                            <p><u>Child Div 1</u></p>
+                        </div>
+                        <div id="tooltipChildDivA2">
+                            <p><u>Child Div 2</u></p>
+                        </div>
+                    </div>
+                    <div id="tooltipChildDivB" data-plugin-vs-tooltip='{"content":"<p style=\"margin: 0px;\"><i>Child Div B Tooltip Content</i></p>","duration":0}'>
+                        <p><b>CHILD DIV B</b></p>
+                        <div id="tooltipChildDivB1">
+                            <p><u>Child Div 1</u></p>
+                        </div>
+                        <div id="tooltipChildDivB2">
+                            <p><u>Child Div 2</u></p>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <label for="spanWithTooltip">Span With Tooltip:</label>
+                <br />
+                <span id="spanWithTooltip">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. Om shanti shanti</span>
+                <br />
+                <input type="text" name="tooltipAttrValue" value='{"delay":600, "duration":4000}' style="width: 500px" />
+                <br />
+                <button id="updateToolTipButton" type="button">Update Tooltip</button>
+                <button id="showToolTipButton" type="button">Show tooltip</button>
+                <button id="dismissToolTipButton" type="button">Dismiss tooltip</button>
+                <br />
+                <br />
+                <span id="spanWithHTMLTooltip">This is some text, the tooltip has embedded HTML. Shown via a call to Tooltip.Show</span>
+                <br />
+                <br />
+                <span data-plugin-vs-tooltip='{"content":"<p style=\"margin: 0px;background-color: green;\"><b>Awesome HTML content!!</b></p>","duration":0}'>This is some text, the tooltip has embedded HTML. Shown via data attribution.</span>
+                <br />
+                <br />
+                <label>Tooltip with VS themed image:</label>
+                <br />
+                <button id="showVSImageToolTipButton" type="button">Show tooltip</button>
+                <br />
+                <label>Tooltip with CSS animation:</label>
+                <br />
+                <button id="showAnimatedImageToolTipButton" type="button">Show tooltip</button>
+                <br />
+                <br />
+                <label>Settings Tests:</label>
+                <br />
+                <label>Collection Name:</label>
+                <input type="text" id="collectionTextbox" name="collectionTextbox" value="" style="width: 140px" />
+                <br />
+                <label>Key Names:</label>
+                <input type="text" id="keyTextbox" name="keyTextbox" value="DefaultFileOpenLocation" style="width: 140px" />
+                <br />
+                <label>Default Values:</label>
+                <input type="text" id="defaultValuesTextbox" name="defaultValuesTextbox" value="" style="width: 140px" />
+                <br />
+                <label>Values:</label>
+                <input type="text" id="valuesTextbox" name="valuesTextbox" value="" style="width: 140px" />
+                <br />
+                <button name="getValueButton" onclick="return onGetValueClick()" type="button">Get Value</button>
+                <br />
+                <button name="setValueButton" onclick="return onSetValueClick()" type="button">Set Value</button>
+                <br />
+                <br />
+                <div id="vsInternalSpecificTests" style="display: none">
+                    <label>VS Internal specific tests:</label>
+                    <br />
+                    <label>CodeMarker Test:</label>
+                    <br />
+                    <button id="fireCodeMarkersButton" type="button">Fire CodeMarker</button>
+                    <br />
+                    <br/>
+                    <label>PubSub Test:</label>
+                    <br />
+                    <br/>
+                    <label>Topic Name:</label>
+                    <input type="text" id="topicNameTextbox" name="topicNameTextbox" value="foo"/>
+                    <br />
+                    <button id="pubSubSubscribeButton" type="button">Subscribe</button>
+                    <button id="pubSubUnsubscribeButton" type="button">Unsubscribe</button>
+                    <br/>
+                    <label>Message Body:</label>
+                    <input type="text" id="messageBodyTextbox" name="messageBodyTextbox" value="Hello World" />
+                    <br/>
+                    <button id="pubSubPublishButton" type="button">Publish</button>
+                    <br/>
+                    <br/>
+                    <label>Output:</label>
+                    <br/>
+                    <textarea id="pubsubOutput" name="pubsubOutput" style="width: 100%;height: 300px;"></textarea>
+                    <br/>
+                    <button id="pubSubClearOutputButton" type="button">Clear Output</button>
+                    <br />
+                    <br />
+                    <div id="vsExperimental">
+                        <label>Experimental Tests:</label>
+                        <br />
+                        <br />
+                        <button id="getSolutionButton" type="button">Get Solution</button>
+                        <br />
+                        <div id="solutionHierarchy"></div>
+                        <br />
+                        <br />
+                        <input name="itemPropertiesInput" />
+                        <button id="getItemPropertiesButton" type="button">Get Item Properties</button>
+                        <br />
+                        <div id="itemProperties"></div>
+                        <br />
+                        <br />
+                    </div>
+                </div>
+            </div>
+            <label>Invoke XHR wrapped in Promise</label>
+            <br />
+            <label for="xhrURLTextbox">Target URL:</label>
+            <input type="text" id="xhrURLTextbox" name="collectionTextbox" value="http://www.w3schools.com/ajax/demo_get.asp" />
+            <button id="xhrWrappedInPromiseButton" onclick="return onXHRWrappedInPromiseButton()" type="button">Send Request</button>
+            <br/>
+            <div id="xhrWrappedInPromiseDiv">Status: Not Started</div>
+            <br />
+            <label>Log a message to the host output window</label>
+            <br />
+            <div id="logTextboxDescription" style="display: none" aria-disabled="false">Message to log to the output window</div>
+            <input type="text" name="logTextbox" value="Log your message here!" style="width: 500px" aria-describedby="logTextboxDescription" />
+            <button name="logMessageButton" onclick="return onLogMessageButton()" type="button">Log Message</button>
+            <br />
+            <button onclick="return onActivityLogTestButton()" type="button">Log to VS Activity Log</button>
+            <br />
+            <br />
+            <label>Resources test:</label>
+            <div id="ResourcesTest" aria-live="assertive" aria-atomic="true"></div>
+            <button name="resourceButton" onclick="return onResourcesTestButtonClick()" type="button">getString("apple")</button>
+            <br />
+            <label>Dynamic Resource test:</label>
+            <button id="validateDoesNotExistButton" onclick="return onValidateDynamicResourceDoesNotExistButtonClick()" type="button">Validate foo does not exist</button>
+            <button id="dynamicResourceButton" onclick="return onDynamicResourcesTestButtonClick()" type="button">getString("foo")</button>
+            <br />
+            <br />
+            <label>PerfAnalytics Test:</label>
+            <br />
+            <button onclick="return onTestPerfAnalyticsClick()" type="button">Raise PerfTrack Event</button>
+            <button onclick="return onTestPerfAnalyticsWithKeyClick()" type="button">Raise PerfTrack event with key</button>
+            <button onclick="return onTestPerfAnalyticsWithMetadataClick()" type="button">Raise PerfTrack event with metadata</button>
+            <button onclick="return onTestPerfAnalyticsWithBadId()" type="button">Raise PerfTrack event with bad ID</button>
+            <br />
+            <label>Results: </label>
+            <br />
+            <br />
+            <div id="perfTrackResultsDiv" aria-live="assertive" aria-atomic="true"></div>
+            <br />
+            <br />
+            <label>Context Menu tests:</label>
+            <br />
+            <br />
+            <button name="toggleCanShowPopupCMButton" onclick="return onToggleCanShowPopupButtonClick()" type="button">Showing context menus in popup</button>
+            <br />
+            <br />
+            <div id="contextMenuUpDiv" aria-live="assertive" aria-atomic="true"></div>
+            <br/>
+            This box color will change based on a context menu item click:
+            <div id="contextMenuTestBox"></div>
+            <br />
+            <textarea id="contextMenuTestContainer" style="overflow:hidden; width: 400px; padding-right:10px; white-space:nowrap;">Right click in this div to see HTML based context menus</textarea>
+            <br />
+            <br />
+            <div id="contextMenuTestContainer2" style="width: 400px; padding:10px;"><span>Right click in this span to see HTML based context menus</span></div>
+            <br />
+            <br />
+            <button name="showContextMenuButton" onclick="showContextMenu(event);" type="button">Click to show context menu</button>
+            <br />
+            <br />
+            <button name="dismissContextMenuButton" onclick="dismissContextMenu(event);" type="button">Click to dismiss context menu</button>
+            <br />
+            <br />
+            <button name="toggleDisableButton" onclick="toggleDisable();" type="button">Click to toggle disabled state</button>
+            <br />
+            <br />
+            This box is used for attach/detach/dispose tests:
+            <div id="contextMenuTestBox2"></div>
+            <br />
+            <button name="attachContextMenuButton" onclick="attachContextMenu(event);" type="button">Click to create and attach a context menu</button>
+            <br />
+            <br />
+            <button name="detachContextMenuButton" onclick="detachContextMenu(event);" type="button">Click to detach the context menu</button>
+            <br />
+            <br />
+            <button name="disposeContextMenuButton" onclick="disposeContextMenu(event);" type="button">Click to dispose the context menu</button>
+            <br />
+            <br />
+            <label>Theme tests:</label>            
+            <br />
+            <br />
+            <div id="themingTargetDiv">
+              <p>This text should be 'plugin-scrollbar-face-color' once the CSS is dynamically loaded and processed for theme tokens.</p>
+              <br />
+              <button onclick="loadCSS();" type="button">Click to load CSS dynamically</button>
+            </div>
+            <br />
+            <br />
+            <label>Storage (File API) tests:</label>
+            <br />
+            <br />
+            <ul>
+                <li>Get File List
+                    <br />
+                    <input type="text" name="fileListTextBox" placeholder="Enter a relative file path here" style="width: 336px" />
+                    <br />
+                    <button name="fileListButton" onclick="return onFileListTestButtonClick()" type="button">getFileList</button>
+                    <br />
+                    <br />
+                    Please enter an integer representing the index in the file list (optional)
+                    <br />
+                    <input type="text" name="fileTest0aTextBox" placeholder="0" style="width: 100px" />
+                    <br />
+                    Please enter an integer representing the max number of files to return (optional)
+                    <br />
+                    <input type="text" name="fileTest0bTextBox" placeholder="0" style="width: 100px" />
+                    <br />
+                    <br />
+                    <textarea id="TextBoxFileList" name="fileListTextArea" rows="3" style="width: 336px;"></textarea>
+                    <br />
+                    <br />
+                    <hr />
+                    <br />
+                </li>
+                <li>Create -> Write -> Close File 
+                    <br />
+                    <input type="text" name="fileTest1TextBox" placeholder="Enter the name of the file to create (including relative path)" style="width: 336px" />
+                    <br />
+                    <textarea name="fileTest1ToWrite" rows="3" style="width: 336px;"  placeholder="Enter the text to write to the file"></textarea>
+                    <br />
+                    <button name="fileTest1Button" onclick="return onFileTest1ButtonClick()" type="button">Create -> Write -> Close File </button>
+                    <br />
+                    <br />
+                    <textarea id="Textarea1" name="fileTest1Result" rows="3" style="width: 336px;"></textarea>
+                    <br />
+                    <br />
+                    <hr />
+                    <br />
+                </li>
+                <li>Open -> Read -> Close File
+                    <br />
+                    <input type="text" name="fileTest2TextBox" placeholder="Enter the name of the file to open (incuding relative path)" style="width: 336px" />
+                    <br />
+                    <button name="fileTest2Button" onclick="return onFileTest2ButtonClick()" type="button"> Open -> Read -> Close File</button>
+                    <br />
+                    <br />
+                    <textarea name="fileTest2Result" rows="3" style="width: 336px;"></textarea>
+                    <br />
+                    <br />
+                </li>
+                <li>Open -> Seek -> Read -> Close All
+                    <br />
+                    <input type="text" name="fileTest3TextBox" placeholder="Enter the name of the file to open (incuding relative path)" style="width: 336px" />
+                    <br />
+                    <button name="fileTest3aButton" onclick="return onFileTest3aButtonClick()" type="button">Open</button>
+                    <button name="fileTest3bButton" onclick="return onFileTest3bButtonClick()" type="button">Seek</button>
+                    <button name="fileTest3cButton" onclick="return onFileTest3cButtonClick()" type="button">Read</button>
+                    <button name="fileTest3dButton" onclick="return onFileTest3dButtonClick()" type="button">Close All</button>
+                    <br />
+                    <br />
+                    <label>File Access</label>
+                    <select id="fileTest3AccessList" name="fileTest3AccessList" style="width: 145px">
+                        <option value="Microsoft.Plugin.Storage.FileAccess.read">Read</option>
+                        <option value="Microsoft.Plugin.Storage.FileAccess.write">Write</option>
+                        <option value="Microsoft.Plugin.Storage.FileAccess.readWrite">Read|Write</option>
+                    </select>
+                    <br />
+                    <br />
+                    <label>File Share</label>
+                    <select id="fileTest3ShareList" name="fileTest3ShareList" style="width: 145px">
+                        <option value="Microsoft.Plugin.Storage.FileShare.none">None</option>
+                        <option value="Microsoft.Plugin.Storage.FileShare.read">Read</option>
+                        <option value="Microsoft.Plugin.Storage.FileShare.write">Write</option>
+                        <option value="Microsoft.Plugin.Storage.FileShare.readWrite">Read|Write</option>
+                        <option value="Microsoft.Plugin.Storage.FileShare.delete">Delete</option>
+                    </select>
+                    <br />
+                    <br />
+                    <label>Seek offset</label>
+                    <br />
+                    <input type="text" name="fileTest3OffsetTextBox" style="width: 336px" />
+                    <br />
+                    <br />
+                    <label>Seek Origin</label>
+                    <select id="fileTest3SelectList" name="fileTest3SelectList" style="width: 145px">
+                        <option value="Microsoft.Plugin.Storage.SeekOrigin.begin">Begin</option>
+                        <option value="Microsoft.Plugin.Storage.SeekOrigin.current">Current</option>
+                        <option value="Microsoft.Plugin.Storage.SeekOrigin.end">End</option>
+                    </select>
+                    <br />
+                    <br />
+                    <textarea name="fileTest3Result" rows="3" style="width: 336px;"></textarea>
+                    <br />
+                    <br />
+                </li>
+                <li>Binary Read / Write
+                    <br />
+                    <button name="fileTest4Button" onclick="return onFileTest4ButtonClick()" type="button">Test Binary</button>
+                    <br />
+                    <br />
+                    <textarea name="fileTest4Result" rows="3" style="width: 336px;"></textarea>
+                    <br />
+                    <br />
+                </li>
+                 <li>Open File Dialog
+                    <br />
+                    <button name="fileTest5Button" onclick="return onFileTest5ButtonClick()" type="button">Test Open File Dialog</button>
+                    <button name="fileTest5Button" onclick="return onFileTest6ButtonClick()" type="button">Test Save File Dialog</button>
+                    <br />
+                    <br />
+                    <input type="text" name="fileTest5FileNameTextBox" placeholder="Default file name to open or save" style="width: 336px" />
+                    <br />
+                    <br />
+                    <label>Extensions list</label>
+                    <input type="text" name="fileTest5ExtensionsTextBox" value="C# Files (*.cs)|*.cs||Text Files (*.txt)|*.txt" style="width: 336px" />
+                    <br />
+                    <label>Extensions index</label>
+                    <input type="text" name="fileTest5ExtensionsIndexTextBox" value="1" style="width: 30px" />
+                    <br />
+                    <br />
+                    <input type="text" name="fileTest5TitleTextBox" placeholder="Title" style="width: 336px" />
+                    <br />
+                    <br />
+                    <input type="text" name="fileTest5InitialDirectoryTextBox" placeholder="Initial directory" style="width: 336px" />
+                    <br />
+                    <label>Read result</label>
+                    <br />
+                    <textarea name="fileTest5Result" rows="3" style="width: 336px;"></textarea>
+                </li>
+            </ul>
+            <label>Port Marshaling Tests:</label>
+            <br />
+            <button onclick="portMarshalTestObject.onGenerateObject(); return false;" style="width: 250px;" type="button">Create an object to round trip</button>
+            <button onclick="portMarshalTestObject.onRoundtripObjectButton(); return false;" style="width: 250px;" type="button">Roundtrip object by a method</button>
+            <br />
+            <button onclick="portMarshalTestObject.onGenerateObject(); return false;" style="width: 250px;" type="button">Create an object to round trip</button>
+            <button onclick="portMarshalTestObject.onRoundtripEventButton(); return false;" style="width: 250px;" type="button">Roundtrip object with action and event</button>
+            <br />
+            <button onclick="portMarshalTestObject.onGenerateObject(); return false;" style="width: 250px;" type="button">Create an object to round trip</button>
+            <button onclick="portMarshalTestObject.onRoundtripEventPostButton(); return false;" style="width: 250px;" type="button">Roundtrip object with action (called with _post) and event</button>
+            <br />
+            <button onclick="portMarshalTestObject.onGenerateInt(); return false;" style="width: 250px;" type="button">Create an int to round trip</button>
+            <button onclick="portMarshalTestObject.onRoundtripIntButton(); return false;" style="width: 250px;" type="button">Roundtrip int</button>
+            <br />
+            <button onclick="portMarshalTestObject.onGenerateDouble(); return false;" style="width: 250px;" type="button">Create a double to round trip</button>
+            <button onclick="portMarshalTestObject.onRoundtripDoubleButton(); return false;" style="width: 250px;" type="button">Roundtrip double</button>
+            <br />
+            <button onclick="portMarshalTestObject.onGenerateString(); return false;" style="width: 250px;" type="button">Create a string to round trip</button>
+            <button onclick="portMarshalTestObject.onRoundtripStringButton(); return false;" style="width: 250px;" type="button">Roundtrip string</button>
+            <br />
+            <button onclick="portMarshalTestObject.onGenerateDate(); return false;" style="width: 250px;" type="button">Create a Date to round trip</button>
+            <button onclick="portMarshalTestObject.onRoundtripDateButton(); return false;" style="width: 250px;" type="button">Roundtrip date</button>
+            <br />
+            <button onclick="portMarshalTestObject.onGenerateDictionary(); return false;" style="width: 250px;" type="button">Create a dictionary to round trip</button>
+            <button onclick="portMarshalTestObject.onRoundtripDictionaryButton(); return false;" style="width: 250px;" type="button">Roundtrip Dictionary&lt;string, string&gt;</button>
+            <br />
+            <button onclick="portMarshalTestObject.onGenerateObject(); return false;" style="width: 250px;" type="button">Create an object to round trip asynchronously</button>
+            <button onclick="portMarshalTestObject.onRoundtripObjectAsyncButton(); return false;" style="width: 250px;" type="button">Roundtrip object by a method asynchronously</button>
+            <br />
+            <button onclick="portMarshalTestObject.onPortExceptionButton(); return false;" style="width: 250px;" type="button">Cause exception</button>
+            <br />
+            <button onclick="portMarshalTestObject.onPortExceptionAsyncButton(); return false;" style="width: 250px;" type="button">Cause exception asynchronously</button>
+            <br />
+            <label for="roundtripStatus">Roundtrip status:</label>
+            <textarea id="roundtripStatus" name="roundtripStatus" style="width: 500px" readonly="readonly"></textarea>
+            <br />
+            <label for="roundtripEval">Roundtrip value to eval:</label>
+            <textarea id="roundtripEval" name="roundtripEval" style="width: 500px; height: 85px"></textarea>
+            <br />
+            <label for="roundtripJSONBefore">JSON value before roundtrip:</label>
+            <textarea id="roundtripJSONBefore" name="roundtripJSONBefore" style="width: 500px; height: 50px" readonly="readonly"></textarea>
+            <br />
+            <label for="roundtripJSONAfter">JSON value after roundtrip:</label>
+            <textarea id="roundtripJSONAfter" name="roundtripJSONAfter" style="width: 500px; height: 50px" readonly="readonly"></textarea>
+            <br />
+            <br />
+            <label>Test that an unhandled submit button doesn't navigate:</label>
+            <br />
+            <button type="button">Try submit (should do nothing)</button>
+            <br />
+            <br />
+            <label>Test that a link doesn't navigate</label>
+            <br />
+            <a href="http://bing.com">Try navigating to bing.com (should do nothing)</a>
+            <br />
+            <br />
+            <label>Test that opening a new window, however, works</label>
+            <br />
+            <a target="_blank" href="http://bing.com">Try navigating to bing.com (should open a new window)</a>
+            <br />
+            <br />
+            <label>Test that navigating to an anchor works</label>
+            <br />
+            <a href="#testPluginHeader">Try navigating to the top of the document (should scroll to the top)</a>
+            <br />
+            <br />
+            <label>For the test against a blocking plugin, scroll to the bottom of this page.</label>
+            <br />
+            <br />
+            <label>Click here to throw a fatal error and terminate the process</label>
+            <br />
+            <button onclick="return throwError()" type="button">Throw Error</button>
+            <br />
+            <br />
+            <label>Click the following buttons to report non-fatal errors</label>
+            <br />
+            <button id="simpleErrorButton" onclick="reportSimpleError(); return false;" type="button">Simple Error</button>
+            <button id="largeInfoErrorButton" onclick="largeInfoRepro(); return false;" type="button">Error With Large Info String</button>
+            <button id="largeMsgErrorButton" onclick="largeMessageRepro(); return false;" type="button">Error With Large Message String</button>
+            <button id="reportErrorObjectButton" onclick="reportErrorObject(); return false;" type="button">Error with Error Object</button>
+            <button id="reportExtraParamsButton" onclick="reportErrorExtraParams(); return false;" type="button">Error with Extra Parameters</button>
+            <button id="reportUnicodeErrorButton" onclick="reportUnicodeError(); return false;" type="button">Error with Unicode Parameters</button>
+            <br />
+            <label for="reportErrorResult">Result of reportError:</label>
+            <textarea id="reportErrorResult" name="reportErrorResult" rows="1" cols="10" readonly="readonly"></textarea>
+            <br />
+            <br />
+            <label>Click here to call Microsoft.Plugin.Diagnostics.terminate() to terminate the process</label>
+            <br />
+            <button onclick="return onTerminateClick()" type="button">Terminate</button>
+            <br />
+            <br />
+            Document:
+            <input type="text" name="documentUriTextBox" value="Class1.cs" style="width: 500px" /><br />
+            Line:
+            <input type="text" name="documentLineTextBox" value="1" style="width: 20px" /><br />
+            Col:
+            <input type="text" name="documentColTextBox" value="1" style="width: 20px" /><br />
+            <button name="openDocumentButton" style="width: 145px" onclick="return onOpenDocumentButton()" type="button">Open Document</button>
+            <br />
+            <br />
+            <label>Test selection works correctly for elements that are added dynamically</label>
+            <br />
+            <button name="testSelection" onclick="return addInputAndTextArea()" type="button">Add Input and TextArea</button>
+            <div id="dynamicSelectTest"></div>
+            <br />
+            <br />
+            <label>Hotkey States:</label>
+            <br />
+            <input id="zoomingState" name="ZoomingState" type="checkbox" checked="true" /> Enable Zooming
+            <br />
+            <input id="clipboardState" name="ClipboardState" type="checkbox" checked="true" /> Enable Clipboard Keys
+            <br />
+            <br />
+            <label>VARIOUS HTML CONTROLS TO TEST THEMING</label>
+            <br />
+            <br />
+            <label>Testing theming using Editor and LightSwitch styles</label>
+            <br />
+            Note: the boxes below should not be red (change theme to test)
+            <br />
+            <br />
+            <div class="editorStyles"></div>
+            <div class="diagnosticToolsStyles">font</div>
+            <div class="clear"></div>
+            <br />
+            <br />
+            <label>Svg image injection:</label>
+            <br />
+            <div data-plugin-svg="vs-image-test-svg"></div>
+            <br />
+            <input type="button" value="ProcessSvg" onclick="Microsoft.Plugin.Theme.processInjectedSvg()"/>
+            <br />
+            <br />
+            <label>input & disabled input:</label>
+            <br />
+            <input type="text" id="textbox" name="textbox" value="Enter text here!" style="width: 140px" />
+            <br />
+            <input type="text" name="disabledTextbox" value="Enter text here!" style="width: 140px" disabled="disabled" />
+            <br />
+            <br />
+            <label>button:</label>
+            <br />
+            <button name="clearButton" onclick="return onClearButtonClick()" type="button">Clear text</button>
+            <button name="disabledButton" onclick="return false;" disabled="disabled" type="button">Disabled text</button>
+            <br />
+            <br />
+            <label for="singleSelectList">select:</label>
+            <br />
+            <select id="singleSelectList" name="singleSelectList" style="width: 145px">
+                <option value="Option 1">Chocolate</option>
+                <option value="Option 2">Strawberry</option>
+                <option value="Option 3">Vanilla</option>
+            </select>
+            <br />
+            <br />
+            <label for="multipleSelectList">multiple select:</label>
+            <br />
+            <select id="multipleSelectList" name="multipleSelectList" style="width: 145px" multiple="multiple">
+                <option value="Option 1">Cat</option>
+                <option value="Option 2">Dog</option>
+                <option value="Option 3">Loch Ness Monster</option>
+            </select>
+            <br />
+            <br />
+            <label for="textarea">textarea:</label>
+            <br />
+            <textarea id="textarea" name="textarea" style="width: 336px; height: 129px;" data-plugin-vs-tooltip="Textarea tooltip content">The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. Om shanti shanti</textarea>
+            <br />
+            <br />
+            <label>Tree view styles:</label>
+            <ul class="treeView">
+                <li class="treeview-content-selected-border treeview-content-mouseover">Installed</li>
+                <li class="indent">
+                    <ul>
+                        <li>Templates
+                <ul>
+                    <li>Visual C#
+                    <ul>
+                        <li class="treeview-content-selected">LightSwitch</li>
+                    </ul>
+                    </li>
+                    <li>Other Languages
+                    <ul>
+                        <li>Visual Basic
+                        <ul>
+                            <li class="treeview-content-inactive-selected">Windows Metro style</li>
+                            <li class="treeview-content-mouseover">Windows</li>
+                            <li class="treeview-content-mouseover">Extensibility</li>
+                        </ul>
+                        </li>
+                        <li>Visual C ++</li>
+                    </ul>
+                    </li>
+                </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <label>Link styles:</label>
+            <a href="http://www.bing.com" target="_blank">Bing</a>
+            <br />
+            <h4>Testing other HTML elements</h4>
+            <div>
+                <label>Input [type="reset"]:</label><br />
+                <input type="reset" name="reset" value="Reset" />
+                <input type="reset" name="reset" value="Reset" disabled="disabled" />
+            </div>
+            <br />
+            <div>
+                <label>Input [type="button"]:</label><br />
+                <input type="button" name="inputButton" value="Button" />
+                <input type="button" name="inputButton" value="Button" disabled="disabled" />
+            </div>
+            <br />
+            <div>
+                <label>Input [type="submit"]:</label><br />
+                <input type="submit" name="submit" value="Submit" />
+                <input type="submit" name="submit" value="Submit" disabled="disabled" />
+            </div>
+            <br />
+            <div>
+                <label>Single-line text input field (no type): </label>
+                <input name="text" size="30" value="Enter text here" />
+            </div>
+            <br />
+            <div>The following two radio buttons are inside a <code>fieldset</code> element with a <code>legend</code>:</div>
+            <fieldset>
+                <legend>Legend</legend>
+                <div>
+                    <label>
+                        <input type="radio" name="radio" value="1" />Giraffe</label>
+                </div>
+                <div>
+                    <label>
+                        <input type="radio" name="radio" value="2" checked="checked" />Zebra (initially checked)</label>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Check the colors</legend>
+                <div>
+                    <label>
+                        <input type="checkbox" name="checkbox" />Green</label>
+                </div>
+                <div>
+                    <label>
+                        <input type="checkbox" name="checkbox2" checked="checked" />Purple (initially checked)</label>
+                </div>
+            </fieldset>
+            <br />
+            <div>
+                <label>Listbox (select size="3")</label><br />
+                <select name="select2" size="3">
+                    <option>un</option>
+                    <option selected="selected">deux (default)</option>
+                    <option>trois</option>
+                </select>
+            </div>
+            <br />
+            <label>Input [type="password"]:</label>
+            <br />
+            <input type="password" />
+            <input type="password" disabled="disabled" value="disabled" />
+            <br />
+            <br />
+            <label>Input [type="file"]:</label>
+            <br />
+            (note: limited css style is available for file inputs)
+        <br />
+            <input type="file" />
+            <input type="file" disabled="disabled" value="disabled" />
+            <br />
+            <br />
+            <label>Input [type="image"]:</label>
+            <ul>
+                <li>On VS hosts the input image will be replaced by a VS themed image.</li>
+                <li>Input type="image" does not fully support "disabled".</li>
+                <li>Image will only appear disabled on a VS host where it is replaced by a themed image.</li>
+            </ul>
+            Enabled: 
+            <input id="vsInputImageConsoleEnabled" type="image" src="Images/console-icons.png" /><br />
+            Disabled:
+            <input id="vsInputImageConsoleDisabled" type="image" src="Images/console-icons.png" disabled="disabled" />
+            <br />
+            <br />
+            <label>HTML5 input examples:</label>
+            <br />
+            color:
+            <input type="color" />
+            <br />
+            <br />
+            email:
+            <input type="email" />
+            <br />
+            <br />
+            <br />
+            <label>Testing that a blocking plugin does not impact the host:</label>
+            <br />
+            <img src="Maru.gif" style="width: 400px; height: 179px;" alt="Maru gif" />
+            <br />
+            <button name="blockButton" onclick="return onBlockButtonClick()" type="button">Temporarily Block Plugin</button>
+            <button name="hangButton" onclick="return onHangButtonClick()" type="button">Hang the Plugin</button>
+            <br />
+            <br />
+            <br />
+            <label>Scripted Sandbox Extensibility</label>
+            <br />
+            <button id="loadTestExtensionButton" type="button">Load testExtension</button>
+            <br />
+            <button id="loadExtensionWithBasePathToken" type="button">Load extensionWithBasePathToken</button>
+            <br />
+            <button id="loadNoSuchAliasButton" type="button">Load noSuchAlias</button>
+            <br />
+            <button id="loadNonExistentFunctionality" type="button">Load nonExistentFunctionality</button>
+            <br />
+            <button id="loadWrongClsidButton" type="button">Load testExtension with bad CLSID</button>
+            <br />
+            <button id="callTestHelloButton" disabled="disabled" type="button">Invoke Hello()</button>
+            <br />
+            <button id="callTestGetSiteButton" disabled="disabled" type="button">Invoke GetSite()</button>
+            <br />
+            <button id="callTestNoSuchMethodButton" disabled="disabled" type="button">Invoke ThereIsNoSuchMethod()</button>
+            <br />
+        </div>
+    </form>
+    <br />
+    <br />
+    <div id="pluginMessages" aria-live="polite">
+        <label>Errors: </label>
+    </div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+{
+    "vb": {
+        "For Next Loop": {
+            "prefix": "for",
+            "body": "For {{index}} As {{ObjectType}} = {{lower}} To {{Upper}}\n\t{{}}\nNext {{index}}"
+        },
+        "For Each...Next": {
+            "prefix": "fore",
+            "body": "For Each {{Variable}} As {{ObjectType}} In {{Collection}}\n\t{{}}\nNext"
+        },
+        "For i...Next i": {
+            "prefix": "fori",
+            "body": "For i As {{Integer}} = {{Lower}} To {{Upper}}\n\t{{}}\nNext i"
+        },
+        "For j...Next j": {
+            "prefix": "forj",
+            "body": "For j As {{Integer}} = {{Lower}} To {{Upper}}\n\t{{}}\nNext j"
+        },
+        "Public Function...": {
+            "prefix": "pf",
+            "body": "Public Function {{FunctionName}}({{ParameterList}}) As {{ReturnType}}\n\tTry\n\t\t{{}}\n\tCatch ex As Exception\n\tEnd Try\n\tReturn {{ReturnValue}}\nEnd Function"
+        },
+        "Public Sub ...": {
+            "prefix": "ps",
+            "body": "Public Sub {{ProcedureName}}({{ParameterList}})\n\tTry\n\t\t{{}}\n\tCatch ex As Exception\n\tEnd Try\nEnd Sub"
+        },
+        "While ... End While": {
+            "prefix": "while",
+            "body": "While {{Boolean}}\n\t{{}}\nEnd While"
+        }
+    }
+}

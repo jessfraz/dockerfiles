@@ -1,0 +1,315 @@
+{
+  "scopeName": "source.yaml",
+  "name": "YAML",
+  "fileTypes": [
+    "eyaml",
+    "eyml",
+    "yaml",
+    "yml"
+  ],
+  "firstLineMatch": "^#cloud-config",
+  "patterns": [
+    {
+      "include": "#erb"
+    },
+    {
+      "begin": "^(\\s*)(?:(-)|(?:(-\\s*)?(\\S+\\s*(:))))\\s*(\\||>)",
+      "beginCaptures": {
+        "2": {
+          "name": "punctuation.definition.entry.yaml"
+        },
+        "3": {
+          "name": "punctuation.definition.entry.yaml"
+        },
+        "4": {
+          "name": "entity.name.tag.yaml"
+        },
+        "5": {
+          "name": "punctuation.separator.key-value.yaml"
+        }
+      },
+      "end": "^((?=\\s*#(?!#))|(?!\\1\\s+)(?=\\s*(-|\\S+\\s*:)|#))",
+      "name": "string.unquoted.block.yaml",
+      "patterns": [
+        {
+          "include": "#erb"
+        }
+      ]
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.entry.yaml"
+        },
+        "2": {
+          "name": "entity.name.tag.yaml"
+        },
+        "3": {
+          "name": "punctuation.separator.key-value.yaml"
+        },
+        "4": {
+          "name": "punctuation.definition.entry.yaml"
+        }
+      },
+      "match": "(?:(?:(-\\s*)?([^\\s#].*?(:)(?=\\s)))|(-))\\s*((0(x|X)[0-9a-fA-F]*)|(([0-9]+\\.?[0-9]*)|(\\.[0-9]+))((e|E)(\\+|-)?[0-9]+)?)(L|l|UL|ul|u|U|F|f)?\\s*($|(?=#)(?!#\\{))",
+      "name": "constant.numeric.yaml"
+    },
+    {
+      "begin": "(?:(?:(-\\s*)?([^\\s#].*?(:)(?=\\s)))|(-))[ \t]*",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.entry.yaml"
+        },
+        "2": {
+          "name": "entity.name.tag.yaml"
+        },
+        "3": {
+          "name": "punctuation.separator.key-value.yaml"
+        },
+        "4": {
+          "name": "punctuation.definition.entry.yaml"
+        }
+      },
+      "end": "$|(?=#)(?!#\\{)",
+      "patterns": [
+        {
+          "name": "string.unquoted.yaml",
+          "match": "\\!\\s*"
+        },
+        {
+          "include": "#double_quoted_string"
+        },
+        {
+          "include": "#single_quoted_string"
+        },
+        {
+          "name": "string.unquoted.yaml",
+          "match": "[^\"'#\\n]([^#\\n]|((?<!\\s)#))*"
+        }
+      ],
+      "name": "string.unquoted.yaml"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.entry.yaml"
+        },
+        "2": {
+          "name": "entity.name.tag.yaml"
+        },
+        "3": {
+          "name": "punctuation.separator.key-value.yaml"
+        },
+        "4": {
+          "name": "punctuation.definition.entry.yaml"
+        }
+      },
+      "match": "(?:(?:(-\\s*)?(\\w+\\s*(:)))|(-))\\s*([0-9]{4}-[0-9]{2}-[0-9]{2})\\s*($|(?=#)(?!#\\{))",
+      "name": "constant.other.date.yaml"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "entity.name.tag.yaml"
+        },
+        "2": {
+          "name": "punctuation.separator.key-value.yaml"
+        },
+        "3": {
+          "name": "keyword.other.omap.yaml"
+        },
+        "4": {
+          "name": "punctuation.definition.keyword.yaml"
+        }
+      },
+      "match": "(\\w.*?)(:)\\s*((\\!\\!)omap)?",
+      "name": "meta.tag.yaml"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.variable.yaml"
+        }
+      },
+      "match": "(\\&|\\*)\\w.*?$",
+      "name": "variable.other.yaml"
+    },
+    {
+      "include": "#double_quoted_string"
+    },
+    {
+      "include": "#single_quoted_string"
+    },
+    {
+      "begin": "`",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.yaml"
+        }
+      },
+      "end": "`",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.yaml"
+        }
+      },
+      "name": "string.interpolated.yaml",
+      "patterns": [
+        {
+          "include": "#escaped_char"
+        },
+        {
+          "include": "#erb"
+        }
+      ]
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "entity.name.tag.yaml"
+        },
+        "2": {
+          "name": "keyword.operator.merge-key.yaml"
+        },
+        "3": {
+          "name": "punctuation.definition.keyword.yaml"
+        }
+      },
+      "match": "(\\<\\<): ((\\*).*)$",
+      "name": "keyword.operator.merge-key.yaml"
+    },
+    {
+      "disabled": "1",
+      "match": "( |\t)+$",
+      "name": "invalid.deprecated.trailing-whitespace.yaml"
+    },
+    {
+      "begin": "(^[ \\t]+)?(?<!\\$)(?<=^|[ \\t])(?=#)(?!#\\{)",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.whitespace.comment.leading.yaml"
+        }
+      },
+      "end": "(?!\\G)",
+      "patterns": [
+        {
+          "begin": "#",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.comment.yaml"
+            }
+          },
+          "end": "\\n",
+          "name": "comment.line.number-sign.yaml"
+        }
+      ]
+    },
+    {
+      "match": "-",
+      "name": "keyword.operator.symbol"
+    },
+    {
+      "begin": "^(?=\\t)",
+      "end": "(?=[^\\t])",
+      "name": "meta.leading-tabs.yaml",
+      "patterns": [
+        {
+          "captures": {
+            "1": {
+              "name": "meta.odd-tab"
+            },
+            "2": {
+              "name": "meta.even-tab"
+            }
+          },
+          "match": "(\\t)(\\t)?"
+        }
+      ]
+    }
+  ],
+  "repository": {
+    "erb": {
+      "begin": "<%+(?!>)=?",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.embedded.begin.ruby"
+        }
+      },
+      "contentName": "source.ruby.rails",
+      "end": "(%)>",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.embedded.end.ruby"
+        },
+        "1": {
+          "name": "source.ruby.rails"
+        }
+      },
+      "name": "meta.embedded.line.ruby",
+      "patterns": [
+        {
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.comment.ruby"
+            }
+          },
+          "match": "(#).*?(?=%>)",
+          "name": "comment.line.number-sign.ruby"
+        },
+        {
+          "include": "source.ruby.rails"
+        }
+      ]
+    },
+    "escaped_char": {
+      "match": "\\\\.",
+      "name": "constant.character.escape.yaml"
+    },
+    "double_quoted_string": {
+      "begin": "\"",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.yaml"
+        }
+      },
+      "end": "\"",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.yaml"
+        }
+      },
+      "name": "string.quoted.double.yaml",
+      "patterns": [
+        {
+          "include": "#escaped_char"
+        },
+        {
+          "include": "#erb"
+        }
+      ]
+    },
+    "single_quoted_string": {
+      "begin": "'",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.yaml"
+        }
+      },
+      "end": "'",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.yaml"
+        }
+      },
+      "name": "string.quoted.single.yaml",
+      "patterns": [
+        {
+          "include": "#escaped_char"
+        },
+        {
+          "include": "#erb"
+        }
+      ]
+    }
+  }
+}

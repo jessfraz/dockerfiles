@@ -1,0 +1,13 @@
+{
+  "fileTypes": [
+    ".atom/hello"
+  ],
+  "name": "fileTypes have a slash in them",
+  "patterns": [
+    {
+      "match": "hi",
+      "name": "file.types.with.slashes"
+    }
+  ],
+  "scopeName": "fileTypes.withSlashes"
+}

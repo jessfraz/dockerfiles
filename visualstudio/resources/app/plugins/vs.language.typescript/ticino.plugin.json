@@ -1,0 +1,27 @@
+{
+	"pluginId": "vs.language.typescript",
+	"activationEvents": ["textModel:typescript"],
+	"mainModule": "./typescriptMain",
+	"scripts": {
+		"compile": "node ../../node_modules/gulp/bin/gulp.js --gulpfile ../gulpfile.js compile --dir vs.language.typescript"
+	},
+	"contributes": {
+		"language": [{
+			"id": "typescript",
+			"aliases": ["TypeScript","ts","typescript"],
+			"extensions": [".ts"],
+			"mimetypes": ["text/typescript"]
+		}],
+		"configuration": {
+			"type": "object",
+			"title": "TypeScript configuration",
+			"properties": {
+				"typescript.useCodeSnippetsOnMethodSuggest": {
+					"type": "boolean",
+					"default": false,
+					"description": "Complete functions with their parameter signature."
+				}
+			}
+		}
+	}
+}

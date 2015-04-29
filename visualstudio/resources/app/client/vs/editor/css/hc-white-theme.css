@@ -1,0 +1,79 @@
+/*---------------------------------------------------------
+ * Copyright (C) Microsoft Corporation. All rights reserved.
+ *--------------------------------------------------------*/
+.monaco-editor.hc-white,
+.monaco-editor.hc-white .zone-widget .monaco-editor {		
+	color: #000;
+	background: #fff;
+}
+.monaco-editor.hc-white .monaco-editor-background {
+	background: #fff;
+}
+.monaco-editor.hc-white .focus-mode {
+	background-color: #1E1E1E;
+	opacity: 0.333;
+}
+.monaco-editor.hc-white .cursor {
+	background: #000;
+}
+.monaco-editor.hc-white .current-line {
+	background: #fff;
+	border: 2px solid #EEE;
+	box-sizing: border-box;
+}
+.monaco-editor.hc-white.focused .current-line {
+	background: #fff;
+	border: 2px solid #EEE;
+	box-sizing: border-box;
+}
+.monaco-editor.hc-white .lineHighlight {
+	background-color: rgba(243, 240, 245, 0.2);
+}
+.monaco-editor.hc-white .view-overlays.focused .selected-text {
+	background: #3399FF !important;
+}
+.monaco-editor.hc-white .view-overlays .selected-text {
+	background: #BFCDDB !important;
+}
+.monaco-editor.hc-white .line-numbers {
+	color: #2B91AF;
+}
+.monaco-diff-editor.hc-white .diffOverview {
+	background-color: #fff;
+}
+.monaco-scrollable-element.hc-white.modified-in-monaco-diff-editor .scrollbar {
+	background: rgba(0,0,0,0);
+}
+.monaco-editor.hc-white .wordHighlight {
+	background-color: #E2E6D6;
+}
+.monaco-editor.hc-white .editor-hover {
+	color: #D5D8D6;
+	box-shadow: none;
+}
+.monaco-editor.hc-white .bracket-match { box-shadow: inset 0 0 0 1px #000; }
+.monaco-editor.hc-white .linked-editing { box-shadow: inset 0 0 0 1px #000; }
+.monaco-editor.hc-white .new-snippet				{ background-color: rgba(100, 105, 110, 0.1); }
+.monaco-editor.hc-white .snippet-placeholder		{ background-color: rgba(124, 124, 124, 0.1); }
+.monaco-editor.hc-white .finish-snippet-placeholder	{ outline: #525252 solid 1px; }
+.monaco-scrollable-element.hc-white .slider {
+	background: rgba(121, 121, 121, .4);
+}
+.monaco-scrollable-element.hc-white .slider.active {
+	background: rgba(191, 191, 191, .4);
+}
+.hc-white .monaco-findInput > .custom-checkbox {
+	color: #848484;
+	border-color: #848484;
+}
+.hc-white .monaco-findInput > .custom-checkbox:hover {
+	color: #D4D4D4;
+	border-color: #D4D4D4;
+}
+.hc-white .monaco-findInput > .custom-checkbox.checked {
+	color: #D4D4D4;
+	border-color: #D4D4D4;
+}
+.monaco-editor.hc-white .findMatch {
+	background-color: #F6B94D;
+}

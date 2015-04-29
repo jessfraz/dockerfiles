@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>OmniSharp</id>
+    <version>1.0.0</version>
+    <title>OmniSharp</title>
+    <authors>OmniSharp</authors>
+    <owners>OmniSharp</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>OmniSharp</description>
+    <dependencies>
+      <group targetFramework="Asp.Net5.0">
+        <dependency id="OmniSharp.Stdio" version="1.0.0" />
+        <dependency id="Kestrel" version="1.0.0-beta3" />
+        <dependency id="Microsoft.AspNet.Mvc" version="6.0.0-beta3" />
+        <dependency id="Microsoft.AspNet.Diagnostics" version="1.0.0-beta3" />
+        <dependency id="Microsoft.CodeAnalysis" version="1.0.0-beta3" />
+        <dependency id="Microsoft.CodeAnalysis.CSharp" version="1.0.0-beta3" />
+        <dependency id="Microsoft.CodeAnalysis.CSharp.Workspaces" version="1.0.0-beta3" />
+        <dependency id="Microsoft.CodeAnalysis.VisualBasic.Workspaces" version="1.0.0-beta3" />
+        <dependency id="Microsoft.Framework.Logging.Console" version="1.0.0-beta3" />
+        <dependency id="Microsoft.Framework.ConfigurationModel.Json" version="1.0.0-beta3" />
+        <dependency id="Microsoft.Framework.Cache.Memory" version="1.0.0-beta3" />
+        <dependency id="Microsoft.Framework.FileSystemGlobbing" version="1.0.0-beta4-11256" />
+        <dependency id="Microsoft.Composition" version="1.0.30" />
+        <dependency id="ICSharpCode.NRefactory" version="6.0.0-alpha3" />
+      </group>
+      <group targetFramework="Asp.NetCore5.0">
+        <dependency id="OmniSharp.Stdio" version="1.0.0" />
+        <dependency id="Kestrel" version="1.0.0-beta3" />
+        <dependency id="Microsoft.AspNet.Mvc" version="6.0.0-beta3" />
+        <dependency id="Microsoft.AspNet.Diagnostics" version="1.0.0-beta3" />
+        <dependency id="Microsoft.CodeAnalysis" version="1.0.0-beta3" />
+        <dependency id="Microsoft.CodeAnalysis.CSharp" version="1.0.0-beta3" />
+        <dependency id="Microsoft.CodeAnalysis.CSharp.Workspaces" version="1.0.0-beta3" />
+        <dependency id="Microsoft.CodeAnalysis.VisualBasic.Workspaces" version="1.0.0-beta3" />
+        <dependency id="Microsoft.Framework.Logging.Console" version="1.0.0-beta3" />
+        <dependency id="Microsoft.Framework.ConfigurationModel.Json" version="1.0.0-beta3" />
+        <dependency id="Microsoft.Framework.Cache.Memory" version="1.0.0-beta3" />
+        <dependency id="Microsoft.Framework.FileSystemGlobbing" version="1.0.0-beta4-11256" />
+        <dependency id="Microsoft.Composition" version="1.0.30" />
+        <dependency id="System.IO.FileSystem.Watcher" version="4.0.0-beta-22231" />
+        <dependency id="System.Net.Sockets" version="4.0.0-beta-22231" />
+        <dependency id="System.Diagnostics.Process" version="4.0.0-beta-22231" />
+      </group>
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Globalization" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="Microsoft.Build" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="Microsoft.Build.Engine" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="Microsoft.Build.Framework" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="mscorlib" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="System" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="System.Core" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="Microsoft.CSharp" targetFramework="Asp.Net5.0" />
+    </frameworkAssemblies>
+  </metadata>
+</package>

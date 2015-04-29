@@ -1,0 +1,19 @@
+{
+	"pluginId": "vs.language.tsql",
+	"activationEvents": ["textModel:sql"],
+	"mainModule": "./sqlMain",
+	"contributes": {
+		"language": [{
+			"id": "sql",
+			"extensions": [ ".sql" ],
+			"aliases": [ "SQL" ]
+		}]
+	},
+	"scripts": {
+		"compile": "node ../../node_modules/gulp/bin/gulp.js --gulpfile ../gulpfile.js compile --dir vs.language.tsql"
+	},
+	"_testing": "./tests/sqlTests",
+	"_bundling": [
+		{ "name": "./sqlMain" }
+	]
+}

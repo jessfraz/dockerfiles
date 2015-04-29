@@ -1,0 +1,146 @@
+/*---------------------------------------------------------
+ * Copyright (C) Microsoft Corporation. All rights reserved.
+ *--------------------------------------------------------*/
+/*---------------------------------------------------------
+ * Copyright (C) Microsoft Corporation. All rights reserved.
+ *--------------------------------------------------------*/
+.debug-viewlet {
+	height: 100%;	
+}
+.debug-viewlet .monaco-tree .monaco-tree-row > .content {
+	line-height: 24px;
+}
+.debug-viewlet > .monaco-tree .monaco-tree-row > .content > .section {
+	font-size: 11px;
+	font-weight: bold;	
+	text-transform: uppercase;
+	cursor: default;
+}
+.monaco-workbench .debug-select {
+	max-width: 115px;
+}
+.monaco-workbench .monaco-action-bar .action-item.select-container {
+	overflow: hidden;
+}
+.debug-viewlet > .noworkspace-view {
+	padding: 0 20px 0 20px;
+}
+.debug-viewlet > .noworkspace-view > p {
+	line-height: 1.5em;
+}
+.debug-viewlet > .noworkspace-view .code {
+	display: inline;
+}
+.debug-viewlet > .noworkspace-view a
+{
+	color: inherit;
+	font-weight: bold;
+	text-decoration: underline;
+}
+.debug-viewlet .debug-exception-box {
+    border: 1px solid #F2CB1D;
+	border-style: solid none;
+    background: #F6F5D2;
+    padding: 0.4em 1em .3em 1.9em;
+    font-size: 8pt;
+	
+	-webkit-user-select: text;
+	-moz-user-select: text;
+	-o-user-select: text;
+	-ms-user-select: text;
+	user-select: text;
+}
+.debug-viewlet .debug-call-stack .stack-frame {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	padding-right: 0.8em;
+}
+.debug-viewlet .debug-call-stack .stack-frame > .file {
+	float: right;
+}
+.debug-viewlet .debug-call-stack > .monaco-tree-row:not(.selected) .stack-frame > .file {
+	color: rgba(108, 108, 108, 0.8);
+}
+.vs-dark .debug-viewlet .debug-call-stack > .monaco-tree-row:not(.selected) .stack-frame > .file {
+	color: rgba(204, 204, 204, 0.6);
+}
+.debug-viewlet .debug-call-stack .stack-frame > .file:not(:first-child) {
+	margin-left: 0.8em;
+}
+.debug-viewlet .debug-call-stack .stack-frame > .file > .line-number {
+	background: rgba(136, 136, 136, 0.3);
+	border-radius: 2px;
+	font-size: 0.9em;
+	padding: 0 3px;
+	margin-left: 0.8em;
+}
+.debug-viewlet .debug-variables .scope {
+	text-transform: capitalize;
+	font-weight: bold;
+	font-size: 11px;
+}
+.debug-viewlet .debug-variables .variable {
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.debug-viewlet .debug-variables .variable > .value {
+	margin-left: 10px;
+	padding: 0 2px;
+	border: 1px solid rgba(136, 136, 136, 0.23);
+	border-radius: 2px;
+	font-family: Monaco, Menlo, Consolas, "Droid Sans Mono", "Inconsolata", "Courier New", monospace;
+	font-size: 11px;
+}
+.debug-viewlet .debug-variables > .monaco-tree-row:not(.selected) .variable > .value {
+	color: rgba(108, 108, 108, 0.8);
+}
+.debug-viewlet .debug-variables .monaco-tree-row:not(.selected) .variable > .value.number {
+	color: #09885A;
+}
+.debug-viewlet .debug-variables .monaco-tree-row:not(.selected) .variable > .value.boolean {
+	color: #0000FF;
+}
+.debug-viewlet .debug-variables .monaco-tree-row:not(.selected) .variable > .value.string {
+	color: #A31515;
+}
+.vs-dark .debug-viewlet .debug-variables > .monaco-tree-row:not(.selected) .variable > .value {
+	color: rgba(204, 204, 204, 0.6);
+}
+.vs-dark .debug-viewlet .debug-variables .monaco-tree-row:not(.selected) .variable > .value.number {
+	color: #B5CEA8;
+}
+.vs-dark .debug-viewlet .debug-variables .monaco-tree-row:not(.selected) .variable > .value.boolean {
+	color: #4E94CE;
+}
+.vs-dark .debug-viewlet .debug-variables .monaco-tree-row:not(.selected) .variable > .value.string {
+	color: #CE9178;
+}
+.debug-viewlet .debug-breakpoints .breakpoint {
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.debug-viewlet .debug-breakpoints .breakpoint > * {
+	vertical-align: middle;
+}
+.debug-viewlet .debug-breakpoints .breakpoint > .line-number {
+	background: rgba(136, 136, 136, 0.3);
+	border-radius: 2px;
+	font-size: 0.9em;
+	margin-left: 0.8em;
+	padding: 0 3px;
+}
+.debug-viewlet .debug-breakpoints .breakpoint > .file-path {
+	opacity: 0.7;
+	font-size: 0.9em;
+	margin-left: 0.8em;
+}
+.vs-dark.monaco-workbench .debug-select {
+	background-color: #3C3C3C;
+  	border-color: #3C3C3C;
+    color: rgb(204, 204, 204);
+}
+.vs-dark .debug-viewlet .debug-exception-box {
+    border: 1px solid #B89500;
+	border-style: solid none;
+    background: #352A05;
+}

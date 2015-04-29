@@ -1,0 +1,13 @@
+﻿{
+    "aspnet5": {
+        "alias": "default",
+        "projects": "**/project.json",
+        "enablePackageRestore": true,
+        "packageRestoreTimeout": "180"
+    },
+    "formattingOptions": {
+        "newLine": "\n",
+        "useTabs": false,
+        "tabSize": 4
+    }
+}

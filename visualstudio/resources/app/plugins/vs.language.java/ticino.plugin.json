@@ -1,0 +1,20 @@
+{
+	"pluginId": "vs.language.java",
+	"activationEvents": ["textModel:java"],
+	"mainModule": "./javaMain",
+	"contributes": {
+		"language": [{
+			"id": "java",
+			"extensions": [ ".java", ".jav" ],
+			"aliases": [ "Java", "java" ],
+			"mimetypes": ["text/x-java-source", "text/x-java"]
+		}]
+	},
+	"scripts": {
+		"compile": "node ../../node_modules/gulp/bin/gulp.js --gulpfile ../gulpfile.js compile --dir vs.language.java"
+	},
+	"_testing": "./tests/javaTests",
+	"_bundling": [
+		{ "name": "./javaMain" }
+	]
+}

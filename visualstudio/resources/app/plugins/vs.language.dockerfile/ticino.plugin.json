@@ -1,0 +1,20 @@
+{
+	"pluginId": "vs.language.dockerfile",
+	"activationEvents": ["textModel:dockerfile"],
+	"mainModule": "./dockerfileMain",
+	"contributes": {
+		"language": [{
+			"id": "dockerfile",	
+			"extensions": [ ".dockerfile" ],
+			"filenames": [ "Dockerfile" ],
+			"aliases": [ "Dockerfile" ]
+		}]
+	},
+	"scripts": {
+		"compile": "node ../../node_modules/gulp/bin/gulp.js --gulpfile ../gulpfile.js compile --dir vs.language.dockerfile"
+	},
+	"_testing": "./tests/dockerfileTests",
+	"_bundling": [
+		{ "name": "./dockerfileMain" }
+	]
+}

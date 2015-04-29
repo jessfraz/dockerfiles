@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+  <metadata>
+    <id>ICSharpCode.NRefactory</id>
+    <version>6.0.0-alpha3</version>
+    <title>NRefactory</title>
+    <authors>Daniel Grunwald, Mike Krüger, Erik Källén</authors>
+    <owners>Daniel Grunwald</owners>
+    <licenseUrl>http://www.opensource.org/licenses/mit-license.php</licenseUrl>
+    <projectUrl>https://github.com/icsharpcode/NRefactory/</projectUrl>
+    <iconUrl>http://community.sharpdevelop.net/blogs/mattward/SharpDevelop.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>NRefactory supports analysis of C# source code: it includes a parser, abstract syntax tree,
+      type system, semantic analysis (resolver), code completion, and several refactorings.
+      Depends on Roslyn 1.0.0-rc1 packages.</description>
+    <copyright>Copyright 2010-2015 AlphaSierraPapa</copyright>
+    <tags>C# Parser Semantic Analysis SharpDevelop</tags>
+    <dependencies>
+      <dependency id="Microsoft.CodeAnalysis.Common" version="1.0.0-rc1" />
+      <dependency id="Microsoft.CodeAnalysis.CSharp" version="1.0.0-rc1" />
+      <dependency id="Microsoft.CodeAnalysis.CSharp.Workspaces" version="1.0.0-rc1" />
+      <dependency id="Microsoft.CodeAnalysis.Workspaces.Common" version="1.0.0-rc1" />
+      <dependency id="Microsoft.Composition" version="1.0.30" />
+      <dependency id="System.Collections.Immutable" version="1.1.33-beta" />
+      <dependency id="System.Reflection.Metadata" version="1.0.18-beta" />
+    </dependencies>
+  </metadata>
+</package>

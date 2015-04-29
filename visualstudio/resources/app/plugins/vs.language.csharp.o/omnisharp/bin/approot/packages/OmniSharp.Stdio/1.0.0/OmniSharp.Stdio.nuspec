@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>OmniSharp.Stdio</id>
+    <version>1.0.0</version>
+    <title>OmniSharp.Stdio</title>
+    <authors>OmniSharp.Stdio</authors>
+    <owners>OmniSharp.Stdio</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>ASP.NET 5 web server for stdio</description>
+    <dependencies>
+      <group targetFramework="Asp.Net5.0">
+        <dependency id="Microsoft.AspNet.Hosting" version="1.0.0-beta3" />
+        <dependency id="Microsoft.AspNet.Http.Interfaces" version="1.0.0-beta3" />
+        <dependency id="Newtonsoft.Json" version="6.0.8" />
+      </group>
+      <group targetFramework="Asp.NetCore5.0">
+        <dependency id="Microsoft.AspNet.Hosting" version="1.0.0-beta3" />
+        <dependency id="Microsoft.AspNet.Http.Interfaces" version="1.0.0-beta3" />
+        <dependency id="Newtonsoft.Json" version="6.0.8" />
+      </group>
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="mscorlib" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="System" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="System.Core" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="Microsoft.CSharp" targetFramework="Asp.Net5.0" />
+    </frameworkAssemblies>
+  </metadata>
+</package>

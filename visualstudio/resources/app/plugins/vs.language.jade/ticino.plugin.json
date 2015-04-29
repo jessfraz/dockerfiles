@@ -1,0 +1,19 @@
+{
+	"pluginId": "vs.language.jade",
+	"activationEvents": ["textModel:jade"],
+	"mainModule": "./jadeMain",
+	"contributes": {
+		"language": [{
+			"id": "jade",
+			"extensions": [ ".jade" ],
+			"aliases": [ "Jade", "jade" ]
+		}]
+	},
+	"scripts": {
+		"compile": "node ../../node_modules/gulp/bin/gulp.js --gulpfile ../gulpfile.js compile --dir vs.language.jade"
+	},
+	"_testing": "./tests/jadeTests",
+	"_bundling": [
+		{ "name": "./jadeMain" }
+	]
+}

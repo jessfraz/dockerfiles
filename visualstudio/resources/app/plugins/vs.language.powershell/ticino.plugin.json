@@ -1,0 +1,19 @@
+{
+	"pluginId": "vs.language.powershell",
+	"activationEvents": ["textModel:powershell"],
+	"mainModule": "./powershellMain",
+	"contributes": {
+		"language": [{
+			"id": "powershell",
+			"extensions": [ ".ps1", ".ps", ".psm1" ],
+			"aliases": [ "PowerShell", "powershell", "ps", "ps1" ]
+		}]
+	},
+	"scripts": {
+		"compile": "node ../../node_modules/gulp/bin/gulp.js --gulpfile ../gulpfile.js compile --dir vs.language.powershell"
+	},
+	"_testing": "./tests/powershellTests",
+	"_bundling": [
+		{ "name": "./powershellMain" }
+	]
+}

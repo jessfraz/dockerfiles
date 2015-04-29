@@ -1,0 +1,19 @@
+{
+	"pluginId": "vs.language.cpp",
+	"activationEvents": ["textModel:cpp"],
+	"mainModule": "./cppMain",
+	"contributes": {
+		"language": [{
+			"id": "cpp",
+			"extensions": [ ".cpp", ".c", ".cc", ".cxx", ".h", ".hpp", ".hh" ],
+			"aliases": [ "C++", "Cpp", "cpp", "c" ]
+		}]
+	},
+	"scripts": {
+		"compile": "node ../../node_modules/gulp/bin/gulp.js --gulpfile ../gulpfile.js compile --dir vs.language.cpp"
+	},
+	"_testing": "./tests/cppTests",
+	"_bundling": [
+		{ "name": "./cppMain" }
+	]
+}

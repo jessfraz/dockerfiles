@@ -1,0 +1,64 @@
+/*---------------------------------------------------------
+ * Copyright (C) Microsoft Corporation. All rights reserved.
+ *--------------------------------------------------------*/
+/*---------------------------------------------------------
+ * Copyright (C) Microsoft Corporation. All rights reserved.
+ *--------------------------------------------------------*/
+ 
+.monaco-workbench .build-viewlet .file-with-errors {
+	position: relative;
+	line-height: 24px;
+}
+.build-viewlet .builderror {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	line-height: 24px;
+	max-width: 100%;
+	white-space: nowrap;
+}
+.build-viewlet .message {
+	padding-left: 20px;
+	padding-top: 2px;
+}
+.monaco-workbench .build-action.runbuild {
+	background: url(media/BuildSolution.svg) center center no-repeat;
+}
+.monaco-workbench.vs-dark .build-action.runbuild {
+	background: url(media/BuildSolution_inverse.svg) center center no-repeat;
+}
+.monaco-workbench .build-action.openlog {
+	background: url(media/LogProvider.svg) center center no-repeat;
+}
+.monaco-workbench.vs-dark .build-action.openlog {
+	background: url(media/LogProvider_inverse.svg) center center no-repeat;
+}
+.monaco-workbench.vs .build-viewlet .monaco-tree .file-with-errors {
+	color: #1E1E1E;
+}
+.monaco-workbench .build-viewlet .monaco-tree .file-with-errors .directory {
+	opacity: 0.7;
+	margin-left: 0.5em;
+	font-size: 0.9em;
+}
+.monaco-workbench.vs .build-viewlet .monaco-tree.focused .monaco-tree-row.selected .file-with-errors {
+	color: white;
+}
+.monaco-workbench.vs-dark .build-viewlet .monaco-tree .file-with-errors {
+	color: white;
+}
+.monaco-workbench.hc-black .build-action {
+	background: none;
+}
+.monaco-workbench.hc-black .build-action:before {
+	position: absolute;
+	top: 12px;
+	left: 8px;
+	height: 16px;
+	width: 16px;
+}
+.monaco-workbench.hc-black .build-action.runbuild:before {
+	content: url(media/BuildSolution_inverse.svg);
+}
+.monaco-workbench.hc-black .build-action.openlog:before {
+	content: url(media/LogProvider_inverse.svg);
+}

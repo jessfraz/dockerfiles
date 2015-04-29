@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Microsoft.AspNet.FileProviders</id>
+    <version>1.0.0-beta3</version>
+    <title>Microsoft.AspNet.FileProviders</title>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Implementation of ASP.NET 5 file provider abstractions.</description>
+    <dependencies>
+      <group targetFramework=".NETFramework4.5">
+        <dependency id="Microsoft.AspNet.FileProviders.Interfaces" version="1.0.0-beta3" />
+      </group>
+      <group targetFramework="Asp.Net5.0">
+        <dependency id="Microsoft.AspNet.FileProviders.Interfaces" version="1.0.0-beta3" />
+      </group>
+      <group targetFramework="Asp.NetCore5.0">
+        <dependency id="Microsoft.AspNet.FileProviders.Interfaces" version="1.0.0-beta3" />
+        <dependency id="System.Collections.Concurrent" version="4.0.10-beta-22605" />
+        <dependency id="System.IO.FileSystem.Watcher" version="4.0.0-beta-22605" />
+        <dependency id="System.IO.FileSystem" version="4.0.0-beta-22605" />
+        <dependency id="System.Linq" version="4.0.0-beta-22605" />
+        <dependency id="System.Text.RegularExpressions" version="4.0.10-beta-22605" />
+        <dependency id="System.Threading" version="4.0.10-beta-22605" />
+      </group>
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="mscorlib" targetFramework=".NETFramework4.5" />
+      <frameworkAssembly assemblyName="System" targetFramework=".NETFramework4.5" />
+      <frameworkAssembly assemblyName="System.Core" targetFramework=".NETFramework4.5" />
+      <frameworkAssembly assemblyName="Microsoft.CSharp" targetFramework=".NETFramework4.5" />
+      <frameworkAssembly assemblyName="mscorlib" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="System" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="System.Core" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="Microsoft.CSharp" targetFramework="Asp.Net5.0" />
+    </frameworkAssemblies>
+    <licenseUrl>http://www.microsoft.com/web/webpi/eula/net_library_eula_enu.htm</licenseUrl>
+    <iconUrl>http://go.microsoft.com/fwlink/?LinkID=288859</iconUrl>
+    <copyright>Copyright © Microsoft Corporation</copyright>
+    <projectUrl>http://www.asp.net/</projectUrl>
+  </metadata>
+</package>

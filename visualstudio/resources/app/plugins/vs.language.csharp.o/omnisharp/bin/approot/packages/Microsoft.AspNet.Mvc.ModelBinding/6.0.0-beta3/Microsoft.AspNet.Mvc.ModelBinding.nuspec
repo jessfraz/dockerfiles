@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Microsoft.AspNet.Mvc.ModelBinding</id>
+    <version>6.0.0-beta3</version>
+    <title>Microsoft.AspNet.Mvc.ModelBinding</title>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>The ASP.NET MVC model binding components for binding data from a request to an object model.</description>
+    <dependencies>
+      <group targetFramework="Asp.Net5.0">
+        <dependency id="Microsoft.AspNet.Http" version="1.0.0-beta3" />
+        <dependency id="Microsoft.AspNet.Http.Extensions" version="1.0.0-beta3" />
+        <dependency id="Microsoft.Framework.DependencyInjection" version="1.0.0-beta3" />
+        <dependency id="Microsoft.Net.Http.Headers" version="1.0.0-beta3" />
+        <dependency id="Newtonsoft.Json" version="6.0.6" />
+      </group>
+      <group targetFramework="Asp.NetCore5.0">
+        <dependency id="Microsoft.AspNet.Http" version="1.0.0-beta3" />
+        <dependency id="Microsoft.AspNet.Http.Extensions" version="1.0.0-beta3" />
+        <dependency id="Microsoft.Framework.DependencyInjection" version="1.0.0-beta3" />
+        <dependency id="Microsoft.Net.Http.Headers" version="1.0.0-beta3" />
+        <dependency id="Newtonsoft.Json" version="6.0.6" />
+        <dependency id="System.Collections.Concurrent" version="4.0.10-beta-22605" />
+        <dependency id="System.ComponentModel.Annotations" version="4.0.10-beta-22605" />
+        <dependency id="System.ComponentModel.TypeConverter" version="4.0.0-beta-22605" />
+        <dependency id="System.Reflection.TypeExtensions" version="4.0.0-beta-22605" />
+        <dependency id="System.Runtime.Serialization.Primitives" version="4.0.0-beta-22605" />
+        <dependency id="System.Runtime.Serialization.Xml" version="4.0.10-beta-22605" />
+        <dependency id="System.Xml.XmlSerializer" version="4.0.10-beta-22605" />
+      </group>
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.ComponentModel.DataAnnotations" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="System.Xml" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="System.Runtime.Serialization" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="mscorlib" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="System" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="System.Core" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="Microsoft.CSharp" targetFramework="Asp.Net5.0" />
+    </frameworkAssemblies>
+    <licenseUrl>http://www.microsoft.com/web/webpi/eula/net_library_eula_enu.htm</licenseUrl>
+    <iconUrl>http://go.microsoft.com/fwlink/?LinkID=288859</iconUrl>
+    <copyright>Copyright © Microsoft Corporation</copyright>
+    <projectUrl>http://www.asp.net/</projectUrl>
+  </metadata>
+</package>

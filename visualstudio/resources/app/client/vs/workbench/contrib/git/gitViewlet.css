@@ -1,0 +1,329 @@
+/*---------------------------------------------------------
+ * Copyright (C) Microsoft Corporation. All rights reserved.
+ *--------------------------------------------------------*/
+/*---------------------------------------------------------
+ * Copyright (C) Microsoft Corporation. All rights reserved.
+ *--------------------------------------------------------*/
+.git-viewlet > .changes-view > .commit-view {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	height: 38px;
+	padding: 5px 9px 5px 16px;
+}
+.git-viewlet > .changes-view > .commit-view > .monaco-inputbox {
+	width: 100%;
+}
+.git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row .content {
+	line-height: 24px;
+}
+.git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-rows > .monaco-tree-row > .content:after,
+.git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-rows > .monaco-tree-row > .content:before {
+	border: none;
+}
+.git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row .sub-content {
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row .status-group {
+	font-size: 11px;
+	font-weight: bold;	
+	text-transform: uppercase;
+	cursor: default;
+}
+.git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row .status-group,
+.git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row .file-status {
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.vs-dark .git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row .status-group {
+	color: inherit;
+}
+.git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row:hover .content.has-actions .monaco-count-badge {
+	display: none;
+}
+.git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row .file-status .status {
+	position: absolute;
+	top: 4px;
+	height: 12px;
+	width: 6px;
+	line-height: 12px;
+	padding: 2px 4px;
+	font-family: Monaco, Menlo, Consolas, "Droid Sans Mono", "Inconsolata", "Courier New", monospace;
+	font-size: 9px;
+	color: white;
+	text-align: center;
+	border-radius: 4px;
+}
+.git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row .file-status .name {
+	margin-left: 20px;	
+}
+.git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row .file-status.modified .status	{ background-color: #007ACC; }
+.git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row .file-status.added .status		{ background-color: #2d883e; }
+.git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row .file-status.deleted .status	{ background-color: #B9131A; }
+.git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row .file-status.renamed .status	{ background-color: #4668C5; }
+.git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row .file-status.copied .status	{ background-color: #682079; }
+.git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row .file-status.untracked .status	{ background-color: #6C6C6C; }
+.git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row .file-status.ignored .status	{ background-color: #969696; }
+.git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row .file-status.conflict .status	{ background-color: #9B4F96; }
+.git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row.selected .file-status .status	{ background-color: #ffffff; color: #666; }
+.vs-dark .git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row .file-status.modified .status		{ background-color: #1B80B2; }
+.vs-dark .git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row .file-status.added .status		{ background-color: #3c8746; }
+.vs-dark .git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row .file-status.deleted .status		{ background-color: #9E121D; }
+.vs-dark .git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row .file-status.copied .status		{ background-color: #692C77; }
+.vs-dark .git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row .file-status.conflict .status		{ background-color: #7F4E7E; }
+.vs-dark .git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row.selected .file-status .status		{ background-color: #ffffff; color: #666; }
+.git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row .file-status.deleted .name,
+.git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row .file-status.both-deleted .name,
+.git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row .file-status.deleted-by-them .name,
+.git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row .file-status.deleted-by-us .name {
+	text-decoration: line-through; 
+}
+.git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row .file-status .rename,
+.git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row .file-status .rename-arrow {
+	margin-left: 0.4em;
+}
+.git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row .file-status .rename-folder,
+.git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row .file-status .folder {
+	opacity: 0.7;
+	font-size: 0.9em;
+	margin-left: 0.8em;
+}
+.hc-black .git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row .content {
+	line-height: 20px;
+}
+.hc-black .git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row .file-status .status {
+	top: 2px;
+}
+.hc-black .git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row .file-status.modified .status,
+.hc-black .git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row .file-status.added .status,
+.hc-black .git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row .file-status.deleted .status,
+.hc-black .git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row .file-status.renamed .status,
+.hc-black .git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row .file-status.copied .status,
+.hc-black .git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row .file-status.untracked .status,
+.hc-black .git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row .file-status.ignored .status,
+.hc-black .git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row .file-status.conflict .status,
+.hc-black .git-viewlet > .changes-view > .status-view > .monaco-tree .monaco-tree-row.selected .file-status .status { 
+	background-color: #000; 
+	color: #fff;
+	border: 1px solid #6FC3DF;
+}
+/*---------------------------------------------------------
+ * Copyright (C) Microsoft Corporation. All rights reserved.
+ *--------------------------------------------------------*/
+ 
+.combo-box {
+	min-width: 200px;
+	margin: 0;
+}
+.combo-box .combo-box-option.label {
+	color: #999;
+}
+
+/*---------------------------------------------------------
+ * Copyright (C) Microsoft Corporation. All rights reserved.
+ *--------------------------------------------------------*/
+.git-viewlet > .empty-view {
+	padding: 0 20px 0 20px;
+}
+.git-viewlet > .empty-view > .section:not(:empty) {
+	margin: 20px 0;
+	padding-top: 20px;
+	border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+.git-viewlet > .empty-view > .section > p:first-child {
+	margin-top: 0;
+}
+.git-viewlet > .empty-view .monaco-inputbox {
+	width: 100%;
+	margin-bottom: 10px;
+}
+.git-viewlet > .empty-view .combo-box {
+	width: 100%;
+	min-width: inherit;
+	padding: 4px 4px 4px 0;
+	margin-bottom: 10px;
+}
+.git-viewlet > .empty-view .button {
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	display: inline-block;
+	width: 100%;
+	padding: 4px;
+	text-align: center;
+	color: white;
+	background: #007ACC;
+}
+.git-viewlet > .empty-view .button.disabled {
+	opacity: 0.4;
+	cursor: default;
+}
+.git-viewlet > .empty-view .button:hover {
+	text-decoration: none;
+}
+.git-viewlet > .empty-view .button:not(.disabled):hover {
+	background: #006BB3;
+}
+.git-viewlet > .empty-view .button:not(.disabled):active {
+	background: #005F9E;
+}
+.vs-dark .git-viewlet > .empty-view .button {
+	background: #0E639C;
+}
+
+/*---------------------------------------------------------
+ * Copyright (C) Microsoft Corporation. All rights reserved.
+ *--------------------------------------------------------*/
+.git-viewlet > .gitless-view {
+	padding: 0 20px 0 20px;
+}
+.git-viewlet > .gitless-view > p {
+	line-height: 1.5em;
+}
+.git-viewlet > .gitless-view .code {
+	display: inline;
+}
+.git-viewlet > .gitless-view a
+{
+	color: inherit;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+/*---------------------------------------------------------
+ * Copyright (C) Microsoft Corporation. All rights reserved.
+ *--------------------------------------------------------*/
+.git-viewlet > .notroot-view {
+	padding: 0 20px 0 20px;
+}
+.git-viewlet > .notroot-view > p {
+	line-height: 1.5em;
+}
+.git-viewlet > .notroot-view .code {
+	display: inline;
+}
+.git-viewlet > .notroot-view a
+{
+	color: inherit;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+/*---------------------------------------------------------
+ * Copyright (C) Microsoft Corporation. All rights reserved.
+ *--------------------------------------------------------*/
+.git-viewlet > .noworkspace-view {
+	padding: 0 20px 0 20px;
+}
+.git-viewlet > .noworkspace-view > p {
+	line-height: 1.5em;
+}
+.git-viewlet > .noworkspace-view .code {
+	display: inline;
+}
+.git-viewlet > .noworkspace-view a
+{
+	color: inherit;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+/*---------------------------------------------------------
+ * Copyright (C) Microsoft Corporation. All rights reserved.
+ *--------------------------------------------------------*/
+.git-viewlet {
+	height: 100%;	
+}
+.git-action.refresh {
+	background: url(media/Refresh.svg) center center no-repeat;
+}
+.git-action.smart-commit {
+	background: url(media/check.svg) center center no-repeat;
+}
+.git-action.run-pull {
+	background: url(media/pull.svg) center center no-repeat;
+}
+.git-action.run-push {
+	background: url(media/push.svg) center center no-repeat;
+}
+.git-action.stage {
+	background: url(media/add.svg) center center no-repeat;
+}
+.git-viewlet .focused .monaco-tree-row.selected:not(.highlighted) > .content.actions .git-action.stage {
+	background: url(media/add-focus.svg) center center no-repeat;
+}
+.git-action.undo {
+	background: url(media/undo.svg) center center no-repeat;
+}
+.git-viewlet .focused .monaco-tree-row.selected:not(.highlighted) > .content.actions .git-action.undo {
+	background: url(media/undo-focus.svg) center center no-repeat;
+}
+.git-action.unstage {
+	background: url(media/subtract.svg) center center no-repeat;
+}
+.git-viewlet .focused .monaco-tree-row.selected:not(.highlighted) > .content.actions .git-action.unstage {
+	background: url(media/subtract-focus.svg) center center no-repeat;
+}
+.vs-dark .git-action.refresh {
+	background: url(media/refresh-inverse.svg) center center no-repeat;
+}
+.vs-dark .git-action.commit {
+	background: url(media/check-inverse.svg) center center no-repeat;
+}
+.vs-dark .git-action.stage-and-commit {
+	background: url(media/check-inverse.svg) center center no-repeat;
+}
+.vs-dark .git-action.run-pull {
+	background: url(media/pull-inverse.svg) center center no-repeat;
+}
+.vs-dark .git-action.run-push {
+	background: url(media/push-inverse.svg) center center no-repeat;
+}
+.vs-dark .git-action.stage {
+	background: url(media/add-inverse.svg) center center no-repeat;
+}
+.vs-dark .git-action.undo {
+	background: url(media/undo-inverse.svg) center center no-repeat;
+}
+.vs-dark .git-action.unstage {
+	background: url(media/subtract-inverse.svg) center center no-repeat;
+}
+.hc-black .git-action {
+	background: none;
+}
+.hc-black .title-actions .git-action:before {
+	position: absolute;
+	top: 12px;
+	left: 8px;
+	height: 16px;
+	width: 16px;
+}
+.hc-black .git-action.refresh:before {
+	content: url(media/refresh-inverse.svg);
+}
+.hc-black .git-action.smart-commit:before {
+	content: url(media/check-inverse.svg);
+}
+.hc-black .git-viewlet .focused .monaco-tree-row.selected:not(.highlighted) > .content.actions .git-action {
+	background: none;
+}
+.hc-black .git-viewlet .monaco-tree .monaco-tree-rows > .monaco-tree-row.has-children > .content:after,
+.hc-black .git-viewlet .monaco-tree .monaco-tree-rows > .monaco-tree-row.expanded > .content:before {
+	content: '';
+}
+.hc-black .monaco-tree .git-action:before {
+	display: inline-block;
+	position: relative;
+	top: -2px;
+	height: 16px;
+	width: 16px;
+}
+.hc-black .git-viewlet .git-action.stage:before {
+	content: url(media/add-inverse.svg);
+}
+.hc-black .git-viewlet .git-action.undo:before {
+	content: url(media/undo-inverse.svg);
+}
+.hc-black .git-viewlet .git-action.unstage:before {
+	content: url(media/subtract-inverse.svg);
+}

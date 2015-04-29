@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Microsoft.Framework.DependencyInjection</id>
+    <version>1.0.0-beta3</version>
+    <title>Microsoft.Framework.DependencyInjection</title>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Dependency injection abstraction and fallback implementation.</description>
+    <dependencies>
+      <group targetFramework=".NETFramework4.5">
+        <dependency id="Microsoft.Framework.ConfigurationModel" version="1.0.0-beta3" />
+      </group>
+      <group targetFramework="Asp.Net5.0">
+        <dependency id="Microsoft.Framework.ConfigurationModel" version="1.0.0-beta3" />
+      </group>
+      <group targetFramework="Asp.NetCore5.0">
+        <dependency id="Microsoft.Framework.ConfigurationModel" version="1.0.0-beta3" />
+        <dependency id="System.Collections.Concurrent" version="4.0.10-beta-22605" />
+        <dependency id="System.Linq.Expressions" version="4.0.0-beta-22605" />
+        <dependency id="System.Threading" version="4.0.10-beta-22605" />
+        <dependency id="System.Threading.Tasks" version="4.0.10-beta-22605" />
+      </group>
+      <group targetFramework=".NETPortable4.6-Profile151">
+        <dependency id="Microsoft.Framework.ConfigurationModel" version="1.0.0-beta3" />
+      </group>
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="mscorlib" targetFramework=".NETFramework4.5" />
+      <frameworkAssembly assemblyName="System" targetFramework=".NETFramework4.5" />
+      <frameworkAssembly assemblyName="System.Core" targetFramework=".NETFramework4.5" />
+      <frameworkAssembly assemblyName="Microsoft.CSharp" targetFramework=".NETFramework4.5" />
+      <frameworkAssembly assemblyName="mscorlib" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="System" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="System.Core" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="Microsoft.CSharp" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="System.Collections.Concurrent" targetFramework=".NETPortable4.6-Profile151" />
+      <frameworkAssembly assemblyName="System.ComponentModel" targetFramework=".NETPortable4.6-Profile151" />
+      <frameworkAssembly assemblyName="System.Linq.Expressions" targetFramework=".NETPortable4.6-Profile151" />
+      <frameworkAssembly assemblyName="System.Threading" targetFramework=".NETPortable4.6-Profile151" />
+      <frameworkAssembly assemblyName="System.Threading.Tasks" targetFramework=".NETPortable4.6-Profile151" />
+    </frameworkAssemblies>
+    <licenseUrl>http://www.microsoft.com/web/webpi/eula/net_library_eula_enu.htm</licenseUrl>
+    <iconUrl>http://go.microsoft.com/fwlink/?LinkID=288859</iconUrl>
+    <copyright>Copyright © Microsoft Corporation</copyright>
+    <projectUrl>http://www.asp.net/</projectUrl>
+  </metadata>
+</package>

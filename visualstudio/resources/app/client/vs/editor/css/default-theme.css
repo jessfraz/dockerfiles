@@ -1,0 +1,63 @@
+/*---------------------------------------------------------
+ * Copyright (C) Microsoft Corporation. All rights reserved.
+ *--------------------------------------------------------*/
+.monaco-editor, .monaco-editor .inputarea {
+	font-family: Monaco, Menlo, Consolas, "Droid Sans Mono", "Inconsolata", "Courier New", monospace;
+	font-size: 14px;
+	line-height: 19px;
+	color: #333;
+	
+	background: #fffffe; 
+}
+.monaco-editor.mac {
+	font-size: 12px;
+	line-height: 18px;
+}
+.monaco-editor-background {
+	background: white;
+}
+.monaco-editor .cursor {
+	background: black;
+}
+.monaco-editor .current-line {
+	background: #eaeaf2;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.monaco-editor .typeInfo {
+	font-size: 12px;
+}
+.monaco-editor .typeInfo .documentation {
+    font-family: "Segoe UI", "HelveticaNeue", sans-serif;
+}
+.monaco-editor .line-numbers {
+	color: #2B91AF;
+}
+.monaco-editor .lineHighlight {
+	background-color: rgba(253, 255, 0, 0.2);
+}
+.monaco-editor .view-overlays.focused .selected-text {
+	background: #ADD6FF !important;
+}
+.monaco-editor .view-overlays .selected-text {
+	background: #E5EBF1 !important;
+}
+.monaco-diff-editor .diffOverview {
+	background-color: #f9f7f7;
+}
+.monaco-editor .wordHighlight {
+	background-color: rgba(87, 87, 87, 0.25);
+}
+.monaco-editor .wordHighlightStrong {
+	background-color: rgba(14, 99, 156, 0.25);
+}
+.monaco-editor .selectionHighlight {
+	background-color: rgba(173, 214, 255, 0.3);
+}
+.monaco-editor .valueSetReplacement {
+	outline: solid 2px #888;
+}
+.monaco-editor .focus-mode {
+	background-color: #FFFFFF;
+	opacity: 0.333;
+}

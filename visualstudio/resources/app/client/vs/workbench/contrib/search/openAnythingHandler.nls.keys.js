@@ -1,0 +1,4 @@
+/*---------------------------------------------------------
+ * Copyright (C) Microsoft Corporation. All rights reserved.
+ *--------------------------------------------------------*/
+define("vs/workbench/contrib/search/openAnythingHandler.nls.keys",[],{vs_workbench_contrib_search_openFileHandler:{path:"client/vs/workbench/contrib/search/openFileHandler.js",keys:["searchResults"]},vs_workbench_contrib_search_openSymbolHandler:{path:"client/vs/workbench/contrib/search/openSymbolHandler.js",keys:["cannotRunOpenSymbol","symbols","noSymbolsMatching","noSymbolsWithoutInput"]},vs_workbench_contrib_search_openAnythingHandler:{path:"client/vs/workbench/contrib/search/openAnythingHandler.js",keys:["fileAndTypeResults"]}});

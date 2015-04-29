@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+  <metadata>
+    <id>Microsoft.CodeAnalysis.Workspaces.Common</id>
+    <version>1.0.0-rc1</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <licenseUrl>http://go.microsoft.com/fwlink/?LinkId=394369</licenseUrl>
+    <projectUrl>http://msdn.com/roslyn</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>A shared package used by the .NET Compiler Platform ("Roslyn") including support for analyzing projects and solutions. Do not install this package manually, it will be added as a prerequisite by other packages that require it.
+
+Supported Platforms:
+- .NET Framework 4.5</description>
+    <summary>A shared package used by the .NET Compiler Platform ("Roslyn") including support for analyzing projects and solutions.</summary>
+    <releaseNotes>Preview of Microsoft .NET Compiler Platform (Roslyn)</releaseNotes>
+    <language>en-US</language>
+    <tags>Roslyn CodeAnalysis Compiler CSharp VB VisualBasic Parser Scanner Lexer Emit CodeGeneration Metadata IL Compilation Scripting Syntax Semantics</tags>
+    <dependencies>
+      <dependency id="Microsoft.CodeAnalysis.Common" version="[1.0.0-rc1]" />
+      <dependency id="Microsoft.Composition" version="1.0.27" />
+    </dependencies>
+  </metadata>
+</package>

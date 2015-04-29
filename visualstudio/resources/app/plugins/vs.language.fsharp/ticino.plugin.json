@@ -1,0 +1,19 @@
+{
+	"pluginId": "vs.language.fsharp",
+	"activationEvents": ["textModel:fsharp"],
+	"mainModule": "./fsharpMain",
+	"contributes": {
+		"language": [{
+			"id": "fsharp",
+			"extensions": [ ".fs" ],
+			"aliases": [ "F#", "FSharp", "fsharp" ]
+		}]
+	},
+	"scripts": {
+		"compile": "node ../../node_modules/gulp/bin/gulp.js --gulpfile ../gulpfile.js compile --dir vs.language.fsharp"
+	},
+	"_testing": "./tests/fsharpTests",
+	"_bundling": [
+		{ "name": "./fsharpMain" }
+	]
+}

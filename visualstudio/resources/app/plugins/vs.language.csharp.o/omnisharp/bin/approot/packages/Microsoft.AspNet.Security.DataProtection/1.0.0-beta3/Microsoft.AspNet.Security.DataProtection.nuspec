@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Microsoft.AspNet.Security.DataProtection</id>
+    <version>1.0.0-beta3</version>
+    <title>Microsoft.AspNet.Security.DataProtection</title>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>ASP.NET 5 logic to protect and unprotect data, similar to DPAPI.</description>
+    <dependencies>
+      <group targetFramework=".NETFramework4.5.1">
+        <dependency id="Microsoft.Framework.DependencyInjection" version="1.0.0-beta3" />
+        <dependency id="Microsoft.Framework.OptionsModel" version="1.0.0-beta3" />
+      </group>
+      <group targetFramework="Asp.Net5.0">
+        <dependency id="Microsoft.Framework.DependencyInjection" version="1.0.0-beta3" />
+        <dependency id="Microsoft.Framework.OptionsModel" version="1.0.0-beta3" />
+      </group>
+      <group targetFramework="Asp.NetCore5.0">
+        <dependency id="Microsoft.Framework.DependencyInjection" version="1.0.0-beta3" />
+        <dependency id="Microsoft.Framework.OptionsModel" version="1.0.0-beta3" />
+        <dependency id="Microsoft.Win32.Registry" version="4.0.0-beta-22605" />
+        <dependency id="System.IO" version="4.0.10-beta-22605" />
+        <dependency id="System.Security.Cryptography.X509Certificates" version="4.0.0-beta-22605" />
+        <dependency id="System.Security.Cryptography.Encryption.Aes" version="4.0.0-beta-22605" />
+        <dependency id="System.Security.Cryptography.Hashing.Algorithms" version="4.0.0-beta-22605" />
+        <dependency id="System.Security.Cryptography.RandomNumberGenerator" version="4.0.0-beta-22605" />
+        <dependency id="System.Security.Principal.Windows" version="4.0.0-beta-22605" />
+        <dependency id="System.Text.Encoding.Extensions" version="4.0.10-beta-22605" />
+        <dependency id="System.Xml.XDocument" version="4.0.0-beta-22605" />
+      </group>
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Security" targetFramework=".NETFramework4.5.1" />
+      <frameworkAssembly assemblyName="System.Xml" targetFramework=".NETFramework4.5.1" />
+      <frameworkAssembly assemblyName="System.Xml.Linq" targetFramework=".NETFramework4.5.1" />
+      <frameworkAssembly assemblyName="mscorlib" targetFramework=".NETFramework4.5.1" />
+      <frameworkAssembly assemblyName="System" targetFramework=".NETFramework4.5.1" />
+      <frameworkAssembly assemblyName="System.Core" targetFramework=".NETFramework4.5.1" />
+      <frameworkAssembly assemblyName="Microsoft.CSharp" targetFramework=".NETFramework4.5.1" />
+      <frameworkAssembly assemblyName="System.Security" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="System.Xml" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="System.Xml.Linq" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="mscorlib" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="System" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="System.Core" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="Microsoft.CSharp" targetFramework="Asp.Net5.0" />
+    </frameworkAssemblies>
+    <licenseUrl>http://www.microsoft.com/web/webpi/eula/net_library_eula_enu.htm</licenseUrl>
+    <iconUrl>http://go.microsoft.com/fwlink/?LinkID=288859</iconUrl>
+    <copyright>Copyright © Microsoft Corporation</copyright>
+    <projectUrl>http://www.asp.net/</projectUrl>
+  </metadata>
+</package>

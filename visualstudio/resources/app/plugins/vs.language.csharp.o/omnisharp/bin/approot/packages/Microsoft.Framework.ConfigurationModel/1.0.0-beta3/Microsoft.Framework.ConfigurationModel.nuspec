@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Microsoft.Framework.ConfigurationModel</id>
+    <version>1.0.0-beta3</version>
+    <title>Microsoft.Framework.ConfigurationModel</title>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Abstractions and implementation of key-value pair based configuration. Includes configuration sources for INI, command line, and environment variables.</description>
+    <dependencies>
+      <group targetFramework="Asp.NetCore5.0">
+        <dependency id="System.Collections" version="4.0.10-beta-22605" />
+        <dependency id="System.Diagnostics.Debug" version="4.0.10-beta-22605" />
+        <dependency id="System.IO.FileSystem" version="4.0.0-beta-22605" />
+        <dependency id="System.Linq" version="4.0.0-beta-22605" />
+        <dependency id="System.Resources.ResourceManager" version="4.0.0-beta-22605" />
+        <dependency id="System.Runtime.Extensions" version="4.0.10-beta-22605" />
+        <dependency id="System.Runtime.InteropServices" version="4.0.20-beta-22605" />
+      </group>
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="mscorlib" targetFramework=".NETFramework4.5" />
+      <frameworkAssembly assemblyName="System" targetFramework=".NETFramework4.5" />
+      <frameworkAssembly assemblyName="System.Core" targetFramework=".NETFramework4.5" />
+      <frameworkAssembly assemblyName="Microsoft.CSharp" targetFramework=".NETFramework4.5" />
+      <frameworkAssembly assemblyName="mscorlib" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="System" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="System.Core" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="Microsoft.CSharp" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="System.Collections" targetFramework=".NETPortable4.6-Profile151" />
+      <frameworkAssembly assemblyName="System.Diagnostics.Debug" targetFramework=".NETPortable4.6-Profile151" />
+      <frameworkAssembly assemblyName="System.Globalization" targetFramework=".NETPortable4.6-Profile151" />
+      <frameworkAssembly assemblyName="System.Linq" targetFramework=".NETPortable4.6-Profile151" />
+      <frameworkAssembly assemblyName="System.Reflection" targetFramework=".NETPortable4.6-Profile151" />
+      <frameworkAssembly assemblyName="System.Resources.ResourceManager" targetFramework=".NETPortable4.6-Profile151" />
+      <frameworkAssembly assemblyName="System.Runtime" targetFramework=".NETPortable4.6-Profile151" />
+      <frameworkAssembly assemblyName="System.Runtime.Extensions" targetFramework=".NETPortable4.6-Profile151" />
+      <frameworkAssembly assemblyName="System.Runtime.InteropServices" targetFramework=".NETPortable4.6-Profile151" />
+    </frameworkAssemblies>
+    <licenseUrl>http://www.microsoft.com/web/webpi/eula/net_library_eula_enu.htm</licenseUrl>
+    <iconUrl>http://go.microsoft.com/fwlink/?LinkID=288859</iconUrl>
+    <copyright>Copyright © Microsoft Corporation</copyright>
+    <projectUrl>http://www.asp.net/</projectUrl>
+  </metadata>
+</package>

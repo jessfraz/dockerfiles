@@ -1,0 +1,74 @@
+{
+  "name": "glob-base",
+  "description": "Returns an object with the (non-glob) base path and the actual pattern.",
+  "version": "0.2.0",
+  "homepage": "https://github.com/jonschlinkert/glob-base",
+  "author": {
+    "name": "Jon Schlinkert",
+    "url": "https://github.com/jonschlinkert"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jonschlinkert/glob-base.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/glob-base/issues"
+  },
+  "license": {
+    "type": "MIT",
+    "url": "https://github.com/jonschlinkert/glob-base/blob/master/LICENSE"
+  },
+  "files": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "glob-parent": "^1.2.0"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "should": "^5.1.0"
+  },
+  "keywords": [
+    "base",
+    "directory",
+    "dirname",
+    "expression",
+    "glob",
+    "parent",
+    "path",
+    "pattern",
+    "regex",
+    "regular",
+    "root"
+  ],
+  "gitHead": "7d8c1b557a424983cf6bab7ad03149d2f55257a0",
+  "_id": "glob-base@0.2.0",
+  "_shasum": "59d2f38c3ba2860af149b6b174512a169e9f1b3d",
+  "_from": "glob-base@>=0.2.0 <0.3.0",
+  "_npmVersion": "2.5.1",
+  "_nodeVersion": "0.12.0",
+  "_npmUser": {
+    "name": "jonschlinkert",
+    "email": "github@sellside.com"
+  },
+  "maintainers": [
+    {
+      "name": "jonschlinkert",
+      "email": "github@sellside.com"
+    }
+  ],
+  "dist": {
+    "shasum": "59d2f38c3ba2860af149b6b174512a169e9f1b3d",
+    "tarball": "http://registry.npmjs.org/glob-base/-/glob-base-0.2.0.tgz"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/glob-base/-/glob-base-0.2.0.tgz",
+  "readme": "ERROR: No README data found!"
+}

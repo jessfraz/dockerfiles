@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
+  <metadata minClientVersion="2.5">
+    <id>System.Reflection.Metadata</id>
+    <version>1.0.18-beta</version>
+    <title>System.Reflection.Metadata</title>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <licenseUrl>http://go.microsoft.com/fwlink/?LinkId=329770</licenseUrl>
+    <projectUrl>http://go.microsoft.com/fwlink/?LinkID=392305</projectUrl>
+    <iconUrl>http://go.microsoft.com/fwlink/?LinkID=288859</iconUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>This packages provides a low-level .NET (ECMA-335) metadata reader. It's geared for performance and is the ideal choice for building higher-level libraries that intend to provide their own object model, such as compilers.
+
+Supported Platforms:
+- .NET Framework 4.5
+- Windows 8
+- Portable Class Libraries</description>
+    <summary>Provides a low-level .NET metadata reader.</summary>
+    <copyright>Copyright © Microsoft Corporation</copyright>
+    <tags>BCL Microsoft System ECMA ECMA335 Metadata Reflection</tags>
+    <dependencies>
+      <dependency id="System.Collections.Immutable" version="1.1.33-beta" />
+    </dependencies>
+  </metadata>
+</package>

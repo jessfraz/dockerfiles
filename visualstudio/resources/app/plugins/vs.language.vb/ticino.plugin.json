@@ -1,0 +1,20 @@
+{
+	"pluginId": "vs.language.vb",
+	"activationEvents": ["textModel:vb"],
+	"mainModule": "./vbMain",
+	"contributes": {
+		"language": [{
+			"id": "vb",
+			"extensions": [ ".vb" ],
+			"aliases": [ "Visual Basic", "vb" ]
+		}]
+	},
+	"scripts": {
+		"compile": "node ../../node_modules/gulp/bin/gulp.js --gulpfile ../gulpfile.js compile --dir vs.language.vb"
+	},
+	"_testing": "./tests/vbTests",
+	"_bundling": [
+		{ "name": "./vbMain" },
+		{ "name": "./vbWorker" }
+	]
+}

@@ -1,0 +1,22 @@
+{
+	"pluginId": "vs.language.xml",
+	"activationEvents": ["textModel:xml"],
+	"mainModule": "./xmlMain",
+	"contributes": {
+		"language": [{
+			"id": "xml",
+			"extensions": [ ".xml", ".ascx", ".aspx", ".csproj", ".config", ".wxi", ".wxl", ".wxs", ".xaml", ".svg", ".svgz" ],
+			"firstLine" : "(\\<\\?xml.*)|(\\<svg)|(\\<\\!doctype\\s+svg)",
+			"aliases": [ "XML", "xml" ],
+			"mimetypes": ["text/xml", "application/xml", "application/xaml+xml"]
+		}]
+	},
+	"scripts": {
+		"compile": "node ../../node_modules/gulp/bin/gulp.js --gulpfile ../gulpfile.js compile --dir vs.language.xml"
+	},
+	"_testing": "./tests/xmlTests",
+	"_bundling": [
+		{ "name": "./xmlMain" },
+		{ "name": "./xmlWorker" }
+	]
+}

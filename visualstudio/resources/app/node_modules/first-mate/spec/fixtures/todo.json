@@ -1,0 +1,21 @@
+{
+  "fileTypes": [],
+  "injectionSelector": "comment, text.plain",
+  "name": "TODO",
+  "patterns": [
+    {
+      "match": "\\b(TODO|FIXME|CHANGED)\\b",
+      "name": "storage.type.class.${1:/downcase}"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "markup.underline.link.radar"
+        }
+      },
+      "match": "<(ra?dar:/(?:/problem|)/(?:[&0-9]+))>",
+      "name": "storage.type.class.radar"
+    }
+  ],
+  "scopeName": "text.todo"
+}

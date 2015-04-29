@@ -1,0 +1,21 @@
+'name': 'test'
+'scopeName': 'source.multilineLanguage'
+'patterns': [
+  {
+    'name': 'outside-x'
+    'begin': 'X'
+    'beginCaptures':
+      '0':
+        'name': 'start'
+    'end': '(X|\\n)'
+    'endCaptures':
+      '0':
+        'name': 'end'
+    'patterns': [
+      {
+        'match': '\\\\\\n'
+        'name': 'inside-x'
+      }
+    ]
+  }
+]

@@ -1,0 +1,42 @@
+{
+  "fileTypes": [
+    "txt"
+  ],
+  "keyEquivalent": "^~P",
+  "name": "Plain Text",
+  "patterns": [
+    {
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.item.text"
+        }
+      },
+      "match": "^\\s*(•).*$\\n?",
+      "name": "meta.bullet-point.strong.text"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.item.text"
+        }
+      },
+      "match": "^\\s*(·).*$\\n?",
+      "name": "meta.bullet-point.light.text"
+    },
+    {
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.item.text"
+        }
+      },
+      "match": "^\\s*(\\*).*$\\n?",
+      "name": "meta.bullet-point.star.text"
+    },
+    {
+      "begin": "^([ \\t]*)(?=\\S)",
+      "contentName": "meta.paragraph.text",
+      "end": "^(?!\\1(?=\\S))"
+    }
+  ],
+  "scopeName": "text.plain"
+}

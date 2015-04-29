@@ -1,0 +1,20 @@
+{
+	"pluginId": "vs.language.coffeescript",
+	"activationEvents": ["textModel:coffeescript"],
+	"mainModule": "./coffeeMain",
+	"contributes": {
+		"language": [{
+			"id": "coffeescript",
+			"extensions": [ ".coffee" ],
+			"aliases": [ "CoffeeScript", "coffeescript", "coffee" ],
+			"mimetypes": ["text/x-coffeescript", "text/coffeescript"]
+		}]
+	},
+	"scripts": {
+		"compile": "node ../../node_modules/gulp/bin/gulp.js --gulpfile ../gulpfile.js compile --dir vs.language.coffeescript"
+	},
+	"_testing": "./tests/coffeeTests",
+	"_bundling": [
+		{ "name": "./coffeeMain" }
+	]
+}

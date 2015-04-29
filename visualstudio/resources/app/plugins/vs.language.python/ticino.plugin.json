@@ -1,0 +1,20 @@
+{
+	"pluginId": "vs.language.python",
+	"activationEvents": ["textModel:python"],
+	"mainModule": "./pythonMain",
+	"contributes": {
+		"language": [{
+			"id": "python",
+			"extensions": [ ".py" ],
+			"aliases": [ "Python", "py" ]
+		}]
+	},
+	"scripts": {
+		"compile": "node ../../node_modules/gulp/bin/gulp.js --gulpfile ../gulpfile.js compile --dir vs.language.python"
+	},
+	"_testing": "./tests/pythonTests",
+	"_bundling": [
+		{ "name": "./pythonMain" },
+		{ "name": "./pythonWorker" }
+	]
+}

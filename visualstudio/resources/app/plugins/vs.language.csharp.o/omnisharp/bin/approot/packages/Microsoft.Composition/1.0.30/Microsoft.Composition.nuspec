@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
+  <metadata minClientVersion="2.5">
+    <id>Microsoft.Composition</id>
+    <version>1.0.30</version>
+    <title>Microsoft Composition (MEF 2)</title>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <licenseUrl>http://go.microsoft.com/fwlink/?LinkId=329770</licenseUrl>
+    <projectUrl>http://go.microsoft.com/fwlink/?LinkID=313252</projectUrl>
+    <iconUrl>http://go.microsoft.com/fwlink/?LinkID=288859</iconUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>This packages provides a version of the Managed Extensibility Framework (MEF) that is lightweight and specifically optimized for high throughput scenarios, such as the web.
+
+Supported Platforms:
+- .NET Framework 4.5
+- Windows 8
+- Windows Phone 8.1
+- Windows Phone Silverlight 8
+- Portable Class Libraries</description>
+    <summary>Provides a lightweight and throughput-optimized composition container for MEF.</summary>
+    <copyright>Copyright © Microsoft Corporation</copyright>
+    <tags>BCL MEF Microsoft System Composition IOC Dependency Injection DI WindowsStore Windows Store</tags>
+  </metadata>
+</package>

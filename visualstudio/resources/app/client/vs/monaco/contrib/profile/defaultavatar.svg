@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="20px"
+	 height="20px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
+<g id="outline">
+</g>
+<g id="icon_x5F_bg">
+	<path fill="#424242" d="M2,2v18h18V2H2z M11,4c1.654,0,3,1.344,3,3c0,1.657-1.346,3-3,3c-1.657,0-3-1.343-3-3C8,5.344,9.343,4,11,4
+		z M16,18H6v-7h3l2,3l2-3h3V18z"/>
+	<rect fill="#7D7D7D" width="20" height="20"/>
+</g>
+<g id="color_x5F_action">
+</g>
+<g id="color_x5F_decoration">
+</g>
+<g id="color_x5F_importance">
+</g>
+<g id="icon_x5F_fg">
+	<path fill="#F0EFF1" d="M7,6c0-1.656,1.343-3,3-3c1.654,0,3,1.344,3,3c0,1.657-1.346,3-3,3C8.343,9,7,7.657,7,6 M15,10v7H5v-7h3
+		l2,3l2-3H15z"/>
+</g>
+<g id="not_x5F_bg">
+</g>
+<g id="not_x5F_fg">
+</g>
+</svg>

@@ -1,0 +1,19 @@
+{
+	"pluginId": "vs.language.ini",
+	"activationEvents": ["textModel:ini"],
+	"mainModule": "./iniMain",
+	"contributes": {
+		"language": [{
+			"id": "ini",
+			"extensions": [ ".ini", ".properties", ".gitconfig" ],
+			"filenames": ["config", ".gitignore", ".gitattributes", ".gitconfig", ".editorconfig"],
+			"aliases": [ "Ini", "ini" ]
+		}]
+	},
+	"scripts": {
+		"compile": "node ../../node_modules/gulp/bin/gulp.js --gulpfile ../gulpfile.js compile --dir vs.language.ini"
+	},
+	"_bundling": [
+		{ "name": "./iniMain" }
+	]
+}

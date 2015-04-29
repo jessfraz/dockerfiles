@@ -1,0 +1,8 @@
+{
+	"pluginId": "vs.language.csharp.omnisharp",
+	"activationEvents": ["textModel:csharp"],
+	"mainModule": "./omnisharpMain",
+	"scripts": {
+		"compile": "node ../../node_modules/gulp/bin/gulp.js --gulpfile ../gulpfile.js compile --dir vs.language.csharp.o"
+	}
+}

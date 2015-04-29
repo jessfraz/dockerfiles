@@ -1,0 +1,19 @@
+{
+	"pluginId": "vs.language.bat",
+	"activationEvents": ["textModel:bat"],
+	"mainModule": "./batMain",
+	"contributes": {
+		"language": [{
+			"id": "bat",
+			"extensions": [ ".bat", ".cmd"],
+			"aliases": [ "Batch", "bat" ]
+		}]
+	},
+	"scripts": {
+		"compile": "node ../../node_modules/gulp/bin/gulp.js --gulpfile ../gulpfile.js compile --dir vs.language.bat"
+	},
+	"_testing": "./tests/batTests",
+	"_bundling": [
+		{ "name": "./batMain" }
+	]
+}

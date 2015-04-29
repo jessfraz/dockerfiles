@@ -1,0 +1,18 @@
+{
+  "fileTypes": [
+    "mm",
+    "M",
+    "h"
+  ],
+  "keyEquivalent": "^~O",
+  "name": "Objective-C++",
+  "patterns": [
+    {
+      "include": "source.c++"
+    },
+    {
+      "include": "source.objc"
+    }
+  ],
+  "scopeName": "source.objc++"
+}

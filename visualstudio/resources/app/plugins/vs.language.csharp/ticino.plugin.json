@@ -1,0 +1,19 @@
+{
+	"pluginId": "vs.language.csharp",
+	"activationEvents": ["textModel:csharp"],
+	"mainModule": "./csharpMain",
+	"contributes": {
+		"language": [{
+			"id": "csharp",
+			"extensions": [ ".cs" ],
+			"aliases": [ "C#", "csharp" ]
+		}]
+	},
+	"scripts": {
+		"compile": "node ../../node_modules/gulp/bin/gulp.js --gulpfile ../gulpfile.js compile --dir vs.language.csharp"
+	},
+	"_testing": "./tests/csharpTests",
+	"_bundling": [
+		{ "name": "./csharpMain" }
+	]
+}

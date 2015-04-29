@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Microsoft.AspNet.Http.Extensions</id>
+    <version>1.0.0-beta3</version>
+    <title>Microsoft.AspNet.Http.Extensions</title>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>ASP.NET 5 common extension methods for HTTP abstractions and IApplicationBuilder.</description>
+    <dependencies>
+      <group targetFramework="Asp.Net5.0">
+        <dependency id="Microsoft.AspNet.Http" version="1.0.0-beta3" />
+        <dependency id="Microsoft.Framework.DependencyInjection" version="1.0.0-beta3" />
+        <dependency id="Microsoft.Net.Http.Headers" version="1.0.0-beta3" />
+      </group>
+      <group targetFramework="Asp.NetCore5.0">
+        <dependency id="Microsoft.AspNet.Http" version="1.0.0-beta3" />
+        <dependency id="Microsoft.Framework.DependencyInjection" version="1.0.0-beta3" />
+        <dependency id="Microsoft.Net.Http.Headers" version="1.0.0-beta3" />
+        <dependency id="System.Reflection.TypeExtensions" version="4.0.0-beta-22605" />
+        <dependency id="System.Runtime" version="4.0.20-beta-22605" />
+      </group>
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="mscorlib" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="System" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="System.Core" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="Microsoft.CSharp" targetFramework="Asp.Net5.0" />
+    </frameworkAssemblies>
+    <licenseUrl>http://www.microsoft.com/web/webpi/eula/net_library_eula_enu.htm</licenseUrl>
+    <iconUrl>http://go.microsoft.com/fwlink/?LinkID=288859</iconUrl>
+    <copyright>Copyright © Microsoft Corporation</copyright>
+    <projectUrl>http://www.asp.net/</projectUrl>
+  </metadata>
+</package>

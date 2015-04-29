@@ -1,0 +1,69 @@
+{
+  "name": "isobject",
+  "description": "Returns true if the value is an object and not an array or null.",
+  "version": "0.2.0",
+  "homepage": "https://github.com/jonschlinkert/isobject",
+  "author": {
+    "name": "Jon Schlinkert",
+    "url": "https://github.com/jonschlinkert"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jonschlinkert/isobject.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/isobject/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/jonschlinkert/isobject/blob/master/LICENSE-MIT"
+    }
+  ],
+  "keywords": [
+    "is",
+    "isobject",
+    "is-object",
+    "object",
+    "type",
+    "typeof",
+    "kind",
+    "kindof",
+    "value",
+    "javascript",
+    "check"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha -R spec"
+  },
+  "devDependencies": {
+    "verb": "~0.2.6",
+    "chai": "~1.9.1",
+    "mocha": "*"
+  },
+  "_id": "isobject@0.2.0",
+  "_shasum": "a3432192f39b910b5f02cc989487836ec70aa85e",
+  "_from": "isobject@>=0.2.0 <0.3.0",
+  "_npmVersion": "1.4.9",
+  "_npmUser": {
+    "name": "jonschlinkert",
+    "email": "github@sellside.com"
+  },
+  "maintainers": [
+    {
+      "name": "jonschlinkert",
+      "email": "github@sellside.com"
+    }
+  ],
+  "dist": {
+    "shasum": "a3432192f39b910b5f02cc989487836ec70aa85e",
+    "tarball": "http://registry.npmjs.org/isobject/-/isobject-0.2.0.tgz"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/isobject/-/isobject-0.2.0.tgz",
+  "readme": "ERROR: No README data found!"
+}

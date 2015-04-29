@@ -1,0 +1,21 @@
+{
+	"pluginId": "vs.language.ruby",
+	"activationEvents": ["textModel:ruby"],
+	"mainModule": "./rubyMain",
+	"contributes": {
+		"language": [{
+			"id": "ruby",
+			"extensions": [ ".rb", ".gemspec" ],
+			"filenames": [ "rakefile" ],
+			"aliases": [ "Ruby", "rb" ]
+		}]
+	},
+	"scripts": {
+		"compile": "node ../../node_modules/gulp/bin/gulp.js --gulpfile ../gulpfile.js compile --dir vs.language.ruby"
+	},
+	"_testing": "./tests/rubyTests",
+	"_bundling": [
+		{ "name": "./rubyMain" },
+		{ "name": "./rubyWorker" }
+	]
+}

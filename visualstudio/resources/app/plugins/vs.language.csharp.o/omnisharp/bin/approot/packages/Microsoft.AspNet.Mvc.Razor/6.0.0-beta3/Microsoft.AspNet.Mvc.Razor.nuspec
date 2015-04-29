@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Microsoft.AspNet.Mvc.Razor</id>
+    <version>6.0.0-beta3</version>
+    <title>Microsoft.AspNet.Mvc.Razor</title>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>The Razor view engine for ASP.NET MVC.</description>
+    <dependencies>
+      <group targetFramework="Asp.Net5.0">
+        <dependency id="Microsoft.AspNet.Mvc.Core" version="6.0.0-beta3" />
+        <dependency id="Microsoft.AspNet.Mvc.Razor.Host" version="6.0.0-beta3" />
+        <dependency id="Microsoft.CodeAnalysis.CSharp" version="1.0.0-rc1" />
+        <dependency id="Microsoft.Framework.Cache.Memory" version="1.0.0-beta3" />
+        <dependency id="Microsoft.Framework.Runtime.Roslyn.Common" version="1.0.0-beta3" />
+      </group>
+      <group targetFramework="Asp.NetCore5.0">
+        <dependency id="Microsoft.AspNet.Mvc.Core" version="6.0.0-beta3" />
+        <dependency id="Microsoft.AspNet.Mvc.Razor.Host" version="6.0.0-beta3" />
+        <dependency id="Microsoft.CodeAnalysis.CSharp" version="1.0.0-rc1" />
+        <dependency id="Microsoft.Framework.Cache.Memory" version="1.0.0-beta3" />
+        <dependency id="Microsoft.Framework.Runtime.Roslyn.Common" version="1.0.0-beta3" />
+        <dependency id="System.Threading.Tasks.Parallel" version="4.0.0-beta-22605" />
+      </group>
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Collections" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="System.IO" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="System.Runtime" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="System.Text.Encoding" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="System.Threading.Tasks" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="mscorlib" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="System" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="System.Core" targetFramework="Asp.Net5.0" />
+      <frameworkAssembly assemblyName="Microsoft.CSharp" targetFramework="Asp.Net5.0" />
+    </frameworkAssemblies>
+    <licenseUrl>http://www.microsoft.com/web/webpi/eula/net_library_eula_enu.htm</licenseUrl>
+    <iconUrl>http://go.microsoft.com/fwlink/?LinkID=288859</iconUrl>
+    <copyright>Copyright © Microsoft Corporation</copyright>
+    <projectUrl>http://www.asp.net/</projectUrl>
+  </metadata>
+</package>

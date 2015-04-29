@@ -1,0 +1,15 @@
+/*---------------------------------------------------------
+ * Copyright (C) Microsoft Corporation. All rights reserved.
+ *--------------------------------------------------------*/
+/*---------------------------------------------------------
+ * Copyright (C) Microsoft Corporation. All rights reserved.
+ *--------------------------------------------------------*/
+.monaco-editor .new-snippet {
+	background-color: rgba(10, 50, 150, 0.1);
+}
+.monaco-editor .snippet-placeholder {
+	background-color: rgba(10, 50, 100, 0.1);
+}
+.monaco-editor .finish-snippet-placeholder {
+	outline: rgba(10, 50, 100, 0.5) solid 1px;
+}

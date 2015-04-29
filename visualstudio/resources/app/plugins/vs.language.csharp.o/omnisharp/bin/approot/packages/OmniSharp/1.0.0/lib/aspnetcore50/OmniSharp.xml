@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OmniSharp</name>
+    </assembly>
+    <members>
+        <member name="P:OmniSharp.Models.AutoCompleteRequest.WantDocumentationForEveryCompletionResult">
+            <summary>
+              Specifies whether to return the code documentation for
+              each and every returned autocomplete result.
+            </summary>
+        </member>
+        <member name="P:OmniSharp.Models.AutoCompleteRequest.WantImportableTypes">
+            <summary>
+              Specifies whether to return importable types. Defaults to
+              false. Can be turned off to get a small speed boost.
+            </summary>
+        </member>
+        <member name="P:OmniSharp.Models.AutoCompleteRequest.WantMethodHeader">
+            <summary>
+            Returns a 'method header' for working with parameter templating.
+            </summary>
+        </member>
+        <member name="P:OmniSharp.Models.AutoCompleteRequest.WantSnippet">
+            <summary>
+            Returns a snippet that can be used by common snippet libraries
+            to provide parameter and type parameter placeholders
+            </summary>
+        </member>
+        <member name="P:OmniSharp.Models.AutoCompleteRequest.WantReturnType">
+            <summary>
+            Returns the return type 
+            </summary>
+        </member>
+        <member name="P:OmniSharp.Models.AutoCompleteRequest.WantKind">
+            <summary>
+            Returns the kind (i.e Method, Property, Field)
+            </summary>
+        </member>
+        <member name="P:OmniSharp.Models.FindUsagesRequest.OnlyThisFile">
+            <summary>
+            Only search for references in the current file
+            </summary>
+        </member>
+        <member name="M:OmniSharp.Documentation.DocumentationConverter.ConvertDocumentation(System.String,System.String)">
+            <summary>
+            Converts the xml documentation string into a plain text string.
+            </summary>
+        </member>
+        <member name="T:Microsoft.CodeAnalysis.MSBuild.SectionBlock">
+            <summary>
+            Represents a SectionBlock in a .sln file. Section blocks are of the form:
+            
+            Type(ParenthesizedName) = Value
+                Key = Value
+                [more keys/values]
+            EndType
+            </summary>
+        </member>
+    </members>
+</doc>
