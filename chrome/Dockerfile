@@ -34,7 +34,8 @@ RUN sed -i.bak 's/sid main/sid main contrib non-free/g' /etc/apt/sources.list &&
     apt-get install -y \
     pepperflashplugin-nonfree \
     --no-install-recommends && \
-    dpkg -i '/src/google-talkplugin_current_amd64.deb'
+    dpkg -i '/src/google-talkplugin_current_amd64.deb' \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY local.conf /etc/fonts/local.conf
 
