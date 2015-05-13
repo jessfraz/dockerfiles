@@ -1,3 +1,11 @@
+# Run znc in a container
+#
+# docker run --restart always -d \
+#   --name znc \
+#   -p 6697:6697 \
+#   -v /volumes/znc:/home/user/.znc \
+#   jess/znc
+#
 FROM debian:jessie
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
