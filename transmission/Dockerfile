@@ -3,31 +3,36 @@
 # AUTHOR:         Jessica Frazelle <jess@docker.com>
 # COMMENTS:
 #   This file describes how to build a transmission container with all
-#   dependencies installed. It uses native X11 unix socket. 
+#   dependencies installed.
 #   Tested on Debian Jessie
 # USAGE:
 #   # Download transmission Dockerfile
 #   wget http://raw.githubusercontent.com/jfrazelle/dockerfiles/master/transmission/Dockerfile
 #
 #   # Build transmission image
-#   docker build -t transmission .
+#   docker build -t jess/transmission .
 #
-#   docker run -v /tmp/.X11-unix:/tmp/.X11-unix \
-#     -v /home/jessie/Torrents:/Torrents \
-#     -e DISPLAY=unix$DISPLAY transmission
+#   docker run -d --name transmission \
+#     -v /home/jessie/Torrents:/transmission/download \
+#     -p 9091:9091 -p 51413:51413 -p 51413:51413/udp \
+#     jess/transmission
 #
 
 # Base docker image
 FROM debian:jessie
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
-# Install transmission and its dependencies
 RUN apt-get update && apt-get install -y \
-    transmission-cli \
-    transmission-common \
     transmission-daemon \
-    transmission-gtk \
-    --no-install-recommends
+    && mkdir -p /transmission/download \
+    && mkdir -p /transmission/watch \
+    && mkdir -p /transmission/incomplete \
+    && mkdir -p /transmission/config \
+    && chmod 1777 /transmission
 
-# Autorun transmission
-CMD ["/usr/bin/transmission-gtk"]
+ENV TRANSMISSION_HOME /transmission/config
+
+EXPOSE 9091
+
+ENTRYPOINT ["/usr/bin/transmission-daemon"]
+CMD [ "--allowed", "127.*,10.*,192.168.*,172.16.*,172.17.*,172.18.*,172.19.*,172.20.*,172.21.*,172.22.*,172.23.*,172.24.*,172.25.*,172.26.*,172.27.*,172.28.*,172.29.*,172.30.*,172.31.*,169.254.*", "--watch-dir", "/transmission/watch", "--encryption-preferred", "--foreground", "--config-dir", "/transmission/config", "--incomplete-dir", "/transmission/incomplete", "--dht", "--no-auth", "--download-dir", "/transmission/download" ]
