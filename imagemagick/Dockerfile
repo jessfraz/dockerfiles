@@ -5,4 +5,4 @@ RUN apt-get update && apt-get install -y \
     imagemagick \
     --no-install-recommends
 
-ENTRYPOINT [ "imagemagick" ]
+CMD [ "imagemagick" ]
