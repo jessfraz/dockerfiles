@@ -1,8 +1,8 @@
 # Run virtualbox in a container
 #
 # docker run -v /tmp/.X11-unix:/tmp/.X11-unix \
-#	  -e DISPLAY=unix$DISPLAY \
-#	  jess/virtualbox
+#	-e DISPLAY=unix$DISPLAY \
+#	jess/virtualbox
 #
 FROM debian:jessie
 MAINTAINER Jessie Frazelle <jess@linux.com>

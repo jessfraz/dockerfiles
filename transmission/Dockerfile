@@ -13,9 +13,9 @@
 #	docker build -t jess/transmission .
 #
 #	docker run -d --name transmission \
-#	  -v /home/jessie/Torrents:/transmission/download \
-#	  -p 9091:9091 -p 51413:51413 -p 51413:51413/udp \
-#	  jess/transmission
+#		-v /home/jessie/Torrents:/transmission/download \
+#		-p 9091:9091 -p 51413:51413 -p 51413:51413/udp \
+#		jess/transmission
 #
 
 # Base docker image
