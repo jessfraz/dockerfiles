@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y \
 ENV HOME /root
 WORKDIR $HOME
 
-ENV JOBS 2
+ENV JOBS 4
 
 # add install_kernel helper func
 RUN { \

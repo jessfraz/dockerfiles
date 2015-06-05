@@ -13,8 +13,8 @@
 #	docker build -t jess/transmission-ui .
 #
 #	docker run -v /tmp/.X11-unix:/tmp/.X11-unix \
-#	  -v /home/jessie/Torrents:/Torrents \
-#	  -e DISPLAY=unix$DISPLAY jess/transmission-ui
+#		-v /home/jessie/Torrents:/Torrents \
+#		-e DISPLAY=unix$DISPLAY jess/transmission-ui
 #
 
 # Base docker image
