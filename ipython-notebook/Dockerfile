@@ -5,11 +5,11 @@ RUN pip install -U numpy
 
 # install linear algebra dependencies
 RUN apt-get update && apt-get install -y \
-    gfortran \
-    libopenblas-dev \
-    liblapack-dev \
-    libzmq-dev \
-    --no-install-recommends
+	gfortran \
+	libopenblas-dev \
+	liblapack-dev \
+	libzmq-dev \
+	--no-install-recommends
 RUN pip install -U scipy
 
 RUN pip install -U matplotlib
