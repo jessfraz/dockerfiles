@@ -9,11 +9,11 @@ MAINTAINER Jessica Frazelle <jess@docker.com>
 
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y \
-    lighttpd \
-    mailman \
-    postfix \
-    supervisor \
-    --no-install-recommends
+	lighttpd \
+	mailman \
+	postfix \
+	supervisor \
+	--no-install-recommends
 
 # Lighttpd configuration
 ADD lighttpd.conf /etc/lighttpd/lighttpd.conf

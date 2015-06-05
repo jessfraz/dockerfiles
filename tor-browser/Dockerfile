@@ -1,27 +1,27 @@
 # Run tor browser in a container
 #
 # docker run -v /tmp/.X11-unix:/tmp/.X11-unix \
-#     -v /dev/snd:/dev/snd \
-#     -e DISPLAY=unix$DISPLAY \
-#     jess/tor-browser
+#	  -v /dev/snd:/dev/snd \
+#	  -e DISPLAY=unix$DISPLAY \
+#	  jess/tor-browser
 #
 FROM debian:jessie
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
 RUN apt-get update && apt-get install -y \
-    ca-certificates \
-    curl \
-    libasound2 \
-    libdbus-glib-1-2 \
-    libgtk2.0-0 \
-    libxrender1 \
-    libxt6 \
-    xz-utils \
-    && rm -rf /var/lib/apt/lists/*
+	ca-certificates \
+	curl \
+	libasound2 \
+	libdbus-glib-1-2 \
+	libgtk2.0-0 \
+	libxrender1 \
+	libxt6 \
+	xz-utils \
+	&& rm -rf /var/lib/apt/lists/*
 
 ENV HOME /home/user
 RUN useradd --create-home --home-dir $HOME user \
-    && chown -R user:user $HOME
+	&& chown -R user:user $HOME
 
 ENV LANG C.UTF-8
 

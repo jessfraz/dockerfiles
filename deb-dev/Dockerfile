@@ -2,26 +2,26 @@ FROM debian:jessie
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
 RUN apt-get update && apt-get install -y \
-    ca-certificates \
-    curl \
-    debhelper \
-    devscripts \
-    equivs \
-    file \
-    gcc \
-    git \
-    gnupg \
-    libwww-perl \
-    make \
-    patch \
-    patchutils \
-    quilt \
-    silversearcher-ag \
-    tree \
-    vim \
-    xutils-dev \
-    --no-install-recommends \
-    && rm -rf /var/lib/apt/lists/*
+	ca-certificates \
+	curl \
+	debhelper \
+	devscripts \
+	equivs \
+	file \
+	gcc \
+	git \
+	gnupg \
+	libwww-perl \
+	make \
+	patch \
+	patchutils \
+	quilt \
+	silversearcher-ag \
+	tree \
+	vim \
+	xutils-dev \
+	--no-install-recommends \
+	&& rm -rf /var/lib/apt/lists/*
 
 RUN printf '\nalias dquilt="quilt --quiltrc=${HOME}/.quiltrc-dpkg"\ncomplete -F _quilt_completion $_quilt_complete_opt dquilt\n' >> /root/.bashrc
 

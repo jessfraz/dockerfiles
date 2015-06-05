@@ -14,15 +14,15 @@ FROM ubuntu:14.04
 MAINTAINER Jessie Frazelle <jess@linux.com>
 
 RUN apt-get update && apt-get install -y \
-    dbus-x11 \
-    dunst \
-    hunspell-en-us \
-    python3-dbus \
-    software-properties-common \
-    --no-install-recommends && \
-    apt-add-repository -y ppa:rael-gc/scudcloud && \
-    apt-get update && \
-    apt-get install -y \
-    scudcloud
+	dbus-x11 \
+	dunst \
+	hunspell-en-us \
+	python3-dbus \
+	software-properties-common \
+	--no-install-recommends && \
+	apt-add-repository -y ppa:rael-gc/scudcloud && \
+	apt-get update && \
+	apt-get install -y \
+	scudcloud
 
 ENTRYPOINT ["/usr/bin/scudcloud"]

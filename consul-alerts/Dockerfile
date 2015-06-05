@@ -8,12 +8,12 @@ ADD https://jesss.s3.amazonaws.com/binaries/consul/${CONSUL_VERSION}/consul /usr
 ADD https://jesss.s3.amazonaws.com/binaries/curl-unix-socket /usr/local/bin/curl-unix-socket
 
 RUN apt-get update && apt-get install -y \
-    ca-certificates \
-    curl \
-    --no-install-recommends \
-    && mkdir -p /etc/consul.d/ \
-    && chmod +x /usr/local/bin/consul \
-    && chmod +x /usr/local/bin/curl-unix-socket \
-    && chmod +x /usr/local/bin/consul-alerts
+	ca-certificates \
+	curl \
+	--no-install-recommends \
+	&& mkdir -p /etc/consul.d/ \
+	&& chmod +x /usr/local/bin/consul \
+	&& chmod +x /usr/local/bin/curl-unix-socket \
+	&& chmod +x /usr/local/bin/consul-alerts
 
 ENTRYPOINT [ "/usr/local/bin/consul-alerts", "start" ]
