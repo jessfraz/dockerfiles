@@ -1,9 +1,9 @@
 # Run tor browser in a container
 #
 # docker run -v /tmp/.X11-unix:/tmp/.X11-unix \
-#	  -v /dev/snd:/dev/snd \
-#	  -e DISPLAY=unix$DISPLAY \
-#	  jess/tor-browser
+#	-v /dev/snd:/dev/snd \
+#	-e DISPLAY=unix$DISPLAY \
+#	jess/tor-browser
 #
 FROM debian:jessie
 MAINTAINER Jessica Frazelle <jess@docker.com>

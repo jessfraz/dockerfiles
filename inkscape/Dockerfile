@@ -1,9 +1,9 @@
 # Run inkscape in a container
 #
 # docker run -v /tmp/.X11-unix:/tmp/.X11-unix \
-#	  -v /inkscape/:/workspace \
-#	  -e DISPLAY=unix$DISPLAY \
-#	  infoslack/inkscape
+#	-v /inkscape/:/workspace \
+#	-e DISPLAY=unix$DISPLAY \
+#	infoslack/inkscape
 #
 FROM ubuntu:14.04
 MAINTAINER Daniel Romero <infoslack@gmail.com>

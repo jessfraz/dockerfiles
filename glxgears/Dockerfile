@@ -1,5 +1,10 @@
 # To use:
-#	docker run -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=unix$DISPLAY --device /dev/dri jess/glxgears
+#	docker run -v /tmp/.X11-unix:/tmp/.X11-unix \
+#		-e DISPLAY=unix$DISPLAY \
+#		--device /dev/dri \
+#		jess/glxgears
+#
+
 # Base docker image
 FROM debian:jessie
 MAINTAINER Jessica Frazelle <jess@docker.com>
