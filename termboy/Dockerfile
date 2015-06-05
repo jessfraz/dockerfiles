@@ -1,18 +1,18 @@
-# VERSION:        0.1
-# DESCRIPTION:    Termboy in a container 
-# AUTHOR:         Jessica Frazelle <jess@docker.com>
+# VERSION:		  0.1
+# DESCRIPTION:	  Termboy in a container 
+# AUTHOR:		  Jessica Frazelle <jess@docker.com>
 # COMMENTS:
-#   This file describes how to build termboy
-#   in a container with all dependencies installed.
-#   Tested on Debian Jessie.
+#	This file describes how to build termboy
+#	in a container with all dependencies installed.
+#	Tested on Debian Jessie.
 # USAGE:
-#   # Download termboy Dockerfile
-#   wget http://raw.githubusercontent.com/jfrazelle/dockerfiles/master/termboy/Dockerfile
+#	# Download termboy Dockerfile
+#	wget http://raw.githubusercontent.com/jfrazelle/dockerfiles/master/termboy/Dockerfile
 #
-#   # Build termboy image
-#   docker build -t termboy .
+#	# Build termboy image
+#	docker build -t termboy .
 #
-#   docker run -it termboy
+#	docker run -it termboy
 #
 
 # Base docker image
@@ -27,8 +27,8 @@ COPY termboy-go /usr/bin/termboy-go
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
-    kbd && \
-    mkdir -p $HOME/.config/termboy
+	kbd && \
+	mkdir -p $HOME/.config/termboy
 
 # add games
 COPY games $HOME/games
