@@ -1,12 +1,14 @@
-FROM ruby:latest
+FROM ruby:1.9.3
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
-# update gems
-RUN gem update --system
-RUN gem update
+RUN apt-get update && apt-get install -y \
+	libcurl3-dev \
+	--no-install-recommends
 
-# install cloudapp
-RUN gem install gem-man
-RUN gem install cloudapp
+# update gems
+# and install cloudapp
+RUN gem update --system \
+	&& gem update \
+	&& gem install gem-man cloudapp
 
 ENTRYPOINT ["cloudapp"]
