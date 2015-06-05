@@ -1,14 +1,15 @@
 # To use:
 # Needs X11 socket and dbus mounted
-#  docker run --rm -it \
-#  -v /etc/machine-id:/etc/machine-id:ro \
-#  -v /etc/localtime:/etc/localtime:ro \
-#  -v /tmp/.X11-unix:/tmp/.X11-unix \
-#  -e DISPLAY=unix$DISPLAY \
-#  --device /dev/snd:/dev/snd \
-#  -v /var/run/dbus:/var/run/dbus \
-#  --name slack \
-#  jess/slack
+# 
+# docker run --rm -it \
+#	-v /etc/machine-id:/etc/machine-id:ro \
+#	-v /etc/localtime:/etc/localtime:ro \
+#	-v /tmp/.X11-unix:/tmp/.X11-unix \
+#	-e DISPLAY=unix$DISPLAY \
+#	--device /dev/snd:/dev/snd \
+#	-v /var/run/dbus:/var/run/dbus \
+#	--name slack \
+#	jess/slack
 
 FROM ubuntu:14.04
 MAINTAINER Jessie Frazelle <jess@linux.com>

@@ -14,11 +14,11 @@
 #
 #	# Run stateful data-on-host chromium. For ephemeral, remove -v /data/chromium:/data
 #	docker run -v /data/chromium:/data -v /tmp/.X11-unix:/tmp/.X11-unix \
-#	-e DISPLAY=unix$DISPLAY chromium
+#		-e DISPLAY=unix$DISPLAY chromium
 
 #	# To run stateful dockerized data containers
 #	docker run --volumes-from chromium-data -v /tmp/.X11-unix:/tmp/.X11-unix \
-#	-e DISPLAY=unix$DISPLAY chromium
+#		-e DISPLAY=unix$DISPLAY chromium
 
 # Base docker image
 FROM debian:jessie
