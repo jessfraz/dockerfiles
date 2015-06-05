@@ -1,21 +1,21 @@
-# VERSION:        0.1
-# DESCRIPTION:    Create transmission container with its dependencies
-# AUTHOR:         Jessica Frazelle <jess@docker.com>
+# VERSION:		  0.1
+# DESCRIPTION:	  Create transmission container with its dependencies
+# AUTHOR:		  Jessica Frazelle <jess@docker.com>
 # COMMENTS:
-#   This file describes how to build a transmission container with all
-#   dependencies installed.
-#   Tested on Debian Jessie
+#	This file describes how to build a transmission container with all
+#	dependencies installed.
+#	Tested on Debian Jessie
 # USAGE:
-#   # Download transmission Dockerfile
-#   wget http://raw.githubusercontent.com/jfrazelle/dockerfiles/master/transmission/Dockerfile
+#	# Download transmission Dockerfile
+#	wget http://raw.githubusercontent.com/jfrazelle/dockerfiles/master/transmission/Dockerfile
 #
-#   # Build transmission image
-#   docker build -t jess/transmission .
+#	# Build transmission image
+#	docker build -t jess/transmission .
 #
-#   docker run -d --name transmission \
-#     -v /home/jessie/Torrents:/transmission/download \
-#     -p 9091:9091 -p 51413:51413 -p 51413:51413/udp \
-#     jess/transmission
+#	docker run -d --name transmission \
+#	  -v /home/jessie/Torrents:/transmission/download \
+#	  -p 9091:9091 -p 51413:51413 -p 51413:51413/udp \
+#	  jess/transmission
 #
 
 # Base docker image
@@ -23,12 +23,12 @@ FROM debian:jessie
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
 RUN apt-get update && apt-get install -y \
-    transmission-daemon \
-    && mkdir -p /transmission/download \
-    && mkdir -p /transmission/watch \
-    && mkdir -p /transmission/incomplete \
-    && mkdir -p /transmission/config \
-    && chmod 1777 /transmission
+	transmission-daemon \
+	&& mkdir -p /transmission/download \
+	&& mkdir -p /transmission/watch \
+	&& mkdir -p /transmission/incomplete \
+	&& mkdir -p /transmission/config \
+	&& chmod 1777 /transmission
 
 ENV TRANSMISSION_HOME /transmission/config
 

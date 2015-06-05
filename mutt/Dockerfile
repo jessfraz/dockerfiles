@@ -4,9 +4,9 @@ RUN groupadd -g 1000 user \
 	&& useradd --create-home -d /home/user -g user -u 1000 user
 
 RUN apt-get update && apt-get install -y \
-    ca-certificates \
-    git \
-    mutt-patched
+	ca-certificates \
+	git \
+	mutt-patched
 
 # a browser is necessary!
 RUN apt-get update && apt-get install -y lynx
@@ -23,13 +23,13 @@ RUN mkdir -p $HOME/.mutt/cache/headers $HOME/.mutt/cache/bodies \
 
 # vim settings
 RUN git clone https://github.com/jfrazelle/.vim.git $HOME/.vim \
-    && git clone https://github.com/altercation/vim-colors-solarized $HOME/.vim/bundle/vim-colors-solarized \
-    && cp $HOME/.vim/vimrc.txt $HOME/.vimrc
+	&& git clone https://github.com/altercation/vim-colors-solarized $HOME/.vim/bundle/vim-colors-solarized \
+	&& cp $HOME/.vim/vimrc.txt $HOME/.vimrc
 
 ENV LANG C.UTF-8
 
-COPY    entrypoint.sh   /entrypoint.sh
-COPY    .mutt           $HOME/.mutt
+COPY	entrypoint.sh	/entrypoint.sh
+COPY	.mutt			$HOME/.mutt
 
 ENTRYPOINT ["/entrypoint.sh"]
 

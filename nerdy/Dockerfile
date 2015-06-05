@@ -2,14 +2,14 @@ FROM debian:jessie
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
 RUN apt-get update && apt-get install -y \
-    ca-certificates \
-    cowsay \
-    curl \
-    figlet \
-    imagemagick \
-    jp2a \
-    python \
-    --no-install-recommends
+	ca-certificates \
+	cowsay \
+	curl \
+	figlet \
+	imagemagick \
+	jp2a \
+	python \
+	--no-install-recommends
 
 ENV HOME /root
 WORKDIR $HOME

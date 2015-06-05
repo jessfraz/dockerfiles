@@ -11,8 +11,8 @@ RUN apt-get update && apt-get install -y \
 	ca-certificates \
 	curl \
 	--no-install-recommends \
-    && mkdir -p /etc/consul.d/ \
-    && chmod +x /usr/local/bin/consul \
-    && chmod +x /usr/local/bin/curl-unix-socket
+	&& mkdir -p /etc/consul.d/ \
+	&& chmod +x /usr/local/bin/consul \
+	&& chmod +x /usr/local/bin/curl-unix-socket
 
 ENTRYPOINT [ "/usr/local/bin/consul" ]
