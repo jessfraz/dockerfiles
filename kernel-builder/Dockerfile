@@ -14,19 +14,6 @@ WORKDIR $HOME
 
 ENV JOBS 4
 
-# add install_kernel helper func
-RUN { \
-		echo '\ninstall_kernel(){'; \
-		echo '\tlocal VERSION=$1'; \
-		echo '\n\tif [[ -z $VERSION ]]; then'; \
-		echo '\t\techo "Please specify a kernel version."'; \
-		echo '\t\treturn 1'; \
-		echo '\tfi\n'; \
-		echo '\tlocal MAJOR_VERSION=${VERSION:0:1}'; \
-		echo '\n\t[ -d /usr/src/linux-${VERSION} ] || curl -sSL https://www.kernel.org/pub/linux/kernel/v${MAJOR_VERSION}.x/linux-${VERSION}.tar.xz | tar -v -C /usr/src -xJ'; \
-		echo '\n\tcd /usr/src/linux-${VERSION}'; \
-		echo '\n\tnice -19 make -j$JOBS KDEB_PKGVERSION=$PKGVERSION INSTALL_MOD_STRIP=1 deb-pkg'; \
-		echo '}'; \
-	} >> ~/.bashrc
+COPY install_kernel /usr/local/bin/install_kernel
 
 CMD [ "bash" ]
