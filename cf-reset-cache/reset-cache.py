@@ -29,10 +29,18 @@ docs = s3_conn.get_bucket(bucket)
 items = []
 
 for key in docs.list():
+    index_file = "/index.html"
+    if key.name.endswith((index_file)):
+        # append the file without the postfix as well
+        items.append(key.name.replace(index_file, ""))
+        items.append(key.name.replace(index_file, "/"))
     items.append(key.name)
 
 cf_conn = boto.connect_cloudfront(access_key, access_secret)
 inval_req = cf_conn.create_invalidation_request(cloudfront_dist, items)
+
+print "Invalidating these files: "
+print items
 
 print inval_req
 sys.exit(0)
