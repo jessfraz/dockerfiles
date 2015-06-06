@@ -40,5 +40,5 @@ RUN sed -i.bak 's/sid main/sid main contrib non-free/g' /etc/apt/sources.list &&
 COPY local.conf /etc/fonts/local.conf
 
 # Autorun chrome
-ENTRYPOINT [ "/usr/bin/google-chrome-stable" ]
+ENTRYPOINT [ "/usr/bin/google-chrome" ]
 CMD [ "--user-data-dir=/data", "--no-sandbox" ]
