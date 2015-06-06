@@ -7,8 +7,7 @@ COPY google-talkplugin_current_amd64.deb /src/google-talkplugin_current_amd64.de
 ADD  https://dl.google.com/linux/direct/google-chrome-beta_current_amd64.deb /src/google-chrome-beta_current_amd64.deb
 
 # Install Chromium
-RUN sed -i.bak 's/sid main/sid main contrib non-free/g' /etc/apt/sources.list && \
-	mkdir -p /usr/share/icons/hicolor && \
+RUN mkdir -p /usr/share/icons/hicolor && \
 	apt-get update && apt-get install -y \
 	ca-certificates \
 	gconf-service \
@@ -31,9 +30,6 @@ RUN sed -i.bak 's/sid main/sid main contrib non-free/g' /etc/apt/sources.list &&
 	xdg-utils \
 	--no-install-recommends && \
 	dpkg -i '/src/google-chrome-beta_current_amd64.deb' && \
-	apt-get install -y \
-	pepperflashplugin-nonfree \
-	--no-install-recommends && \
 	dpkg -i '/src/google-talkplugin_current_amd64.deb' \
 	&& rm -rf /var/lib/apt/lists/*
 
