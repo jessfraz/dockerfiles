@@ -22,7 +22,8 @@ FROM debian:jessie
 MAINTAINER Christian Koep <christian.koep@fom-net.de>
 
 RUN apt-get update && apt-get -y install \
-	wget \
+	ca-certificates \
+	curl \
 	tar \
 	bzip2 \
 	libglib2.0-0 \
@@ -30,11 +31,12 @@ RUN apt-get update && apt-get -y install \
 	libcairo2 \
 	libpango-1.0-0 \
 	libpangocairo-1.0-0 \
-	libgtk2.0-0
+	libgtk2.0-0 \
+	--no-install-recommends
 
-RUN wget -q http://c758482.r82.cf2.rackcdn.com/sublime_text_3_build_3083_x64.tar.bz2 -O /usr/src/sublime.tar.bz2 && \
-	cd /usr/src && \
-	tar -xjf /usr/src/sublime.tar.bz2 && \
-	rm -f /usr/src/sublime.tar.bz2
+RUN curl -sSL "http://c758482.r82.cf2.rackcdn.com/sublime_text_3_build_3083_x64.tar.bz2" -o /tmp/sublime.tar.bz2 \
+	&& mkdir -p /usr/src/sublime_text \
+	&& tar -xjf /tmp/sublime.tar.bz2 -C /usr/src/sublime_text --strip-components 1 \
+	&& rm /tmp/sublime.tar.bz2*
 
-CMD ["/usr/src/sublime_text_3/sublime_text", "-w"]
+CMD ["/usr/src/sublime_text/sublime_text", "-w"]
