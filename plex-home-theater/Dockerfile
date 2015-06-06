@@ -1,0 +1,22 @@
+# plex home theater
+#
+# docker run -d -v /tmp/.X11-unix:/tmp/.X11-unix \
+# 	-e DISPLAY=unix$DISPLAY \
+# 	--device /dev/snd:/dev/snd \
+# 	--device /dev/dri:/dev/dri \
+# 	jess/plex-home-theater
+#
+FROM ubuntu:14.04
+MAINTAINER Jessie Frazelle <jess@linux.com>
+
+RUN apt-get update && apt-get install -y \
+	software-properties-common \
+	--no-install-recommends && \
+	add-apt-repository ppa:plexapp/plexht && \
+	add-apt-repository ppa:pulse-eight/libcec && \
+	apt-get update && \
+	apt-get install -y \
+	libcec-dev \
+	plexhometheater
+
+ENTRYPOINT	[ "/usr/bin/plexhometheater.sh" ]
