@@ -1,0 +1,25 @@
+#!/bin/bash
+set -e
+
+install_kernel(){
+	local VERSION=$1
+
+	if [[ -z $VERSION ]]; then
+		echo "Please specify a kernel version."
+		exit 1
+	fi
+
+	local MAJOR_VERSION=${VERSION:0:1}
+	
+	if [[ "$VERSION" == *-rc* ]]; then
+		[ -d /usr/src/linux-${VERSION} ] || curl -sSL https://kernel.org/pub/linux/kernel/v${MAJOR_VERSION}.x/testing/linux-${VERSION}.tar.xz | tar -v -C /usr/src -xJ
+	else
+		[ -d /usr/src/linux-${VERSION} ] || curl -sSL https://www.kernel.org/pub/linux/kernel/v${MAJOR_VERSION}.x/linux-${VERSION}.tar.xz | tar -v -C /usr/src -xJ
+	fi
+
+	cd /usr/src/linux-${VERSION}
+
+	nice -19 make -j$JOBS KDEB_PKGVERSION=$PKGVERSION INSTALL_MOD_STRIP=1 deb-pkg
+}
+
+install_kernel $@
