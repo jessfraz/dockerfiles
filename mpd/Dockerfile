@@ -1,9 +1,9 @@
 # Music player daemon
 #
 # docker run -d \
+#	--device /dev/snd \
 #	-v /etc/localtime:/etc/localtime:ro \
 #	-v $HOME/.mpd:/var/lib/mpd \
-#	-p 8000:8000 \
 #	-p 6600:6600 \
 #	--name mpd \
 #	jess/mpd	 
@@ -13,6 +13,8 @@ MAINTAINER Jessica Frazelle <jess@docker.com>
 
 RUN apt-get update && apt-get install -y \
 	mpd \
+	nfs-common \
+	sudo \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
@@ -23,7 +25,9 @@ run mkdir -p /var/lib/mpd/playlists \
 	&& chmod 0777 -R /var/lib/mpd \
 	&& chown -R mpd /var/lib/mpd
 
-EXPOSE 6600 8000
+# my user needs the ability to mount
+# because my music is in nfs mount
+RUN echo "mpd ALL=NOPASSWD: /usr/bin/mount, /sbin/mount.nfs, /usr/bin/umount" >> /etc/sudoers
 
 ENV HOME /home/mpd
 COPY mpd.conf /etc/mpd.conf
