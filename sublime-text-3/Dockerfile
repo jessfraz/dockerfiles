@@ -32,7 +32,8 @@ RUN apt-get update && apt-get -y install \
 	libpango-1.0-0 \
 	libpangocairo-1.0-0 \
 	libgtk2.0-0 \
-	--no-install-recommends
+	--no-install-recommends \
+	&& rm -rf /var/lib/apt/lists/*
 
 RUN curl -sSL "http://c758482.r82.cf2.rackcdn.com/sublime_text_3_build_3083_x64.tar.bz2" -o /tmp/sublime.tar.bz2 \
 	&& mkdir -p /usr/src/sublime_text \

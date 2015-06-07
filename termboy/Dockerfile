@@ -27,8 +27,10 @@ COPY termboy-go /usr/bin/termboy-go
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
-	kbd && \
-	mkdir -p $HOME/.config/termboy
+	kbd \
+	--no-install-recommends \
+	&& rm -rf /var/lib/apt/lists/* \
+	&& mkdir -p $HOME/.config/termboy
 
 # add games
 COPY games $HOME/games

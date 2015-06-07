@@ -24,6 +24,7 @@ RUN apt-get update && apt-get install -y \
 	apt-add-repository -y ppa:rael-gc/scudcloud && \
 	apt-get update && \
 	apt-get install -y \
-	scudcloud
+	scudcloud \
+	&& rm -rf /var/lib/apt/lists/*
 
 ENTRYPOINT ["/usr/bin/scudcloud"]

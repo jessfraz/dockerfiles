@@ -10,7 +10,8 @@ ADD https://jesss.s3.amazonaws.com/binaries/curl-unix-socket /usr/local/bin/curl
 RUN apt-get update && apt-get install -y \
 	ca-certificates \
 	curl \
-	--no-install-recommends \
+	--no-install-recommends \ 
+	&& rm -rf /var/lib/apt/lists/* \
 	&& mkdir -p /etc/consul.d/ \
 	&& chmod +x /usr/local/bin/consul \
 	&& chmod +x /usr/local/bin/curl-unix-socket \

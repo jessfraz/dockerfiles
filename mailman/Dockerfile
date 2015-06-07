@@ -13,7 +13,8 @@ RUN apt-get update && apt-get install -y \
 	mailman \
 	postfix \
 	supervisor \
-	--no-install-recommends
+	--no-install-recommends \
+	&& rm -rf /var/lib/apt/lists/*
 
 # Lighttpd configuration
 ADD lighttpd.conf /etc/lighttpd/lighttpd.conf

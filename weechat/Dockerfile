@@ -3,6 +3,7 @@ MAINTAINER Justin Garrison <justinleegarrison@gmail.com>
 
 RUN apt-get update && apt-get install -y \
 	weechat \
+	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
 ENV LANG C.UTF-8

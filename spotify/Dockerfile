@@ -22,6 +22,7 @@ RUN apt-get update && apt-get install -y \
 	echo "deb http://repository.spotify.com stable non-free" >> /etc/apt/sources.list.d/spotify.list && \
 	apt-get update && \
 	apt-get install -y \
-	spotify-client
+	spotify-client \
+	&& rm -rf /var/lib/apt/lists/*
 
 ENTRYPOINT	[ "/usr/bin/spotify" ]

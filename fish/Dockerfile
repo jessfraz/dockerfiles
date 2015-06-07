@@ -6,6 +6,7 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-key D880C8E4 \
 	&& apt-get update && apt-get install -y \
 	fish \
 	--no-install-recommends \
+	&& rm -rf /var/lib/apt/lists/* \
 	&& mkdir -p /root/.config/fish/completions
 
 ENTRYPOINT [ "fish" ]

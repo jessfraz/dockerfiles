@@ -22,7 +22,8 @@ MAINTAINER Jessica Frazelle <jess@docker.com>
 # Install emacs
 RUN apt-get update && apt-get install -y \
 	emacs \
-	--no-install-recommends
+	--no-install-recommends \
+	&& rm -rf /var/lib/apt/lists/*
 
 # Autorun dunnet
 CMD ["/usr/bin/emacs", "-batch", "-l", "dunnet"]
