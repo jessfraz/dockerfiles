@@ -48,7 +48,8 @@ RUN dpkg --add-architecture i386 && apt-get update && apt-get install -y \
 	libxfixes3:i386 \
 	libglu1-mesa:i386 \
 	sudo \
-	--no-install-recommends
+	--no-install-recommends \
+	&& rm -rf /var/lib/apt/lists/*
 
 # make adjustments
 RUN cd /usr/lib/i386-linux-gnu && \

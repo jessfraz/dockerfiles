@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
 	add-apt-repository ppa:tomahawk/ppa && \
 	apt-get update && \
 	apt-get install -y \
-	tomahawk
+	tomahawk \
+	&& rm -rf /var/lib/apt/lists/*
 
 ENTRYPOINT	[ "/usr/bin/tomahawk" ]

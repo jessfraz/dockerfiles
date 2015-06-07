@@ -12,7 +12,8 @@ MAINTAINER Jessica Frazelle <jess@docker.com>
 # Install all the things
 RUN apt-get update && apt-get install -y \
 	mesa-utils \
-	--no-install-recommends
+	--no-install-recommends \
+	&& rm -rf /var/lib/apt/lists/*
 
 ENV LIBGL_DEBUG verbose
 

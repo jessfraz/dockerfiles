@@ -9,7 +9,8 @@ RUN apt-get update && apt-get install -y \
 	imagemagick \
 	jp2a \
 	python \
-	--no-install-recommends
+	--no-install-recommends \
+	&& rm -rf /var/lib/apt/lists/*
 
 ENV HOME /root
 WORKDIR $HOME

@@ -10,7 +10,8 @@ RUN apt-get update && apt-get install -y \
 	libncursesw5 \
 	libncursesw5-dev \
 	make \
-	--no-install-recommends
+	--no-install-recommends \
+	&& rm -rf /var/lib/apt/lists/*
 
 RUN git clone --recursive https://github.com/visit1985/mdp.git /src
 

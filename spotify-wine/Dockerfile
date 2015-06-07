@@ -21,7 +21,9 @@ RUN apt-get update && apt-get install -y \
 	dpkg --add-architecture i386 && \
 	apt-get update && \
 	apt-get install -y \
-	wine32
+	wine32 \
+	--no-install-recommends \
+	&& rm -rf /var/lib/apt/lists/*
 
 COPY ./SpotifySetup.exe /usr/src/SpotifySetup.exe
 

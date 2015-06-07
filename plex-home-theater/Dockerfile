@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y \
 	apt-get update && \
 	apt-get install -y \
 	libcec-dev \
-	plexhometheater
+	plexhometheater \
+	&& rm -rf /var/lib/apt/lists/*
 
 ENTRYPOINT	[ "/usr/bin/plexhometheater.sh" ]
