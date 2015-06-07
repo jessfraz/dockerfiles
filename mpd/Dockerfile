@@ -26,7 +26,7 @@ run mkdir -p /var/lib/mpd/playlists \
 	&& chown -R mpd /var/lib/mpd
 
 # my user needs the ability to mount
-# because my music is in nfs mount
+# because all my music is in a nfs mount
 RUN echo "mpd ALL=NOPASSWD: /usr/bin/mount, /sbin/mount.nfs, /usr/bin/umount" >> /etc/sudoers
 
 ENV HOME /home/mpd
