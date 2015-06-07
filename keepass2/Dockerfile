@@ -25,6 +25,8 @@ ENV DEBIAN_FRONTEND noninteractiv
 
 RUN apt-get update && apt-get install -y \
 	keepass2 \
-	xdotool
+	xdotool \
+	--no-install-recommends \
+	&& rm -rf /var/lib/apt/lists/*
 
 CMD ["/usr/bin/keepass2"]

@@ -1,4 +1,5 @@
 FROM debian:stable
+MAINTAINER Jessica Frazelle <jess@docker.com>
 
 RUN groupadd -g 1000 user \
 	&& useradd --create-home -d /home/user -g user -u 1000 user
@@ -6,14 +7,14 @@ RUN groupadd -g 1000 user \
 RUN apt-get update && apt-get install -y \
 	ca-certificates \
 	git \
-	mutt-patched
+	lynx \
+	mutt-patched \
+	vim-nox \
+	--no-install-recommends \
+	&& rm -rf /var/lib/apt/lists/*
 
 # a browser is necessary!
-RUN apt-get update && apt-get install -y lynx
 ENV BROWSER lynx
-
-# my preferred editor :) (see also muttrc)
-RUN apt-get update && apt-get install -y vim-nox
 
 USER user
 ENV HOME /home/user

@@ -7,7 +7,8 @@ RUN apt-get update && apt-get install -y \
 	libopenblas-dev \
 	liblapack-dev \
 	libzmq-dev \
-	--no-install-recommends
+	--no-install-recommends \
+	&& rm -rf /var/lib/apt/lists/*
 
 RUN pip install -U \
 	numpy \

@@ -6,7 +6,8 @@ RUN apt-get update && apt-get install -y \
 	libfreetype6 \
 	libfreetype6-dev \
 	zlib1g-dev \
-	--no-install-recommends
+	--no-install-recommends \
+	&& rm -rf /var/lib/apt/lists/*
 
 RUN pip install rainbowstream
 

@@ -37,10 +37,11 @@ RUN sed -i.bak 's/sid main/sid main contrib non-free/g' /etc/apt/sources.list &&
 	libpango1.0-0 \
 	libv4l-0 \
 	pepperflashplugin-nonfree \
-	--no-install-recommends && \
-	mkdir -p /etc/chromium.d/ && \
-	/bin/echo -e 'export GOOGLE_API_KEY="AIzaSyCkfPOPZXDKNn8hhgu3JrA62wIgC93d44k"\nexport GOOGLE_DEFAULT_CLIENT_ID="811574891467.apps.googleusercontent.com"\nexport GOOGLE_DEFAULT_CLIENT_SECRET="kdloedMFGdGla2P1zacGjAQh"' > /etc/chromium.d/googleapikeys && \
-	dpkg -i '/src/google-talkplugin_current_amd64.deb'
+	--no-install-recommends \ 
+	&& rm -rf /var/lib/apt/lists/* \
+	&& mkdir -p /etc/chromium.d/ \
+	&& /bin/echo -e 'export GOOGLE_API_KEY="AIzaSyCkfPOPZXDKNn8hhgu3JrA62wIgC93d44k"\nexport GOOGLE_DEFAULT_CLIENT_ID="811574891467.apps.googleusercontent.com"\nexport GOOGLE_DEFAULT_CLIENT_SECRET="kdloedMFGdGla2P1zacGjAQh"' > /etc/chromium.d/googleapikeys \
+	&& dpkg -i '/src/google-talkplugin_current_amd64.deb'
 
 ENTRYPOINT [ "/usr/bin/chromium" ]
 CMD [ "--user-data-dir=/data", "--no-sandbox" ]
