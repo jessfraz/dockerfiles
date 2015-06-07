@@ -1,16 +1,17 @@
-# Practical Music Search, an MPD client
+# ncmpc is a fully featured MPD client
+# which runs in a terminal (using ncurses)
 #
 # docker run --rm -it \
 # 	-v /etc/localtime:/etc/localtime:ro \
 #	--link mpd:mpd \
-#	jess/pms
+#	jess/ncmpc
 #
 FROM debian:sid
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
 RUN apt-get update && apt-get install -y \
-	pms \
+	ncmpc \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
-ENTRYPOINT [ "pms" ]
+ENTRYPOINT [ "ncmpc" ]
