@@ -12,6 +12,7 @@ FROM debian:sid
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
 RUN apt-get update && apt-get install -y \
+	mpc \
 	mpd \
 	nfs-common \
 	sudo \
