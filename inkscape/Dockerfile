@@ -15,9 +15,10 @@ RUN apt-get update && apt-get install -y \
 	software-properties-common
 
 RUN add-apt-repository ppa:inkscape.dev/stable && \
-	apt-get update && \
-	apt-get install -y -qq --no-install-recommends inkscape && \
-	rm -rf /var/lib/apt/lists/*
+	apt-get update && apt-get install -y \
+	inkscape \
+	--no-install-recommends \
+	&& rm -rf /var/lib/apt/lists/*
 
 VOLUME /workspace
 WORKDIR /workspace

@@ -27,7 +27,8 @@ RUN apt-get update && apt-get install -y \
 	transmission-common \
 	transmission-daemon \
 	transmission-gtk \
-	--no-install-recommends
+	--no-install-recommends \
+	&& rm -rf /var/lib/apt/lists/*
 
 # Autorun transmission
 CMD ["/usr/bin/transmission-gtk"]

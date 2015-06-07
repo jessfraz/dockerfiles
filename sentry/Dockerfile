@@ -14,7 +14,8 @@ RUN apt-get update && apt-get install -y \
 	python \
 	python-dev \
 	python-pip \
-	--no-install-recommends
+	--no-install-recommends \
+	&& rm -rf /var/lib/apt/lists/*
 
 # locales
 ENV	LANGUAGE		en_US.UTF-8

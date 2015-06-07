@@ -16,7 +16,9 @@
 FROM debian:jessie
 MAINTAINER Christian Koep <christian.koep@fom-net.de>
 
-RUN apt-get -qq update && apt-get install -y --no-install-recommends \
-	evince
+RUN apt-get -qq update && apt-get install -y \
+	evince \
+	--no-install-recommends \
+	&& rm -rf /var/lib/apt/lists/*
 
 CMD ["/usr/bin/evince"]
