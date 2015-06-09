@@ -1,10 +1,21 @@
-FROM debian:jessie
+# Visual Studio in a container
+#	NOTE: Needs the redering device (yeah... idk)
+#
+# docker run -d \
+# 	-v /tmp/.X11-unix:/tmp/.X11-unix \
+# 	-e DISPLAY=unix$DISPLAY \
+#	--device /dev/dri \
+# 	--name visualstudio \
+# 	jess/visualstudio
+
+FROM jess/chromium
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
 RUN apt-get update && apt-get install -y \
 	build-essential \
 	ca-certificates \
 	curl \
+	git \
 	libasound2 \
 	libgconf-2-4 \
 	libgnome-keyring-dev \
@@ -13,18 +24,26 @@ RUN apt-get update && apt-get install -y \
 	libpci3 \
 	libxtst6 \
 	unzip \
-	zip \
 	--no-install-recommends
+
+ENV HOME /home/user
+RUN useradd --create-home --home-dir $HOME user \
+	&& chown -R user:user $HOME
 
 # install node
 RUN curl -sL https://deb.nodesource.com/setup | bash -
 RUN apt-get update && apt-get install -y \
 	nodejs \
-	&& rm -rf /var/lib/apt/lists/*
+	&& rm -rf /var/lib/apt/lists/* \
+	&& npm update -g
 
 # download the source
 RUN curl -sSL https://jesss.s3.amazonaws.com/binaries/VSCode-linux-x64.zip -o /tmp/vs.zip \
 	&& unzip /tmp/vs.zip -d /usr/src/ \
-	&& rm -rf /tmp/vs.zip
+	&& rm -rf /tmp/vs.zip \
+	&& ln -snf /usr/src/VSCode-linux-x64/Code /usr/local/bin/code
 
-ENTRYPOINT [ "/usr/src/VSCode-linux-x64/Code" ]
+COPY start.sh /usr/local/bin/start.sh
+WORKDIR $HOME
+
+ENTRYPOINT [ "/usr/local/bin/start.sh" ]
