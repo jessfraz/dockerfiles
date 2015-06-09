@@ -1,0 +1,3 @@
+[D-BUS Service]
+Name=org.freedesktop.Notifications
+Exec=/usr/lib/x86_64-linux-gnu/notify-osd
