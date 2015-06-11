@@ -5,8 +5,8 @@
 #	-v /tmp/.X11-unix:/tmp/.X11-unix \
 #	-e DISPLAY=unix$DISPLAY \
 #	--device /dev/snd:/dev/snd \
-#	-v $HOME/.spotify/config:/root/.config/spotify \
-#	-v $HOME/.spotify/cache:/root/.cache/spotify \
+#	-v $HOME/.spotify/config:/home/spotify/.config/spotify \
+#	-v $HOME/.spotify/cache:/home/spotify/spotify \
 #	--name spotify \
 #	jess/spotify
 #
@@ -25,4 +25,16 @@ RUN apt-get update && apt-get install -y \
 	spotify-client \
 	&& rm -rf /var/lib/apt/lists/*
 
-ENTRYPOINT	[ "/usr/bin/spotify" ]
+ENV HOME /home/spotify
+RUN useradd --create-home --home-dir $HOME spotify \
+	&& gpasswd -a spotify audio \
+	&& chown -R spotify:spotify $HOME
+
+WORKDIR $HOME
+USER spotify
+
+# make search bar text better
+RUN echo "QLineEdit { color: #000 }" > /home/spotify/spotify-override.css
+
+ENTRYPOINT	[ "spotify" ]
+CMD [ "-stylesheet=/home/spotify/spotify-override.css" ]
