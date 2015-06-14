@@ -20,32 +20,26 @@
 #
 
 # Base docker image
-FROM debian:jessie
+FROM node
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
 # Install dependencies
-RUN apt-get update && apt-get install -y \
-	build-essential \
-	ca-certificates \
-	curl \
-	git \
-	libasound2 \
-	libgconf-2-4 \
-	libgnome-keyring-dev \
-	libgtk2.0-0 \
-	libnss3 \
-	libxtst6 \
-	--no-install-recommends
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+    libasound2 \
+    libgconf-2-4 \
+    libgnome-keyring-dev \
+    libgnome-keyring-dev \
+    libgtk2.0-0 \
+    libnss3 \
+    libxtst6 && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# install node
-RUN curl -sL https://deb.nodesource.com/setup | bash -
-RUN apt-get install -y nodejs
-
-# clone atom
-RUN git clone https://github.com/atom/atom /src
 WORKDIR /src
-RUN git fetch && git checkout $(git describe --tags `git rev-list --tags --max-count=1`)
-RUN script/build && script/grunt install
+
+RUN LATEST_TAG=`git ls-remote --tags https://github.com/atom/atom | sort -t '/' -k3 --version-sort | tail -n1 | cut -d'/' -f3` && \
+    git clone -b $LATEST_TAG https://github.com/atom/atom --depth 1 /src && \
+    script/build && script/grunt install && \
+    rm -fr /src
 
 # Autorun atom
 CMD /usr/local/bin/atom --foreground --log-file /var/log/atom.log && tail -f /var/log/atom.log
