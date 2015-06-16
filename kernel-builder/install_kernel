@@ -19,6 +19,10 @@ install_kernel(){
 
 	cd /usr/src/linux-${VERSION}
 
+	if [[ ! -f .config ]] && [[ -f ../config ]]; then
+		cp ../config .config
+	fi
+
 	nice -19 make -j$JOBS KDEB_PKGVERSION=$PKGVERSION INSTALL_MOD_STRIP=1 deb-pkg
 }
 
