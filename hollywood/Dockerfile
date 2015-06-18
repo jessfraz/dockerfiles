@@ -9,8 +9,11 @@ RUN apt-get update && apt-get install -y \
 	apt-get install -y \
 	byobu \
 	hollywood \
+	locate \
+	mlocate \
 	--no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/*
+	&& rm -rf /var/lib/apt/lists/* \
+	&& updatedb
 
 ENV HOME /home/user
 RUN useradd --create-home --home-dir $HOME user \
