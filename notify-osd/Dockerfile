@@ -23,6 +23,8 @@ MAINTAINER Jessie Frazelle <jess@linux.com>
 RUN apt-get update && apt-get install -y \
 	at-spi2-core \
 	dbus \
+	libgl1-mesa-dri \
+	libgl1-mesa-glx \
 	libnotify-bin \
 	notify-osd \
 	--no-install-recommends \
