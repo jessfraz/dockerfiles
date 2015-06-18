@@ -7,7 +7,7 @@
 #	-v /tmp/.X11-unix:/tmp/.X11-unix \
 #	-e DISPLAY=unix$DISPLAY \
 #	--name vlc \
-#	jess/vlc	 
+#	jess/vlc
 #
 FROM debian:sid
 MAINTAINER Jessica Frazelle <jess@docker.com>

@@ -21,7 +21,7 @@
 # 	docker cp virtualbox:/usr/src/vboxhost-4.3.28 /usr/src/
 #
 # then the share
-# 	cp virtualbox:/usr/share/virtualbox /usr/share
+# 	docker cp virtualbox:/usr/share/virtualbox /usr/share
 #
 # then run the script:
 # 	./vboxdrv setup
