@@ -5,6 +5,8 @@
 #	--device /dev/snd \
 #	--name pulseaudio \
 #	-p 4713:4713 \
+#	-v /var/run/dbus:/var/run/dbus \
+#	-v /etc/machine-id:/etc/machine-id \
 #	jess/pulseaudio
 #
 FROM debian:sid
@@ -28,6 +30,8 @@ WORKDIR $HOME
 USER pulseaudio
 
 COPY default.pa /etc/pulse/default.pa
+COPY client.conf /etc/pulse/client.conf
+COPY daemon.conf /etc/pulse/daemon.conf
 
 ENTRYPOINT [ "pulseaudio" ]
 CMD [ "--log-level=4", "--log-target=stderr", "-v" ]
