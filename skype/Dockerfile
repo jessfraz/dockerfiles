@@ -2,9 +2,10 @@
 # (but I have a container for that)
 #
 # docker run -v /tmp/.X11-unix:/tmp/.X11-unix \
-#	-v /dev/snd:/dev/snd \
 #	-e DISPLAY=unix$DISPLAY \
-#	--link pulseaudio \
+#	--link pulseaudio:pulseaudio \
+#	-e PULSE_SERVER=pulseaudio \
+#	--device /dev/video0 \
 #	jess/skype
 #
 FROM debian:jessie
