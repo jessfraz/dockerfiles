@@ -12,28 +12,41 @@
 #	# Build termboy image
 #	docker build -t termboy .
 #
-#	docker run -it termboy
+#	docker run -it \
+#		--device /dev/snd \
+#		termboy
 #
 
 # Base docker image
 FROM debian:jessie
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
-ENV TERM linux
-ENV HOME /root
 ENV DEBIAN_FRONTEND noninteractive
-
-COPY termboy-go /usr/bin/termboy-go
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
+	ca-certificates \
+	console-setup \
+	console-setup-linux \
+	g++ \
+	git \
 	kbd \
+	libasound2-dev \
+	libncurses5-dev \
+	libncursesw5-dev \
+	make \
+	sudo \
 	--no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/* \
-	&& mkdir -p $HOME/.config/termboy
+	&& rm -rf /var/lib/apt/lists/*
+
+RUN git clone https://github.com/dobyrch/termboy --depth 1 /src \
+	&& cd /src \
+	&& make \
+	&& make install || true
+
 
 # add games
-COPY games $HOME/games
+COPY games /games
 
 # Autorun termboy
-ENTRYPOINT ["/usr/bin/termboy-go"]
+ENTRYPOINT ["/usr/bin/termboy"]
