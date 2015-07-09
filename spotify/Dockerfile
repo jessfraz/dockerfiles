@@ -21,7 +21,7 @@ RUN apt-get update && apt-get install -y \
 	apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 94558F59 && \
 	echo "deb http://repository.spotify.com stable non-free" >> /etc/apt/sources.list.d/spotify.list && \
 	apt-get update && \
-	apt-get install -y \
+	apt-get install --force-yes -y \
 	spotify-client \
 	&& rm -rf /var/lib/apt/lists/*
 
