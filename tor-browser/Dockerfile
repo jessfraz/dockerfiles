@@ -26,7 +26,7 @@ RUN useradd --create-home --home-dir $HOME user \
 
 ENV LANG C.UTF-8
 
-ENV TOR_VERSION 4.5.2
+ENV TOR_VERSION 4.5.3
 
 RUN curl -sSL "https://www.torproject.org/dist/torbrowser/${TOR_VERSION}/tor-browser-linux64-${TOR_VERSION}_en-US.tar.xz" | tar -v -C /usr/local/bin -xJ --strip-components 1 
 
