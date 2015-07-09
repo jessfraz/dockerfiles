@@ -1,4 +1,4 @@
-FROM debian:stable
+FROM debian:sid
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
 RUN groupadd -g 1000 user \
@@ -7,7 +7,9 @@ RUN groupadd -g 1000 user \
 RUN apt-get update && apt-get install -y \
 	ca-certificates \
 	git \
+	libsasl2-modules \
 	lynx \
+	mutt-dbg \
 	mutt-patched \
 	vim-nox \
 	--no-install-recommends \
