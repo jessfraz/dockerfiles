@@ -1,6 +1,7 @@
 FROM python:2.7.8
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
+RUN apt-get update && apt-get install -y groff
 RUN pip install awscli
 
 RUN mkdir -p /root/.aws \
