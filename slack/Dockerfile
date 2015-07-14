@@ -8,6 +8,7 @@
 #	-e DISPLAY=unix$DISPLAY \
 #	--device /dev/snd:/dev/snd \
 #	-v /var/run/dbus:/var/run/dbus \
+#	-v $HOME/.scudcloud:/home/user/.config/scudcloud \
 #	--name slack \
 #	jess/slack
 
@@ -16,8 +17,8 @@ MAINTAINER Jessie Frazelle <jess@linux.com>
 
 RUN apt-get update && apt-get install -y \
 	dbus-x11 \
-	dunst \
 	hunspell-en-us \
+	libnotify-bin \
 	python3-dbus \
 	software-properties-common \
 	--no-install-recommends && \
@@ -26,5 +27,12 @@ RUN apt-get update && apt-get install -y \
 	apt-get install -y \
 	scudcloud \
 	&& rm -rf /var/lib/apt/lists/*
+
+ENV LANG en_US.UTF-8
+ENV HOME /home/user
+RUN useradd --create-home --home-dir $HOME user \
+	&& chown -R user:user $HOME
+
+USER user
 
 ENTRYPOINT ["/usr/bin/scudcloud"]
