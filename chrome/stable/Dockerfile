@@ -4,7 +4,7 @@ MAINTAINER Jessica Frazelle <jess@docker.com>
 
 COPY google-talkplugin_current_amd64.deb /src/google-talkplugin_current_amd64.deb
 
-ADD  https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb /src/google-chrome-stable_current_amd64.deb
+ADD  http://mirror.pcbeta.com/google/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_42.0.2311.152-1_amd64.deb /src/google-chrome-stable_current_amd64.deb
 
 # Install Chromium
 RUN mkdir -p /usr/share/icons/hicolor && \
