@@ -1,11 +1,11 @@
 # Run Rainbowstream in a container
 #
-#        docker run -it --rm \
-#                -v /etc/localtime:/etc/localtime \
-#                -v $HOME/.rainbow_oauth:/root/.rainbow_oauth \ # mount config files
-#                -v $HOME/.rainbow_config.json:/root/.rainbow_config.json \
-#                --name rainbowstream \
-#                jess/rainbowstream
+# docker run -it --rm \
+#	-v /etc/localtime:/etc/localtime \
+#	-v $HOME/.rainbow_oauth:/root/.rainbow_oauth \ # mount config files
+#	-v $HOME/.rainbow_config.json:/root/.rainbow_config.json \
+#	--name rainbowstream \
+#	jess/rainbowstream
 #
 FROM python:latest
 MAINTAINER Jessica Frazelle <jess@docker.com>
