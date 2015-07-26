@@ -20,6 +20,9 @@ RUN apt-get update && apt-get install -y \
 	&& rm -rf /var/lib/apt/lists/*
 
 ENV HOME /home/vlc
+ENV DISPLAY :0
+ENV XDG_RUNTIME_DIR /run/user/1000
+
 RUN useradd --create-home --home-dir $HOME vlc \
 	&& chown -R vlc:vlc $HOME \
 	&& usermod -a -G audio,video vlc
