@@ -7,3 +7,5 @@ if a file you are looking at does not have a command, please
 pull request it!
 
 Almost all of these live on dockerhub under [jess](https://registry.hub.docker.com/repos/jess/).
+
+You may also want to checkout my [dotfiles](https://github.com/jfrazelle/dotfiles), specifically the aliases for all these files which are here: [github.com/jfrazelle/dotfiles/blob/master/.dockerfunc](https://github.com/jfrazelle/dotfiles/blob/master/.dockerfunc).

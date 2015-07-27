@@ -3,13 +3,8 @@ MAINTAINER Jessica Frazelle <jess@docker.com>
 
 RUN apk update && apk add \
 	ca-certificates \
-	openssl \
-	python \
-	python-dev \
-	py-pip \
-	build-base \
-	&& rm -rf /var/cache/apk/* \
-	&& pip install boto
+	py-boto \
+	&& rm -rf /var/cache/apk/*
 
 COPY ./reset-cache.py /bin/reset-cache.py
 
