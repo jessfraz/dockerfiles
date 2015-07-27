@@ -17,7 +17,7 @@
 FROM debian:sid
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
-ADD https://jesss.s3.amazonaws.com/debs/google-talkplugin_current_amd64.deb /src/google-talkplugin_current_amd64.deb
+ADD https://dl.google.com/linux/direct/google-talkplugin_current_amd64.deb /src/google-talkplugin_current_amd64.deb
 
 ADD https://jesss.s3.amazonaws.com/debs/google-chrome-stable_42.0.2311.152-1_amd64.deb /src/google-chrome-stable_current_amd64.deb
 
