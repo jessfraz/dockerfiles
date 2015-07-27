@@ -1,10 +1,25 @@
+# Run Chrome in a container
+#
+# docker run -it \
+#	--net host \ # may as well YOLO
+#	--cpuset-cpus 0 \ # control the cpu
+#	--memory 512mb \ # max memory it can use
+#	-v /tmp/.X11-unix:/tmp/.X11-unix \ # mount the X11 socket
+#	-e DISPLAY=unix$DISPLAY \
+#	-v $HOME/Downloads:/root/Downloads \
+#	-v $HOME/.config/google-chrome/:/data \ # if you want to save state
+#	--device /dev/snd \ # so we have sound
+#	--name chrome \
+#	jess/chrome
+#
+
 # Base docker image
 FROM debian:sid
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
 ADD https://jesss.s3.amazonaws.com/debs/google-talkplugin_current_amd64.deb /src/google-talkplugin_current_amd64.deb
 
-ADD  https://dl.google.com/linux/direct/google-chrome-beta_current_amd64.deb /src/google-chrome-beta_current_amd64.deb
+ADD https://jesss.s3.amazonaws.com/debs/google-chrome-stable_42.0.2311.152-1_amd64.deb /src/google-chrome-stable_current_amd64.deb
 
 # Install Chromium
 RUN mkdir -p /usr/share/icons/hicolor && \
@@ -29,7 +44,7 @@ RUN mkdir -p /usr/share/icons/hicolor && \
 	wget \
 	xdg-utils \
 	--no-install-recommends && \
-	dpkg -i '/src/google-chrome-beta_current_amd64.deb' && \
+	dpkg -i '/src/google-chrome-stable_current_amd64.deb' && \
 	dpkg -i '/src/google-talkplugin_current_amd64.deb' \
 	&& rm -rf /var/lib/apt/lists/*
 

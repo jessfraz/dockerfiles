@@ -24,7 +24,8 @@
 FROM debian:sid
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
-COPY google-talkplugin_current_amd64.deb /src/google-talkplugin_current_amd64.deb
+ADD https://jesss.s3.amazonaws.com/debs/google-talkplugin_current_amd64.deb /src/google-talkplugin_current_amd64.deb
+
 # Install Chromium
 RUN sed -i.bak 's/sid main/sid main contrib non-free/g' /etc/apt/sources.list && \
 	apt-get update && apt-get install -y \
