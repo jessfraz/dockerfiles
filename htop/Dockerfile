@@ -4,12 +4,11 @@
 # 	--pid host \
 # 	jess/htop
 #
-FROM debian:sid
+FROM alpine:latest
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
-RUN apt-get update && apt-get install -y \
+RUN apk update && apk add \
 	htop \
-	--no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/*
+	&& rm -rf /var/cache/apk/*
 
 CMD [ "htop" ]
