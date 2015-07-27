@@ -15,7 +15,7 @@ RUN sed -i.bak 's/sid main/sid main contrib/g' /etc/apt/sources.list && \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
-ENV FIREFOX_VERSION 38.0.5
+ENV FIREFOX_VERSION 39.0
 
 RUN curl -sSL "https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/latest/linux-x86_64/en-US/firefox-${FIREFOX_VERSION}.tar.bz2" -o /tmp/firefox.tar.bz2 \
 	&& mkdir -p /opt/firefox \
