@@ -6,10 +6,18 @@
 #	--entrypoint bash \
 #	jess/imagemin
 #
-FROM node
+FROM alpine
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
-RUN npm install --global imagemin
+RUN apk update && apk add \
+	autoconf \
+	automake \
+	build-base \
+	file \
+	libpng-dev \
+	nasm \
+	nodejs \
+	&& rm -rf /var/cache/apk/* \
+	&& npm install --global imagemin
 
-ENTRYPOINT [ "imagemin" ]
-CMD [ "--help" ]
+CMD [ "imagemin", "--help" ]

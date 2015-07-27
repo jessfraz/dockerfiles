@@ -1,11 +1,11 @@
 FROM alpine:latest
+MAINTAINER Jessica Frazelle <jess@docker.com>
 
 RUN apk update && apk add \
+	build-base \
 	ca-certificates \
 	ruby-dev \
-	build-base \
-	&& rm -rf /var/cache/apk/*
-
-RUN gem install t
+	&& rm -rf /var/cache/apk/* \
+	&& gem install t
 
 ENTRYPOINT [ "t" ]
