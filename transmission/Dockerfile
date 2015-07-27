@@ -19,13 +19,12 @@
 #
 
 # Base docker image
-FROM debian:jessie
+FROM alpine:latest
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
-RUN apt-get update && apt-get install -y \
+RUN apk update && apk add \
 	transmission-daemon \
-	--no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/* \
+	&& rm -rf /var/cache/apk/* \
 	&& mkdir -p /transmission/{download,watch,incomplete,config} \
 	&& chmod 1777 /transmission
 
