@@ -1,9 +1,8 @@
-FROM debian:sid
+FROM alpine:latest
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
-RUN apt-get update && apt-get install -y \
+RUN apk update && apk add \
 	imagemagick \
-	--no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/*
+	&& rm -rf /var/cache/apk/*
 
 CMD [ "echo", "Use one of the following commands [ animate | compare | composite | conjure | convert | display | identify | import | mogrify | montage | stream ]" ]

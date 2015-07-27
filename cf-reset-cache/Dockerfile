@@ -1,9 +1,16 @@
-FROM python:2.7.8
+FROM alpine:latest
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
-RUN pip install boto
+RUN apk update && apk add \
+	ca-certificates \
+	openssl \
+	python \
+	python-dev \
+	py-pip \
+	build-base \
+	&& rm -rf /var/cache/apk/* \
+	&& pip install boto
 
-ADD reset-cache.py /bin/reset-cache
-RUN chmod +x /bin/reset-cache
+COPY ./reset-cache.py /bin/reset-cache.py
 
-CMD [ "reset-cache" ]
+CMD [ "/usr/bin/python", "/bin/reset-cache.py" ]
