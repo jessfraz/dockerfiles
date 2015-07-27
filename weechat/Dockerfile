@@ -14,8 +14,6 @@ RUN useradd --create-home --home-dir $HOME user \
 	&& chown -R user:user $HOME
 
 WORKDIR $HOME
-VOLUME ["$HOME/.weechat"]
 USER user
 
 ENTRYPOINT ["weechat"]
-
