@@ -16,7 +16,8 @@
 ?SECTION UNTRACKED
 ?SECTION NEW
 Invalid(DROP)   net     $FW     tcp
-# on a server you would obiously want to accept here
-SSH(DROP)     net     $FW
+Invalid(DROP)   net     dock    tcp
+Invalid(DROP)   net     dock    udp
+#SSH(ACCEPT)       net     $FW
 # on a server you would obviously want to accept here
-Ping(DROP)    net     $FW
+#Ping(ACCEPT)      net     $FW

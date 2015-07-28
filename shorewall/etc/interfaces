@@ -11,5 +11,5 @@
 ###############################################################################
 #ZONE		INTERFACE		OPTIONS
 -           lo              ignore
-dock        docker0
-net         all             dhcp,physical=+,routeback
+dock        docker0         bridge
+net         all             dhcp,physical=+

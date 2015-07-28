@@ -7,11 +7,13 @@
 # http://www.shorewall.net/manpages/shorewall-policy.html
 #
 ###############################################################################
-#SOURCE	DEST	POLICY		LOG	LIMIT:		CONNLIMIT:
+#SOURCE	        DEST        POLICY		LOG	LIMIT:		CONNLIMIT:
 #				LEVEL	BURST		MASK
-dock            all         ACCEPT
-# on a server you would obviously want to accept
+dock            net         ACCEPT
+dock            fw          ACCEPT
+
 net             dock        DROP
 net             all         DROP
+
 fw              net         ACCEPT
 fw              dock        ACCEPT

@@ -9,5 +9,4 @@
 ################################################################################################################
 #INTERFACE:DEST		SOURCE		ADDRESS		PROTO	PORT(S)	IPSEC	MARK	USER/	SWITCH	ORIGINAL
 #											GROUP		DEST
-#eth0                172.17.0.0/16
-#wlan0               172.17.42.1/24
+#net               172.17.0.0/16
