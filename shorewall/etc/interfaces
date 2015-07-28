@@ -1,0 +1,15 @@
+#
+# Shorewall version 4 - Interfaces File
+#
+# For information about entries in this file, type "man shorewall-interfaces"
+#
+# The manpage is also online at
+# http://www.shorewall.net/manpages/shorewall-interfaces.html
+#
+###############################################################################
+?FORMAT 2
+###############################################################################
+#ZONE		INTERFACE		OPTIONS
+-           lo              ignore
+dock        docker0
+net         all             dhcp,physical=+,routeback

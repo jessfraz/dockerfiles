@@ -1,0 +1,22 @@
+#
+# Shorewall version 4 - Rules File
+#
+# For information on the settings in this file, type "man shorewall-rules"
+#
+# The manpage is also online at
+# http://www.shorewall.net/manpages/shorewall-rules.html
+#
+######################################################################################################################################################################################################
+#ACTION     SOURCE      DEST        PROTO   DEST    SOURCE  ORIGINAL    RATE        USER/   MARK    CONNLIMIT   TIME        HEADERS     SWITCH      HELPER
+#                           PORT    PORT(S)DEST     LIMIT       GROUP
+?SECTION ALL
+?SECTION ESTABLISHED
+?SECTION RELATED
+?SECTION INVALID
+?SECTION UNTRACKED
+?SECTION NEW
+Invalid(DROP)   net     $FW     tcp
+# on a server you would obiously want to accept here
+SSH(DROP)     net     $FW
+# on a server you would obviously want to accept here
+Ping(DROP)    net     $FW
