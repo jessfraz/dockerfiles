@@ -1,6 +1,8 @@
 FROM alpine:latest
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
+ENV LANG en_US.UTF-8
+
 RUN apk update && apk add \
 	build-base \
 	ca-certificates \
