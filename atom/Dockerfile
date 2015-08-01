@@ -6,7 +6,7 @@
 #	in a container with all dependencies installed.
 #	Note: atom is not a node-webkit app,
 #	found this out a little too late into this example
-#	it uses atom-shell(https://github.com/atom/atom-shell)
+#	it uses electron(https://github.com/atom/electron)
 #	Tested on Debian Jessie.
 # USAGE:
 #	# Download atom Dockerfile
