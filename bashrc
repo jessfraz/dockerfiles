@@ -32,7 +32,11 @@ command_not_found_handle () {
 		fi
 	done
 
-	docker run -ti -u $(whoami) -w "$HOME" \
+	# Check if we are on a tty to decide whether to allocate one
+	DASHT=
+	tty -s && DASHT=-t
+
+	docker run $DASHT -i -u $(whoami) -w "$HOME" \
 		$(env | cut -d= -f1 | awk '{print "-e", $1}') \
 		$DEVICES $VOLUMES \
 		-v /etc/passwd:/etc/passwd:ro \
