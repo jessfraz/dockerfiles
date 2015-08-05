@@ -3,11 +3,17 @@ MAINTAINER Jessica Frazelle <jess@docker.com>
 
 RUN apk update && apk add \
 	ca-certificates \
+	git \
 	python \
 	py-boto \
 	py-paramiko \
-	py-pip \
-	&& rm -rf /var/cache/apk/* \
-	&& pip install beeswithmachineguns
+	&& rm -rf /var/cache/apk/*
 
-ENTRYPOINT [ "beeswithmachineguns" ]
+RUN git clone https://github.com/newsapps/beeswithmachineguns /usr/src/beeswithmachineguns \
+	&& cd /usr/src/beeswithmachineguns \
+	&& git fetch --tags \
+	&& git checkout 0.1.4 \
+	&& python setup.py install \
+	&& rm -rf /usr/src/beeswithmachineguns
+
+ENTRYPOINT [ "bees" ]
