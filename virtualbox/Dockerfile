@@ -18,7 +18,7 @@
 # 	docker cp virtualbox:/etc/init.d/vboxdrv .
 #
 # then the src:
-# 	docker cp virtualbox:/usr/src/vboxhost-4.3.28 /usr/src/
+# 	docker cp virtualbox:/usr/src/vboxhost-5.0.0 /usr/src/
 #
 # then the share
 # 	docker cp virtualbox:/usr/share/virtualbox /usr/share
