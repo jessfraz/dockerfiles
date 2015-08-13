@@ -12,18 +12,18 @@
 #	# Build doctor image
 #	docker build -t doctor .
 #
-#	docker run -it doctor
+#	docker run -it jess/doctor
 #
 
 # Base docker image
-FROM debian:jessie
+FROM alpine:latest
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
-# Install emacs
-RUN apt-get update && apt-get install -y \
-	emacs \
-	--no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/*
+# Install emacs: 
+# Note: Eamcs is only in testing repo -> http://pkgs.alpinelinux.org/packages?package=emacs&repo=all&arch=x86_64
+
+RUN apk update && apk add emacs --update-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted \
+	&& rm -rf /var/cache/apk/*
 
 # Autorun doctor
 CMD ["/usr/bin/emacs", "-f", "doctor"]

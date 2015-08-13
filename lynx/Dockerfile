@@ -4,12 +4,11 @@
 #	--name lynx \
 #	jess/lynx github.com/jfrazelle
 #
-FROM debian:jessie
+FROM alpine:latest
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
-RUN apt-get update && apt-get install -y \
+RUN apk update && apk add \
 	lynx \
-	--no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/*
+	&& rm -rf /var/cache/apk/*
 
-ENTRYPOINT [ "lynx" ]
+ENTRYPOINT ["lynx"]
