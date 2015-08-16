@@ -2,22 +2,29 @@
 # https://github.com/nicolargo/glances
 #
 # docker run --rm -it \
-# --pid host \
-# --ipc host \
-# --net host \
-# --privileged \
-# --name glances \
-# infoslack/glances
+#	--pid host \
+#	--ipc host \
+#	--net host \
+#	--name glances \
+#	jess/glances
 
-FROM python:latest
-MAINTAINER Daniel Romero <infoslack@gmail.com>
+FROM alpine:latest
 
-ENV VERSION 2.4.2
-RUN curl -L "https://github.com/nicolargo/glances/archive/v${VERSION}.tar.gz" \
-  -o glances.tar.gz \
-  && tar -zxvf glances.tar.gz
+ENV GLANCES_VERSION 2.4.2
+RUN apk update && apk add \
+	ca-certificates \
+	curl \
+	gcc \
+	python \
+	py-pip \
+	&& rm -rf /var/cache/apk/*
 
-WORKDIR glances-$VERSION
-RUN python setup.py install
+RUN curl -L "https://github.com/nicolargo/glances/archive/v${GLANCES_VERSION}.tar.gz" -o /tmp/glances.tar.gz \
+	&& mkdir -p /usr/src/glances \
+	&& tar -xzf /tmp/glances.tar.gz -C /usr/src/glances \
+	&& rm /tmp/glances.tar.gz* \
+	&& cd /usr/src/glances/glances-${GLANCES_VERSION} \
+	&& python setup.py install \
+	&& rm -rf /usr/src/glances
 
-CMD [ "glances" ]
+ENTRYPOINT [ "glances" ]
