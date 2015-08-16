@@ -16,14 +16,15 @@
 #
 
 # Base docker image
-FROM debian:jessie
+FROM alpine:latest
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
-# Install emacs
-RUN apt-get update && apt-get install -y \
+# Install emacs:
+# Note: Eamcs is only in testing repo -> http://pkgs.alpinelinux.org/packages?package=emacs&repo=all&arch=x86_64
+RUN apk update && apk add \
 	emacs \
-	--no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/*
+	--update-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ \
+	&& rm -rf /var/cache/apk/*
 
 # Autorun dunnet
 CMD ["/usr/bin/emacs", "-batch", "-l", "dunnet"]
