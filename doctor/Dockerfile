@@ -21,8 +21,10 @@ MAINTAINER Jessica Frazelle <jess@docker.com>
 
 # Install emacs:
 # Note: Eamcs is only in testing repo -> http://pkgs.alpinelinux.org/packages?package=emacs&repo=all&arch=x86_64
-
-RUN apk update && apk add emacs --update-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted
+RUN apk update && apk add \
+	emacs \
+	--update-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ \
+	&& rm -rf /var/cache/apk/*
 
 # Autorun doctor
 CMD ["/usr/bin/emacs", "-f", "doctor"]
