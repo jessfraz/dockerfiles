@@ -27,8 +27,20 @@ RUN useradd --create-home --home-dir $HOME user \
 ENV LANG C.UTF-8
 
 ENV TOR_VERSION 5.5a1
+ENV TOR_FINGERPRINT 0x4E2C6E8793298290
 
-RUN curl -sSL "https://www.torproject.org/dist/torbrowser/${TOR_VERSION}/tor-browser-linux64-${TOR_VERSION}_en-US.tar.xz" | tar -v -C /usr/local/bin -xJ --strip-components 1 
+# download tor and check signature
+RUN cd /tmp \
+	&& curl -sSOL "https://www.torproject.org/dist/torbrowser/${TOR_VERSION}/tor-browser-linux64-${TOR_VERSION}_en-US.tar.xz" \
+	&& curl -sSOL "https://www.torproject.org/dist/torbrowser/${TOR_VERSION}/tor-browser-linux64-${TOR_VERSION}_en-US.tar.xz.asc" \
+	&& mkdir ~/.gnupg \
+	&& gpg --keyserver x-hkp://keys.gnupg.net --recv-keys ${TOR_FINGERPRINT} \
+	&& gpg --fingerprint ${TOR_FINGERPRINT} | grep "Key fingerprint = EF6E 286D DA85 EA2A 4BA7  DE68 4E2C 6E87 9329 8290" \
+	&& gpg tor-browser-linux64-${TOR_VERSION}_en-US.tar.xz.asc \
+	&& tar -vxJ --strip-components 1 -C /usr/local/bin -f tor-browser-linux64-${TOR_VERSION}_en-US.tar.xz \
+	&& rm -rf tor-browser* \
+	&& rm -rf ~/.gnupg
+
 
 # good fonts
 COPY local.conf /etc/fonts/local.conf
