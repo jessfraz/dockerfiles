@@ -45,4 +45,4 @@ RUN sed -i.bak 's/sid main/sid main contrib non-free/g' /etc/apt/sources.list &&
 	&& dpkg -i '/src/google-talkplugin_current_amd64.deb'
 
 ENTRYPOINT [ "/usr/bin/chromium" ]
-CMD [ "--user-data-dir=/data", "--no-sandbox" ]
+CMD [ "--user-data-dir=/data" ]
