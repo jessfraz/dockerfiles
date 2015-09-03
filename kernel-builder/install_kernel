@@ -10,17 +10,41 @@ install_kernel(){
 	fi
 
 	local MAJOR_VERSION=${VERSION:0:1}
-	
+	local V=( ${VERSION//./ } )
+	local MAJOR_MINOR_VERSION="${V[0]}.${V[1]}"
+
+	# get the kernel source
 	if [[ "$VERSION" == *-rc* ]]; then
 		[ -d /usr/src/linux-${VERSION} ] || curl -sSL https://kernel.org/pub/linux/kernel/v${MAJOR_VERSION}.x/testing/linux-${VERSION}.tar.xz | tar -v -C /usr/src -xJ
+		
+		MAJOR_MINOR_VERSION="${MAJOR_VERSION}.x-rcN"
 	else
 		[ -d /usr/src/linux-${VERSION} ] || curl -sSL https://www.kernel.org/pub/linux/kernel/v${MAJOR_VERSION}.x/linux-${VERSION}.tar.xz | tar -v -C /usr/src -xJ
 	fi
 
+	# get the aufs standalone source
+	aufsdir=/usr/src/aufs4-standalone
+	if [[ -d $aufsdir ]]; then
+		rm -rf $aufsdir
+	fi
+	git clone -b aufs${MAJOR_MINOR_VERSION} --single-branch --depth 1 https://github.com/sfjro/aufs4-standalone.git $aufsdir
+	cd $aufsdir
+
 	cd /usr/src/linux-${VERSION}
+
+	# apply the aufs patches
+	git apply $aufsdir/aufs4-kbuild.patch
+	git apply $aufsdir/aufs4-base.patch
+	git apply $aufsdir/aufs4-mmap.patch
+	cp -r $aufsdir/{Documentation,fs} .
+	cp $aufsdir/include/uapi/linux/aufs_type.h include/uapi/linux/
+
+	# remove aufs source
+	rm -rf $aufsdir
 
 	if [[ ! -f .config ]] && [[ -f ../config ]]; then
 		cp ../config .config
+		echo "CONFIG_AUFS_FS=y" >> .config
 	fi
 
 	nice -19 make -j$JOBS KDEB_PKGVERSION=$PKGVERSION INSTALL_MOD_STRIP=1 deb-pkg
