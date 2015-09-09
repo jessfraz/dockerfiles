@@ -10,6 +10,7 @@ ADD  https://dl.google.com/linux/direct/google-chrome-beta_current_amd64.deb /sr
 RUN mkdir -p /usr/share/icons/hicolor && \
 	apt-get update && apt-get install -y \
 	ca-certificates \
+	fonts-liberation \
 	gconf-service \
 	hicolor-icon-theme \
 	libappindicator1 \
