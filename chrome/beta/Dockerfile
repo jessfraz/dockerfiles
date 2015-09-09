@@ -31,7 +31,8 @@ RUN mkdir -p /usr/share/icons/hicolor && \
 	--no-install-recommends && \
 	dpkg -i '/src/google-chrome-beta_current_amd64.deb' && \
 	dpkg -i '/src/google-talkplugin_current_amd64.deb' \
-	&& rm -rf /var/lib/apt/lists/*
+	&& rm -rf /var/lib/apt/lists/* \
+	&& rm -rf /src/*.deb
 
 COPY local.conf /etc/fonts/local.conf
 

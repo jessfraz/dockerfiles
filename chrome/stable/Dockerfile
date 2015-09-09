@@ -9,6 +9,7 @@
 #	-v $HOME/Downloads:/root/Downloads \
 #	-v $HOME/.config/google-chrome/:/data \ # if you want to save state
 #	--device /dev/snd \ # so we have sound
+#	-v /dev/shm:/dev/shm \
 #	--name chrome \
 #	jess/chrome
 #
@@ -46,7 +47,8 @@ RUN mkdir -p /usr/share/icons/hicolor && \
 	--no-install-recommends && \
 	dpkg -i '/src/google-chrome-stable_current_amd64.deb' && \
 	dpkg -i '/src/google-talkplugin_current_amd64.deb' \
-	&& rm -rf /var/lib/apt/lists/*
+	&& rm -rf /var/lib/apt/lists/* \
+	&& rm -rf /src/*.deb
 
 COPY local.conf /etc/fonts/local.conf
 
