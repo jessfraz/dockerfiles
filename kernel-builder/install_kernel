@@ -1,12 +1,49 @@
 #!/bin/bash
 set -e
 
+linux_next(){
+	(
+	cd /usr/src
+
+	# check if we already have the source checked out
+	if [[ -d linux ]]; then
+		cd linux
+
+		git checkout master
+
+		git remote update
+	else
+		# clone the source files
+		git clone https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
+
+		# add the linux-next remote
+		cd linux
+		git remote add linux-next https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+
+		# fetch linux-next and tags
+		git fetch linux-next
+		git fetch --tags linux-next
+	fi
+
+	git checkout -b next-$(date +%Y%m%d) next-$(date +%Y%m%d)
+	
+	if [[ ! -f .config ]] && [[ -f ../config ]]; then
+		cp ../config .config
+	fi
+
+	nice -19 make -j$JOBS KDEB_PKGVERSION=$PKGVERSION INSTALL_MOD_STRIP=1 deb-pkg
+	)
+}
+
 install_kernel(){
 	local VERSION=$1
 
 	if [[ -z $VERSION ]]; then
 		echo "Please specify a kernel version."
 		exit 1
+	elif [[ "$VERSION" == "next" ]]; then
+		linux_next
+		exit 0
 	fi
 
 	local MAJOR_VERSION=${VERSION:0:1}
@@ -16,7 +53,7 @@ install_kernel(){
 	# get the kernel source
 	if [[ "$VERSION" == *-rc* ]]; then
 		[ -d /usr/src/linux-${VERSION} ] || curl -sSL https://kernel.org/pub/linux/kernel/v${MAJOR_VERSION}.x/testing/linux-${VERSION}.tar.xz | tar -v -C /usr/src -xJ
-		
+
 		MAJOR_MINOR_VERSION="${MAJOR_VERSION}.x-rcN"
 	else
 		[ -d /usr/src/linux-${VERSION} ] || curl -sSL https://www.kernel.org/pub/linux/kernel/v${MAJOR_VERSION}.x/linux-${VERSION}.tar.xz | tar -v -C /usr/src -xJ
