@@ -56,6 +56,7 @@ set pgp_replyencrypt       # auto encrypt replies to encrypted mail
 set pgp_replysign          # auto sign replies to signed mail
 set pgp_replysignencrypted # auto sign & encrypt to signed & encrypted mail
 set pgp_show_unusable=no   # show which keys are no good anymore
+set pgp_autosign           # auto sign emails
 
 ignore "Authentication-Results:"
 ignore "DomainKey-Signature:"
