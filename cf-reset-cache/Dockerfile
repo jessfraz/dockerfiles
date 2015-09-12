@@ -1,10 +1,11 @@
-FROM alpine:latest
+FROM debian:wheezy
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
-RUN apk update && apk add \
+RUN apt-get update && apt-get install -y \
 	ca-certificates \
-	py-boto \
-	&& rm -rf /var/cache/apk/*
+	python-boto \
+	--no-install-recommends \ 
+	&& rm -rf /var/lib/apt/lists/*
 
 COPY ./reset-cache.py /bin/reset-cache.py
 
