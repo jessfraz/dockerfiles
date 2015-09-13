@@ -1,12 +1,11 @@
 # run a tor socks proxy in a container
 #
-# Exit relay:
-# 	docker run -d \
-#		--restart always \
-#		-v /etc/localtime:/etc/localtime:ro \
-#		-p 9050:9050 \
-# 		--name torproxy \
-# 		jess/tor-proxy
+# docker run -d \
+#	--restart always \
+#	-v /etc/localtime:/etc/localtime:ro \
+#	-p 9050:9050 \
+# 	--name torproxy \
+# 	jess/tor-proxy
 #
 FROM alpine:latest
 MAINTAINER Jessica Frazelle <jess@docker.com>
