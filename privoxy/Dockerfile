@@ -1,13 +1,12 @@
 # run a privoxy in a container and link to a tor socks proxy container
 #
-# Exit relay:
-# 	docker run -d \
-#		--restart always \
-#		--link torproxy:torproxy \
-#		-v /etc/localtime:/etc/localtime:ro \
-#		-p 8118:8118 \
-# 		--name privoxy \
-# 		jess/privoxy
+# docker run -d \
+#	--restart always \
+#	--link torproxy:torproxy \
+#	-v /etc/localtime:/etc/localtime:ro \
+#	-p 8118:8118 \
+# 	--name privoxy \
+# 	jess/privoxy
 #
 FROM alpine:latest
 MAINTAINER Jessica Frazelle <jess@docker.com>
