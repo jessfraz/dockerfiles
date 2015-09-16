@@ -16,6 +16,7 @@ RUN groupadd -g 1000 user \
 
 RUN apt-get update && apt-get install -y \
 	ca-certificates \
+	elinks \
 	git \
 	libsasl2-modules \
 	lynx \
