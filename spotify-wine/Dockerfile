@@ -12,7 +12,7 @@
 FROM jess/wine
 MAINTAINER Jessie Frazelle <jess@linux.com>
 
-COPY SpotifySetup.exe /usr/src/SpotifySetup.exe
+ADD https://d1clcicqv97n4s.cloudfront.net/ctrl/SpotifySetup.exe /usr/src/SpotifySetup.exe
 
 RUN echo "wine /usr/src/SpotifySetup.exe" > /root/.bash_history
 
