@@ -11,8 +11,6 @@ RUN apk update && apk add \
 	&& rm -rf /tmp/glibc* \
 	&& rm -rf /var/cache/apk/*
 
-ENV CONSUL_VERSION 0.5.2
-
 RUN	curl -sSL https://jesss.s3.amazonaws.com/binaries/vault -o /bin/vault \
 	&& chmod +x /bin/vault
 
