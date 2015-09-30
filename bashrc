@@ -38,7 +38,7 @@ command_not_found_handle () {
 
 	docker run $DASHT -i -u $(whoami) -w "$HOME" \
 		$(env | cut -d= -f1 | awk '{print "-e", $1}') \
-		$DEVICES $VOLUMES \
+		$DOCKERFILES_RUN_FLAGS $DEVICES $VOLUMES \
 		-v /etc/passwd:/etc/passwd:ro \
 		-v /etc/group:/etc/group:ro \
 		-v /etc/localtime:/etc/localtime:ro \
