@@ -4,6 +4,7 @@ MAINTAINER Jessica Frazelle <jess@docker.com>
 RUN apk update && apk add \
 	ca-certificates \
 	groff \
+	less \
 	python \
 	py-pip \
 	&& rm -rf /var/cache/apk/* \
