@@ -14,6 +14,6 @@ RUN apk update && apk add \
 	python-dev \
 	py-pip \
 	&& rm -rf /var/cache/apk/* \
-	&& pip install mitmproxy
+	&& pip install pillow==2.8.0 mitmproxy
 
 CMD [ "mitmproxy" ]
