@@ -3,7 +3,7 @@
 # Change the following six lines to match your Gmail account details
 set imap_user = "%GMAIL_LOGIN%"
 set imap_pass = "%GMAIL_PASS%" # leave blank for prompt
-set smtp_url = "smtps://$imap_user@smtp.gmail.com:465/"
+set smtp_url = "smtps://$imap_user@%SMTP_SERVER%:465/"
 set smtp_pass = "$imap_pass" # leave blank for prompt
 set from = "%GMAIL_FROM%"
 set realname = "%GMAIL_NAME%"
@@ -30,7 +30,7 @@ bind pager <down> next-line
 set resolve = no # uh, don't randomly take me to other messages when I do things
 
 # Basic config, you can leave this as is
-set folder = "imaps://imap.gmail.com:993"
+set folder = "imaps://%IMAP_SERVER%"
 set spoolfile = "+INBOX"
 set imap_check_subscribed
 set hostname = gmail.com
@@ -49,14 +49,6 @@ set include
 set sort = 'reverse-threads'
 set sort_aux = 'last-date-received'
 set auto_tag = yes
-
-# sane gpg settings to be a good encryption
-# social citizen of the world
-set pgp_replyencrypt       # auto encrypt replies to encrypted mail
-set pgp_replysign          # auto sign replies to signed mail
-set pgp_replysignencrypted # auto sign & encrypt to signed & encrypted mail
-set pgp_show_unusable=no   # show which keys are no good anymore
-set pgp_autosign           # auto sign emails
 
 ignore "Authentication-Results:"
 ignore "DomainKey-Signature:"
