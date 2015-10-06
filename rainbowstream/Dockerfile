@@ -21,6 +21,6 @@ RUN apk update && apk add \
 	py-pip \
 	zlib-dev \
 	&& rm -rf /var/cache/apk/* \
-	&& pip install rainbowstream
+	&& pip install pillow==2.8.0 rainbowstream
 
 ENTRYPOINT [ "rainbowstream" ]
