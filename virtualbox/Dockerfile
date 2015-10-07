@@ -15,13 +15,13 @@
 # is currently running to your host
 #
 # first the script:
-# 	docker cp virtualbox:/etc/init.d/vboxdrv .
+# 	docker cp virtualbox:/usr/lib/virtualbox/vboxdrv.sh .
 #
 # then the share
 # 	docker cp virtualbox:/usr/share/virtualbox /usr/share
 #
 # then run the script:
-# 	./vboxdrv setup
+# 	./vboxdrv.sh setup
 #
 # it will recompile the module, you can then see it in lsmod
 #
