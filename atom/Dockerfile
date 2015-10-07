@@ -1,8 +1,8 @@
 # VERSION:		  0.1
-# DESCRIPTION:	  Create the atom editor in a container 
+# DESCRIPTION:	  Create the atom editor in a container
 # AUTHOR:		  Jessica Frazelle <jess@docker.com>
 # COMMENTS:
-#	This file describes how to build the atom editor 
+#	This file describes how to build the atom editor
 #	in a container with all dependencies installed.
 #	Note: atom is not a node-webkit app,
 #	found this out a little too late into this example
@@ -20,26 +20,32 @@
 #
 
 # Base docker image
-FROM node
+FROM jess/chromium
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
 # Install dependencies
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y \
+	ca-certificates \
+	curl \
+	gconf2 \
+	gconf-service \
+	git \
+	gvfs-bin \
     libasound2 \
     libgconf-2-4 \
     libgnome-keyring-dev \
-    libgnome-keyring-dev \
     libgtk2.0-0 \
+	libnotify4 \
     libnss3 \
-    libxtst6 && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
+    libxtst6 \
+	--no-install-recommends \
+    && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /src
+ENV ATOM_VERSION 1.0.19
 
-RUN LATEST_TAG=`git ls-remote --tags https://github.com/atom/atom | sort -t '/' -k3 --version-sort | tail -n1 | cut -d'/' -f3` && \
-    git clone -b $LATEST_TAG https://github.com/atom/atom --depth 1 /src && \
-    script/build && script/grunt install && \
-    rm -fr /src
+RUN curl -sSL https://github.com/atom/atom/releases/download/v${ATOM_VERSION}/atom-amd64.deb -o /tmp/atom-amd64.deb \
+	&& dpkg -i /tmp/atom-amd64.deb \
+	&& rm -rf /tmp
 
 # Autorun atom
-CMD /usr/local/bin/atom --foreground --log-file /var/log/atom.log && tail -f /var/log/atom.log
+ENTRYPOINT [ "atom", "--foreground" ]
