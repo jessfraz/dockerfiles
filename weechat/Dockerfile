@@ -1,4 +1,4 @@
-FROM ubuntu:14.10
+FROM ubuntu:14.04
 MAINTAINER Justin Garrison <justinleegarrison@gmail.com>
 
 RUN apt-get update && apt-get install -y \
