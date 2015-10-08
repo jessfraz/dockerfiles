@@ -1,4 +1,4 @@
-FROM python:2.7.8
+FROM python:2.7
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
 # install linear algebra dependencies
@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y \
 
 RUN pip install -U \
 	numpy \
-	scipy \ 
+	scipy \
 	matplotlib \
 	pandas \
 	patsy \
