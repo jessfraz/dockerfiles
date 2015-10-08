@@ -19,6 +19,8 @@ ADD https://download1.rstudio.org/rstudio-0.99.484-amd64.deb /src/rstudio.deb
 RUN apt-get update && apt-get install -y \
 	ca-certificates \
 	fcitx-frontend-qt5 \
+	fcitx-modules \
+	fcitx-module-dbus \
 	libedit2 \
 	libgl1-mesa-dri \
 	libgl1-mesa-glx \
@@ -27,6 +29,8 @@ RUN apt-get update && apt-get install -y \
 	libjpeg-dev \
 	libjpeg62-turbo \
 	libjpeg62-turbo-dev \
+	libpresage1 \
+	libpresage-data \
 	libqt5core5a \
 	libqt5dbus5 \
 	libqt5gui5 \
@@ -45,7 +49,7 @@ RUN apt-get update && apt-get install -y \
 	--no-install-recommends \
 	&& echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
 	&& locale-gen en_US.utf8 \
-	&& /usr/sbin/update-locale LANG=en_US.UTF-8 \ 
+	&& /usr/sbin/update-locale LANG=en_US.UTF-8 \
 	&& dpkg -i '/src/rstudio.deb' \
 	&& apt-get install -fy \
 	&& rm -rf /var/lib/apt/lists/* \
