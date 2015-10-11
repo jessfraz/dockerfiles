@@ -38,4 +38,6 @@ RUN buildDeps=' \
 	&& rm -rf /usr/src/ykpersonalize \
 	&& apt-get purge -y --auto-remove $buildDeps
 
+WORKDIR /root/
+
 CMD [ "ykpersonalize", "--help" ]

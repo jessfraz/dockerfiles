@@ -14,4 +14,6 @@ RUN apt-get update && apt-get install -y \
 	yubico-piv-tool \
 	&& rm -rf /var/lib/apt/lists/*
 
+WORKDIR /root/
+
 CMD [ "yubico-piv-tool", "--help" ]
