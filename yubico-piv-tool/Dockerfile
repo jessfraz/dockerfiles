@@ -1,4 +1,4 @@
-# Run znc in a container
+# Run yubico-piv-tool in a container
 #
 # docker run --rm -it \
 # 	--device /dev/bus/usb \
@@ -14,5 +14,4 @@ RUN apt-get update && apt-get install -y \
 	yubico-piv-tool \
 	&& rm -rf /var/lib/apt/lists/*
 
-ENTRYPOINT [ "yubico-piv-tool" ]
-CMD [ "--help" ]
+CMD [ "yubico-piv-tool", "--help" ]
