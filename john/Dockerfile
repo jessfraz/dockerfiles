@@ -32,6 +32,9 @@ RUN buildDeps=' \
 	&& rm -rf /usr/src/johntheripper \
 	&& apt-get purge -y --auto-remove $buildDeps
 
+COPY john.ini /root/john.ini
+COPY passwd.lst /root/passwd.lst
+
 WORKDIR /root
 
 ENTRYPOINT [ "john" ]
