@@ -5,6 +5,7 @@
 #	-p 8081:8081 \
 # 	-v /etc/localtime:/etc/localtime:ro \
 # 	-v /volumes/sickbeard:/data \
+#	--link transmission:transmission \
 # 	--name sickbeard \
 # 	jess/sickbeard
 #

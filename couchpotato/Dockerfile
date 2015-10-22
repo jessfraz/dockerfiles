@@ -5,6 +5,7 @@
 #	-p 5050:5050 \
 # 	-v /etc/localtime:/etc/localtime:ro \
 # 	-v /volumes/couchpotato:/data \
+#	--link transmission:transmission \
 # 	--name couchpotato \
 # 	jess/couchpotato
 #
