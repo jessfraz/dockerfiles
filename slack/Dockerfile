@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -y \
 	gconf2 \
 	gconf-service \
 	gvfs-bin \
+	hunspell-en-us \
 	libasound2 \
 	libgtk2.0-0 \
 	libnotify4 \
