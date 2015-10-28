@@ -39,10 +39,5 @@ RUN apt-get update && apt-get install -y \
 
 ENV LC_ALL en_US.UTF-8
 ENV LANG en_US.UTF-8
-ENV HOME /home/user
-RUN useradd --create-home --home-dir $HOME user \
-	&& chown -R user:user $HOME
-
-USER user
 
 ENTRYPOINT ["slack"]
