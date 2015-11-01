@@ -21,6 +21,7 @@ RUN apt-get update && apt-get install -y \
 
 ENV CCID_VERSION 1.4.20
 ENV PCSC_LITE_VERSION 1.8.14
+ENV YUBIKEY_PIV_TOOL_VERSION 1.1.0
 RUN buildDeps=' \
 		autoconf \
 		bzip2 \
@@ -62,7 +63,7 @@ RUN buildDeps=' \
 	&& cp src/92_pcscd_ccid.rules /etc/udev/rules.d/ \
 	&& cd /usr/src && rm -rf /usr/src/ccid* \
 	&& mkdir -p /usr/src/yubico-piv-tool \
-	&& curl -sSL "https://jesss.s3.amazonaws.com/tmp/yubico-piv-tool-1.0.2.tar.gz" | tar -xz -C /usr/src/yubico-piv-tool --strip-components 1 \
+	&& curl -sSL "https://s3.j3ss.co/tmp/yubico-piv-tool-${YUBIKEY_PIV_TOOL_VERSION}.tar.gz" | tar -xz -C /usr/src/yubico-piv-tool --strip-components 1 \
 	&& cd /usr/src/yubico-piv-tool \
 	&& ./configure --prefix="/usr" \
 	&& make \
