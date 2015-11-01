@@ -3,29 +3,28 @@
 # docker run -d \
 #	-v /tmp/.X11-unix:/tmp/.X11-unix \
 #	-e DISPLAY=unix$DISPLAY \
-#	tor-messenger
+#	jess/tor-messenger
 #
-
 FROM debian:sid
 MAINTAINER Christian Koep <christian.koep@fom-net.de>
 
-ENV DEBIAN_FRONTEND noninteractive
 ENV HOME /home/user
 ENV LANG C.UTF-8
 ENV TOR_VERSION 0.1.0b3
 ENV TOR_FINGERPRINT 0x6887935AB297B391
 
-RUN apt-get update && apt-get -y --no-install-recommends install \
+RUN apt-get update && apt-get -y install \
+	ca-certificates \
 	curl \
+	gxmessage \
+	libasound2 \
+	libdbus-glib-1-2 \
+	libxt6 \
 	tar \
 	xz-utils \
 	zenity \
-	gxmessage \
-	ca-certificates \
-	libasound2 \
-	libdbus-glib-1-2 \
-	libxt6 && \
-	rm -rf /var/lib/apt/lists/*
+	--no-install-recommends \
+	&& rm -rf /var/lib/apt/lists/*
 
 RUN useradd --create-home --home-dir $HOME user && chown -R user:user $HOME
 
@@ -41,7 +40,8 @@ RUN cd /tmp && \
 	tar xfv tor-messenger-linux64-${TOR_VERSION}_en-US.tar.xz -C /usr/local/bin && \
 	rm -rf tor-messenger*	&& \
 	chown -R user.user /usr/local/bin/tor-messenger && \
-	rm -rf ~/.gnupg
+	rm -rf ~/.gnupg && \
+	rm -rf /tmp
 
 WORKDIR $HOME
 
