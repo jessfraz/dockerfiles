@@ -41,7 +41,7 @@ RUN apt-get update && apt-get install -y \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
-ENV ATOM_VERSION 1.0.19
+ENV ATOM_VERSION 1.1.0
 
 RUN curl -sSL https://github.com/atom/atom/releases/download/v${ATOM_VERSION}/atom-amd64.deb -o /tmp/atom-amd64.deb \
 	&& dpkg -i /tmp/atom-amd64.deb \
