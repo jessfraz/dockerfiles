@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
-ENV CCID_VERSION 1.4.20
+ENV CCID_VERSION 1.4.21
 ENV PCSC_LITE_VERSION 1.8.14
 ENV YUBIKEY_PIV_TOOL_VERSION 1.1.0
 RUN buildDeps=' \
@@ -71,6 +71,8 @@ RUN buildDeps=' \
 	&& cd ~ && rm -rf /usr/src/yubico-piv-tool* \
 	&& apt-get purge -y --auto-remove $buildDeps
 
-COPY testsign.sh /usr/local/bin/testsign.sh
+COPY testsign.sh /usr/local/bin/
+COPY entrypoint.sh /usr/local/bin/
 
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 CMD ["/usr/local/bin/testsign.sh"]

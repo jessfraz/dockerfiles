@@ -15,6 +15,7 @@ RUN apt-get update && apt-get install -y \
 	libjson0 \
 	libusb-1.0-0 \
 	libyubikey0 \
+	pcscd \
 	usbutils \
 	yubico-piv-tool \
 	&& rm -rf /var/lib/apt/lists/*
@@ -43,4 +44,7 @@ RUN buildDeps=' \
 
 WORKDIR /root/
 
+COPY entrypoint.sh /usr/local/bin/
+
+ENTRYPOINT [ "/usr/local/bin/entrypoint.sh" ]
 CMD [ "ykpersonalize", "--help" ]
