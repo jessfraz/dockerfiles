@@ -31,17 +31,17 @@ RUN apt-get update && apt-get install -y \
 	gconf-service \
 	git \
 	gvfs-bin \
-    libasound2 \
-    libgconf-2-4 \
-    libgnome-keyring-dev \
-    libgtk2.0-0 \
+	libasound2 \
+	libgconf-2-4 \
+	libgnome-keyring-dev \
+	libgtk2.0-0 \
 	libnotify4 \
-    libnss3 \
-    libxtst6 \
+	libnss3 \
+	libxtst6 \
 	--no-install-recommends \
-    && rm -rf /var/lib/apt/lists/*
+	&& rm -rf /var/lib/apt/lists/*
 
-ENV ATOM_VERSION 1.0.19
+ENV ATOM_VERSION 1.1.0
 
 RUN curl -sSL https://github.com/atom/atom/releases/download/v${ATOM_VERSION}/atom-amd64.deb -o /tmp/atom-amd64.deb \
 	&& dpkg -i /tmp/atom-amd64.deb \
