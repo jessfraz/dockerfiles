@@ -11,6 +11,7 @@ RUN mkdir -p /usr/share/icons/hicolor && \
 	apt-get update && apt-get install -y \
 	ca-certificates \
 	fonts-liberation \
+	fonts-symbola \
 	gconf-service \
 	hicolor-icon-theme \
 	libappindicator1 \

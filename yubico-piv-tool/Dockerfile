@@ -6,10 +6,14 @@
 #	--name yubico-piv-tool \
 #	jess/yubico-piv-tool
 #
-FROM debian:sid
+FROM ubuntu:14.04
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
 RUN apt-get update && apt-get install -y \
+	software-properties-common \
+	--no-install-recommends && \
+	add-apt-repository ppa:yubico/stable && \
+	apt-get update && apt-get install -y \
 	pcscd \
 	usbutils \
 	yubico-piv-tool \
