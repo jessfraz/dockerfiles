@@ -1,3 +1,3 @@
-FROM debian:jessie
+FROM progrium/busybox
 
 COPY ./unshare /usr/bin/unshare
