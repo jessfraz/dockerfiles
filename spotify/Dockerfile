@@ -1,12 +1,15 @@
 # Run spotify in a container
 #
+# Note: You might have to uncheck "Enable hardware acceleration" in the preferences.
+#
 # docker run -d \
 #	-v /etc/localtime:/etc/localtime:ro \
-#	-v /tmp/.X11-unix:/tmp/.X11-unix \
+#	-v /tmp/.X11-unix:/tmp/.X11-unix:ro \
 #	-e DISPLAY=unix$DISPLAY \
-#	--device /dev/snd:/dev/snd \
 #	-v $HOME/.spotify/config:/home/spotify/.config/spotify \
-#	-v $HOME/.spotify/cache:/home/spotify/spotify \
+#	-v $HOME/.spotify/cache:/home/spotify/.cache/spotify \
+#	-v /run/user/$UID/pulse:/run/pulse:ro \
+#	-e PULSE_SERVER=/run/pulse/native \
 #	--name spotify \
 #	jess/spotify
 #
@@ -15,8 +18,8 @@ MAINTAINER Jessie Frazelle <jess@linux.com>
 
 RUN apt-get update && apt-get install -y \
 	libpangoxft-1.0-0 \
-	alsa-utils \
 	software-properties-common \
+	pulseaudio \
 	--no-install-recommends && \
 	apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 94558F59 && \
 	echo "deb http://repository.spotify.com stable non-free" >> /etc/apt/sources.list.d/spotify.list && \
@@ -36,5 +39,5 @@ USER spotify
 # make search bar text better
 RUN echo "QLineEdit { color: #000 }" > /home/spotify/spotify-override.css
 
-ENTRYPOINT	[ "spotify" ]
+ENTRYPOINT [ "spotify" ]
 CMD [ "-stylesheet=/home/spotify/spotify-override.css" ]
