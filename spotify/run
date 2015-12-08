@@ -1,0 +1,16 @@
+#!/bin/bash
+mkdir -p $HOME/.spotify/{config,cache,dbus}
+chmod 700 $HOME/.spotify
+chmod 777 $HOME/.spotify/*
+exec docker run \
+      --rm \
+      -v /etc/localtime:/etc/localtime:ro \
+      -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
+      -e DISPLAY=unix$DISPLAY \
+      -v $HOME/.spotify/config:/home/spotify/.config/spotify \
+      -v $HOME/.spotify/cache:/home/spotify/.cache/spotify \
+      -v $HOME/.spotify/dbus:/tmp/dbus \
+      -v /run/user/$UID/pulse/native:/run/pulse/native:ro \
+      -e PULSE_SERVER=/run/pulse/native \
+      --name spotify \
+      spotify

@@ -1,18 +1,6 @@
 # Run spotify in a container
 #
 # Note: You might have to uncheck "Enable hardware acceleration" in the preferences.
-#
-# docker run -d \
-#	-v /etc/localtime:/etc/localtime:ro \
-#	-v /tmp/.X11-unix:/tmp/.X11-unix:ro \
-#	-e DISPLAY=unix$DISPLAY \
-#	-v $HOME/.spotify/config:/home/spotify/.config/spotify \
-#	-v $HOME/.spotify/cache:/home/spotify/.cache/spotify \
-#	-v /run/user/$UID/pulse:/run/pulse:ro \
-#	-e PULSE_SERVER=/run/pulse/native \
-#	--name spotify \
-#	jess/spotify
-#
 FROM ubuntu:14.04
 MAINTAINER Jessie Frazelle <jess@linux.com>
 
@@ -38,6 +26,9 @@ USER spotify
 
 # make search bar text better
 RUN echo "QLineEdit { color: #000 }" > /home/spotify/spotify-override.css
+
+# make dbus socket a real file so we can get at it through the filesystem
+ADD session-local.conf /etc/dbus-1/session-local.conf
 
 ENTRYPOINT [ "spotify" ]
 CMD [ "-stylesheet=/home/spotify/spotify-override.css" ]

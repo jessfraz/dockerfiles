@@ -1,0 +1,5 @@
+#!/bin/sh
+# Try something like:
+#   ./spotify-dbus-wrap dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+# See http://specifications.freedesktop.org/mpris-spec/latest/Player_Interface.html for more.
+DBUS_SESSION_BUS_ADDRESS=unix:path=$HOME/.spotify/dbus/sock "$@"
