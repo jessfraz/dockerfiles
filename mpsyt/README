@@ -1,7 +1,7 @@
 mps-youtube
 --------
 
-Docker container for running [mpsyt](https://github.com/np1/mps-youtube) inside 
+Docker container for running (mpsyt)[https://github.com/np1/mps-youtube] inside 
 a docker container.
 
 Run with
