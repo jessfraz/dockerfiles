@@ -21,8 +21,10 @@ SocksPort 0.0.0.0:9050
 
 VirtualAddrNetworkIPv4 10.192.0.0/10
 AutomapHostsOnResolve 1
-DNSPort 0.0.0.0:5353
-TransPort 0.0.0.0:9040
+DNSPort 5353
+DNSListenAddress 0.0.0.0
+TransPort 9040
+TransListenAddress 0.0.0.0
 
 ## Entry policies to allow/deny SOCKS requests based on IP address.
 ## First entry that matches wins. If no SocksPolicy is set, we accept
