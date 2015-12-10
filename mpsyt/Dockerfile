@@ -2,7 +2,7 @@ FROM python:latest
 MAINTAINER Justin Garrison <justinleegarrison@gmail.com>
 
 RUN apt-get update && apt-get install -y \
-	mplayer \
+	mplayer mpv \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
