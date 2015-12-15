@@ -17,13 +17,13 @@
 ## as a relay, and not make any local application connections yourself.
 #SocksPort 9050 # Default: Bind to localhost:9050 for local connections.
 #SocksPort 192.168.0.1:9100 # Bind to this address:port too.
-SocksPort 0.0.0.0:9050
+SocksPort 0.0.0.0:22350
 
 VirtualAddrNetworkIPv4 10.192.0.0/10
 AutomapHostsOnResolve 1
-DNSPort 5353
+DNSPort 22353
 DNSListenAddress 0.0.0.0
-TransPort 9040
+TransPort 22340
 TransListenAddress 0.0.0.0
 
 ## Entry policies to allow/deny SOCKS requests based on IP address.
