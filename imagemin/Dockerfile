@@ -18,6 +18,6 @@ RUN apk update && apk add \
 	nasm \
 	nodejs \
 	&& rm -rf /var/cache/apk/* \
-	&& npm install --global imagemin
+	&& npm install --global imagemin-cli
 
 CMD [ "imagemin", "--help" ]
