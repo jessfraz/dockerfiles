@@ -2,6 +2,7 @@
 # (but I have a container for that)
 #
 # docker run -v /tmp/.X11-unix:/tmp/.X11-unix \
+#	-v $HOME/.Skype:/home/skype/.Skype \
 #	-e DISPLAY=unix$DISPLAY \
 #	--link pulseaudio:pulseaudio \
 #	-e PULSE_SERVER=pulseaudio \
@@ -26,6 +27,15 @@ RUN curl http://download.skype.com/linux/skype-debian_4.3.0.37-1_i386.deb > /usr
 	dpkg --force-depends -i /usr/src/skype.deb && \
 	apt-get install -fy \
 	&& rm -rf /var/lib/apt/lists/*
+
+# Make a user
+ENV HOME /home/skype
+RUN useradd --create-home --home-dir $HOME skype \
+	&& chown -R skype:skype $HOME \
+	&& usermod -a -G audio,video skype
+
+WORKDIR $HOME
+USER skype
 
 # Start Skype
 ENTRYPOINT ["skype"]
