@@ -39,7 +39,9 @@ RUN buildDeps=' \
 	&& gem install bundler io-console --no-ri --no-rdoc \
 	&& bundle install \
 	&& make dist \
-	&& mv dist /usr/src/ \
+	&& mkdir -p /usr/src/consul \
+	&& mv index.html /usr/src/consul \
+	&& mv static /usr/src/consul \
 	&& apk del $buildDeps \
 	&& rm -rf /var/cache/apk/* \
 	&& rm -rf /go \
