@@ -16,9 +16,13 @@ RUN buildDeps=' \
 		go \
 		git \
 		gcc \
+		g++ \
 		libc-dev \
 		libgcc \
 		make \
+		nodejs \
+		ruby \
+		ruby-dev \
 		zip \
 	' \
 	set -x \
@@ -32,6 +36,8 @@ RUN buildDeps=' \
 	&& make all \
 	&& mv bin/consul /usr/bin/ \
 	&& cd ui \
+	&& gem install bundler io-console --no-ri --no-rdoc \
+	&& bundle install \
 	&& make dist \
 	&& mv dist /usr/src/ \
 	&& apk del $buildDeps \
