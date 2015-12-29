@@ -41,7 +41,8 @@ RUN buildDeps=' \
 	&& make dist \
 	&& mkdir -p /usr/src/consul \
 	&& mv index.html /usr/src/consul \
-	&& mv static /usr/src/consul \
+	&& mv static /usr/src/consul/ \
+	&& mv javascripts /usr/src/consul/ \
 	&& apk del $buildDeps \
 	&& rm -rf /var/cache/apk/* \
 	&& rm -rf /go \
