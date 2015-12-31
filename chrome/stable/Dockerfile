@@ -44,6 +44,7 @@ RUN mkdir -p /usr/share/icons/hicolor && \
 	libv4l-0 \
 	libxss1 \
 	libxtst6 \
+	strace \
 	wget \
 	xdg-utils \
 	--no-install-recommends && \
@@ -55,5 +56,5 @@ RUN mkdir -p /usr/share/icons/hicolor && \
 COPY local.conf /etc/fonts/local.conf
 
 # Autorun chrome
-ENTRYPOINT [ "/usr/bin/google-chrome" ]
+ENTRYPOINT [ "google-chrome" ]
 CMD [ "--user-data-dir=/data" ]
