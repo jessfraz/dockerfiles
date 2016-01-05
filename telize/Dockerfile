@@ -18,6 +18,7 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log \
 
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY mime.types /etc/nginx/mime.types
+COPY telize.conf /etc/nginx/conf.d/telize.conf
 
 EXPOSE 80 443
 
@@ -36,7 +37,6 @@ RUN buildDeps=' \
 	&& git clone https://github.com/fcambus/telize.git /usr/src/telize \
 	&& cd /usr/src/telize \
 	&& cp timezone*.conf /etc/nginx/ \
-	&& cp telize /etc/nginx/conf.d/telize.conf \
 	&& rm -rf /usr/src/telize \
 	&& apt-get purge -y --auto-remove $buildDeps
 
