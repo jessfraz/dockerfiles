@@ -26,7 +26,10 @@ ADD https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb /s
 RUN mkdir -p /usr/share/icons/hicolor && \
 	apt-get update && apt-get install -y \
 	ca-certificates \
+	fonts-droid \
+	fonts-cantarell \
 	fonts-liberation \
+	fonts-roboto \
 	fonts-symbola \
 	gconf-service \
 	hicolor-icon-theme \
@@ -35,6 +38,8 @@ RUN mkdir -p /usr/share/icons/hicolor && \
 	libcanberra-gtk-module \
 	libcurl3 \
 	libexif-dev \
+	libfontconfig1 \
+	libfreetype6 \
 	libgconf-2-4 \
 	libgl1-mesa-dri \
 	libgl1-mesa-glx \
@@ -44,6 +49,7 @@ RUN mkdir -p /usr/share/icons/hicolor && \
 	libv4l-0 \
 	libxss1 \
 	libxtst6 \
+	lsb-base \
 	strace \
 	wget \
 	xdg-utils \
