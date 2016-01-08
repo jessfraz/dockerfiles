@@ -26,8 +26,6 @@ ADD https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb /s
 RUN mkdir -p /usr/share/icons/hicolor && \
 	apt-get update && apt-get install -y \
 	ca-certificates \
-	fonts-droid \
-	fonts-cantarell \
 	fonts-liberation \
 	fonts-roboto \
 	fonts-symbola \
