@@ -1,6 +1,6 @@
 # To use:
 # Needs X11 socket and dbus mounted
-# 
+#
 # docker run -d \
 #	-v /etc/machine-id:/etc/machine-id:ro \
 #	-v /etc/localtime:/etc/localtime:ro \
@@ -23,6 +23,7 @@ MAINTAINER Jessie Frazelle <jess@linux.com>
 RUN apt-get update && apt-get install -y \
 	at-spi2-core \
 	dbus \
+	dbus-x11 \
 	libgl1-mesa-dri \
 	libgl1-mesa-glx \
 	libnotify-bin \
@@ -30,6 +31,15 @@ RUN apt-get update && apt-get install -y \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
+ENV HOME /home/user
+RUN useradd --create-home --home-dir $HOME user \
+	&& mkdir -p $HOME/.cache/dconf \
+	&& mkdir -p $HOME/.dbus \
+	&& chown -R user:user $HOME
+
 COPY org.freedesktop.Notifications.service /usr/share/dbus-1/services/org.freedesktop.Notifications.service
 
+WORKDIR $HOME
+
+USER user
 ENTRYPOINT ["/usr/lib/x86_64-linux-gnu/notify-osd"]
