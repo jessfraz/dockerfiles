@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<image schemaversion="6.2" name="suse-12.3-docker-guest">
+    <description type="system">
+        <author>Flavio Castelli</author>
+        <contact>fcastelli@suse.com</contact>
+        <specification>openSUSE 12.3 docker container</specification>
+    </description>
+    <preferences>
+        <type image="docker" container="os131">
+            <machine>
+                <vmdisk/>
+                <vmnic interface="eth0" mode="veth"/>
+            </machine>
+        </type>
+        <version>1.0.0</version>
+        <packagemanager>zypper</packagemanager>
+        <rpm-check-signatures>false</rpm-check-signatures>
+        <rpm-force>true</rpm-force>
+        <locale>en_US</locale>
+        <keytable>us.map.gz</keytable>
+        <hwclock>utc</hwclock>
+        <timezone>US/Eastern</timezone>
+    </preferences>
+    <users group="root">
+        <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root"/>
+    </users>
+    <repository type="yast2">
+        <source path="opensuse://12.3/repo/oss/"/>
+    </repository>
+    <packages type="image">
+        <package name="coreutils"/>
+        <package name="iputils"/>
+    </packages>
+    <packages type="bootstrap">
+        <package name="filesystem"/>
+        <package name="glibc-locale"/>
+        <package name="module-init-tools"/>
+    </packages>
+</image>
