@@ -1,0 +1,6 @@
+[update]
+name=update
+enabled=1
+autorefresh=0
+baseurl=http://download.opensuse.org/update/12.3/
+type=rpm-md

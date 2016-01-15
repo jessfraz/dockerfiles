@@ -1,0 +1,6 @@
+[oss]
+name=oss
+enabled=1
+autorefresh=0
+baseurl=http://download.opensuse.org/distribution/12.3/repo/oss/
+type=yast2
