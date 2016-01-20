@@ -2,6 +2,8 @@ FROM ubuntu:latest
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
 RUN apt-get update && apt-get install -y \
+        libxslt1.1 \
+        libjpeg8 \
         python \
         python-dev \
         python-virtualenv 
@@ -19,7 +21,7 @@ RUN buildDeps=' \
     && useradd -m mitm \
     && su -c "virtualenv /home/mitm/mitmproxy" mitm \
     && su -c "/home/mitm/mitmproxy/bin/pip install Pillow==3.0 mitmproxy" mitm \
-    && apt-get purge -y --auto-remove ${buildDeps} build-essential gcc \
+    && apt-get purge -y --auto-remove ${buildDeps} \
     && rm -rf /var/lib/apt/lists/* 
 
 EXPOSE 8080
