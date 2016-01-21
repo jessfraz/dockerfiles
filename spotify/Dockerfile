@@ -4,17 +4,19 @@
 FROM ubuntu:14.04
 MAINTAINER Jessie Frazelle <jess@linux.com>
 
-RUN apt-get update && apt-get install -y \
-	libpangoxft-1.0-0 \
-	software-properties-common \
-	pulseaudio \
-	--no-install-recommends && \
-	apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 94558F59 && \
-	echo "deb http://repository.spotify.com stable non-free" >> /etc/apt/sources.list.d/spotify.list && \
+RUN \
+	apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BBEBDCB318AD50EC6865090613B00F1FD2C19886 && \
+	echo "deb http://repository.spotify.com testing non-free" >> /etc/apt/sources.list.d/spotify.list && \
 	apt-get update && \
-	apt-get install --force-yes -y \
-	spotify-client \
-	&& rm -rf /var/lib/apt/lists/*
+	apt-get install -y --no-install-recommends \
+	  libpangoxft-1.0-0 \
+	  software-properties-common \
+	  xdg-utils \
+	  libxss1 \
+	  pulseaudio \
+	  spotify-client \
+	  && \
+	rm -rf /var/lib/apt/lists/*
 
 ENV HOME /home/spotify
 RUN useradd --create-home --home-dir $HOME spotify \

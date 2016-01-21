@@ -5,6 +5,7 @@ chmod 777 $HOME/.spotify/*
 xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f $HOME/.spotify/xauth nmerge -
 exec docker run \
       --rm \
+      --shm-size 1G \
       -v /etc/localtime:/etc/localtime:ro \
       -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
       -e DISPLAY \
