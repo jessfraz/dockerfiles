@@ -29,8 +29,7 @@ USER spotify
 # make search bar text better
 RUN echo "QLineEdit { color: #000 }" > /home/spotify/spotify-override.css
 
-# make dbus socket a real file so we can get at it through the filesystem
-ADD session-local.conf /etc/dbus-1/session-local.conf
+# add wrapper script
+ADD startup /usr/bin/startup
 
-ENTRYPOINT [ "spotify" ]
-CMD [ "-stylesheet=/home/spotify/spotify-override.css" ]
+ENTRYPOINT [ "startup" ]

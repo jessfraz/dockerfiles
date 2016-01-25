@@ -1,0 +1,5 @@
+#!/bin/sh
+addr='unix:path=/tmp/dbus/sock'
+DBUS_SESSION_BUS_ADDRESS=$(dbus-daemon --session --address=$addr --print-address --fork)
+export DBUS_SESSION_BUS_ADDRESS
+exec spotify -stylesheet=/home/spotify/spotify-override.css "$@"
