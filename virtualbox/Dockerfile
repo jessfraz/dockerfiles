@@ -26,7 +26,6 @@
 # it will recompile the module, you can then see it in lsmod
 #
 # then you can remove all the shit you copied
-# 	rm -rf /usr/src/vboxhost*
 # 	rm -rf /usr/share/virtualbox
 # 	rm vboxdrv
 #
