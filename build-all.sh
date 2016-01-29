@@ -10,10 +10,10 @@ unset IFS
 for f in "${files[@]}"; do
 	image=${f%Dockerfile}
 	base=${image%%\/*}
-	suite=${image##*\/}
 	build_dir=$(dirname $f)
+	suite=${build_dir##*\/}
 
-	if [[ -z "$suite" ]]; then
+	if [[ -z "$suite" ]] || [[ "$suite" == "$base" ]]; then
 		suite=latest
 	fi
 
@@ -27,4 +27,10 @@ for f in "${files[@]}"; do
 	echo "                       ---                                   "
 
 	docker push --disable-content-trust=false r.j3ss.co/${base}:${suite}
+
+	# also push the tag latest for "stable" tags
+	if [[ "$suite" == "stable" ]]; then
+		docker tag r.j3ss.co/${base}:${suite} r.j3ss.co/${base}:latest
+	docker push --disable-content-trust=false r.j3ss.co/${base}:latest
+	fi
 done
