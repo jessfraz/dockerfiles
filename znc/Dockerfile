@@ -24,7 +24,7 @@ RUN useradd --create-home --home-dir $HOME user \
 
 ENV LANG C.UTF-8
 
-ENV ZNC_VERSION 1.6.1
+ENV ZNC_VERSION 1.6.2
 
 RUN buildDeps=' \
 		build-essential \
