@@ -24,7 +24,7 @@
 FROM debian:sid
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
-ADD https://jesss.s3.amazonaws.com/debs/google-talkplugin_current_amd64.deb /src/google-talkplugin_current_amd64.deb
+ADD https://dl.google.com/linux/direct/google-talkplugin_current_amd64.deb /src/google-talkplugin_current_amd64.deb
 
 # Install Chromium
 RUN sed -i.bak 's/sid main/sid main contrib non-free/g' /etc/apt/sources.list && \
@@ -38,7 +38,7 @@ RUN sed -i.bak 's/sid main/sid main contrib non-free/g' /etc/apt/sources.list &&
 	libpango1.0-0 \
 	libv4l-0 \
 	pepperflashplugin-nonfree \
-	--no-install-recommends \ 
+	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& mkdir -p /etc/chromium.d/ \
 	&& /bin/echo -e 'export GOOGLE_API_KEY="AIzaSyCkfPOPZXDKNn8hhgu3JrA62wIgC93d44k"\nexport GOOGLE_DEFAULT_CLIENT_ID="811574891467.apps.googleusercontent.com"\nexport GOOGLE_DEFAULT_CLIENT_SECRET="kdloedMFGdGla2P1zacGjAQh"' > /etc/chromium.d/googleapikeys \
