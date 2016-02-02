@@ -7,6 +7,6 @@ RUN apk update && apk add \
 	ruby \
 	ruby-dev \
 	&& rm -rf /var/cache/apk/* \
-	&& gem install --no-document t
+	&& gem install --no-document io-console t
 
 ENTRYPOINT [ "t" ]
