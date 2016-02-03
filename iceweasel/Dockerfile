@@ -1,9 +1,7 @@
 FROM debian:sid
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
-RUN sed -i.bak 's/sid main/sid main contrib/g' /etc/apt/sources.list && \
-	apt-get update && apt-get install -y \
-	flashplugin-nonfree \
+RUN apt-get update && apt-get install -y \
 	hicolor-icon-theme \
 	iceweasel \
 	libgl1-mesa-dri \

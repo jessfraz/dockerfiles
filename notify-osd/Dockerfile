@@ -17,7 +17,7 @@
 #	--name notify-osd \
 #	jess/notify-osd
 
-FROM debian:sid
+FROM debian:stretch
 MAINTAINER Jessie Frazelle <jess@linux.com>
 
 RUN apt-get update && apt-get install -y \
