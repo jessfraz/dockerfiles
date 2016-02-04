@@ -21,18 +21,18 @@
 #		-e DISPLAY=unix$DISPLAY chromium
 
 # Base docker image
-FROM debian:stretch
+FROM debian:jessie
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
 ADD https://dl.google.com/linux/direct/google-talkplugin_current_amd64.deb /src/google-talkplugin_current_amd64.deb
 
 # Install Chromium
-RUN apt-get update && apt-get install -y \
+RUN echo 'deb http://httpredir.debian.org/debian stretch main' >> /etc/apt/sources.list && \
+	apt-get update && apt-get install -y \
 	chromium \
 	chromium-l10n \
 	fonts-liberation \
 	fonts-roboto \
-	fonts-symbola \
 	hicolor-icon-theme \
 	libcanberra-gtk-module \
 	libexif-dev \
@@ -40,6 +40,7 @@ RUN apt-get update && apt-get install -y \
 	libgl1-mesa-glx \
 	libpango1.0-0 \
 	libv4l-0 \
+	-t stretch fonts-symbola \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& mkdir -p /etc/chromium.d/ \
