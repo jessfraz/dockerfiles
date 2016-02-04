@@ -1,3 +1,3 @@
 #!/bin/bash
 
-su user -c code
+su user -c /usr/src/VSCode-linux-x64/Code
