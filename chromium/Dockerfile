@@ -27,7 +27,7 @@ MAINTAINER Jessica Frazelle <jess@docker.com>
 ADD https://dl.google.com/linux/direct/google-talkplugin_current_amd64.deb /src/google-talkplugin_current_amd64.deb
 
 # Install Chromium
-RUN echo 'deb http://httpredir.debian.org/debian stretch main' >> /etc/apt/sources.list && \
+RUN echo 'deb http://httpredir.debian.org/debian testing main' >> /etc/apt/sources.list && \
 	apt-get update && apt-get install -y \
 	chromium \
 	chromium-l10n \
@@ -40,7 +40,8 @@ RUN echo 'deb http://httpredir.debian.org/debian stretch main' >> /etc/apt/sourc
 	libgl1-mesa-glx \
 	libpango1.0-0 \
 	libv4l-0 \
-	-t stretch fonts-symbola \
+	-t testing \
+	fonts-symbola \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& mkdir -p /etc/chromium.d/ \

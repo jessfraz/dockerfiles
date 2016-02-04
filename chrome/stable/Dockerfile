@@ -15,7 +15,7 @@
 #
 
 # Base docker image
-FROM debian:stretch
+FROM debian:jessie
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
 ADD https://dl.google.com/linux/direct/google-talkplugin_current_amd64.deb /src/google-talkplugin_current_amd64.deb
@@ -23,12 +23,11 @@ ADD https://dl.google.com/linux/direct/google-talkplugin_current_amd64.deb /src/
 ADD https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb /src/google-chrome-stable_current_amd64.deb
 
 # Install Chromium
-RUN mkdir -p /usr/share/icons/hicolor && \
+RUN echo 'deb http://httpredir.debian.org/debian testing main' >> /etc/apt/sources.list && \
 	apt-get update && apt-get install -y \
 	ca-certificates \
 	fonts-liberation \
 	fonts-roboto \
-	fonts-symbola \
 	gconf-service \
 	hicolor-icon-theme \
 	libappindicator1 \
@@ -51,6 +50,8 @@ RUN mkdir -p /usr/share/icons/hicolor && \
 	strace \
 	wget \
 	xdg-utils \
+	-t testing \
+	fonts-symbola \
 	--no-install-recommends && \
 	dpkg -i '/src/google-chrome-stable_current_amd64.deb' && \
 	dpkg -i '/src/google-talkplugin_current_amd64.deb' \
