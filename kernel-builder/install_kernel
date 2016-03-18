@@ -58,7 +58,7 @@ install_kernel(){
 
 		MAJOR_MINOR_VERSION="${MAJOR_VERSION}.x-rcN"
 	else
-		[ -d /usr/src/linux-${VERSION} ] || curl -sSL https://www.kernel.org/pub/linux/kernel/v${MAJOR_VERSION}.x/linux-${VERSION}.tar.xz | tar -v -C /usr/src -xJ
+		[ -d /usr/src/linux-${VERSION} ] || curl -sSL https://cdn.kernel.org/pub/linux/kernel/v${MAJOR_VERSION}.x/linux-${VERSION}.tar.xz | tar -v -C /usr/src -xJ
 	fi
 
 	# get the aufs standalone source
