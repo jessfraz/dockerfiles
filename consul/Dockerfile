@@ -3,13 +3,14 @@ MAINTAINER Jessica Frazelle <jess@docker.com>
 
 ENV PATH /go/bin:/usr/local/go/bin:$PATH
 ENV GOPATH /go
+#ENV GO15VENDOREXPERIMENT 1
 
 RUN	apk update && apk add \
 	ca-certificates \
 	curl \
 	&& rm -rf /var/cache/apk/*
 
-ENV CONSUL_VERSION v0.6.0
+ENV CONSUL_VERSION v0.6.3
 
 RUN buildDeps=' \
 		bash \
@@ -33,7 +34,7 @@ RUN buildDeps=' \
 	&& mkdir -p /go/src/github.com/hashicorp /etc/consul.d \
 	&& git clone --branch ${CONSUL_VERSION} https://github.com/hashicorp/consul /go/src/github.com/hashicorp/consul \
 	&& cd /go/src/github.com/hashicorp/consul \
-	&& make all \
+	&& XC_ARCH="amd64" XC_OS="linux" make all \
 	&& mv bin/consul /usr/bin/ \
 	&& cd ui \
 	&& gem install bundler io-console --no-ri --no-rdoc \
