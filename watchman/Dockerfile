@@ -22,7 +22,7 @@ RUN buildDeps=' \
 	&& ./configure \
 	&& make \
 	&& make install \
-	&& rm -rf /usr/src/watchmen \
+	&& rm -rf /usr/src/watchman \
 	&& apt-get purge -y --auto-remove $buildDeps
 
 ENTRYPOINT [ "watchman" ]
