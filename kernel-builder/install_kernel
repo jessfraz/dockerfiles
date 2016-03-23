@@ -39,6 +39,7 @@ linux_next(){
 
 install_kernel(){
 	local VERSION=$1
+	local OPT=$2
 
 	if [[ -z $VERSION ]]; then
 		echo "Please specify a kernel version."
@@ -61,46 +62,60 @@ install_kernel(){
 		[ -d /usr/src/linux-${VERSION} ] || curl -sSL https://cdn.kernel.org/pub/linux/kernel/v${MAJOR_VERSION}.x/linux-${VERSION}.tar.xz | tar -v -C /usr/src -xJ
 	fi
 
-	# get the aufs standalone source
-	aufsdir=/tmp/aufs4-standalone
-	if [[ -d $aufsdir ]]; then
-		rm -rf $aufsdir
+	if [[ "$OPT" == "aufs" ]]; then
+		# get the aufs standalone source
+		aufsdir=/tmp/aufs4-standalone
+		if [[ -d $aufsdir ]]; then
+			rm -rf $aufsdir
+		fi
+		git clone -b aufs${MAJOR_MINOR_VERSION} --single-branch --depth 1 https://github.com/sfjro/aufs4-standalone.git $aufsdir
 	fi
-	git clone -b aufs${MAJOR_MINOR_VERSION} --single-branch --depth 1 https://github.com/sfjro/aufs4-standalone.git $aufsdir
 
-	# get the grsec patches
-	grsecdir=/tmp/grsec
-	if [[ -d $grsecdir ]]; then
-		rm -rf $grsecdir
+	if [[ "$OPT" == "grsec" ]]; then
+		# get the grsec patches
+		grsecdir=/tmp/grsec
+		if [[ -d $grsecdir ]]; then
+			rm -rf $grsecdir
+		fi
+		mkdir -p $grsecdir
+		curl -sSL -o "${grsecdir}/grsecurity.patch" "https://grsecurity.net/test/grsecurity-${GRSEC_VERSION}.patch"
+		curl -sSL -o "${grsecdir}/grsecurity.patch.sig" "https://grsecurity.net/test/grsecurity-${GRSEC_VERSION}.patch.sig"
+		# add the gpg key
+		gpg --keyserver pgp.mit.edu --recv-keys "DE94 52CE 46F4 2094 907F 108B 44D1 C0F8 2525 FE49"
+		# verify the patch
+		gpg --verify $grsecdir/grsecurity.patch.sig
 	fi
-	mkdir -p $grsecdir
-	curl -sSL -o "${grsecdir}/grsecurity.patch" "https://grsecurity.net/test/grsecurity-${GRSEC_VERSION}.patch"
-	curl -sSL -o "${grsecdir}/grsecurity.patch.sig" "https://grsecurity.net/test/grsecurity-${GRSEC_VERSION}.patch.sig"
-	# add the gpg key
-	gpg --keyserver pgp.mit.edu --recv-keys "DE94 52CE 46F4 2094 907F 108B 44D1 C0F8 2525 FE49"
-	# verify the patch
-	gpg --verify $grsecdir/grsecurity.patch.sig
 
 	# apply the patches and compile the kernel
 	cd /usr/src/linux-${VERSION}
 
-	# apply the aufs patches
-	patch -p1 < $grsecdir/grsecurity.patch || true
-	git apply $aufsdir/aufs4-kbuild.patch
-	git apply $aufsdir/aufs4-base.patch
-	git apply $aufsdir/aufs4-mmap.patch
-	cp -r $aufsdir/{Documentation,fs} .
-	cp $aufsdir/include/uapi/linux/aufs_type.h include/uapi/linux/
+	# apply the patches
+	if [[ "$OPT" == "grsec" ]]; then
+		patch -p1 < $grsecdir/grsecurity.patch || true
+	fi
+	if [[ "$OPT" == "aufs" ]]; then
+		git apply $aufsdir/aufs4-kbuild.patch
+		git apply $aufsdir/aufs4-base.patch
+		git apply $aufsdir/aufs4-mmap.patch
+		cp -r $aufsdir/{Documentation,fs} .
+		cp $aufsdir/include/uapi/linux/aufs_type.h include/uapi/linux/
+	fi
 
-	# remove aufs source
-	rm -rf $aufsdir
+	if [[ "$OPT" == "aufs" ]]; then
+		# remove aufs source
+		rm -rf $aufsdir
+	fi
 
-	# remove grsecdir
-	rm -rf $grsecdir
+	if [[ "$OPT" == "grsec" ]]; then
+		# remove grsecdir
+		rm -rf $grsecdir
+	fi
 
 	if [[ ! -f .config ]] && [[ -f ../config ]]; then
 		cp ../config .config
-		echo "CONFIG_AUFS_FS=y" >> .config
+		if [[ "$OPT" == "aufs" ]]; then
+			echo "CONFIG_AUFS_FS=y" >> .config
+		fi
 	fi
 
 	nice -19 make -j$JOBS KDEB_PKGVERSION=$PKGVERSION DISABLE_PAX_PLUGINS=y INSTALL_MOD_STRIP=1 deb-pkg
