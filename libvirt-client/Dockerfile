@@ -5,4 +5,4 @@ RUN apk update && apk add \
 	libvirt-client \
 	&& rm -rf /var/cache/apk/*
 
-CMD [ "virsh" ]
+ENTRYPOINT [ "virsh", "-c", "qemu:///system" ]
