@@ -5,6 +5,7 @@ RUN apt-get update && apt-get install -y \
 	automake \
 	g++ \
 	libapr1-dev \
+	libcurl4-openssl-dev \
 	libpython-dev \
 	libsasl2-dev \
 	libsasl2-modules \
