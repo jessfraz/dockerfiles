@@ -14,8 +14,11 @@ RUN apt-get update && apt-get install -y \
 	maven \
 	openjdk-8-jdk \
 	patch \
+	python-rbtools \
 	zlib1g-dev \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
+
+WORKDIR /usr/src/mesos
 
 ENTRYPOINT [ "bash" ]
