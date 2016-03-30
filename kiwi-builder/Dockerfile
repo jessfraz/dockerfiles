@@ -1,7 +1,6 @@
 FROM opensuse
 
-RUN zypper ar http://download.opensuse.org/repositories/Virtualization:/Appliances/openSUSE_12.3 virtualization:appliances \
-	&& zypper --non-interactive install \
+RUN zypper --non-interactive install \
 	kiwi \
 	kiwi-doc \
 	lxc
