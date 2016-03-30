@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install -y \
 	ca-certificates \
 	curl \
 	g++ \
+	iptables \
 	libapr1-dev \
 	libcurl4-openssl-dev \
 	libpython-dev \
@@ -25,6 +26,11 @@ RUN apt-get update && apt-get install -y \
 	zlib1g-dev \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
+
+ADD https://get.docker.com/builds/Linux/x86_64/docker-latest /usr/bin/docker
+
+RUN chmod +x /usr/bin/docker \
+	&& echo "docker daemon -D -s overlay" > $HOME/.bash_history
 
 WORKDIR /usr/src/mesos
 
