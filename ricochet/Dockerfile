@@ -23,7 +23,7 @@ RUN apt-get update && apt-get install -y \
 	qtbase5-dev \
 	&& rm -rf /var/lib/apt/lists/*
 
-ENV RICOCHET_VERSION 1.1.1
+ENV RICOCHET_VERSION 1.1.2
 ENV RICOCHET_FINGERPRINT 0xFF97C53F183C045D
 
 RUN buildDeps=' \
