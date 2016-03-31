@@ -5,8 +5,12 @@ RUN apt-get update && apt-get install -y \
 	automake \
 	ca-certificates \
 	ccache \
-	clang \
+	clang-3.8 \
+	clang-format-3.8 \
+	clang-tidy-3.8 \
+	colorgcc \
 	curl \
+	g++ \
 	iptables \
 	libapr1-dev \
 	libcurl4-openssl-dev \
@@ -32,6 +36,8 @@ ADD https://get.docker.com/builds/Linux/x86_64/docker-latest /usr/bin/docker
 
 RUN chmod +x /usr/bin/docker \
 	&& echo "docker daemon -D -s overlay" > $HOME/.bash_history
+
+ENV CCACHE_MAXSIZE=20G CCACHE_CPP2=true CCACHE_HARDLINK=true CCACHE_SLOPPINESS=file_macro,time_macros,include_file_mtime,include_file_ctime,file_stat_matches CC=/usr/bin/clang CXX=/usr/bin/clang++
 
 WORKDIR /usr/src/mesos
 
