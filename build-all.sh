@@ -31,6 +31,6 @@ for f in "${files[@]}"; do
 	# also push the tag latest for "stable" tags
 	if [[ "$suite" == "stable" ]]; then
 		docker tag r.j3ss.co/${base}:${suite} r.j3ss.co/${base}:latest
-	docker push --disable-content-trust=false r.j3ss.co/${base}:latest
+		docker push --disable-content-trust=false r.j3ss.co/${base}:latest
 	fi
 done
