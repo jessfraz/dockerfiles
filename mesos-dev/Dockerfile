@@ -7,7 +7,6 @@ RUN apt-get update && apt-get install -y \
 	ccache \
 	clang \
 	curl \
-	g++ \
 	iptables \
 	libapr1-dev \
 	libcurl4-openssl-dev \
