@@ -22,7 +22,7 @@ my_hdr X-Hack-The-Planet: Yes
 my_hdr X-Acid-Burn: Yes
 
 # TODO figure out how to use the sidebar more effectively :)
-set sidebar_visible = no
+#set sidebar_visible = no
 
 # Tianon keybindings and settings, because he's special.
 bind pager <up> previous-line

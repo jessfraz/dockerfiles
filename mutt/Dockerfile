@@ -8,30 +8,29 @@
 #	--name mutt \
 #	jess/mutt
 #
-FROM debian:sid
+FROM alpine:latest
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
-RUN groupadd -g 1000 user \
-	&& useradd --create-home -d /home/user -g user -u 1000 user
+RUN addgroup -g 1000 user \
+	&& adduser -D -h /home/user -G user -u 1000 user
 
-RUN apt-get update && apt-get install -y \
+RUN apk --update add \
 	ca-certificates \
 	elinks \
 	git \
-	libsasl2-modules \
+	gnupg \
 	lynx \
-	mutt-dbg \
-	mutt-patched \
-	vim-nox \
-	--no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/*
+	mutt \
+	mutt-doc \
+	vim \
+	&& rm -rf /var/cache/apk/*
 
 # a browser is necessary!
 ENV BROWSER lynx
 
 USER user
 ENV HOME /home/user
-ENV TERM xterm-256color
+ENV TERM xterm
 RUN mkdir -p $HOME/.mutt/cache/headers $HOME/.mutt/cache/bodies \
 	&& touch $HOME/.mutt/certificates
 
@@ -47,4 +46,4 @@ COPY	.mutt			$HOME/.mutt
 
 ENTRYPOINT ["/entrypoint.sh"]
 
-CMD ["mutt-patched", "-F", "~/.mutt/muttrc"]
+CMD ["mutt", "-F", "~/.mutt/muttrc"]
