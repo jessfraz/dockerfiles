@@ -17,7 +17,8 @@
 #
 # You can load an LDIF file (to set up your directory) like so:
 #
-# ldapadd -h localhost -p <host_port_of_container> -c -x \
+# docker exec -it your_container ldapadd \
+# 	-h localhost -p <host_port_of_container> -c -x \
 # 	-D cn=admin,dc=mycorp,dc=com -W -f data.ldif
 #
 # Be aware that by default the LDAP port is accessible from anywhere if the \
@@ -28,6 +29,7 @@ MAINTAINER Jessica Frazelle <jess@docker.com>
 
 RUN apt-get update && LC_ALL=C DEBIAN_FRONTEND=noninteractive \
 	apt-get install -y \
+	ldap-utils \
 	slapd \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
