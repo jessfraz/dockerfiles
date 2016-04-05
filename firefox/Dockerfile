@@ -1,29 +1,19 @@
 FROM debian:sid
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
-RUN sed -i.bak 's/sid main/sid main contrib/g' /etc/apt/sources.list && \
-	apt-get update && apt-get install -y \
-	bzip2 \
+RUN	apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 0AB215679C571D1C8325275B9BDB3D89CE49EC21 \
+	&& echo "deb http://ppa.launchpad.net/mozillateam/firefox-next/ubuntu wily main" >> /etc/apt/sources.list.d/firefox.list \
+	&& apt-get update && apt-get install -y \
 	ca-certificates \
-	curl \
-	flashplugin-nonfree \
+	firefox \
 	hicolor-icon-theme \
 	libasound2 \
-	libdbus-glib-1-2 \
 	libgl1-mesa-dri \
 	libgl1-mesa-glx \
-	libcanberra-gtk-module \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
-ENV FIREFOX_VERSION 45.0.1
 ENV LANG en-US
-
-RUN curl -sSL "https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/${FIREFOX_VERSION}/linux-x86_64/${LANG}/firefox-${FIREFOX_VERSION}.tar.bz2" -o /tmp/firefox.tar.bz2 \
-	&& mkdir -p /opt/firefox \
-	&& tar -xjf /tmp/firefox.tar.bz2 -C /opt/firefox --strip-components 1 \
-	&& rm /tmp/firefox.tar.bz2* \
-	&& ln -s /opt/firefox/firefox /usr/bin/firefox
 
 COPY local.conf /etc/fonts/local.conf
 
