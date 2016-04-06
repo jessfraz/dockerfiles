@@ -28,7 +28,7 @@ RUN apk update && apk add \
 		echo 'git init --bare $1'; \
 		echo 'chown -R git:git $1'; \
 		echo '}'; \
-	} > /root/.bashrc
+	} > /home/git/.bashrc
 
 ENV HOME /home/git
 EXPOSE 22
