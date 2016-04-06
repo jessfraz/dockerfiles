@@ -9,4 +9,4 @@ if [ "x$1" != "x" ]; then
 fi
 PROPERTIES="$PROPERTIES -Dcom.google.gitiles.sourcePath=$ROOT"
 
-exec java $PROPERTIES -jar "$ROOT/buck-out/gen/gitiles-dev/dev.jar"
+exec java $PROPERTIES -jar "$ROOT/buck-out/gen/gitiles/gitiles.war"
