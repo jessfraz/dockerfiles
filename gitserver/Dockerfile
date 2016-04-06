@@ -22,7 +22,13 @@ RUN apk update && apk add \
 	&& adduser -D -S -s /usr/bin/git-shell -h /home/git -g git git \
 	&& mkdir -p /home/git/.ssh \
 	&& chown -R git:git /home/git \
-	&& passwd -u git
+	&& passwd -u git \
+	&& { \
+		echo 'create_repo(){'; \
+		echo 'git init --bare $1'; \
+		echo 'chown -R git:git $1'; \
+		echo '}'; \
+	} > /root/.bashrc
 
 ENV HOME /home/git
 EXPOSE 22
