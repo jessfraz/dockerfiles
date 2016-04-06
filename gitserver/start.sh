@@ -11,7 +11,12 @@ if [ ! -f "${HOSTKEY}" ]; then
 	ssh-keygen -A
 fi
 
+mkdir -p ${HOME}/.ssh
+source /etc/profile
 [ "$PUBKEY" ] && echo "$PUBKEY" > ${HOME}/.ssh/authorized_keys
+
+chown -R git:git ${HOME}
+chmod -R 755 ${HOME}
 
 # Fix permissions, if writable
 if [ -w ${HOME}/.ssh ]; then

@@ -1,18 +1,19 @@
 FROM java:8-alpine
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
-RUN apk --update add \
-	apache-ant \
-	bash \
-	git \
-	perl \
-	python \
-	zip \
-	--update-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ \
-	&& rm -rf /var/cache/apk/*
-
 # install buck
-RUN git clone --depth 1 https://github.com/facebook/buck.git /buck \
+RUN buildDeps=' \
+		apache-ant \
+		bash \
+		git \
+		perl \
+		python \
+		zip \
+	' \
+	set -x \
+	&& apk --update add $buildDeps \
+	--update-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ \
+	&& git clone --depth 1 https://github.com/facebook/buck.git /buck \
 	&& ( \
 		cd /buck \
 		&& ant \
@@ -23,12 +24,12 @@ RUN git clone --depth 1 https://github.com/facebook/buck.git /buck \
 		cd /gitiles \
 		&& touch .nobuckcheck \
 		&& git submodule update --init \
-		&& buck build all \
-		&& mv buck-out/gen/gitiles/gitiles.war /gitiles.war \
+		&& buck build gitiles-dev:dev \
 	) \
-	&& rm -rf /gitiles \
-	&& rm -rf /buck
+	&& apk del $buildDeps \
+	&& rm -rf /buck \
+	&& rm -rf /var/cache/apk/*
 
-COPY ./start.sh /start.sh
+COPY start.sh /start.sh
 
 ENTRYPOINT [ "/start.sh" ]
