@@ -29,7 +29,7 @@ RUN pip install psycopg2 sentry
 
 EXPOSE 9000
 
-ADD sentry.conf.py /sentry.conf.py
+COPY sentry.conf.py /sentry.conf.py
 
 ENTRYPOINT ["/usr/local/bin/sentry", "--config=/sentry.conf.py"]
 
