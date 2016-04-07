@@ -1,0 +1,12 @@
+#!/bin/sh
+
+repo=$1
+if [ $repo != *.git ]; then
+	repo="${repo}.git"
+fi
+echo "Creating $repo"
+(
+cd "$HOME"
+git init --bare "$repo"
+chown -R git:git "$repo"
+)

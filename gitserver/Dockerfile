@@ -22,19 +22,14 @@ RUN apk update && apk add \
 	&& adduser -D -S -s /usr/bin/git-shell -h /home/git -g git git \
 	&& mkdir -p /home/git/.ssh \
 	&& chown -R git:git /home/git \
-	&& passwd -u git \
-	&& { \
-		echo 'create_repo(){'; \
-		echo 'git init --bare $1'; \
-		echo 'chown -R git:git $1'; \
-		echo '}'; \
-	} > /etc/profile
+	&& passwd -u git
 
 ENV HOME /home/git
 EXPOSE 22
 WORKDIR $HOME
 
 COPY ./start.sh /
+COPY create_repo /usr/bin/create_repo
 
 ENTRYPOINT ["/start.sh"]
 CMD ["/usr/sbin/sshd", "-D", "-e", "-f", "/etc/ssh/sshd_config"]
