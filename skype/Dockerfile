@@ -7,6 +7,7 @@
 #	--link pulseaudio:pulseaudio \
 #	-e PULSE_SERVER=pulseaudio \
 #	--device /dev/video0 \
+#	--name skype
 #	jess/skype
 #
 FROM debian:jessie
