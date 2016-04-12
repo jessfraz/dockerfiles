@@ -38,6 +38,9 @@ if [ -d "$HOME/.gnupg" ]; then
 	# social citizen of the world
 	{
 		echo
+		if [ -f "/etc/Muttrc.gpg.dist" ]; then
+			echo 'source /etc/Muttrc.gpg.dist'
+		fi
 		if [ -f "/usr/share/doc/mutt/samples/gpg.rc" ]; then
 			echo 'source /usr/share/doc/mutt/samples/gpg.rc'
 		fi
