@@ -1,0 +1,4 @@
+coreos_production_*.iso
+coreos_production_*.bin
+coreos_production_*.bin*
+version.txt

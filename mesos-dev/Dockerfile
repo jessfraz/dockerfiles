@@ -32,9 +32,10 @@ RUN apt-get update && apt-get install -y \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
-ADD https://get.docker.com/builds/Linux/x86_64/docker-latest /usr/bin/docker
 
-RUN chmod +x /usr/bin/docker \
+RUN curl -sSL https://get.docker.com/builds/Linux/x86_64/docker-latest.tgz | tar -xvz \
+		-C /usr/bin --strip-components 1 \
+	&& chmod +x /usr/bin/docker* \
 	&& echo "docker daemon -D -s overlay" > $HOME/.bash_history
 
 ENV CCACHE_MAXSIZE=20G CCACHE_CPP2=true CCACHE_HARDLINK=true CCACHE_SLOPPINESS=file_macro,time_macros,include_file_mtime,include_file_ctime,file_stat_matches CC=/usr/bin/clang CXX=/usr/bin/clang++
