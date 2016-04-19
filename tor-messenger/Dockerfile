@@ -10,7 +10,7 @@ MAINTAINER Christian Koep <christian.koep@fom-net.de>
 
 ENV HOME /home/user
 ENV LANG C.UTF-8
-ENV TOR_VERSION 0.1.0b5
+ENV TOR_VERSION 0.1.0b6
 ENV TOR_FINGERPRINT 0x6887935AB297B391
 
 RUN apt-get update && apt-get -y install \
