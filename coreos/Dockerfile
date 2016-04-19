@@ -11,7 +11,7 @@ FROM scratch
 
 ENV container=docker
 
-ADD coreos-766.5.0.tar.xz /
+#ADD coreos-766.5.0.tar.xz /
 COPY ./certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.crt
 
 RUN ( \
