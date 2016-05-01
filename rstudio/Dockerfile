@@ -10,7 +10,7 @@
 #
 
 # Base docker image
-FROM debian:sid
+FROM debian:jessie
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
 ADD https://download1.rstudio.org/rstudio-0.99.484-amd64.deb /src/rstudio.deb
@@ -29,7 +29,7 @@ RUN apt-get update && apt-get install -y \
 	libjpeg-dev \
 	libjpeg62-turbo \
 	libjpeg62-turbo-dev \
-	libpresage1v5 \
+	libpresage1 \
 	libpresage-data \
 	libqt5core5a \
 	libqt5dbus5 \
