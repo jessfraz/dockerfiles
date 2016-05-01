@@ -6,7 +6,7 @@
 #	--name ykpersonalize \
 #	jess/ykpersonalize
 #
-FROM debian:sid
+FROM debian:jessie
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
 RUN apt-get update && apt-get install -y \
