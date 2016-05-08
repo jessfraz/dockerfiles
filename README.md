@@ -1,6 +1,6 @@
 ## dockerfiles
 
-[![Circle CI](https://circleci.com/gh/jfrazelle/dockerfiles.svg?style=svg)](https://circleci.com/gh/jfrazelle/dockerfiles)
+[![Travis CI](https://travis-ci.org/jfrazelle/dockerfiles.svg?branch=master)](https://travis-ci.org/jfrazelle/dockerfiles)
 
 This is a repo to hold various Dockerfiles for images I create.
 

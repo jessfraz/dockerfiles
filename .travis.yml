@@ -1,0 +1,8 @@
+---
+  sudo: required
+  notifications:
+    email: true
+  services:
+    - docker
+  script:
+    - ./test.sh

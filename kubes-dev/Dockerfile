@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y \
 	git \
 	libtool \
 	make \
+	python-minimal \
 	rsync \
 	unzip \
 	--no-install-recommends \
