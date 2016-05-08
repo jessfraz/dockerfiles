@@ -12,7 +12,7 @@ RUN buildDeps=' \
 	' \
 	set -x \
 	&& apk --update add $buildDeps \
-	--update-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ \
+	--update-cache --repository http://dl-3.alpinelinux.org/alpine/edge/community/ \
 	&& git clone --depth 1 https://github.com/facebook/buck.git /buck \
 	&& ( \
 		cd /buck \
