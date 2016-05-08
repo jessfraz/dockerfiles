@@ -5,7 +5,8 @@ RUN apt-get update && apt-get install -y \
     git \
     python-requests \
     python-paramiko \
-    python-netsnmp \
+    python-pysnmp-common \
+    python-bs4 \
     --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* \
     && git clone https://github.com/reverse-shell/routersploit /usr/bin/routersploit \
