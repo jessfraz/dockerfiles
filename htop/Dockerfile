@@ -7,8 +7,7 @@
 FROM alpine:latest
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
-RUN apk update && apk add \
-	htop \
-	&& rm -rf /var/cache/apk/*
+RUN apk --no-cache add \
+	htop
 
 CMD [ "htop" ]
