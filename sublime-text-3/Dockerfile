@@ -35,7 +35,7 @@ RUN apt-get update && apt-get -y install \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
-RUN curl -sSL "https://download.sublimetext.com/sublime_text_3_build_3103_x64.tar.bz2" -o /tmp/sublime.tar.bz2 \
+RUN curl -sSL "https://download.sublimetext.com/sublime_text_3_build_3114_x64.tar.bz2" -o /tmp/sublime.tar.bz2 \
 	&& mkdir -p /usr/src/sublime_text \
 	&& tar -xjf /tmp/sublime.tar.bz2 -C /usr/src/sublime_text --strip-components 1 \
 	&& rm /tmp/sublime.tar.bz2*
