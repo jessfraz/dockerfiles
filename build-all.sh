@@ -17,6 +17,10 @@ for f in "${files[@]}"; do
 		suite=latest
 	fi
 
+	if [[ "${base}" == "sup" ]]; then
+		continue
+	fi
+
 	(
 	set -x
 	docker build --rm --force-rm -t r.j3ss.co/${base}:${suite} ${build_dir}
