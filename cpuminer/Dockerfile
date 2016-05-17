@@ -1,24 +1,19 @@
-FROM debian:sid
+FROM alpine
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
-RUN apt-get update && apt-get install -y \
+RUN apk add --no-cache \
 	ca-certificates \
-	libcurl3 \
-	openssl \
-	--no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/*
+	curl \
+	openssl
 
-RUN buildDeps=' \
+RUN set -x \
+	&& apk add --no-cache --virtual .build-deps \
+		autoconf \
 		automake \
-		gcc \
+		build-base \
+		curl-dev \
 		git \
-		libcurl3-openssl-dev \
-		libssl-dev \
-		make \
-	' \
-	&& set -x \
-	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/* \
+		openssl-dev \
 	&& git clone --depth 1 https://github.com/pooler/cpuminer.git /usr/src/cpuminer \
 	&& ( \
 	cd /usr/src/cpuminer \
@@ -28,6 +23,6 @@ RUN buildDeps=' \
 	&& make install \
 	) \
 	&& rm -rf /usr/src/cpuminer \
-	&& apt-get purge -y --auto-remove $buildDeps
+	&& apk del .build-deps
 
 ENTRYPOINT [ "minerd" ]
