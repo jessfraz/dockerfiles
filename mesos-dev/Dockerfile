@@ -1,4 +1,4 @@
-FROM debian:sid
+FROM debian:stretch
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
 RUN apt-get update && apt-get install -y \
@@ -33,9 +33,18 @@ RUN apt-get update && apt-get install -y \
 	&& rm -rf /var/lib/apt/lists/*
 
 
-RUN curl -sSL https://get.docker.com/builds/Linux/x86_64/docker-latest.tgz | tar -xvz \
-		-C /usr/bin --strip-components 1 \
-	&& chmod +x /usr/bin/docker* \
+ENV DOCKER_BUCKET get.docker.com
+ENV DOCKER_VERSION 1.11.0
+ENV DOCKER_SHA256 87331b3b75d32d3de5d507db9a19a24dd30ff9b2eb6a5a9bdfaba954da15e16b
+
+RUN set -x \
+	&& curl -fSL "https://${DOCKER_BUCKET}/builds/Linux/x86_64/docker-$DOCKER_VERSION.tgz" -o docker.tgz \
+	&& echo "${DOCKER_SHA256} *docker.tgz" | sha256sum -c - \
+	&& tar -xzvf docker.tgz \
+	&& mv docker/* /usr/local/bin/ \
+	&& rmdir docker \
+	&& rm docker.tgz \
+	&& docker -v \
 	&& echo "docker daemon -D -s overlay" > $HOME/.bash_history
 
 ENV CCACHE_MAXSIZE=20G CCACHE_CPP2=true CCACHE_HARDLINK=true CCACHE_SLOPPINESS=file_macro,time_macros,include_file_mtime,include_file_ctime,file_stat_matches CC=/usr/bin/clang CXX=/usr/bin/clang++
