@@ -43,9 +43,18 @@ RUN set -x \
 	) \
 	&& rm -rf "$PROTOBUFPATH"
 
-RUN curl -sSL https://get.docker.com/builds/Linux/x86_64/docker-latest.tgz | tar -xvz \
-		-C /usr/bin --strip-components 1 \
-	&& chmod +x /usr/bin/docker*
+ENV DOCKER_BUCKET get.docker.com
+ENV DOCKER_VERSION 1.11.0
+ENV DOCKER_SHA256 87331b3b75d32d3de5d507db9a19a24dd30ff9b2eb6a5a9bdfaba954da15e16b
+
+RUN set -x \
+	&& curl -fSL "https://${DOCKER_BUCKET}/builds/Linux/x86_64/docker-$DOCKER_VERSION.tgz" -o docker.tgz \
+	&& echo "${DOCKER_SHA256} *docker.tgz" | sha256sum -c - \
+	&& tar -xzvf docker.tgz \
+	&& mv docker/* /usr/local/bin/ \
+	&& rmdir docker \
+	&& rm docker.tgz \
+	&& docker -v
 
 ENV DOWNLOAD_ETCD_VERSION 2.3.3
 RUN curl -sSL https://github.com/coreos/etcd/releases/download/v${DOWNLOAD_ETCD_VERSION}/etcd-v${DOWNLOAD_ETCD_VERSION}-linux-amd64.tar.gz -o /tmp/etcd.tar.gz \
