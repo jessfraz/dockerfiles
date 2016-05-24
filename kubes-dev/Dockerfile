@@ -10,13 +10,15 @@ RUN apt-get update && apt-get install -y \
 	git \
 	libtool \
 	make \
-	python-minimal \
+	python \
+	python-pip \
 	rsync \
 	unzip \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
-RUN pip install argparse
+RUN pip install -U \
+	argparse
 
 # Install Go
 ENV GO_VERSION 1.6.2
