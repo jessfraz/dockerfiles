@@ -18,5 +18,6 @@ RUN set -x \
 	&& apk del .build-deps
 
 WORKDIR /root
+ENV PATH $PATH:/usr/src/google-cloud-sdk/bin
 
-ENTRYPOINT ["/usr/src/google-cloud-sdk/bin/gcloud"]
+ENTRYPOINT ["gcloud"]
