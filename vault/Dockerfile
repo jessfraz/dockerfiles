@@ -1,17 +1,16 @@
 # use alpine edge for go 1.6
 FROM alpine:edge
-MAINTAINER Jessica Frazelle <jess@docker.com>
+MAINTAINER Jessica Frazelle <jess@mesosphere.com>
 
 ENV PATH /go/bin:/usr/local/go/bin:$PATH
 ENV GOPATH /go
-ENV GO15VENDOREXPERIMENT 1
 
 RUN	apk update && apk add \
 	ca-certificates \
 	curl \
 	&& rm -rf /var/cache/apk/*
 
-ENV VAULT_VERSION v0.5.2
+ENV VAULT_VERSION v0.5.3
 
 RUN buildDeps=' \
 		bash \
@@ -31,7 +30,7 @@ RUN buildDeps=' \
 	&& git clone --branch ${VAULT_VERSION} https://github.com/hashicorp/vault /go/src/github.com/hashicorp/vault \
 	&& cd /go/src/github.com/hashicorp/vault \
 	&& go get github.com/mitchellh/gox \
-	&& XC_ARCH="amd64" XC_OS="linux" make bin \
+	&& XC_ARCH="amd64" XC_OS="linux" XC_OSARCH="linux/amd64" make bin \
 	&& mv bin/vault /usr/bin/ \
 	&& apk del $buildDeps \
 	&& rm -rf /var/cache/apk/* \
