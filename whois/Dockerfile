@@ -1,9 +1,6 @@
-FROM debian:wheezy
+FROM alpine
 MAINTAINER Airton Zanon "airtonzanon@gmail.com"
 
-RUN apt-get update && \
-	apt-get install whois -y \
-	&& rm -rf /var/lib/apt/lists/*
+RUN echo "@edge http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && apk --update --force add whois@edge
 
 ENTRYPOINT ["whois"]
-CMD ["--verbose"]
