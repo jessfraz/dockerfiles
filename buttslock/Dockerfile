@@ -9,15 +9,14 @@
 # And it also requires the USER and DISPLAY environment variables to be set.
 #
 FROM alpine
-RUN apk --update add \
+RUN apk --no-cache add \
 	i3lock \
 	imagemagick \
 	py-dbus \
 	py-gobject \
 	scrot \
 	ttf-liberation \
-	xkeyboard-config \
-	&& rm -rf /var/cache/apk/*
+	xkeyboard-config
 
 COPY buttslock.py buttslock.sh lock.png /
 

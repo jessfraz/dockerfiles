@@ -7,11 +7,10 @@
 FROM alpine:latest
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
-RUN apk update && apk add \
+RUN apk --no-cache add \
 	apache2-ssl \
 	apache2-utils \
 	ca-certificates \
-	htop \
-	&& rm -rf /var/cache/apk/*
+	htop
 
 ENTRYPOINT [ "ab" ]

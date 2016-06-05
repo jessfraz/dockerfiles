@@ -1,13 +1,12 @@
 FROM alpine:latest
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
-RUN apk update && apk add \
+RUN apk --no-cache add \
 	ca-certificates \
 	git \
 	python \
 	py-boto \
-	py-paramiko \
-	&& rm -rf /var/cache/apk/*
+	py-paramiko
 
 RUN git clone https://github.com/newsapps/beeswithmachineguns /usr/src/beeswithmachineguns \
 	&& cd /usr/src/beeswithmachineguns \

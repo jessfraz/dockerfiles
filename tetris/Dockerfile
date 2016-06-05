@@ -3,7 +3,7 @@
 # AUTHOR:		  Jessica Frazelle <jess@docker.com>
 # COMMENTS:
 #	This file describes how to build tetris in a container with all
-#	dependencies installed. 
+#	dependencies installed.
 #	Tested on Debian Jessie
 # USAGE:
 #	# Download tetris Dockerfile
@@ -20,11 +20,10 @@ FROM alpine:latest
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
 # Install emacs:
-# Note: Eamcs is only in testing repo -> http://pkgs.alpinelinux.org/packages?package=emacs&repo=all&arch=x86_64
-RUN apk update && apk add \
-	emacs \
-	--update-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ \
-	&& rm -rf /var/cache/apk/*
+# Note: Emacs is only in testing repo -> http://pkgs.alpinelinux.org/packages?package=emacs&repo=all&arch=x86_64
+RUN apk --no-cache add \
+	--repository http://dl-3.alpinelinux.org/alpine/edge/testing/ \
+	emacs
 
 # Autorun tetris
 CMD ["/usr/bin/emacs", "-f", "tetris"]

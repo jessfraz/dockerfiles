@@ -6,10 +6,9 @@ ENV PATH /go/bin:/usr/local/go/bin:$PATH
 ENV GOPATH /go
 #ENV GO15VENDOREXPERIMENT 1
 
-RUN	apk update && apk add \
+RUN	apk --no-cache add \
 	ca-certificates \
-	curl \
-	&& rm -rf /var/cache/apk/*
+	curl
 
 ENV CONSUL_VERSION v0.6.4
 
@@ -28,8 +27,7 @@ RUN buildDeps=' \
 		zip \
 	' \
 	set -x \
-	&& apk update \
-	&& apk add $buildDeps \
+	&& apk --no-cache add $buildDeps \
 	&& go get github.com/Soulou/curl-unix-socket \
 	&& mv /go/bin/curl-unix-socket /usr/bin/ \
 	&& mkdir -p /go/src/github.com/hashicorp /etc/consul.d \
@@ -46,7 +44,6 @@ RUN buildDeps=' \
 	&& mv static /usr/src/consul/ \
 	&& mv javascripts /usr/src/consul/ \
 	&& apk del $buildDeps \
-	&& rm -rf /var/cache/apk/* \
 	&& rm -rf /go \
 	&& echo "Build complete."
 

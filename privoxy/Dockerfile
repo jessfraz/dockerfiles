@@ -11,9 +11,8 @@
 FROM alpine:latest
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
-RUN apk update && apk add \
-	privoxy \
-	&& rm -rf /var/cache/apk/*
+RUN apk --no-cache add \
+	privoxy
 
 # expose http port
 EXPOSE 8118

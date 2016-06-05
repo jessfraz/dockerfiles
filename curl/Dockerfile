@@ -6,8 +6,7 @@
 FROM alpine:latest
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
-RUN apk update && apk add \
-	curl \
-	&& rm -rf /var/cache/apk/*
+RUN apk --no-cache add \
+	curl
 
 CMD [ "curl" ]

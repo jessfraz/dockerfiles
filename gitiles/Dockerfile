@@ -11,8 +11,8 @@ RUN buildDeps=' \
 		zip \
 	' \
 	set -x \
-	&& apk --update add $buildDeps \
-	--update-cache --repository http://dl-3.alpinelinux.org/alpine/edge/community/ \
+	&& apk --no-cache add $buildDeps \
+	--repository http://dl-3.alpinelinux.org/alpine/edge/community/ \
 	&& git clone --depth 1 https://github.com/facebook/buck.git /buck \
 	&& ( \
 		cd /buck \
@@ -27,8 +27,7 @@ RUN buildDeps=' \
 		&& buck build gitiles-dev:dev \
 	) \
 	&& apk del $buildDeps \
-	&& rm -rf /buck \
-	&& rm -rf /var/cache/apk/*
+	&& rm -rf /buck
 
 COPY start.sh /start.sh
 

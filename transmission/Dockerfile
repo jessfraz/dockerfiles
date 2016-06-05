@@ -22,9 +22,8 @@
 FROM alpine:latest
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
-RUN apk update && apk add \
+RUN apk --no-cache add \
 	transmission-daemon \
-	&& rm -rf /var/cache/apk/* \
 	&& mkdir -p /transmission/{download,watch,incomplete,config} \
 	&& chmod 1777 /transmission
 

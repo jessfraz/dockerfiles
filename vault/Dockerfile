@@ -5,10 +5,9 @@ MAINTAINER Jessica Frazelle <jess@mesosphere.com>
 ENV PATH /go/bin:/usr/local/go/bin:$PATH
 ENV GOPATH /go
 
-RUN	apk update && apk add \
+RUN	apk --no-cache add \
 	ca-certificates \
-	curl \
-	&& rm -rf /var/cache/apk/*
+	curl
 
 ENV VAULT_VERSION v0.5.3
 
@@ -24,8 +23,7 @@ RUN buildDeps=' \
 		zip \
 	' \
 	set -x \
-	&& apk update \
-	&& apk add $buildDeps \
+	&& apk --no-cache add $buildDeps \
 	&& mkdir -p /go/src/github.com/hashicorp \
 	&& git clone --branch ${VAULT_VERSION} https://github.com/hashicorp/vault /go/src/github.com/hashicorp/vault \
 	&& cd /go/src/github.com/hashicorp/vault \
@@ -33,7 +31,6 @@ RUN buildDeps=' \
 	&& XC_ARCH="amd64" XC_OS="linux" XC_OSARCH="linux/amd64" make bin \
 	&& mv bin/vault /usr/bin/ \
 	&& apk del $buildDeps \
-	&& rm -rf /var/cache/apk/* \
 	&& rm -rf /go \
 	&& echo "Build complete."
 

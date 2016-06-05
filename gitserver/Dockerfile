@@ -10,10 +10,9 @@ MAINTAINER Jessica Frazelle <jess@docker.com>
 
 ENV HOME /root
 
-RUN apk update && apk add \
+RUN apk --no-cache add \
 	git \
 	openssh \
-	&& rm -rf /var/cache/apk/* \
 	&& sed -i "s/#PasswordAuthentication yes/PasswordAuthentication no/" /etc/ssh/sshd_config \
 	&& sed -i "s/#PubkeyAuthentication yes/PubkeyAuthentication yes/" /etc/ssh/sshd_config \
 	&& echo -e "AllowUsers git\n" >> /etc/ssh/sshd_config \
