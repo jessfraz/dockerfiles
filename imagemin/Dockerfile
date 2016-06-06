@@ -9,7 +9,7 @@
 FROM alpine
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
-RUN apk update && apk add \
+RUN apk --no-cache add \
 	autoconf \
 	automake \
 	build-base \
@@ -17,7 +17,6 @@ RUN apk update && apk add \
 	libpng-dev \
 	nasm \
 	nodejs \
-	&& rm -rf /var/cache/apk/* \
 	&& npm install --global imagemin-cli
 
 CMD [ "imagemin", "--help" ]

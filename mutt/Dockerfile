@@ -14,7 +14,7 @@ MAINTAINER Jessica Frazelle <jess@docker.com>
 RUN addgroup -g 1000 user \
 	&& adduser -D -h /home/user -G user -u 1000 user
 
-RUN apk --update add \
+RUN apk --no-cache add \
 	ca-certificates \
 	elinks \
 	git \
@@ -22,8 +22,7 @@ RUN apk --update add \
 	lynx \
 	mutt \
 	mutt-doc \
-	vim \
-	&& rm -rf /var/cache/apk/*
+	vim
 
 # a browser is necessary!
 ENV BROWSER lynx

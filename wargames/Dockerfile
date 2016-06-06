@@ -1,9 +1,8 @@
 FROM alpine:latest
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
-RUN apk update && apk add \
-	ncurses \
-	&& rm -rf /var/cache/apk/*
+RUN apk --no-cache add \
+	ncurses
 
 RUN set -x \
 	&& apk add --no-cache --virtual .build-deps \

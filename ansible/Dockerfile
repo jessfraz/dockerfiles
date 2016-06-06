@@ -18,8 +18,7 @@ RUN builddeps=' \
 		libffi-dev \
 		gcc \
 		' \
-	&& apk update \
-	&& apk add \
+	&& apk --no-cache add \
 	ca-certificates \
 	python \
 	py-paramiko \
@@ -27,7 +26,6 @@ RUN builddeps=' \
 	py-jinja2 \
 	py-httplib2 \
 	$builddeps \
-	&& rm -rf /var/cache/apk/* \
 	&& pip install --upgrade pip \
 	&& pip install \
 		ansible \

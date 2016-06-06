@@ -4,9 +4,8 @@ MAINTAINER Jessica Frazelle <jess@docker.com>
 ENV PATH /go/bin:/usr/local/go/bin:$PATH
 ENV GOPATH /go
 
-RUN	apk update && apk add \
-	ca-certificates \
-	&& rm -rf /var/cache/apk/*
+RUN	apk --no-cache add \
+	ca-certificates
 
 RUN buildDeps=' \
 		go \
@@ -16,8 +15,7 @@ RUN buildDeps=' \
 		libgcc \
 	' \
 	set -x \
-	&& apk update \
-	&& apk add $buildDeps \
+	&& apk --no-cache add $buildDeps \
 	&& mkdir -p /go/src/camlistore.googlesource.com \
 	&& cd /go/src/camlistore.googlesource.com \
 	&& git clone --depth 1 -b 0.9 https://camlistore.googlesource.com/camlistore.git \
@@ -25,7 +23,6 @@ RUN buildDeps=' \
 	&& go run make.go \
 	&& cp -r ./bin/* /usr/local/bin/ \
 	&& apk del $buildDeps \
-	&& rm -rf /var/cache/apk/* \
 	&& rm -rf /go \
 	&& echo "Build complete."
 

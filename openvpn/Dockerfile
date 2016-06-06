@@ -1,7 +1,6 @@
 FROM alpine:latest
-RUN apk update && apk add \
-	openvpn \
-	&& rm -rf /var/cache/apk/*
+RUN apk --no-cache add \
+	openvpn
 
 WORKDIR /etc/openvpn
 ENTRYPOINT ["openvpn"]

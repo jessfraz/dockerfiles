@@ -10,7 +10,7 @@
 FROM alpine:latest
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
-RUN apk update && apk add \
+RUN apk --no-cache add \
 	build-base \
 	ca-certificates \
 	freetype \
@@ -20,7 +20,6 @@ RUN apk update && apk add \
 	python-dev \
 	py-pip \
 	zlib-dev \
-	&& rm -rf /var/cache/apk/* \
 	&& pip install pillow==2.8.0 rainbowstream
 
 ENTRYPOINT [ "rainbowstream" ]
