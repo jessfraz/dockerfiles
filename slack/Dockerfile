@@ -18,12 +18,13 @@ ENV LANG en_US.UTF-8
 RUN apt-get update && apt-get install -y \
 	apt-transport-https \
 	ca-certificates \
-	curl \
 	gconf2 \
 	gconf-service \
 	gvfs-bin \
 	hunspell-en-us \
 	libasound2 \
+	libgl1-mesa-dri \
+	libgl1-mesa-glx \
 	libgtk2.0-0 \
 	libnotify4 \
 	libnss3 \
@@ -39,10 +40,18 @@ RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
 	&& locale-gen en_US.utf8 \
 	&& /usr/sbin/update-locale LANG=en_US.UTF-8
 
-ENV SLACK_VERSION 2.0.3
+ENV SLACK_VERSION 2.0.6
 
-RUN curl -sSL "https://slack-ssb-updates.global.ssl.fastly.net/linux_releases/slack-desktop-${SLACK_VERSION}-amd64.deb" > /tmp/slack-desktop.deb \
+# download the deb and node
+RUN buildDeps=' \
+		curl \
+	' \
+	&& set -x \
+	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends \
+	&& rm -rf /var/lib/apt/lists/* \
+	&& curl -sSL "https://downloads.slack-edge.com/linux_releases/slack-desktop-${SLACK_VERSION}-amd64.deb" > /tmp/slack-desktop.deb \
 	&& dpkg -i /tmp/slack-desktop.deb \
-	&& rm -rf /tmp/slack-desktop.deb
+	&& rm -rf /tmp/slack-desktop.deb \
+	&& apt-get purge -y --auto-remove $buildDeps
 
-ENTRYPOINT ["slack"]
+ENTRYPOINT ["/usr/lib/slack/slack"]
