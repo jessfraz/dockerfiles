@@ -5,6 +5,7 @@ MAINTAINER Jessica Frazelle <jess@docker.com>
 RUN buildDeps=' \
 		apache-ant \
 		bash \
+		curl \
 		git \
 		perl \
 		python \
