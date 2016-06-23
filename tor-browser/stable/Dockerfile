@@ -34,7 +34,7 @@ RUN cd /tmp \
 	&& curl -sSOL "https://www.torproject.org/dist/torbrowser/${TOR_VERSION}/tor-browser-linux64-${TOR_VERSION}_en-US.tar.xz" \
 	&& curl -sSOL "https://www.torproject.org/dist/torbrowser/${TOR_VERSION}/tor-browser-linux64-${TOR_VERSION}_en-US.tar.xz.asc" \
 	&& mkdir ~/.gnupg \
-	&& gpg --keyserver x-hkp://keys.gnupg.net --recv-keys ${TOR_FINGERPRINT} \
+	&& gpg --keyserver "hkp://pool.sks-keyservers.net" --recv-keys ${TOR_FINGERPRINT} \
 	&& gpg --fingerprint ${TOR_FINGERPRINT} | grep "Key fingerprint = EF6E 286D DA85 EA2A 4BA7  DE68 4E2C 6E87 9329 8290" \
 	&& gpg --verify tor-browser-linux64-${TOR_VERSION}_en-US.tar.xz.asc \
 	&& tar -vxJ --strip-components 1 -C /usr/local/bin -f tor-browser-linux64-${TOR_VERSION}_en-US.tar.xz \
