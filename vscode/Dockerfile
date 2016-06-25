@@ -2,11 +2,12 @@
 #	NOTE: Needs the redering device (yeah... idk)
 #
 # docker run -d \
-# 	-v /tmp/.X11-unix:/tmp/.X11-unix \
-# 	-e DISPLAY=unix$DISPLAY \
-#	--device /dev/dri \
-# 	--name visualstudio \
-# 	jess/visualstudio
+#    -v /tmp/.X11-unix:/tmp/.X11-unix \
+#    -v $HOME:/home/user \
+#    -e DISPLAY=unix$DISPLAY \
+#    --device /dev/dri \
+#    --name vscode \
+#    jess/vscode
 
 FROM debian:jessie
 MAINTAINER Jessica Frazelle <jess@docker.com>
@@ -29,6 +30,7 @@ RUN apt-get update && apt-get install -y \
 	libgtk2.0-0 \
 	libgpg-error0 \
 	libgraphite2-3 \
+	libnotify-bin \
 	libnss3 \
 	libnspr4 \
 	libpango-1.0-0 \
@@ -58,7 +60,7 @@ RUN buildDeps=' \
 	&& curl -sL https://deb.nodesource.com/setup | bash - \
 	&& apt-get update && apt-get install -y nodejs --no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/* \
-	&& curl -sSL https://az764295.vo.msecnd.net/public/0.10.6-release/VSCode-linux64.zip -o /tmp/vs.zip \
+	&& curl -sSL https://az764295.vo.msecnd.net/stable/fe7f407b95b7f78405846188259504b34ef72761/VSCode-linux-x64-stable.zip -o /tmp/vs.zip \
 	&& unzip /tmp/vs.zip -d /usr/src/ \
 	&& rm -rf /tmp/vs.zip \
 	&& apt-get purge -y --auto-remove $buildDeps
