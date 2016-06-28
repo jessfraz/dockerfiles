@@ -28,6 +28,10 @@ unset IFS
 
 # build the changed dockerfiles
 for f in "${files[@]}"; do
+	if ! [[ -e "$f" ]]; then
+		continue
+	fi
+
 	image=${f%Dockerfile}
 	base=${image%%\/*}
 	suite=${image##*\/}
