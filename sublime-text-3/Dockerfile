@@ -1,16 +1,22 @@
-# VERSION:		0.1
+# VERSION:		0.2
 # DESCRIPTION:	Create sublime-text 3 container with its dependencies (https://www.sublimetext.com/3)
-# AUTHOR:		Christian Koep <christian.koep@fom-net.de>
+# AUTHORS:		Christian Koep <christian.koep@fom-net.de>, Chuck Knox <charles.m.knox@gmail.com>
 # USAGE:
 #	# Build sublime-text 3 image
 #	docker build -t sublime-text:3 .
 #
 #	# Run the container and mount the local settings and your code
-#	docker run -it \
-#		-v $HOME/.config/sublime-text-3/:/root/.config/sublime-text-3 \
-#		-v $HOME/development:/root/development \
-#		-v /tmp/.X11-unix:/tmp/.X11-unix \
-#		-e DISPLAY=$DISPLAY sublime-text:3
+#   # Your code must be under $HOME/Documents, you only need to change it here.
+#		docker run -d -it \
+#			-w $HOME/Documents \
+#			-v $HOME/.config/sublime-text-3:$HOME/.config/sublime-text-3 \
+#			-v $HOME/Documents:$HOME/Documents \
+#			-v /tmp/.X11-unix:/tmp/.X11-unix \
+#			-v $HOME/.local/share/recently-used.xbel:$HOME/.local/share/recently-used.xbel \
+#			-e DISPLAY=$DISPLAY \
+#			-e NEWUSER=$USER \
+#			-e LANG=en_US.UTF-8 \
+#			sublime-text:3
 #
 # POSSIBLE ISSUES:
 #	# 'Gtk: cannot open display: :0'
@@ -21,7 +27,10 @@
 FROM debian:jessie
 MAINTAINER Christian Koep <christian.koep@fom-net.de>
 
+# Installing the libcanberra-gtk-module gets rid of a lot of annoying error messages.
 RUN apt-get update && apt-get -y install \
+	locales \
+	libcanberra-gtk-module \
 	ca-certificates \
 	curl \
 	tar \
@@ -40,4 +49,21 @@ RUN curl -sSL "https://download.sublimetext.com/sublime_text_3_build_3114_x64.ta
 	&& tar -xjf /tmp/sublime.tar.bz2 -C /usr/src/sublime_text --strip-components 1 \
 	&& rm /tmp/sublime.tar.bz2*
 
-CMD ["/usr/src/sublime_text/sublime_text", "-w"]
+# Generate system-wide UTF-8 locale
+# Sublime might nag about Ascii issue w/ Package Control otherwise
+RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
+	locale-gen && \
+	echo "LANG=en_US.UTF-8" > /etc/locale.conf
+
+# In order to prevent writing as root:root in Sublime, we have to run the Sublime Text container
+# as the user that creates the container. Normally we do this by passing $UID.
+# But just passing $UID along isn't enough - Sublime has to be started by a user that exists.
+# By default in the container, the only user that actually exists is root.
+# Therefore we have to create a new user, and start Sublime as that user.
+# This is not possible at build time, so the /run.sh script accepts an environment
+# variable called $NEWUSER that creates a user and group named $USER.
+# Additional note: Sublime puts a lot of stuff in ~/.config, which is mounted at runtime. Without this directory being mounted, settings/packages/etc won't persist.
+COPY run.sh /run.sh
+RUN chmod +x /run.sh
+
+CMD ["/run.sh"]
