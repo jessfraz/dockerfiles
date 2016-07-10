@@ -16,6 +16,6 @@ RUN export GNUPGHOME="$(mktemp -d)" \
 	&& gpg --trusted-key 4D17C995CD9775F2 --verify certbot-auto.asc certbot-auto \
 	&& mv certbot-auto /usr/local/bin/ \
 	) \
-	&& rm -r "$GNUPGHOME" /tmp
+	&& rm -r "$GNUPGHOME"
 
 ENTRYPOINT [ "certbot-auto" ]
