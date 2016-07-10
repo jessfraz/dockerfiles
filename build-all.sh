@@ -8,7 +8,7 @@ build_and_push(){
 
 	(
 	set -x
-	docker build --rm --force-rm -t r.j3ss.co/${base}:${suite} ${build_dir}
+	docker build --rm --force-rm -t r.j3ss.co/${base}:${suite} ${build_dir} || exit 1
 	)
 
 	echo "                       ---                                   "
