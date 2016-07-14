@@ -28,6 +28,7 @@ RUN echo 'deb http://httpredir.debian.org/debian testing main' >> /etc/apt/sourc
 	hicolor-icon-theme \
 	libgl1-mesa-dri \
 	libgl1-mesa-glx \
+        libpulse0 \
 	libv4l-0 \
 	-t testing \
 	fonts-symbola \
