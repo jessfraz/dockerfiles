@@ -33,7 +33,7 @@ RUN curl http://download.skype.com/linux/skype-debian_4.3.0.37-1_i386.deb > /usr
 ENV HOME /home/skype
 RUN useradd --create-home --home-dir $HOME skype \
 	&& chown -R skype:skype $HOME \
-	&& usermod -a -G audio,video skype
+	&& usermod -a -G audio,video,irc skype
 
 WORKDIR $HOME
 USER skype
