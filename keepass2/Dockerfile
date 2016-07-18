@@ -21,7 +21,7 @@
 FROM debian:jessie
 MAINTAINER Christian Koep <christian.koep@fom-net.de>
 
-ENV DEBIAN_FRONTEND noninteractiv
+ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && apt-get install -y \
 	keepass2 \
