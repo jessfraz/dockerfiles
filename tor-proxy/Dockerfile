@@ -10,9 +10,8 @@
 FROM alpine:latest
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
-# Note: Tor is only in testing repo -> http://pkgs.alpinelinux.org/packages?package=emacs&repo=all&arch=x86_64
 RUN apk --no-cache add \
-	--repository http://dl-3.alpinelinux.org/alpine/edge/testing/ \
+	--repository http://dl-3.alpinelinux.org/alpine/edge/community/ \
 	tor
 
 # expose socks port
