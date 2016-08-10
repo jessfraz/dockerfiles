@@ -5,6 +5,12 @@
 " environment). I highly encourage to change/adapt the vimrc to your own
 " needs. Think of a vimrc as a garden that needs to be maintained and fostered
 " throughout years. Keep it clean and useful - Fatih Arslan
+set nocompatible                " Enables us Vim specific features
+filetype off                    " Reset filetype detection first ...
+
+if !filereadable(expand("~/.vim/autoload/plug.vim"))
+ !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+endif
 
 call plug#begin()
 Plug 'fatih/vim-go'
@@ -17,14 +23,14 @@ call plug#end()
 """"""""""""""""""""""
 "      Settings      "
 """"""""""""""""""""""
-set nocompatible                " Enables us Vim specific features
-filetype off                    " Reset filetype detection first ...
 filetype plugin indent on       " ... and enable filetype detection
 set ttyfast                     " Indicate fast terminal conn for faster redraw
-set ttymouse=xterm2             " Indicate terminal type for mouse codes
-set ttyscroll=3                 " Speedup scrolling
+if !has('nvim')
+  set ttymouse=xterm2           " Indicate terminal type for mouse codes
+  set ttyscroll=3               " Speedup scrolling
+endif
 set laststatus=2                " Show status line always
-set encoding=utf-8              " Set default encoding to UTF-8
+silent! set encoding=utf-8      " Set default encoding to UTF-8
 set autoread                    " Automatically read changed files
 set autoindent                  " Enabile Autoindent
 set backspace=indent,eol,start  " Makes backspace key more powerful.
@@ -68,7 +74,7 @@ syntax enable
 set t_Co=256
 let g:rehash256 = 1
 let g:molokai_original = 1
-colorscheme molokai
+silent! colorscheme molokai
 
 """"""""""""""""""""""
 "      Mappings      "
