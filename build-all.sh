@@ -6,11 +6,9 @@ build_and_push(){
 	suite=$2
 	build_dir=$3
 
-	(
-	set -x
-	docker build --rm --force-rm -t r.j3ss.co/${base}:${suite} ${build_dir} || exit 1
-	)
+	docker build --rm --force-rm -t r.j3ss.co/${base}:${suite} ${build_dir} || return 1
 
+	# on successful build, push the image
 	echo "                       ---                                   "
 	echo "Successfully built ${base}:${suite} with context ${build_dir}"
 	echo "                       ---                                   "
@@ -30,7 +28,6 @@ build_and_push(){
 		docker tag r.j3ss.co/${base}:${suite} r.j3ss.co/${base}:latest
 		docker push --disable-content-trust=false r.j3ss.co/${base}:latest
 	fi
-
 }
 
 main(){
@@ -58,19 +55,20 @@ main(){
 		{
 			build_and_push "${base}" "${suite}" "${build_dir}"
 		} || {
-			# add to errors
-			ERRORS+=("${base}:${suite}")
-		}
-		echo
-		echo
-	done
+		# add to errors
+		ERRORS+=("${base}:${suite}")
+	}
+	echo
+	echo
+done
 
-	if [ ${#ERRORS[@]} -eq 0 ]; then
-    	echo "No errors, hooray"
-	else
-    	echo "These images failed: ${ERRORS[@]}"
-		exit 1
-	fi
+if [ ${#ERRORS[@]} -eq 0 ]; then
+	echo "No errors, hooray!"
+else
+	echo "[ERROR] Some images did not build correctly, see below." >&2
+	echo "These images failed: ${ERRORS[@]}" >&2
+	exit 1
+fi
 }
 
 main $@

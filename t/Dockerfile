@@ -1,11 +1,16 @@
-FROM alpine:latest
+FROM ruby:2-alpine
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
-RUN apk --no-cache add \
-	build-base \
-	ca-certificates \
-	ruby \
-	ruby-dev \
-	&& gem install --no-document io-console t
+RUN apk add --no-cache \
+	ca-certificates
+
+RUN set -x \
+        && apk add --no-cache --virtual .build-deps \
+                build-base \
+        && gem install \
+                io-console \
+				t \
+                --no-rdoc --no-ri \
+        && apk del .build-deps
 
 ENTRYPOINT [ "t" ]
