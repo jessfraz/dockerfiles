@@ -1,7 +1,10 @@
 FROM debian:jessie
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
-RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62 \
+RUN apt-get update && apt-get install -y \
+	gnupg \
+	--no-install-recommends \
+	&& apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62 \
 	&& echo "deb http://nginx.org/packages/mainline/debian/ jessie nginx" >> /etc/apt/sources.list
 
 RUN apt-get update && apt-get install -y \
