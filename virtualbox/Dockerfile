@@ -29,21 +29,23 @@
 # 	rm -rf /usr/share/virtualbox
 # 	rm vboxdrv
 #
-FROM debian:jessie
+FROM debian:stretch
 MAINTAINER Jessie Frazelle <jess@linux.com>
 
 RUN apt-get update && apt-get install -y \
 	ca-certificates \
 	curl \
-	--no-install-recommends && \
-	curl -sSL https://www.virtualbox.org/download/oracle_vbox.asc | apt-key add - && \
-	echo "deb http://download.virtualbox.org/virtualbox/debian vivid contrib" >> /etc/apt/sources.list.d/virtualbox.list && \
-	apt-get update && \
-	apt-get install -y \
+	gnupg \
+	--no-install-recommends \
+	&& curl -sSL https://www.virtualbox.org/download/oracle_vbox_2016.asc | apt-key add - \
+	&& echo "deb http://download.virtualbox.org/virtualbox/debian stretch contrib" >> /etc/apt/sources.list.d/virtualbox.list \
+	&& apt-get update && apt-get install -y \
 	virtualbox-5.0 \
+	--no-install-recommends \
 	&& apt-get purge -y --auto-remove \
 	ca-certificates \
 	curl \
+	gnupg \
 	&& rm -rf /var/lib/apt/lists/*
 
 ENTRYPOINT	[ "/usr/bin/virtualbox" ]
