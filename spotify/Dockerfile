@@ -13,14 +13,17 @@
 FROM debian:sid
 MAINTAINER Jessie Frazelle <jess@linux.com>
 
-RUN	apt-key adv --keyserver keyserver.ubuntu.com --recv-keys BBEBDCB318AD50EC6865090613B00F1FD2C19886 \
+RUN	apt-get update && apt-get install -y \
+	gnupg \
+	--no-install-recommends \
+	&& apt-key adv --keyserver keyserver.ubuntu.com --recv-keys BBEBDCB318AD50EC6865090613B00F1FD2C19886 \
 	&& echo "deb http://repository.spotify.com stable non-free" >> /etc/apt/sources.list.d/spotify.list \
 	&& apt-get update && apt-get install -y \
 	alsa-utils \
 	libgl1-mesa-dri \
 	libgl1-mesa-glx \
 	libpangoxft-1.0-0 \
-	libssl1.0.0 \
+	libssl1.0.2 \
 	libxss1 \
 	spotify-client \
 	xdg-utils \
