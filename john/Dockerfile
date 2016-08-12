@@ -1,4 +1,4 @@
-FROM debian:sid
+FROM debian:stretch
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
 RUN apt-get update && apt-get install -y \
@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y \
 	libgomp1 \
 	libkrb5-3 \
 	libnss3 \
-	libssl1.0.0 \
+	libssl1.0.2 \
 	openssl \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
