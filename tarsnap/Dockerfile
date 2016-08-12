@@ -11,6 +11,7 @@ RUN buildDeps=' \
 		curl \
 		e2fslibs-dev \
 		gcc \
+		gnupg \
 		libc6-dev \
 		libdigest-sha-perl \
 		libssl-dev \
