@@ -13,6 +13,7 @@ FROM debian:sid
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
 RUN apt-get update && apt-get install -y \
+	dirmngr \
 	gnupg \
 	libasound2 \
 	libfontconfig1 \

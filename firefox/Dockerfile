@@ -2,6 +2,7 @@ FROM debian:sid
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
 RUN apt-get update && apt-get install -y \
+	dirmngr \
 	gnupg \
 	--no-install-recommends \
 	&& apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 0AB215679C571D1C8325275B9BDB3D89CE49EC21 \

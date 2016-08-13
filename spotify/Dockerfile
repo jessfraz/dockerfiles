@@ -14,6 +14,7 @@ FROM debian:sid
 MAINTAINER Jessie Frazelle <jess@linux.com>
 
 RUN	apt-get update && apt-get install -y \
+	dirmngr \
 	gnupg \
 	--no-install-recommends \
 	&& apt-key adv --keyserver keyserver.ubuntu.com --recv-keys BBEBDCB318AD50EC6865090613B00F1FD2C19886 \
