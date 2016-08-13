@@ -38,13 +38,14 @@ RUN buildDeps=' \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& curl -sSL https://ricochet.im/releases/latest/ricochet-${RICOCHET_VERSION}-static-x86_64.tar.bz2 -o /tmp/ricochet.tar.bz2 \
 	&& curl -sSL https://ricochet.im/releases/latest/ricochet-${RICOCHET_VERSION}-static-x86_64.tar.bz2.asc -o /tmp/ricochet.tar.bz2.asc \
-	&& mkdir ~/.gnupg \
+	&& export GNUPGHOME="$(mktemp -d)" \
+	&& chmod 600 "${GNUPGHOME}" \
 	&& gpg --keyserver pgp.mit.edu --recv-keys ${RICOCHET_FINGERPRINT} \
-	&& gpg --fingerprint ${RICOCHET_FINGERPRINT} | grep "Key fingerprint = 9032 CAE4 CBFA 933A 5A21  45D5 FF97 C53F 183C 045D" \
+	&& gpg --fingerprint ${RICOCHET_FINGERPRINT} | grep "9032 CAE4 CBFA 933A 5A21  45D5 FF97 C53F 183C 045D" \
 	&& gpg /tmp/ricochet.tar.bz2.asc \
 	&& tar -vxj --strip-components 1 -C /usr/local/bin -f /tmp/ricochet.tar.bz2 \
 	&& rm -rf /tmp/ricochet* \
-	&& rm -rf ~/.gnupg \
+	&& rm -rf "${GNUPGHOME}" \
 	&& apt-get purge -y --auto-remove $buildDeps
 
 ENTRYPOINT [ "ricochet" ]
