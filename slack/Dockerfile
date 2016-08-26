@@ -20,11 +20,14 @@ RUN apt-get update && apt-get install -y \
 	ca-certificates \
 	gconf2 \
 	gconf-service \
+	gir1.2-gnomekeyring-1.0 \
 	gvfs-bin \
 	hunspell-en-us \
+	libappindicator1 \
 	libasound2 \
 	libgl1-mesa-dri \
 	libgl1-mesa-glx \
+	libgnome-keyring0 \
 	libgtk2.0-0 \
 	libnotify4 \
 	libnss3 \
@@ -40,7 +43,7 @@ RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
 	&& locale-gen en_US.utf8 \
 	&& /usr/sbin/update-locale LANG=en_US.UTF-8
 
-ENV SLACK_VERSION 2.0.6
+ENV SLACK_VERSION 2.1.1
 
 # download the deb and node
 RUN buildDeps=' \
