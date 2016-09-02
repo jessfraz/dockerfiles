@@ -20,6 +20,7 @@ RUN apt-get update && apt-get install -y \
 	libusb-1.0-0 \
 	libyubikey0 \
 	pcscd \
+	procps \
 	usbutils \
 	yubikey-personalization \
 	yubico-piv-tool \
