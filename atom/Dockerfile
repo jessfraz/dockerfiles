@@ -40,7 +40,7 @@ RUN apt-get update && apt-get install -y \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
-ENV ATOM_VERSION 1.9.0
+ENV ATOM_VERSION 1.10.0
 
 # download the source
 RUN buildDeps=' \
