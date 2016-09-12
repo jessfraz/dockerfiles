@@ -1,12 +1,32 @@
 # Run mop-tracker in a container
 #
 # docker run -it --rm \
-#       -v ~/.moprc:/root/.moprc \
-#       --name mop
-#       freebirdljj/mop
-FROM golang:latest
-MAINTAINER FreeBirdLjj
+# 	-v ~/.moprc:/root/.moprc \
+# 	--name mop \
+# 	r.j3ss.co/mop
+#
+FROM alpine:edge
 
-RUN go get github.com/mop-tracker/mop && go install -x github.com/mop-tracker/mop/cmd/mop && rm -fr $GOPATH/src/github.com
+RUN apk --no-cache add \
+	ca-certificates
 
-ENTRYPOINT ["mop"]
+ENV PATH /go/bin:/usr/local/go/bin:$PATH
+ENV GOPATH /go
+
+RUN buildDeps=' \
+		go \
+		git \
+		gcc \
+		g++ \
+		libc-dev \
+		libgcc \
+	' \
+	set -x \
+	&& apk --no-cache add $buildDeps \
+	&& go get github.com/mop-tracker/mop/cmd/mop \
+	&& mv /go/bin/mop /usr/bin/mop \
+	&& apk del $buildDeps \
+	&& rm -rf /go \
+	&& echo "Build complete."
+
+ENTRYPOINT [ "mop" ]
