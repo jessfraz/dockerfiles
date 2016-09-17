@@ -10,8 +10,8 @@ MAINTAINER Christian Koep <christian.koep@fom-net.de>
 
 ENV HOME /home/user
 ENV LANG C.UTF-8
-ENV TOR_VERSION 0.1.0b6
-ENV TOR_FINGERPRINT 0x6887935AB297B391
+ENV TOR_VERSION 0.2.0b2
+ENV TOR_FINGERPRINT 0xB01C8B006DA77FAA
 
 RUN apt-get update && apt-get -y install \
 	ca-certificates \
@@ -47,4 +47,4 @@ WORKDIR $HOME
 
 USER user
 
-CMD ["/usr/local/bin/tor-messenger/Messenger/start-tor-messenger", "--verbose"]
+CMD ["/usr/local/bin/tor-messenger/Browser/start-tor-messenger", "--verbose"]
