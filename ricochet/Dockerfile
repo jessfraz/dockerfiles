@@ -41,7 +41,7 @@ RUN buildDeps=' \
 	&& export GNUPGHOME="$(mktemp -d)" \
 	&& chmod 600 "${GNUPGHOME}" \
 	&& gpg --keyserver pgp.mit.edu --recv-keys ${RICOCHET_FINGERPRINT} \
-	&& gpg --fingerprint ${RICOCHET_FINGERPRINT} | grep "9032 CAE4 CBFA 933A 5A21  45D5 FF97 C53F 183C 045D" \
+	&& gpg --fingerprint --keyid-format LONG ${RICOCHET_FINGERPRINT} | grep "9032 CAE4 CBFA 933A 5A21  45D5 FF97 C53F 183C 045D" \
 	&& gpg /tmp/ricochet.tar.bz2.asc \
 	&& tar -vxj --strip-components 1 -C /usr/local/bin -f /tmp/ricochet.tar.bz2 \
 	&& rm -rf /tmp/ricochet* \
