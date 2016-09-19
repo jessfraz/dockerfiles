@@ -19,7 +19,7 @@
 #
 
 # Base docker image
-FROM debian:jessie
+FROM debian:stretch
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
 # Install dependencies

@@ -12,7 +12,7 @@
 #		evince
 #
 
-FROM debian:jessie
+FROM debian:stretch
 MAINTAINER Christian Koep <christian.koep@fom-net.de>
 
 RUN apt-get -qq update && apt-get install -y \

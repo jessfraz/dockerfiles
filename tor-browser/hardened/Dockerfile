@@ -5,7 +5,7 @@
 #	-e DISPLAY=unix$DISPLAY \
 #	tor-browser
 #
-FROM debian:jessie
+FROM debian:stretch
 MAINTAINER Christian Koep <christian.koep@fom-net.de>
 
 RUN apt-get update && apt-get install -y \
