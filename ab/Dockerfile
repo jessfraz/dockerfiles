@@ -5,7 +5,7 @@
 # 	jess/ab
 #
 FROM alpine:latest
-MAINTAINER Jessica Frazelle <jess@docker.com>
+MAINTAINER Jessie Frazelle <jess@linux.com>
 
 RUN apk --no-cache add \
 	apache2-ssl \

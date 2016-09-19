@@ -9,7 +9,7 @@
 #	jess/mutt
 #
 FROM alpine:edge
-MAINTAINER Jessica Frazelle <jess@docker.com>
+MAINTAINER Jessie Frazelle <jess@linux.com>
 
 RUN addgroup -g 1000 user \
 	&& adduser -D -h /home/user -G user -u 1000 user

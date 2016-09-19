@@ -1,5 +1,5 @@
 # DESCRIPTION:	  Create SimpleScreenRecorder in a container
-# AUTHOR:		  Jessica Frazelle <jess@docker.com>
+# AUTHOR:		  Jessie Frazelle <jess@linux.com>
 # COMMENTS:
 #	This file describes how to build SimpleScreenRecoder
 #	in a container with all dependencies installed.
@@ -17,7 +17,7 @@
 
 # Base docker image
 FROM debian:stretch
-MAINTAINER Jessica Frazelle <jess@docker.com>
+MAINTAINER Jessie Frazelle <jess@linux.com>
 
 # Install dependencies
 RUN dpkg --add-architecture i386 && apt-get update && apt-get install -y \

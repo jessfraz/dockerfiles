@@ -9,7 +9,7 @@
 #	jess/remmina
 #
 FROM ubuntu:16.04
-MAINTAINER Jessica Frazelle <jess@docker.com>
+MAINTAINER Jessie Frazelle <jess@linux.com>
 
 RUN apt-get update && apt-get install -y \
 	software-properties-common \

@@ -6,10 +6,10 @@
 #	-v $HOME/.mpd:/var/lib/mpd \
 #	-p 6600:6600 \
 #	--name mpd \
-#	jess/mpd	 
+#	jess/mpd
 #
 FROM debian:sid
-MAINTAINER Jessica Frazelle <jess@docker.com>
+MAINTAINER Jessie Frazelle <jess@linux.com>
 
 RUN apt-get update && apt-get install -y \
 	mpc \

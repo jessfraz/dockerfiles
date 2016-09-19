@@ -1,5 +1,5 @@
 FROM java:8-alpine
-MAINTAINER Jessica Frazelle <jess@docker.com>
+MAINTAINER Jessie Frazelle <jess@linux.com>
 
 # install buck
 RUN buildDeps=' \

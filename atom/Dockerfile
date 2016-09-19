@@ -1,5 +1,5 @@
 # DESCRIPTION:	  Create the atom editor in a container
-# AUTHOR:		  Jessica Frazelle <jess@docker.com>
+# AUTHOR:		  Jessie Frazelle <jess@linux.com>
 # COMMENTS:
 #	This file describes how to build the atom editor
 #	in a container with all dependencies installed.
@@ -20,7 +20,7 @@
 
 # Base docker image
 FROM debian:stretch
-MAINTAINER Jessica Frazelle <jess@docker.com>
+MAINTAINER Jessie Frazelle <jess@linux.com>
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \

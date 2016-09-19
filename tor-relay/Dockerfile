@@ -17,7 +17,7 @@
 # 		jess/tor-relay -f /etc/tor/torrc.exit
 #
 FROM alpine:latest
-MAINTAINER Jessica Frazelle <jess@docker.com>
+MAINTAINER Jessie Frazelle <jess@linux.com>
 
 RUN apk --no-cache add \
 	--repository http://dl-3.alpinelinux.org/alpine/edge/community/ \

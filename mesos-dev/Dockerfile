@@ -1,5 +1,5 @@
 FROM debian:stretch
-MAINTAINER Jessica Frazelle <jess@docker.com>
+MAINTAINER Jessie Frazelle <jess@linux.com>
 
 RUN apt-get update && apt-get install -y \
 	automake \

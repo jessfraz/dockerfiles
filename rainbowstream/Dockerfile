@@ -8,7 +8,7 @@
 #	jess/rainbowstream
 #
 FROM python:2-alpine
-MAINTAINER Jessica Frazelle <jess@docker.com>
+MAINTAINER Jessie Frazelle <jess@linux.com>
 
 RUN apk --no-cache add \
 	build-base \

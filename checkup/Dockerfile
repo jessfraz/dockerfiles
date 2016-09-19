@@ -1,5 +1,5 @@
 FROM alpine:edge
-MAINTAINER Jessica Frazelle <jess@docker.com>
+MAINTAINER Jessie Frazelle <jess@linux.com>
 
 ENV PATH /go/bin:/usr/local/go/bin:$PATH
 ENV GOPATH /go

@@ -8,7 +8,7 @@
 # 	ansible all -m ping
 #
 FROM alpine:latest
-MAINTAINER Christian Koep <christiankoep@gmail.com>
+MAINTAINER Christian Koep <christian.koep@fom-net.de>
 
 RUN builddeps=' \
 		python-dev \

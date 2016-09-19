@@ -6,7 +6,7 @@
 # 	--name gitserver \
 # 	jess/gitserver
 FROM alpine:latest
-MAINTAINER Jessica Frazelle <jess@docker.com>
+MAINTAINER Jessie Frazelle <jess@linux.com>
 
 ENV HOME /root
 
