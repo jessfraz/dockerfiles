@@ -6,7 +6,7 @@
 #	--name ykpersonalize \
 #	jess/ykpersonalize
 #
-FROM ubuntu
+FROM ubuntu:16.04
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
 RUN apt-get update && apt-get install -y \

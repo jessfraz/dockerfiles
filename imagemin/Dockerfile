@@ -6,7 +6,7 @@
 #	--entrypoint bash \
 #	jess/imagemin
 #
-FROM alpine
+FROM alpine:latest
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
 RUN apk --no-cache add \

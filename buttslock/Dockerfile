@@ -8,7 +8,8 @@
 # - /var/run/dbus, the X11 socket (typically /tmp/.X11-unix)
 # And it also requires the USER and DISPLAY environment variables to be set.
 #
-FROM alpine
+FROM alpine:latest
+
 RUN apk --no-cache add \
 	i3lock \
 	imagemagick \

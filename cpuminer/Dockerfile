@@ -1,4 +1,4 @@
-FROM alpine
+FROM alpine:latest
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
 RUN apk add --no-cache \
