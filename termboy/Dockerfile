@@ -1,5 +1,4 @@
-# VERSION:		  0.1
-# DESCRIPTION:	  Termboy in a container 
+# DESCRIPTION:	  Termboy in a container
 # AUTHOR:		  Jessica Frazelle <jess@docker.com>
 # COMMENTS:
 #	This file describes how to build termboy

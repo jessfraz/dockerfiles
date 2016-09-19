@@ -1,4 +1,3 @@
-# VERSION:		  0.1
 # DESCRIPTION:	  Create the atom editor in a container
 # AUTHOR:		  Jessica Frazelle <jess@docker.com>
 # COMMENTS:

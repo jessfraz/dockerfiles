@@ -1,4 +1,3 @@
-# VERSION:		0.1
 # DESCRIPTION:	Create keepass2 container with its dependencies
 # AUTHOR:		Christian Koep <christian.koep@fom-net.de>
 # USAGE:

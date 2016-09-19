@@ -1,4 +1,3 @@
-# VERSION:		  0.1
 # DESCRIPTION:	  Create transmission container with its dependencies
 # AUTHOR:		  Jessica Frazelle <jess@docker.com>
 # COMMENTS:

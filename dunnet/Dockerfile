@@ -1,4 +1,3 @@
-# VERSION:		  0.1
 # DESCRIPTION:	  Run text-based game dunnet in a container
 # AUTHOR:		  Jessica Frazelle <jess@docker.com>
 # COMMENTS:

@@ -1,4 +1,3 @@
-# VERSION:		0.2
 # DESCRIPTION:	Create sublime-text 3 container with its dependencies (https://www.sublimetext.com/3)
 # AUTHORS:		Christian Koep <christian.koep@fom-net.de>, Chuck Knox <charles.m.knox@gmail.com>
 # USAGE:
@@ -44,7 +43,9 @@ RUN apt-get update && apt-get -y install \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
-RUN curl -sSL "https://download.sublimetext.com/sublime_text_3_build_3114_x64.tar.bz2" -o /tmp/sublime.tar.bz2 \
+ENV SUBLIME_VERSION build_3114
+
+RUN curl -sSL "https://download.sublimetext.com/sublime_text_3_${SUBLIME_VERSION}_x64.tar.bz2" -o /tmp/sublime.tar.bz2 \
 	&& mkdir -p /usr/src/sublime_text \
 	&& tar -xjf /tmp/sublime.tar.bz2 -C /usr/src/sublime_text --strip-components 1 \
 	&& rm /tmp/sublime.tar.bz2*

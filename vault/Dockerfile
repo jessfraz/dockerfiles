@@ -9,7 +9,7 @@ RUN	apk --no-cache add \
 	ca-certificates \
 	curl
 
-ENV VAULT_VERSION v0.5.3
+ENV VAULT_VERSION v0.6.1
 
 RUN buildDeps=' \
 		bash \

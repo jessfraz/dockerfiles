@@ -1,5 +1,4 @@
-# VERSION:		  0.1
-# DESCRIPTION:	  Create SimpleScreenRecorder in a container 
+# DESCRIPTION:	  Create SimpleScreenRecorder in a container
 # AUTHOR:		  Jessica Frazelle <jess@docker.com>
 # COMMENTS:
 #	This file describes how to build SimpleScreenRecoder
@@ -73,7 +72,7 @@ RUN sed -i".bak" '10,13d' /src/simple-build-and-install
 RUN sed -i".bak" '13,14d' /src/postinstall
 RUN cd /src && \
 	#chown -R ssr /src && \
-	#sudo -u ssr 
+	#sudo -u ssr
 	/src/simple-build-and-install
 
 # Autorun ssr

@@ -1,4 +1,3 @@
-# VERSION:		0.1
 # DESCRIPTION:	Create evince container with its dependencies (https://wiki.gnome.org/Apps/Evince)
 # AUTHOR:		Christian Koep <christian.koep@fom-net.de>
 # USAGE:
