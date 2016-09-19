@@ -5,7 +5,7 @@
 #	-e DISPLAY=unix$DISPLAY \
 #	infoslack/inkscape
 #
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 MAINTAINER Daniel Romero <infoslack@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive

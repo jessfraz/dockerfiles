@@ -10,7 +10,7 @@
 #	--name skype
 #	jess/skype
 #
-FROM debian:jessie
+FROM debian:stretch
 
 # Tell debconf to run in non-interactive mode
 ENV DEBIAN_FRONTEND noninteractive
@@ -24,7 +24,7 @@ RUN dpkg --add-architecture i386 && \
 
 
 # Install Skype
-RUN curl http://download.skype.com/linux/skype-debian_4.3.0.37-1_i386.deb > /usr/src/skype.deb && \ 
+RUN curl http://download.skype.com/linux/skype-debian_4.3.0.37-1_i386.deb > /usr/src/skype.deb && \
 	dpkg --force-depends -i /usr/src/skype.deb && \
 	apt-get install -fy \
 	&& rm -rf /var/lib/apt/lists/*

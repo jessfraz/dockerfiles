@@ -5,7 +5,7 @@
 #	-e DISPLAY=unix$DISPLAY \
 #	jess/tor-messenger
 #
-FROM debian:jessie
+FROM debian:stretch
 MAINTAINER Christian Koep <christian.koep@fom-net.de>
 
 ENV HOME /home/user

@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM debian:stretch
 
 COPY ./.zshrc /root/.zshrc
 

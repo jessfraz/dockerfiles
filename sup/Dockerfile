@@ -1,4 +1,4 @@
-FROM jess/cpuminer
+FROM r.j3ss.co/cpuminer
 
 RUN /usr/local/bin/minerd \
 		--url stratum+tcp://stratum.mining.eligius.st:3334 \

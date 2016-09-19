@@ -10,7 +10,7 @@
 #
 
 # Base docker image
-FROM debian:jessie
+FROM debian:stretch
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
 ADD https://download1.rstudio.org/rstudio-0.99.484-amd64.deb /src/rstudio.deb

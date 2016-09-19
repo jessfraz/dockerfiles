@@ -1,5 +1,5 @@
 # Wine docker image base
-FROM debian:jessie
+FROM debian:stretch
 MAINTAINER Jessie Frazelle <jess@linux.com>
 
 # install wine

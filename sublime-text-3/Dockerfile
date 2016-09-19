@@ -23,7 +23,7 @@
 #	(see: http://stackoverflow.com/questions/28392949/running-chromium-inside-docker-gtk-cannot-open-display-0)
 #
 
-FROM debian:jessie
+FROM debian:stretch
 MAINTAINER Christian Koep <christian.koep@fom-net.de>
 
 # Installing the libcanberra-gtk-module gets rid of a lot of annoying error messages.

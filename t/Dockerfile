@@ -1,4 +1,4 @@
-FROM ruby:2-alpine
+FROM ruby:alpine
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
 RUN apk add --no-cache \

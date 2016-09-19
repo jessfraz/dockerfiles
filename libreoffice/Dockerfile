@@ -10,7 +10,7 @@
 #	--name libreoffice \
 #	jess/libreoffice
 #
-FROM debian:jessie
+FROM debian:stretch
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
 RUN apt-get update && apt-get install -y \

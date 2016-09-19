@@ -1,10 +1,10 @@
-# Run Lynx in a conatiner 
+# Run Lynx in a conatiner
 #
 # docker run --rm -it \
 #	--name lynx \
 #	jess/lynx github.com/jfrazelle
 #
-FROM debian:jessie
+FROM debian:stretch
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
 RUN apt-get update && apt-get install -y \

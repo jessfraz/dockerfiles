@@ -24,7 +24,7 @@
 # Be aware that by default the LDAP port is accessible from anywhere if the \
 # host firewall is unconfigured.
 #
-FROM debian:jessie
+FROM debian:stretch
 MAINTAINER Jessica Frazelle <jess@docker.com>
 
 RUN apt-get update && LC_ALL=C DEBIAN_FRONTEND=noninteractive \
