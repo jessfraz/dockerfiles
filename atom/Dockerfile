@@ -29,6 +29,7 @@ RUN apt-get update && apt-get install -y \
 	gconf-service \
 	gvfs-bin \
 	libasound2 \
+	libcap2 \
 	libgconf-2-4 \
 	libgnome-keyring-dev \
 	libgtk2.0-0 \
