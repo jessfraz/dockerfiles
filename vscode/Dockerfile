@@ -58,7 +58,7 @@ RUN buildDeps=' \
 	' \
 	&& set -x \
 	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends \
-	&& curl -sL https://deb.nodesource.com/setup | bash - \
+	&& curl -sL https://deb.nodesource.com/setup_6.x | bash - \
 	&& apt-get update && apt-get install -y nodejs --no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& curl -sSL https://az764295.vo.msecnd.net/stable/66f37fd2a99eb9d628dd374d81d78835b410c39b/code_${CODE_VERSION}-1473686317_amd64.deb -o /tmp/vs.deb \
