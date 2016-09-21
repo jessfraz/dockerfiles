@@ -1,10 +1,9 @@
-FROM python:2-alpine
+FROM python:3-alpine
 MAINTAINER Justin Garrison <justinleegarrison@gmail.com>
 
-RUN apt-get update && apt-get install -y \
-	mplayer mpv \
-	--no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache \
+	mplayer \
+	mpv
 
 RUN pip install mps-youtube
 

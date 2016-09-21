@@ -1,10 +1,13 @@
-FROM ruby:alpine
-MAINTAINER Jessie Frazelle <jess@linux.com>
+FROM	ruby:alpine
+MAINTAINER	Jessie Frazelle <jess@linux.com>
 
-RUN apt-get update && apt-get install -y \
-	libcurl3-dev \
-	--no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/* \
-	&& gem install cloudapp
+RUN	apk add --no-cache \
+	libcurl
 
-ENTRYPOINT ["cloudapp"]
+RUN	set -x \
+	&& apk add --no-cache --virtual .build-deps \
+	build-base \
+	&& gem install cloudapp --no-rdoc --no-ri \
+	&& apk del .build-deps
+
+ENTRYPOINT	["cloudapp"]
