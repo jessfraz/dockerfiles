@@ -1,12 +1,16 @@
 #!/bin/bash
 set -e
+set -o pipefail
+
+REPO_URL="${REPO_URL:-r.j3ss.co}"
 
 build_and_push(){
 	base=$1
 	suite=$2
 	build_dir=$3
 
-	docker build --rm --force-rm -t r.j3ss.co/${base}:${suite} ${build_dir} || return 1
+	echo "Building ${REPO_URL}/${base}:${suite} for context ${build_dir}"
+	docker build --rm --force-rm -t ${REPO_URL}/${base}:${suite} ${build_dir} || return 1
 
 	# on successful build, push the image
 	echo "                       ---                                   "
@@ -17,7 +21,7 @@ build_and_push(){
 	# absolutely no reason
 	n=0
 	until [ $n -ge 5 ]; do
-		docker push --disable-content-trust=false r.j3ss.co/${base}:${suite} && break
+		docker push --disable-content-trust=false ${REPO_URL}/${base}:${suite} && break
 		echo "Try #$n failed... sleeping for 15 seconds"
 		n=$[$n+1]
 		sleep 15
@@ -25,15 +29,15 @@ build_and_push(){
 
 	# also push the tag latest for "stable" tags
 	if [[ "$suite" == "stable" ]]; then
-		docker tag r.j3ss.co/${base}:${suite} r.j3ss.co/${base}:latest
-		docker push --disable-content-trust=false r.j3ss.co/${base}:latest
+		docker tag ${REPO_URL}/${base}:${suite} ${REPO_URL}/${base}:latest
+		docker push --disable-content-trust=false ${REPO_URL}/${base}:latest
 	fi
 }
 
 main(){
 	# get the dockerfiles
 	IFS=$'\n'
-	files=( $(find . -iname '*Dockerfile' | sed 's|./||') )
+	files=( $(find . -iname '*Dockerfile' | sed 's|./||' | sort) )
 	unset IFS
 
 	ERRORS=()
