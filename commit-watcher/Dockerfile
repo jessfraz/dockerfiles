@@ -17,7 +17,7 @@ RUN	set -x \
 	ruby-dev \
 	&& git clone --depth 1 https://github.com/srcclr/commit-watcher.git /usr/src/commit-watcher \
 	&& cd /usr/src/commit-watcher \
-	&& gem install bundler io-console --no-rdoc --no-ri \
+	&& gem install bigdecimal bundler io-console --no-rdoc --no-ri \
 	&& bundle config build.nokogiri --use-system-libraries \
 	&& bundle install \
 	&& apk del .build-deps
