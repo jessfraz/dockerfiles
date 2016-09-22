@@ -2,6 +2,7 @@ FROM ruby:2-alpine
 
 RUN	apk add --no-cache \
 	ca-certificates \
+	git \
 	libxml2 \
 	libxslt \
 	mariadb-dev \
@@ -12,7 +13,6 @@ RUN	set -x \
 	&& apk add --no-cache --virtual .build-deps \
 	build-base \
 	cmake \
-	git \
 	libxml2-dev \
 	libxslt-dev \
 	&& git clone --depth 1 https://github.com/srcclr/commit-watcher.git /usr/src/commit-watcher \
