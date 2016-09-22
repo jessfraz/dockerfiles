@@ -1,12 +1,11 @@
-FROM mhart/alpine-node:5
+FROM ruby:2-alpine
 
 RUN	apk add --no-cache \
 	ca-certificates \
 	libxml2 \
 	libxslt \
 	mariadb-dev \
-	ruby \
-	ruby-bigdecimal \
+	nodejs \
 	tzdata
 
 RUN	set -x \
@@ -16,10 +15,9 @@ RUN	set -x \
 	git \
 	libxml2-dev \
 	libxslt-dev \
-	ruby-dev \
 	&& git clone --depth 1 https://github.com/srcclr/commit-watcher.git /usr/src/commit-watcher \
 	&& cd /usr/src/commit-watcher \
-	&& gem install bundler io-console --no-rdoc --no-ri \
+	&& gem install io-console --no-rdoc --no-ri \
 	&& bundle config build.nokogiri --use-system-libraries \
 	&& bundle install \
 	&& apk del .build-deps
@@ -27,5 +25,6 @@ RUN	set -x \
 WORKDIR /usr/src/commit-watcher
 
 COPY database.yml /usr/src/commit-watcher/config/database.yml
+VOLUME /usr/src/commit-watcher
 
 CMD ["./scripts/deploy"]
