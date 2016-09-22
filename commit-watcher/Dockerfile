@@ -6,8 +6,7 @@ RUN	apk add --no-cache \
 	libxslt \
 	mariadb-dev \
 	ruby \
-	ruby-bigdecimal \
-	ruby-tzinfo
+	ruby-bigdecimal
 
 RUN	set -x \
 	&& apk add --no-cache --virtual .build-deps \
@@ -19,7 +18,7 @@ RUN	set -x \
 	ruby-dev \
 	&& git clone --depth 1 https://github.com/srcclr/commit-watcher.git /usr/src/commit-watcher \
 	&& cd /usr/src/commit-watcher \
-	&& gem install bundler io-console --no-rdoc --no-ri \
+	&& gem install bundler io-console tzinfo tzinfo-data --no-rdoc --no-ri \
 	&& bundle config build.nokogiri --use-system-libraries \
 	&& bundle install \
 	&& apk del .build-deps
