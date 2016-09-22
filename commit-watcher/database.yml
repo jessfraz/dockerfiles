@@ -5,10 +5,10 @@ default: &default
   username: root
   password:
   # Use this for local mysql instances
-  # socket: /tmp/mysql.sock
+  socket: /var/run/mysqld/mysqld.sock
 
   # Use this for Docker
-  host: localhost:3306
+  #host: localhost:3306
 
 development:
   <<: *default
