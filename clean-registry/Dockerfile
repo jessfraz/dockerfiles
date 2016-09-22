@@ -2,7 +2,8 @@ FROM python:2-alpine
 
 RUN	apk add --no-cache \
 	ca-certificates \
-	bash
+	bash \
+	parallel
 
 # Install google cloud sdk
 # Download clean-registry script
