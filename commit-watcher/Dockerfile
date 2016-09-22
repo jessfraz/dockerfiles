@@ -22,6 +22,9 @@ RUN	set -x \
 	&& apk del .build-deps
 
 WORKDIR /usr/src/commit-watcher
+
+COPY database.yml /usr/src/commit-watcher/config/database.yml
+COPY production.rb /usr/src/commit-watcher/config/environments/production.rb
 VOLUME /usr/src/commit-watcher
 
 CMD ["./scripts/deploy"]
