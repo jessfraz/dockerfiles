@@ -6,8 +6,8 @@ RUN	apk add --no-cache \
 	libxslt \
 	mariadb-dev \
 	ruby \
-	ruby-bigdecimal
-	ruby-tzinfo \
+	ruby-bigdecimal \
+	ruby-tzinfo
 
 RUN	set -x \
 	&& apk add --no-cache --virtual .build-deps \
