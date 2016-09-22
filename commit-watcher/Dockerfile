@@ -4,6 +4,7 @@ RUN	apk add --no-cache \
 	ca-certificates \
 	libxml2 \
 	libxslt \
+	mariadb-dev \
 	ruby \
 	ruby-bigdecimal
 
@@ -14,7 +15,6 @@ RUN	set -x \
 	git \
 	libxml2-dev \
 	libxslt-dev \
-	mariadb-dev \
 	ruby-dev \
 	&& git clone --depth 1 https://github.com/srcclr/commit-watcher.git /usr/src/commit-watcher \
 	&& cd /usr/src/commit-watcher \
