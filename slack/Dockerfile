@@ -35,6 +35,7 @@ RUN apt-get update && apt-get install -y \
 	libxtst6 \
 	locales \
 	python \
+	qmmp \
 	xdg-utils \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
@@ -48,9 +49,12 @@ ENV SLACK_VERSION 2.1.1
 # download the deb and node
 RUN buildDeps=' \
 		curl \
+		gnupg \
 	' \
 	&& set -x \
 	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends \
+	&& curl -sL https://deb.nodesource.com/setup_6.x | bash - \
+	&& apt-get update && apt-get install -y nodejs --no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& curl -sSL "https://downloads.slack-edge.com/linux_releases/slack-desktop-${SLACK_VERSION}-amd64.deb" > /tmp/slack-desktop.deb \
 	&& dpkg -i /tmp/slack-desktop.deb \
