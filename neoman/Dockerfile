@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -y \
 	add-apt-repository ppa:yubico/stable && \
 	apt-get update && \
 	apt-get install -y \
+	python-setuptools \
 	usbutils \
 	yubikey-neo-manager \
 	&& rm -rf /var/lib/apt/lists/*
