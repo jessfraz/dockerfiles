@@ -7,7 +7,7 @@
 #	--link pulseaudio:pulseaudio \
 #	-e PULSE_SERVER=pulseaudio \
 #	--device /dev/video0 \
-#	--name skype
+#	--name skype \
 #	jess/skype
 #
 FROM debian:stretch
