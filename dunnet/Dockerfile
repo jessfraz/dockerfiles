@@ -6,7 +6,7 @@
 #	Tested on Debian Jessie
 # USAGE:
 #	# Download dunnet Dockerfile
-#	wget http://raw.githubusercontent.com/jfrazelle/dockerfiles/master/dunnet/Dockerfile
+#	wget http://raw.githubusercontent.com/jessfraz/dockerfiles/master/dunnet/Dockerfile
 #
 #	# Build dunnet image
 #	docker build -t dunnet .

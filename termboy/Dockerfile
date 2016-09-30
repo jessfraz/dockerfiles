@@ -6,7 +6,7 @@
 #	Tested on Debian Jessie.
 # USAGE:
 #	# Download termboy Dockerfile
-#	wget http://raw.githubusercontent.com/jfrazelle/dockerfiles/master/termboy/Dockerfile
+#	wget http://raw.githubusercontent.com/jessfraz/dockerfiles/master/termboy/Dockerfile
 #
 #	# Build termboy image
 #	docker build -t termboy .

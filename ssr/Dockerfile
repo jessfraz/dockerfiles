@@ -6,7 +6,7 @@
 #	Tested on Debian Jessie.
 # USAGE:
 #	# Download ssr Dockerfile
-#	wget http://raw.githubusercontent.com/jfrazelle/dockerfiles/master/ssr/Dockerfile
+#	wget http://raw.githubusercontent.com/jessfraz/dockerfiles/master/ssr/Dockerfile
 #
 #	# Build ssr image
 #	docker build -t ssr .

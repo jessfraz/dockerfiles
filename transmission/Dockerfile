@@ -6,7 +6,7 @@
 #	Tested on Debian Jessie
 # USAGE:
 #	# Download transmission Dockerfile
-#	wget http://raw.githubusercontent.com/jfrazelle/dockerfiles/master/transmission/Dockerfile
+#	wget http://raw.githubusercontent.com/jessfraz/dockerfiles/master/transmission/Dockerfile
 #
 #	# Build transmission image
 #	docker build -t jess/transmission .

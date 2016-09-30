@@ -2,7 +2,7 @@
 #
 # docker run --rm -it \
 #	--name lynx \
-#	jess/lynx github.com/jfrazelle
+#	jess/lynx github.com/jessfraz
 #
 FROM debian:stretch
 MAINTAINER Jessie Frazelle <jess@linux.com>

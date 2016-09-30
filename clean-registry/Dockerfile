@@ -12,7 +12,7 @@ RUN set -x \
 		curl \
 		tar \
 	&& curl -sSL -o /tmp/google-cloud-sdk.tar.gz https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz \
-	&& curl -sSL -o /usr/bin/clean-registry https://raw.githubusercontent.com/jfrazelle/dotfiles/master/bin/clean-registry \
+	&& curl -sSL -o /usr/bin/clean-registry https://raw.githubusercontent.com/jessfraz/dotfiles/master/bin/clean-registry \
 	&& chmod +x /usr/bin/clean-registry \
 	&& mkdir -p /usr/src/google-cloud-sdk \
 	&& tar -xzf /tmp/google-cloud-sdk.tar.gz -C /usr/src/google-cloud-sdk --strip-components 1 \
@@ -37,7 +37,7 @@ RUN set -x \
 		gcc \
 		libc-dev \
 		libgcc \
-	&& go get github.com/jfrazelle/reg \
+	&& go get github.com/jessfraz/reg \
 	&& mv ${GOPATH}/bin/reg /usr/bin/reg \
 	&& apk del .build-deps \
 	&& rm -rf /go \
