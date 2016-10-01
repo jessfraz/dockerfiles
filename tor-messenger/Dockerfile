@@ -35,7 +35,7 @@ RUN cd /tmp && \
 	curl -sSOL https://dist.torproject.org/tormessenger/${TOR_VERSION}/sha256sums.txt && \
 	curl -sSOL https://dist.torproject.org/tormessenger/${TOR_VERSION}/sha256sums.txt.asc && \
 	mkdir ~/.gnupg && \
-	gpg --keyserver x-hkp://pgp.mit.edu --recv-keys ${TOR_FINGERPRINT} || \
+	gpg --keyserver pgp.mit.edu --recv-keys ${TOR_FINGERPRINT} || \
 	gpg --fingerprint --keyid-format LONG ${TOR_FINGERPRINT} | grep "Key fingerprint = 3A0B 3D84 3708 9613 6B84	5E82 6887 935A B297 B391" && \
 	gpg --verify sha256sums.txt.asc && \
 	grep $(sha256sum tor-messenger-linux64-${TOR_VERSION}_en-US.tar.xz) sha256sums.txt && \
