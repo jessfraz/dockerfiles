@@ -29,7 +29,7 @@
 # 	rm -rf /usr/share/virtualbox
 # 	rm vboxdrv
 #
-FROM debian:stretch
+FROM debian:sid
 MAINTAINER Jessie Frazelle <jess@linux.com>
 
 RUN apt-get update && apt-get install -y \

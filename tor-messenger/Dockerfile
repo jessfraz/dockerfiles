@@ -16,6 +16,7 @@ ENV TOR_FINGERPRINT 0xB01C8B006DA77FAA
 RUN apt-get update && apt-get -y install \
 	ca-certificates \
 	curl \
+	dirmngr \
 	gnupg \
 	gxmessage \
 	libasound2 \

@@ -4,6 +4,7 @@ MAINTAINER Jessie Frazelle <jess@linux.com>
 RUN apt-get update && apt-get install -y \
 	ca-certificates \
 	curl \
+	dirmngr \
 	gnupg \
 	--no-install-recommends
 

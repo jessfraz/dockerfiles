@@ -11,6 +11,7 @@ MAINTAINER Christian Koep <christian.koep@fom-net.de>
 RUN apt-get update && apt-get install -y \
 	ca-certificates \
 	curl \
+	dirmngr \
 	gnupg \
 	libasound2 \
 	libdbus-glib-1-2 \
