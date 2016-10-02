@@ -1,7 +1,8 @@
 FROM alpine:edge
 
 RUN apk add --no-cache \
-	ca-certificates \
 	bash \
+	ca-certificates \
+	curl \
 	git \
 	jq
