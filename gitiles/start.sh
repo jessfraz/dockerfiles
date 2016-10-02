@@ -15,11 +15,13 @@ else
 		# Do not check they are exported
 		exportAll = true
 		# This URL will be displayed as clone URL. DO NOT FORGET TRAILING SLASH!
-		baseGitUrl = git@g.j3ss.co:
+		baseGitUrl = ${BASE_GIT_URL}:
 		# Title of site (doh)
-		siteTitle  = Gitiles - git.j3ss.co
+		siteTitle  = Gitiles - ${SITE_TITLE}
 		# I dunno why, but it is have to be configured.
-		canonicalHostName = git.j3ss.co
+		canonicalHostName = ${SITE_TITLE}
+	[google]
+		analyticsId = UA-${GA_ID}
 	EOF
 fi
 
