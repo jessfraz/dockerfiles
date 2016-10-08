@@ -2,7 +2,8 @@ FROM	ruby:alpine
 MAINTAINER	Jessie Frazelle <jess@linux.com>
 
 RUN	apk add --no-cache \
-	ca-certificates
+	ca-certificates \
+	git
 
 RUN	set -x \
 	&& apk add --no-cache --virtual .build-deps \
