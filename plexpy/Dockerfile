@@ -19,7 +19,7 @@ RUN set -x \
 	&& apk add --no-cache --virtual .build-deps \
 		git \
 	&& mkdir -p /opt/plexpy \
-	&& git clone --branch "${PLEXPPY_VERSION}" https://github.com/drzoidberg33/plexpy.git /opt/plexpy/ \
+	&& git clone --branch "${PLEXPY_VERSION}" https://github.com/drzoidberg33/plexpy.git /opt/plexpy/ \
 	&& apk del .build-deps
 
 # Volume for Plexpy data.
