@@ -49,7 +49,7 @@ ENV HOME /home/user
 RUN useradd --create-home --home-dir $HOME user \
 	&& chown -R user:user $HOME
 
-ENV CODE_VERSION 1.5.2
+ENV CODE_VERSION 1.5.3
 # download the source
 RUN buildDeps=' \
 		ca-certificates \

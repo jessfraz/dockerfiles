@@ -10,7 +10,7 @@ RUN adduser -u 1001 -D user \
 
 ENV LANG C.UTF-8
 
-ENV IRSSI_VERSION 0.8.19
+ENV IRSSI_VERSION 0.8.20
 ENV LIB_OTR_VERSION 4.1.1
 ENV IRSSI_OTR_VERSION 1.0.1
 ENV PATCH_FOR_IRSSI_OTR https://github.com/cryptodotis/irssi-otr/commit/d03ab59b6f27142c1c5e99fedc635a589b1607bb.diff

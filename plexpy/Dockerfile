@@ -14,11 +14,12 @@ RUN apk add --no-cache \
   python
 
 # Get the source
+ENV PLEXPY_VERSION v1.4.12
 RUN set -x \
 	&& apk add --no-cache --virtual .build-deps \
 		git \
 	&& mkdir -p /opt/plexpy \
-	&& git clone https://github.com/drzoidberg33/plexpy.git /opt/plexpy/ \
+	&& git clone --branch "${PLEXPPY_VERSION}" https://github.com/drzoidberg33/plexpy.git /opt/plexpy/ \
 	&& apk del .build-deps
 
 # Volume for Plexpy data.
