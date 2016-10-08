@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM alpine:latest
 MAINTAINER Jessie Frazelle <jess@linux.com>
 
 ENV PATH /go/bin:/usr/local/go/bin:$PATH
@@ -18,7 +18,7 @@ RUN buildDeps=' \
 	' \
 	set -x \
 	&& apk update \
-	&& apk add --no-cache $buildDeps \
+	&& apk add --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/community $buildDeps \
 	&& go get github.com/sourcegraph/checkup/cmd/checkup \
 	&& cp /go/bin/checkup /usr/bin/checkup \
 	&& apk del $buildDeps \

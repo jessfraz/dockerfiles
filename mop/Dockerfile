@@ -5,7 +5,7 @@
 # 	--name mop \
 # 	r.j3ss.co/mop
 #
-FROM alpine:edge
+FROM alpine:latest
 
 RUN apk --no-cache add \
 	ca-certificates

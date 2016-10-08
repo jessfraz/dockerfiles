@@ -1,5 +1,4 @@
-# use alpine edge for go 1.6
-FROM alpine:edge
+FROM alpine:latest
 MAINTAINER Jessie Frazelle <jess@linux.com>
 
 ENV PATH /go/bin:/usr/local/go/bin:$PATH

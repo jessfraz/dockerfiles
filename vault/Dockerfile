@@ -1,5 +1,4 @@
-# use alpine edge for go 1.6
-FROM alpine:edge
+FROM alpine:latest
 MAINTAINER Jessie Frazelle <jess@linux.com>
 
 ENV PATH /go/bin:/usr/local/go/bin:$PATH
@@ -9,7 +8,7 @@ RUN	apk --no-cache add \
 	ca-certificates \
 	curl
 
-ENV VAULT_VERSION v0.6.1
+ENV VAULT_VERSION v0.6.2
 
 RUN buildDeps=' \
 		bash \
@@ -23,7 +22,7 @@ RUN buildDeps=' \
 		zip \
 	' \
 	set -x \
-	&& apk --no-cache add $buildDeps \
+	&& apk --no-cache add --repository http://dl-3.alpinelinux.org/alpine/edge/community $buildDeps \
 	&& mkdir -p /go/src/github.com/hashicorp \
 	&& git clone --branch ${VAULT_VERSION} https://github.com/hashicorp/vault /go/src/github.com/hashicorp/vault \
 	&& cd /go/src/github.com/hashicorp/vault \

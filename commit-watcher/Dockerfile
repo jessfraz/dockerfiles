@@ -1,4 +1,4 @@
-FROM ruby:2-alpine
+FROM ruby:alpine
 
 RUN	apk add --no-cache \
 	ca-certificates \
