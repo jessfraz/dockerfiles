@@ -1,4 +1,4 @@
-FROM java:7-alpine
+FROM java:8-alpine
 MAINTAINER Jessie Frazelle <jess@linux.com>
 
 RUN apk add --no-cache \

@@ -1,4 +1,4 @@
-FROM java:7-alpine
+FROM java:8-alpine
 
 ENV ZOOKEEPER_VERSION 3.4.8
 ENV PATH $PATH:/opt/zookeeper/bin/
