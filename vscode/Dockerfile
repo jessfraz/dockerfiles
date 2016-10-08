@@ -49,7 +49,7 @@ ENV HOME /home/user
 RUN useradd --create-home --home-dir $HOME user \
 	&& chown -R user:user $HOME
 
-ENV CODE_VERSION 1.5.3
+ENV CODE_VERSION 1.5.3-1474533365
 # download the source
 RUN buildDeps=' \
 		ca-certificates \
@@ -61,7 +61,7 @@ RUN buildDeps=' \
 	&& curl -sL https://deb.nodesource.com/setup_6.x | bash - \
 	&& apt-get update && apt-get install -y nodejs --no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/* \
-	&& curl -sSL https://az764295.vo.msecnd.net/stable/66f37fd2a99eb9d628dd374d81d78835b410c39b/code_${CODE_VERSION}-1473686317_amd64.deb -o /tmp/vs.deb \
+	&& curl -sSL "https://az764295.vo.msecnd.net/stable/5be4091987a98e3870d89d630eb87be6d9bafd27/code_${CODE_VERSION}_amd64.deb" -o /tmp/vs.deb \
 	&& dpkg -i /tmp/vs.deb \
 	&& rm -rf /tmp/vs.deb \
 	&& apt-get purge -y --auto-remove $buildDeps
