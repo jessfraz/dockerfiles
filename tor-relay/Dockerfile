@@ -16,11 +16,10 @@
 # 		--name tor-relay \
 # 		jess/tor-relay -f /etc/tor/torrc.exit
 #
-FROM alpine:latest
+FROM alpine:edge
 MAINTAINER Jessie Frazelle <jess@linux.com>
 
 RUN apk --no-cache add \
-	--repository http://dl-3.alpinelinux.org/alpine/edge/community/ \
 	tor
 
 # default port to used for incoming Tor connections
