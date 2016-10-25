@@ -2,6 +2,8 @@
 #
 # docker run -d \
 #	--restart always \
+# 	# the link inside the container must be named "torproxy"
+# 	# see: https://github.com/jessfraz/dockerfiles/blob/master/privoxy/privoxy.conf#L1317
 #	--link torproxy:torproxy \
 #	-v /etc/localtime:/etc/localtime:ro \
 #	-p 8118:8118 \

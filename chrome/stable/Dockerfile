@@ -21,8 +21,8 @@ MAINTAINER Jessie Frazelle <jess@linux.com>
 ADD https://dl.google.com/linux/direct/google-talkplugin_current_amd64.deb /src/google-talkplugin_current_amd64.deb
 
 # Install Chrome
-RUN echo 'deb http://httpredir.debian.org/debian testing main' >> /etc/apt/sources.list && \
-	apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y \
+	apt-transport-https \
 	ca-certificates \
 	curl \
 	gnupg \
@@ -31,11 +31,10 @@ RUN echo 'deb http://httpredir.debian.org/debian testing main' >> /etc/apt/sourc
 	libgl1-mesa-glx \
 	libpulse0 \
 	libv4l-0 \
-	-t testing \
 	fonts-symbola \
 	--no-install-recommends \
 	&& curl -sSL https://dl.google.com/linux/linux_signing_key.pub | apt-key add - \
-	&& echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list \
+	&& echo "deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google.list \
 	&& apt-get update && apt-get install -y \
 	google-chrome-stable \
 	--no-install-recommends \
