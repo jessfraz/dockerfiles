@@ -25,7 +25,8 @@ RUN dpkg --add-architecture i386 && \
 
 # Install Skype
 RUN curl http://download.skype.com/linux/skype-debian_4.3.0.37-1_i386.deb > /usr/src/skype.deb && \
-	dpkg --force-depends -i /usr/src/skype.deb && \
+        curl http://security.debian.org/debian-security/pool/updates/main/o/openssl/libssl1.0.0_1.0.1t-1+deb8u5_i386.deb > /usr/src/libssl1.0.0.deb && \
+	dpkg --force-depends -i /usr/src/skype.deb /usr/src/libssl1.0.0.deb && \
 	apt-get install -fy \
 	&& rm -rf /var/lib/apt/lists/*
 
