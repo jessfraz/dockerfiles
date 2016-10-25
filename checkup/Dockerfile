@@ -18,7 +18,7 @@ RUN buildDeps=' \
 	' \
 	set -x \
 	&& apk update \
-	&& apk add --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/community $buildDeps \
+	&& apk add --no-cache --repository https://dl-3.alpinelinux.org/alpine/edge/community $buildDeps \
 	&& go get github.com/sourcegraph/checkup/cmd/checkup \
 	&& cp /go/bin/checkup /usr/bin/checkup \
 	&& apk del $buildDeps \

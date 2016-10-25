@@ -9,7 +9,7 @@
 #	Tested on Debian Jessie.
 # USAGE:
 #	# Download atom Dockerfile
-#	wget http://raw.githubusercontent.com/jessfraz/dockerfiles/master/atom/Dockerfile
+#	wget https://raw.githubusercontent.com/jessfraz/dockerfiles/master/atom/Dockerfile
 #
 #	# Build atom image
 #	docker build -t atom .

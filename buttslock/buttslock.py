@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 # Shamelessly pasted from:
-# http://serverfault.com/questions/573379/system-suspend-dbus-upower-signals-are-not-seen
+# https://serverfault.com/questions/573379/system-suspend-dbus-upower-signals-are-not-seen
 
 from datetime import datetime
 import dbus

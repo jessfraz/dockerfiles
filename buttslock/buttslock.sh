@@ -3,7 +3,7 @@
 # Shamelessly copied from:
 # https://github.com/meskarune/i3lock-fancy
 
-# All options are here: http://www.imagemagick.org/Usage/blur/#blur_args
+# All options are here: https://www.imagemagick.org/Usage/blur/#blur_args
 #BLURTYPE="0x5" # 7.52s
 #BLURTYPE="0x2" # 4.39s
 #BLURTYPE="5x3" # 3.80s
