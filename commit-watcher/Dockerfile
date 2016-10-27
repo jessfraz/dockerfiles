@@ -19,7 +19,7 @@ RUN	set -x \
 	&& cd /usr/src/commit-watcher \
 	&& bundle config build.nokogiri --use-system-libraries \
 	&& bundle install \
-	&& gem install activesupport --no-rdoc --no-ri \
+	&& gem install activesupport-json_encoder --no-rdoc --no-ri \
 	&& apk del .build-deps
 
 WORKDIR /usr/src/commit-watcher
