@@ -9,7 +9,7 @@
 #		-v /home/$USER/DB.kdbx:/root/DB.kdbx \
 #		-v /tmp/.X11-unix:/tmp/.X11-unix \
 #		-e DISPLAY=$DISPLAY \
-#		keepass2
+#		keepass2 "$@"
 #
 # ISSUES:
 #	# 'Gtk: cannot open display: :0'
