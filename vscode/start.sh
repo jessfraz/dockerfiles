@@ -1,3 +1,4 @@
 #!/bin/bash
 
-su user -c /usr/src/VSCode-linux-x64/code
+su user -c /usr/bin/code
+sleep infinity
