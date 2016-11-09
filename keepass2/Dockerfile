@@ -9,7 +9,7 @@
 #		-v /home/$USER/DB.kdbx:/root/DB.kdbx \
 #		-v /tmp/.X11-unix:/tmp/.X11-unix \
 #		-e DISPLAY=$DISPLAY \
-#		keepass2
+#		keepass2 "$@"
 #
 # ISSUES:
 #	# 'Gtk: cannot open display: :0'
@@ -28,4 +28,4 @@ RUN apt-get update && apt-get install -y \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
-CMD ["/usr/bin/keepass2"]
+ENTRYPOINT ["/usr/bin/keepass2"]
