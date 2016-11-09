@@ -25,7 +25,7 @@ RUN apt-get update && apt-get install -y \
 	qtbase5-dev \
 	&& rm -rf /var/lib/apt/lists/*
 
-ENV RICOCHET_VERSION 1.1.2
+ENV RICOCHET_VERSION 1.1.4
 ENV RICOCHET_FINGERPRINT 0xFF97C53F183C045D
 
 RUN buildDeps=' \
@@ -36,13 +36,13 @@ RUN buildDeps=' \
 	&& set -x \
 	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/* \
-	&& curl -sSL https://ricochet.im/releases/latest/ricochet-${RICOCHET_VERSION}-static-x86_64.tar.bz2 -o /tmp/ricochet.tar.bz2 \
-	&& curl -sSL https://ricochet.im/releases/latest/ricochet-${RICOCHET_VERSION}-static-x86_64.tar.bz2.asc -o /tmp/ricochet.tar.bz2.asc \
+	&& curl -sSL "https://ricochet.im/releases/${RICOCHET_VERSION}/ricochet-${RICOCHET_VERSION}-linux-x86_64.tar.bz2" -o /tmp/ricochet.tar.bz2 \
+	&& curl -sSL "https://ricochet.im/releases/${RICOCHET_VERSION}/ricochet-${RICOCHET_VERSION}-linux-x86_64.tar.bz2.asc" -o /tmp/ricochet.tar.bz2.asc \
 	&& export GNUPGHOME="$(mktemp -d)" \
 	&& chmod 600 "${GNUPGHOME}" \
-	&& gpg --keyserver pgp.mit.edu --recv-keys ${RICOCHET_FINGERPRINT} \
+	&& curl -sSL https://ricochet.im/john-brooks.asc | gpg --import \
 	&& gpg --fingerprint --keyid-format LONG ${RICOCHET_FINGERPRINT} | grep "9032 CAE4 CBFA 933A 5A21  45D5 FF97 C53F 183C 045D" \
-	&& gpg /tmp/ricochet.tar.bz2.asc \
+	&& gpg --verify /tmp/ricochet.tar.bz2.asc \
 	&& tar -vxj --strip-components 1 -C /usr/local/bin -f /tmp/ricochet.tar.bz2 \
 	&& rm -rf /tmp/ricochet* \
 	&& rm -rf "${GNUPGHOME}" \
