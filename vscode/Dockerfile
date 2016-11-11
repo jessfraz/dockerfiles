@@ -70,6 +70,8 @@ RUN buildDeps=' \
 	&& apt-get purge -y --auto-remove $buildDeps
 
 COPY start.sh /usr/local/bin/start.sh
+COPY local.conf /etc/fonts/local.conf
+
 WORKDIR $HOME
 
 ENTRYPOINT [ "/usr/local/bin/start.sh" ]
