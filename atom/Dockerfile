@@ -35,12 +35,14 @@ RUN apt-get update && apt-get install -y \
 	libgtk2.0-0 \
 	libnotify4 \
 	libnss3 \
+	libxkbfile1 \
+	libxss1 \
 	libxtst6 \
 	xdg-utils \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
-ENV ATOM_VERSION 1.12.3
+ENV ATOM_VERSION 1.12.5
 
 # download the source
 RUN buildDeps=' \
