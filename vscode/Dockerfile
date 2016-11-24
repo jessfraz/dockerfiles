@@ -50,8 +50,8 @@ ENV HOME /home/user
 RUN useradd --create-home --home-dir $HOME user \
 	&& chown -R user:user $HOME
 
-ENV CODE_VERSION 1.7.1-1478180561
-ENV CODE_COMMIT 02611b40b24c9df2726ad8b33f5ef5f67ac30b44
+ENV CODE_VERSION 1.7.2-1479766213
+ENV CODE_COMMIT 7ba55c5860b152d999dda59393ca3ebeb1b5c85f
 
 # download the source
 RUN buildDeps=' \
