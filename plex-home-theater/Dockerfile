@@ -16,7 +16,6 @@ RUN apt-get update && apt-get install -y \
 	add-apt-repository ppa:pulse-eight/libcec && \
 	apt-get update && \
 	apt-get install -y \
-	libcec-dev \
 	plexhometheater \
 	&& rm -rf /var/lib/apt/lists/*
 
