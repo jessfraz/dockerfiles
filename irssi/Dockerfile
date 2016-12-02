@@ -39,7 +39,7 @@ RUN set -x \
 	&& curl -sSL "https://github.com/irssi/irssi/releases/download/${IRSSI_VERSION}/irssi-${IRSSI_VERSION}.tar.xz.asc" -o /tmp/irssi.tar.xz.asc \
 	&& export GNUPGHOME="$(mktemp -d)" \
 # gpg: key DDBEF0E1: public key "The Irssi project <staff@irssi.org>" imported
-	&& gpg --keyserver ha.pool.sks-keyservers.net --recv-keys 7EE65E3082A5FB06AC7C368D00CCB587DDBEF0E1 \
+	&& gpg --no-tty --keyserver ha.pool.sks-keyservers.net --recv-keys 7EE65E3082A5FB06AC7C368D00CCB587DDBEF0E1 \
 	&& gpg --batch --verify /tmp/irssi.tar.xz.asc /tmp/irssi.tar.xz \
 	&& rm -r "$GNUPGHOME" /tmp/irssi.tar.xz.asc \
 	&& mkdir -p /usr/src \
@@ -60,7 +60,7 @@ RUN set -x \
 	&& curl -sSL "https://otr.cypherpunks.ca/libotr-${LIB_OTR_VERSION}.tar.gz.asc" -o /tmp/libotr.tar.gz.asc \
 	&& export GNUPGHOME="$(mktemp -d)" \
 # gpg: key 42C2ABAD: public key "OTR Dev Team (Signing Key) <otr@cypherpunks.ca>" imported
-	&& gpg --keyserver pgp.mit.edu --recv-keys 22DF3305DF56667CE15784FCF24DE08F42C2ABAD \
+	&& gpg --no-tty --keyserver pgp.mit.edu --recv-keys 22DF3305DF56667CE15784FCF24DE08F42C2ABAD \
 	&& gpg --batch --verify /tmp/libotr.tar.gz.asc /tmp/libotr.tar.gz \
 	&& rm -r "$GNUPGHOME" /tmp/libotr.tar.gz.asc \
 	&& mkdir -p /usr/src/libotr \

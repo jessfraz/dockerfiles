@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y \
 	--no-install-recommends
 
 RUN export GNUPGHOME="$(mktemp -d)" \
-	&& gpg --keyserver pgp.mit.edu --recv-key A2CFB51FA275A7286234E7B24D17C995CD9775F2 \
+	&& gpg --no-tty --keyserver pgp.mit.edu --recv-key A2CFB51FA275A7286234E7B24D17C995CD9775F2 \
 	&& ( \
 	cd /tmp \
 	&& curl -O https://dl.eff.org/certbot-auto \

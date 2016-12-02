@@ -21,7 +21,7 @@ RUN set -x \
 		zlib-dev \
 	&& curl -sSL "https://www.tarsnap.com/download/tarsnap-autoconf-${TARSNAP_VERSION}.tgz" -o /tmp/tarsnap.tgz \
 	&& curl -sSL "https://www.tarsnap.com/download/tarsnap-sigs-${TARSNAP_VERSION}.asc" -o /tmp/tarsnap.tgz.asc \
-	&& curl -sSL "https://www.tarsnap.com/tarsnap-signing-key-2015.asc" | gpg --import \
+	&& curl -sSL "https://www.tarsnap.com/tarsnap-signing-key-2015.asc" | gpg --no-tty --import \
 	&& sha=$(gpg --decrypt /tmp/tarsnap.tgz.asc | awk '{ print $4 }') \
 	&& if [ "$sha" != "$(shasum -a 256 /tmp/tarsnap.tgz | awk '{ print $1 }')" ]; then exit 1; fi \
 	&& mkdir -p /usr/src/tarsnap \

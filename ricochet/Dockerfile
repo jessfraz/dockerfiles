@@ -40,7 +40,7 @@ RUN buildDeps=' \
 	&& curl -sSL "https://ricochet.im/releases/${RICOCHET_VERSION}/ricochet-${RICOCHET_VERSION}-linux-x86_64.tar.bz2.asc" -o /tmp/ricochet.tar.bz2.asc \
 	&& export GNUPGHOME="$(mktemp -d)" \
 	&& chmod 600 "${GNUPGHOME}" \
-	&& curl -sSL https://ricochet.im/john-brooks.asc | gpg --import \
+	&& curl -sSL https://ricochet.im/john-brooks.asc | gpg --no-tty --import \
 	&& gpg --fingerprint --keyid-format LONG ${RICOCHET_FINGERPRINT} | grep "9032 CAE4 CBFA 933A 5A21  45D5 FF97 C53F 183C 045D" \
 	&& gpg --verify /tmp/ricochet.tar.bz2.asc \
 	&& tar -vxj --strip-components 1 -C /usr/local/bin -f /tmp/ricochet.tar.bz2 \

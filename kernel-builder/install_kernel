@@ -81,7 +81,7 @@ install_kernel(){
 		curl -sSL -o "${grsecdir}/grsecurity.patch" "https://grsecurity.net/test/grsecurity-${GRSEC_VERSION}.patch"
 		curl -sSL -o "${grsecdir}/grsecurity.patch.sig" "https://grsecurity.net/test/grsecurity-${GRSEC_VERSION}.patch.sig"
 		# add the gpg key
-		gpg --keyserver pgp.mit.edu --recv-keys "DE94 52CE 46F4 2094 907F 108B 44D1 C0F8 2525 FE49"
+		gpg --no-tty --keyserver pgp.mit.edu --recv-keys "DE94 52CE 46F4 2094 907F 108B 44D1 C0F8 2525 FE49"
 		# verify the patch
 		gpg --verify $grsecdir/grsecurity.patch.sig
 	fi
