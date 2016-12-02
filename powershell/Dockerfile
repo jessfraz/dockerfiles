@@ -1,7 +1,7 @@
 FROM debian:sid
 MAINTAINER Christian Koep <christian.koep@fom-net.de>
 
-ENV POWERSHELL_VERSION 6.0.0-alpha.10
+ENV POWERSHELL_VERSION 6.0.0-alpha.13
 
 RUN apt-get update && apt-get install -y \
 	ca-certificates \

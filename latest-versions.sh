@@ -28,7 +28,7 @@ get_latest() {
 	local dir=${repo#*/}
 	local current=$(cat "${dir}/Dockerfile" | grep -m 1 VERSION | awk '{print $(NF)}')
 
-	if [[ "$tag" =~ "$current" ]]; then
+	if [[ "$tag" =~ "$current" ]] || [[ "$name" =~ "$current" ]]; then
 		echo -e "\e[36m${dir}:\e[39m current ${current} | ${tag} | ${name}"
 	else
 		echo -e "\e[31m${dir}:\e[39m current ${current} | ${tag} | ${name} | https://github.com/${repo}/releases"

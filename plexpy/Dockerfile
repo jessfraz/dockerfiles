@@ -14,7 +14,7 @@ RUN apk add --no-cache \
   python
 
 # Get the source
-ENV PLEXPY_VERSION v1.4.12
+ENV PLEXPY_VERSION v1.4.16
 RUN set -x \
 	&& apk add --no-cache --virtual .build-deps \
 		git \

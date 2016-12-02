@@ -9,7 +9,7 @@ RUN	apk --no-cache add \
 	ca-certificates \
 	curl
 
-ENV CONSUL_VERSION v0.7.0
+ENV CONSUL_VERSION v0.7.1
 
 RUN buildDeps=' \
 		bash \
