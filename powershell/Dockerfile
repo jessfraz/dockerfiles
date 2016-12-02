@@ -1,4 +1,4 @@
-FROM debian:sid
+FROM ubuntu:16.04
 MAINTAINER Christian Koep <christian.koep@fom-net.de>
 
 ENV POWERSHELL_VERSION 6.0.0-alpha.13
@@ -6,8 +6,10 @@ ENV POWERSHELL_VERSION 6.0.0-alpha.13
 RUN apt-get update && apt-get install -y \
 	ca-certificates \
 	curl \
-	libunwind8 \
+	libcurl3 \
 	libicu55 \
+	libssl1.0.0 \
+	libunwind8 \
 	dpkg \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*

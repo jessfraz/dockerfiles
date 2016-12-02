@@ -19,9 +19,9 @@ FROM alpine:latest
 MAINTAINER Jessie Frazelle <jess@linux.com>
 
 # Install emacs:
-# Note: Emacs is only in testing repo -> https://pkgs.alpinelinux.org/packages?package=emacs&repo=all&arch=x86_64
+# Note: Emacs is only community repo -> https://pkgs.alpinelinux.org/packages?package=emacs&repo=all&arch=x86_64
 RUN apk --no-cache add \
-	--repository https://dl-3.alpinelinux.org/alpine/edge/testing/ \
+	--repository https://dl-3.alpinelinux.org/alpine/edge/community/ \
 	emacs
 
 # Autorun doctor

@@ -14,6 +14,7 @@ RUN set -x \
 		autoconf \
 		automake \
 		build-base \
+		cmake \
 		curl-dev \
 		git \
 		libxml2-dev \
@@ -21,6 +22,7 @@ RUN set -x \
 	&& git clone --depth 1 https://github.com/LastPass/lastpass-cli.git /usr/src/lastpass-cli \
 	&& ( \
 		cd /usr/src/lastpass-cli \
+		&& cmake . \
 		&& make \
 		&& make install \
 	) \

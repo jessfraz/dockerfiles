@@ -1,4 +1,4 @@
-FROM debian:stretch
+FROM debian:jessie
 MAINTAINER Jessie Frazelle <jess@linux.com>
 
 RUN apt-get update && apt-get install -y \
@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y \
 	libgomp1 \
 	libkrb5-3 \
 	libnss3 \
-	libssl1.0.2 \
+	libssl1.0.0 \
 	openssl \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
@@ -26,7 +26,7 @@ RUN buildDeps=' \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& git clone https://github.com/magnumripper/JohnTheRipper.git /usr/src/johntheripper \
 	&& cd /usr/src/johntheripper/src \
-	&& ./configure \
+	&& ./configure || cat config.log \
 	&& make \
 	&& cp -r ../run/* /usr/local/bin/ \
 	&& rm -rf /usr/src/johntheripper \
