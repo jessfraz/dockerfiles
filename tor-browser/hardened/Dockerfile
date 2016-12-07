@@ -28,7 +28,7 @@ RUN useradd --create-home --home-dir $HOME user \
 
 ENV LANG C.UTF-8
 
-ENV TOR_VERSION 6.5a4-hardened
+ENV TOR_VERSION 6.5a5-hardened
 ENV TOR_FINGERPRINT 0x4E2C6E8793298290
 
 # download tor and check signature
