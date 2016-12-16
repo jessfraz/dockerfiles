@@ -4,7 +4,7 @@ MAINTAINER Christian Koep <christian.koep@fom-net.de>
 ENV PATH /go/bin:/usr/local/go/bin:$PATH
 ENV GOPATH /go
 
-ENV MICRO_VERSION v1.1.2
+ENV MICRO_VERSION v1.1.3
 
 RUN buildDeps=' \
 		go \
