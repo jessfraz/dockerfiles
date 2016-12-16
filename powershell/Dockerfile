@@ -1,7 +1,7 @@
 FROM ubuntu:16.04
 MAINTAINER Christian Koep <christian.koep@fom-net.de>
 
-ENV POWERSHELL_VERSION 6.0.0-alpha.13
+ENV POWERSHELL_VERSION 6.0.0-alpha.14
 
 RUN apt-get update && apt-get install -y \
 	ca-certificates \
