@@ -11,7 +11,8 @@ MAINTAINER  Cris G c@cristhekid.com
 
 # Install required packages.
 RUN apk add --no-cache \
-  python
+	ca-certificates \
+	python
 
 # Get the source
 ENV PLEXPY_VERSION v1.4.16
