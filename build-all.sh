@@ -52,10 +52,6 @@ main(){
 			suite=latest
 		fi
 
-		if [[ "${base}" == "sup" ]]; then
-			continue
-		fi
-
 		{
 			build_and_push "${base}" "${suite}" "${build_dir}"
 		} || {
