@@ -32,5 +32,5 @@ WORKDIR /opt/plexpy
 EXPOSE 8181
 
 # Define default command.
-CMD ["python", "PlexPy.py"]
-ENTRYPOINT ["--nolaunch", "--datadir=/data"]
+ENTRYPOINT ["python", "PlexPy.py"]
+CMD ["--nolaunch", "--datadir=/data"]
