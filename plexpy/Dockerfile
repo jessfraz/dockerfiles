@@ -2,26 +2,24 @@
 #
 # docker run  -d \
 #  --name=PlexPy \
-#  -v <path to plexlogs>:/data/logs \
+#  -v <path to local plexpy data>:/data \
 #  -p 8181:8181 \
-#  arukaen/plexpy
-
+#  r.j3ss.co/plexpy
 FROM alpine:latest
-MAINTAINER  Cris G c@cristhekid.com
 
 # Install required packages.
 RUN apk add --no-cache \
 	ca-certificates \
+	git \
 	python
 
 # Get the source
 ENV PLEXPY_VERSION v1.4.16
-RUN set -x \
-	&& apk add --no-cache --virtual .build-deps \
-		git \
-	&& mkdir -p /opt/plexpy \
-	&& git clone --depth 1 --branch "${PLEXPY_VERSION}" https://github.com/drzoidberg33/plexpy.git /opt/plexpy/ \
-	&& apk del .build-deps
+RUN git clone https://github.com/drzoidberg33/plexpy.git /opt/plexpy \
+	&& ( \
+		cd /opt/plexpy \
+		&& git checkout "${PLEXPY_VERSION}" \
+	)
 
 # Volume for Plexpy data.
 VOLUME /data
