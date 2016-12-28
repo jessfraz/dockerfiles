@@ -20,7 +20,7 @@ RUN buildDeps=' \
 	&& apk --no-cache add $buildDeps \
 	&& mkdir -p /go/src/camlistore.googlesource.com \
 	&& cd /go/src/camlistore.googlesource.com \
-	&& git clone --depth 1 -b "${CAMLISTORE_VERSION}" https://camlistore.googlesource.com/camlistore.git \
+	&& git clone --depth 1 --branch "${CAMLISTORE_VERSION}" https://camlistore.googlesource.com/camlistore.git \
 	&& cd /go/src/camlistore.googlesource.com/camlistore \
 	&& go run make.go \
 	&& cp -r ./bin/* /usr/local/bin/ \

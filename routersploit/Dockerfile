@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
     python-bs4 \
     --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* \
-    && git clone --branch "${ROUTERSPLOIT_VERSION}" https://github.com/reverse-shell/routersploit /usr/bin/routersploit \
+    && git clone --depth 1 --branch "${ROUTERSPLOIT_VERSION}" https://github.com/reverse-shell/routersploit /usr/bin/routersploit \
     && apt-get purge -y --auto-remove \
     git
 

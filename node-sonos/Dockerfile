@@ -1,4 +1,4 @@
-FROM mhart/alpine-node:5
+FROM node:alpine
 
 RUN apk add --no-cache \
 	build-base \

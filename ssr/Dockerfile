@@ -64,7 +64,7 @@ RUN cd /usr/lib/i386-linux-gnu && \
    # --group ssr
 
 # clone source
-RUN git clone https://github.com/MaartenBaert/ssr.git /src
+RUN git clone --depth 1 https://github.com/MaartenBaert/ssr.git /src
 
 # install
 #RUN echo "ssr ALL = NOPASSWD: /src/simple-build-and-install" >> /etc/sudoers

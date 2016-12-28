@@ -39,7 +39,7 @@ RUN buildDeps=' \
 	&& curl -sSL http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz -o /usr/share/GeoIP/GeoLiteCity.dat.gz \
 	&& curl -sSL http://download.maxmind.com/download/geoip/database/asnum/GeoIPASNum.dat.gz -o /usr/share/GeoIP/GeoIPASNum.dat.gz \
 	&& gunzip /usr/share/GeoIP/*gz \
-	&& git clone --branch "${TELIZE_VERSION}" https://github.com/fcambus/telize.git /usr/src/telize \
+	&& git clone --depth 1 --branch "${TELIZE_VERSION}" https://github.com/fcambus/telize.git /usr/src/telize \
 	&& cd /usr/src/telize \
 	&& cp timezone*.conf /etc/nginx/ \
 	&& rm -rf /usr/src/telize \

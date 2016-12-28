@@ -25,14 +25,16 @@ get_latest() {
 		local tag=$(echo $resp | jq --raw-output .[0].name)
 	fi
 
-	if [[ "$name" == "null" ]]; then
+	if [[ "$name" == "null" ]] || [[ "$name" == "" ]]; then
 		name="-"
 	fi
 
 	local dir=${repo#*/}
 
 	if [[ "$dir" == "CouchPotatoServer" ]]; then
-		dir=couchpotato
+		dir="couchpotato"
+	elif [[ "$dir" == "SoftHSMv2" ]]; then
+		dir="golang-softhsm2"
 	fi
 
 	local current=$(cat "${dir}/Dockerfile" | grep -m 1 VERSION | awk '{print $(NF)}')
@@ -45,25 +47,27 @@ get_latest() {
 }
 
 projects=(
-apache/zookeeper
 atom/atom
 camlistore/camlistore
-CouchPotato/CouchPotatoServer
-curl/curl
-fcambus/telize
 hashicorp/consul
-hashicorp/vault
-irssi/irssi
-JonnyWong16/plexpy
-microsoft/vscode
-mitchellh/vagrant
+CouchPotato/CouchPotatoServer
 pooler/cpuminer
-powershell/powershell
-reverse-shell/routersploit
-ricochet-im/ricochet
-tarsnap/tarsnap
-znc/znc
+curl/curl
+opendnssec/SoftHSMv2
+irssi/irssi
 zyedidia/micro
+JonnyWong16/plexpy
+powershell/powershell
+ricochet-im/ricochet
+reverse-shell/routersploit
+tarsnap/tarsnap
+fcambus/telize
+mitchellh/vagrant
+hashicorp/vault
+microsoft/vscode
+facebook/watchman
+znc/znc
+apache/zookeeper
 )
 
 main() {

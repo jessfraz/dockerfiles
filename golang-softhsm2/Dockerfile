@@ -4,6 +4,8 @@ RUN apt-get update && apt-get install -y \
 	sqlite3 \
 	&& rm -rf /var/lib/apt/lists/*
 
+ENV SOFTHSM_VERSION 2.2.0
+
 RUN buildDeps=' \
 		autoconf \
 		automake \
@@ -15,7 +17,7 @@ RUN buildDeps=' \
 	&& set -x \
 	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/* \
-	&& git clone https://github.com/opendnssec/SoftHSMv2.git /usr/src/SoftHSMv2 \
+	&& git clone --depth 1 --branch "${SOFTHSM_VERSION}" https://github.com/opendnssec/SoftHSMv2.git /usr/src/SoftHSMv2 \
 	&& cd /usr/src/SoftHSMv2 \
 	&& sh autogen.sh \
 	&& ./configure --with-objectstore-backend-db \

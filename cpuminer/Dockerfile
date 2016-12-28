@@ -15,7 +15,7 @@ RUN set -x \
 		curl-dev \
 		git \
 		openssl-dev \
-	&& git clone --branch "${CPUMINER_VERSION}" https://github.com/pooler/cpuminer.git /usr/src/cpuminer \
+	&& git clone --depth 1 --branch "${CPUMINER_VERSION}" https://github.com/pooler/cpuminer.git /usr/src/cpuminer \
 	&& ( \
 	cd /usr/src/cpuminer \
 	&& ./autogen.sh \

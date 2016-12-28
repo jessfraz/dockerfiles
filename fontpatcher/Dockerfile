@@ -13,7 +13,7 @@ RUN buildDeps=' \
 	set -x \
 	&& apt-get update \
 	&& apt-get install -y $buildDeps --no-install-recommends \
-	&& git clone -b develop --depth 1 https://github.com/Lokaltog/vim-powerline.git /pwrline \
+	&& git clone --depth 1 --branch develop https://github.com/Lokaltog/vim-powerline.git /pwrline \
 	&& ( \
 		cd /pwrline \
 		&& mv fontpatcher/fontpatcher /usr/bin/ \

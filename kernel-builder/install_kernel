@@ -68,7 +68,7 @@ install_kernel(){
 		if [[ -d $aufsdir ]]; then
 			rm -rf $aufsdir
 		fi
-		git clone -b aufs${MAJOR_MINOR_VERSION} --single-branch --depth 1 https://github.com/sfjro/aufs4-standalone.git $aufsdir
+		git clone --depth 1 --branch aufs${MAJOR_MINOR_VERSION} --single-branch https://github.com/sfjro/aufs4-standalone.git $aufsdir
 	fi
 
 	if [[ "$OPT" == "grsec" ]]; then

@@ -24,7 +24,7 @@ RUN buildDeps=' \
 	&& set -x \
 	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/* \
-	&& git clone https://github.com/magnumripper/JohnTheRipper.git /usr/src/johntheripper \
+	&& git clone --depth 1 https://github.com/magnumripper/JohnTheRipper.git /usr/src/johntheripper \
 	&& cd /usr/src/johntheripper/src \
 	&& ./configure || cat config.log \
 	&& make \

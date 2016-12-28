@@ -6,6 +6,8 @@ RUN apt-get update && apt-get install -y \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
+ENV WATCHMAN_VERSION v4.7.0
+
 RUN buildDeps=' \
 		autoconf \
 		automake \
@@ -16,7 +18,7 @@ RUN buildDeps=' \
 	&& set -x \
 	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/* \
-	&& git clone https://github.com/facebook/watchman.git /usr/src/watchman \
+	&& git clone --depth 1 --branch "${WATCHMAN_VERSION}" https://github.com/facebook/watchman.git /usr/src/watchman \
 	&& cd /usr/src/watchman \
 	&& ./autogen.sh \
 	&& ./configure \

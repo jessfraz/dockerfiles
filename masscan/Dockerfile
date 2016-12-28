@@ -15,7 +15,7 @@ RUN buildDeps=' \
 	&& set -x \
 	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/* \
-	&& git clone https://github.com/robertdavidgraham/masscan.git /usr/src/masscan \
+	&& git clone --depth 1 https://github.com/robertdavidgraham/masscan.git /usr/src/masscan \
 	&& cd /usr/src/masscan \
 	&& make \
 	&& make install \

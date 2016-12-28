@@ -20,7 +20,7 @@ RUN buildDeps=' \
 		&& ant \
 		&& ln -snfv ${PWD}/bin/buck /usr/bin/buck \
 	) \
-	&& git clone  --depth 1 --recurse-submodules https://gerrit.googlesource.com/gitiles /gitiles \
+	&& git clone --depth 1 --recurse-submodules https://gerrit.googlesource.com/gitiles /gitiles \
 	&& ( \
 		cd /gitiles \
 		&& touch .nobuckcheck \

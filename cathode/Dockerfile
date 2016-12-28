@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
-RUN git clone --recursive https://github.com/Swordfish90/cool-retro-term.git /src
+RUN git clone --depth 1 --recursive https://github.com/Swordfish90/cool-retro-term.git /src
 WORKDIR /src
 RUN qmake \
 	&& make
