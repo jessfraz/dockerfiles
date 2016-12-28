@@ -33,12 +33,12 @@ RUN pip install \
 
 EXPOSE 5050
 
-ENV COUCHPOTATO_VERSION 3.0.1
+ENV COUCHPOTATO_VERSION master
 
 RUN git clone https://github.com/RuudBurger/CouchPotatoServer.git /usr/src/couchpotato \
 	&& ( \
 		cd /usr/src/couchpotato \
-		&& git checkout "build/${COUCHPOTATO_VERSION}" \
+		&& git checkout "${COUCHPOTATO_VERSION}" \
 	)
 
 WORKDIR /usr/src/couchpotato
