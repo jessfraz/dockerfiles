@@ -8,7 +8,7 @@ RUN apk --no-cache add \
 	py-boto \
 	py-paramiko
 
-RUN git clone https://github.com/newsapps/beeswithmachineguns /usr/src/beeswithmachineguns \
+RUN git clone --depth 1 https://github.com/newsapps/beeswithmachineguns /usr/src/beeswithmachineguns \
 	&& cd /usr/src/beeswithmachineguns \
 	&& python setup.py install \
 	&& rm -rf /usr/src/beeswithmachineguns

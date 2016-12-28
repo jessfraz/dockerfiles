@@ -25,6 +25,10 @@ get_latest() {
 		local tag=$(echo $resp | jq --raw-output .[0].name)
 	fi
 
+	if [[ "$name" == "null" ]]; then
+		name="-"
+	fi
+
 	local dir=${repo#*/}
 
 	if [[ "$dir" == "CouchPotatoServer" ]]; then
@@ -46,6 +50,7 @@ atom/atom
 camlistore/camlistore
 CouchPotato/CouchPotatoServer
 curl/curl
+fcambus/telize
 hashicorp/consul
 hashicorp/vault
 irssi/irssi

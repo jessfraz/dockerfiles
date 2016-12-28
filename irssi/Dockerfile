@@ -1,7 +1,10 @@
 FROM alpine:latest
 
 RUN apk --no-cache add \
-	ca-certificates
+	--repository https://dl-3.alpinelinux.org/alpine/latest-stable/community \
+	ca-certificates \
+	perl-datetime \
+	perl-timedate
 
 ENV HOME /home/user
 RUN adduser -u 1001 -D user \
@@ -12,8 +15,7 @@ ENV LANG C.UTF-8
 
 ENV IRSSI_VERSION 0.8.20
 ENV LIB_OTR_VERSION 4.1.1
-ENV IRSSI_OTR_VERSION 1.0.1
-ENV PATCH_FOR_IRSSI_OTR https://github.com/cryptodotis/irssi-otr/commit/d03ab59b6f27142c1c5e99fedc635a589b1607bb.diff
+ENV IRSSI_OTR_VERSION 1.0.2
 
 RUN set -x \
 	&& apk add --no-cache --virtual .build-deps \
@@ -30,7 +32,6 @@ RUN set -x \
 		make \
 		ncurses-dev \
 		openssl-dev \
-		patch \
 		perl-dev \
 		pkgconf \
 		tar \
@@ -81,8 +82,6 @@ RUN set -x \
 	&& rm /tmp/irssi-otr.tar.gz \
 	&& ( \
 		cd /usr/src/irssi-otr \
-		&& curl -sSL "$PATCH_FOR_IRSSI_OTR" -o patch.diff \
-		&& patch -p1 < patch.diff \
 		&& ./bootstrap \
 		&& ./configure \
 			--prefix=/usr \
