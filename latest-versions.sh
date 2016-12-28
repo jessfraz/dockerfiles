@@ -26,6 +26,11 @@ get_latest() {
 	fi
 
 	local dir=${repo#*/}
+
+	if [[ "$dir" == "CouchPotatoServer" ]]; then
+		dir=couchpotato
+	fi
+
 	local current=$(cat "${dir}/Dockerfile" | grep -m 1 VERSION | awk '{print $(NF)}')
 
 	if [[ "$tag" =~ "$current" ]] || [[ "$name" =~ "$current" ]]; then
@@ -39,6 +44,7 @@ projects=(
 apache/zookeeper
 atom/atom
 camlistore/camlistore
+CouchPotato/CouchPotatoServer
 curl/curl
 hashicorp/consul
 hashicorp/vault

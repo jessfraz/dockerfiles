@@ -9,16 +9,17 @@
 # 	--name sickbeard \
 # 	jess/sickbeard
 #
-FROM debian:sid
+FROM alpine:latest
 MAINTAINER Jessie Frazelle <jess@linux.com>
 
 
-RUN apt-get update && apt-get install -y \
+RUN apk add --no-cache \
+	--repository https://dl-3.alpinelinux.org/alpine/edge/testing \
 	ca-certificates \
 	git \
-	python-cheetah \
-	python-setuptools \
-	&& rm -rf /var/lib/apt/lists/*
+	python \
+	py-cheetah \
+	py-setuptools
 
 
 ENV SICKBEARD_VERSION torrent_1080_subtitles
