@@ -49,6 +49,7 @@ get_latest() {
 projects=(
 atom/atom
 camlistore/camlistore
+certbot/certbot
 hashicorp/consul
 CouchPotato/CouchPotatoServer
 pooler/cpuminer

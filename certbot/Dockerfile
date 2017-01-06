@@ -1,23 +1,44 @@
-FROM debian:stretch
+FROM alpine:latest
 MAINTAINER Jessie Frazelle <jess@linux.com>
 
-RUN apt-get update && apt-get install -y \
-	ca-certificates \
-	curl \
-	dirmngr \
-	gnupg \
-	--no-install-recommends
+RUN apk --no-cache add \
+	python \
+	py-cffi \
+	py-configargparse \
+	py-configobj \
+	py-cryptography \
+	py-dialog \
+	py-enum34 \
+	py-idna \
+	py-ipaddress \
+	py-mock \
+	py-openssl \
+	py-parsedatetime \
+	py-pip \
+	py-requests \
+	py-rfc3339 \
+	py-setuptools \
+	py-six \
+	py-tz \
+	py-zope-component \
+	py-zope-event \
+	py-zope-interface
 
-RUN export GNUPGHOME="$(mktemp -d)" \
-	&& gpg --no-tty --keyserver pgp.mit.edu --recv-key A2CFB51FA275A7286234E7B24D17C995CD9775F2 \
-	&& ( \
-	cd /tmp \
-	&& curl -O https://dl.eff.org/certbot-auto \
-	&& chmod a+x ./certbot-auto \
-	&& curl -O https://dl.eff.org/certbot-auto.asc \
-	&& gpg --trusted-key 4D17C995CD9775F2 --verify certbot-auto.asc certbot-auto \
-	&& mv certbot-auto /usr/local/bin/ \
-	) \
-	&& rm -r "$GNUPGHOME"
+RUN pip install acme
 
-ENTRYPOINT [ "certbot-auto" ]
+ENV CERTBOT_VERSION 0.9.3
+
+RUN buildDeps=' \
+		git \
+	' \
+	set -x \
+	&& apk --no-cache add $buildDeps \
+	&& git clone --depth 1 --branch "v$CERTBOT_VERSION" https://github.com/certbot/certbot /usr/src/certbot \
+	&& cd /usr/src/certbot \
+	&& python2 setup.py build || return 1 \
+	&& python2 setup.py install --prefix=/usr || return 1 \
+	&& rm -rf /usr/src/certbot \
+	&& apk del $buildDeps \
+	&& echo "Build complete."
+
+ENTRYPOINT [ "certbot" ]
