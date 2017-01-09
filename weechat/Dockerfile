@@ -1,7 +1,9 @@
 FROM alpine:latest
 
 RUN apk add --no-cache \
-	weechat
+	weechat \
+	weechat-perl \
+	weechat-python
 
 ENV HOME /home/user
 
