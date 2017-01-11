@@ -30,7 +30,7 @@ fi
 
 if [ "$SASL_AUTH" ]; then
 	# setup tls
-	echo -e "smtp_tls_security_level = encrypt\nsmtp_sasl_auth_enable = yes\nsmtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd\nsmtp_sasl_security_options = noanonymous" >> /etc/postfix/main.cf
+	echo -e "smtp_sasl_auth_enable = yes\nsmtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd\nsmtp_sasl_security_options = noanonymous\nsmtp_use_tls = yes" >> /etc/postfix/main.cf
 	# generate the SASL password map
 	cat > /etc/postfix/sasl_passwd <<- EOF
 	$RELAY $SASL_AUTH
