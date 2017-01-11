@@ -4,7 +4,7 @@ MAINTAINER Jessie Frazelle <jess@linux.com>
 RUN apk add --no-cache \
 	ca-certificates \
 	curl \
-	openssl
+	libressl
 
 ENV CPUMINER_VERSION v2.4.5
 RUN set -x \
@@ -14,7 +14,6 @@ RUN set -x \
 		build-base \
 		curl-dev \
 		git \
-		openssl-dev \
 	&& git clone --depth 1 --branch "${CPUMINER_VERSION}" https://github.com/pooler/cpuminer.git /usr/src/cpuminer \
 	&& ( \
 	cd /usr/src/cpuminer \

@@ -5,7 +5,7 @@ RUN apk add --no-cache \
 	ca-certificates \
 	curl \
 	libxml2 \
-	openssl \
+	libressl \
 	xclip \
 	--repository https://dl-3.alpinelinux.org/alpine/edge/main
 
@@ -18,7 +18,6 @@ RUN set -x \
 		curl-dev \
 		git \
 		libxml2-dev \
-		openssl-dev \
 	&& git clone --depth 1 https://github.com/LastPass/lastpass-cli.git /usr/src/lastpass-cli \
 	&& ( \
 		cd /usr/src/lastpass-cli \
