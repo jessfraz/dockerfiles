@@ -12,7 +12,7 @@ MAINTAINER Christian Koep <christian.koep@fom-net.de>
 
 RUN builddeps=' \
 		python-dev \
-		py-pip \
+		py2-pip \
 		musl-dev \
 		openssl-dev \
 		libffi-dev \

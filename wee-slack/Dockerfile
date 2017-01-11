@@ -16,7 +16,7 @@ FROM alpine:latest
 RUN apk add --no-cache \
 	ca-certificates \
 	python \
-	py-pip \
+	py2-pip \
 	weechat \
 	weechat-perl \
 	weechat-python

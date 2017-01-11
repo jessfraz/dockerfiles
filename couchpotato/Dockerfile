@@ -24,7 +24,7 @@ RUN apk add --no-cache \
 	openssl-dev \
 	python \
 	python-dev \
-	py-pip \
+	py2-pip \
 	&& rm -rf /var/lib/apt/lists/*
 
 RUN pip install \

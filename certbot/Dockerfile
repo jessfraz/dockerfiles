@@ -14,7 +14,7 @@ RUN apk --no-cache add \
 	py-mock \
 	py-openssl \
 	py-parsedatetime \
-	py-pip \
+	py2-pip \
 	py-requests \
 	py-rfc3339 \
 	py-setuptools \

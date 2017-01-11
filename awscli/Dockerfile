@@ -6,7 +6,7 @@ RUN apk --no-cache add \
 	groff \
 	less \
 	python \
-	py-pip \
+	py2-pip \
 	&& pip install awscli \
 	&& mkdir -p /root/.aws \
 	&& { \
