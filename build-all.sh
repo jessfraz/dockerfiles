@@ -6,6 +6,8 @@ SCRIPT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/$(basename "${BASH_SOURCE[
 REPO_URL="${REPO_URL:-r.j3ss.co}"
 JOBS=${JOBS:-2}
 
+ERRORS="$(pwd)/errors"
+
 build_and_push(){
 	base=$1
 	suite=$2
@@ -62,8 +64,6 @@ main(){
 	IFS=$'\n'
 	files=( $(find . -iname '*Dockerfile' | sed 's|./||' | sort) )
 	unset IFS
-
-	ERRORS="$(pwd)/errors"
 
 	# build all dockerfiles
 	echo "Running in parallel with ${JOBS} jobs."
