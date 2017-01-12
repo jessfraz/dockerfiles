@@ -3,6 +3,8 @@ set -e
 set -o pipefail
 
 REPO_URL="${REPO_URL:-r.j3ss.co}"
+JOBS=${JOBS:-2}
+export REPO_URL
 
 build_and_push(){
 	base=$1
@@ -33,6 +35,29 @@ build_and_push(){
 		docker push --disable-content-trust=false ${REPO_URL}/${base}:latest
 	fi
 }
+export -f build_and_push
+
+dofile() {
+	f=$1
+	image=${f%Dockerfile}
+	base=${image%%\/*}
+	build_dir=$(dirname $f)
+	suite=${build_dir##*\/}
+
+	if [[ -z "$suite" ]] || [[ "$suite" == "$base" ]]; then
+		suite=latest
+	fi
+
+	{
+		build_and_push "${base}" "${suite}" "${build_dir}"
+	} || {
+	# add to errors
+	export ERRORS="${ERRORS} ${base}:${suite} "
+}
+echo
+echo
+}
+export -f dofile
 
 main(){
 	# get the dockerfiles
@@ -40,35 +65,18 @@ main(){
 	files=( $(find . -iname '*Dockerfile' | sed 's|./||' | sort) )
 	unset IFS
 
-	ERRORS=()
+	export ERRORS=""
 	# build all dockerfiles
-	for f in "${files[@]}"; do
-		image=${f%Dockerfile}
-		base=${image%%\/*}
-		build_dir=$(dirname $f)
-		suite=${build_dir##*\/}
+	echo "Running in parallel with ${JOBS} jobs."
+	parallel -j"${JOBS}" dofile "{1}" ::: "${files[@]}"
 
-		if [[ -z "$suite" ]] || [[ "$suite" == "$base" ]]; then
-			suite=latest
-		fi
-
-		{
-			build_and_push "${base}" "${suite}" "${build_dir}"
-		} || {
-		# add to errors
-		ERRORS+=("${base}:${suite}")
-	}
-	echo
-	echo
-done
-
-if [ ${#ERRORS[@]} -eq 0 ]; then
-	echo "No errors, hooray!"
-else
-	echo "[ERROR] Some images did not build correctly, see below." >&2
-	echo "These images failed: ${ERRORS[@]}" >&2
-	exit 1
-fi
+	if [[ "$ERRORS" == "" ]]; then
+		echo "No errors, hooray!"
+	else
+		echo "[ERROR] Some images did not build correctly, see below." >&2
+		echo "These images failed: ${ERRORS[@]}" >&2
+		exit 1
+	fi
 }
 
 main $@
