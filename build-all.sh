@@ -2,9 +2,9 @@
 set -e
 set -o pipefail
 
+SCRIPT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/$(basename "${BASH_SOURCE[0]}")"
 REPO_URL="${REPO_URL:-r.j3ss.co}"
 JOBS=${JOBS:-2}
-export REPO_URL
 
 build_and_push(){
 	base=$1
@@ -35,7 +35,6 @@ build_and_push(){
 		docker push --disable-content-trust=false ${REPO_URL}/${base}:latest
 	fi
 }
-export -f build_and_push
 
 dofile() {
 	f=$1
@@ -49,15 +48,14 @@ dofile() {
 	fi
 
 	{
-		build_and_push "${base}" "${suite}" "${build_dir}"
+		$SCRIPT build_and_push "${base}" "${suite}" "${build_dir}"
 	} || {
 	# add to errors
-	export ERRORS="${ERRORS} ${base}:${suite} "
+	echo "${ERRORS} ${base}:${suite} " >> $ERRORS
 }
 echo
 echo
 }
-export -f dofile
 
 main(){
 	# get the dockerfiles
@@ -65,18 +63,30 @@ main(){
 	files=( $(find . -iname '*Dockerfile' | sed 's|./||' | sort) )
 	unset IFS
 
-	export ERRORS=""
+	ERRORS="$(pwd)/errors"
+
 	# build all dockerfiles
 	echo "Running in parallel with ${JOBS} jobs."
-	parallel --tag --verbose --ungroup -j"${JOBS}" dofile "{1}" ::: "${files[@]}"
+	parallel --tag --verbose --ungroup -j"${JOBS}" $SCRIPT dofile "{1}" ::: "${files[@]}"
 
-	if [[ "$ERRORS" == "" ]]; then
+	if [[ ! -f $ERRORS ]]; then
 		echo "No errors, hooray!"
 	else
 		echo "[ERROR] Some images did not build correctly, see below." >&2
-		echo "These images failed: ${ERRORS[@]}" >&2
+		echo "These images failed: $(cat $ERRORS)" >&2
 		exit 1
 	fi
 }
 
-main $@
+run(){
+	args=$@
+	f=$1
+
+	if [[ "$f" == "" ]]; then
+		main $args
+	else
+		$args
+	fi
+}
+
+run $@
