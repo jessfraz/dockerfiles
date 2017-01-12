@@ -31,6 +31,10 @@ fi
 if [ "$SASL_AUTH" ]; then
 	# setup tls
 	echo -e "smtp_sasl_auth_enable = yes\nsmtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd\nsmtp_sasl_security_options = noanonymous\nsmtp_use_tls = yes" >> /etc/postfix/main.cf
+
+	# Avoid  warning: smtputf8_enable is true, but EAI support is not compiled in
+	echo "smtputf8_enable = no" >> /etc/postfix/main.cf
+
 	# generate the SASL password map
 	cat > /etc/postfix/sasl_passwd <<- EOF
 	$RELAY $SASL_AUTH
