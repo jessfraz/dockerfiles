@@ -68,7 +68,7 @@ main(){
 	export ERRORS=""
 	# build all dockerfiles
 	echo "Running in parallel with ${JOBS} jobs."
-	parallel -j"${JOBS}" dofile "{1}" ::: "${files[@]}"
+	parallel --tag --verbose --ungroup -j"${JOBS}" dofile "{1}" ::: "${files[@]}"
 
 	if [[ "$ERRORS" == "" ]]; then
 		echo "No errors, hooray!"
