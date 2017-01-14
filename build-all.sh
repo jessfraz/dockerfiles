@@ -53,7 +53,7 @@ dofile() {
 		$SCRIPT build_and_push "${base}" "${suite}" "${build_dir}"
 	} || {
 	# add to errors
-	echo "${ERRORS} ${base}:${suite} " >> $ERRORS
+	echo "${base}:${suite}" >> $ERRORS
 }
 echo
 echo
