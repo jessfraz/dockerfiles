@@ -15,7 +15,7 @@ EOF
 
 if [[ ! -z "$MAILNAME" ]]; then
 	echo "$MAILNAME" > /etc/mailname
-	postconf -e myorigin="$MAILNAME"
+	postconf -e myorigin="/etc/mailname"
 
 	cat >> /etc/postfix/main.cf <<- EOF
 	# Force ehlo behavior
