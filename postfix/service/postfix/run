@@ -43,7 +43,7 @@ fi
 if [[ ! -z "$RELAY" ]]; then
 	# setup the relay
 	cat >> /etc/postfix/main.cf <<- EOF
-	relay_host = $RELAY
+	relayhost = $RELAY
 
 	# These lines can be used, if the result is not as expected
 	debug_peer_list = smtp-relay.gmail.com
