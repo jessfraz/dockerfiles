@@ -3,14 +3,25 @@ set -e
 
 # Avoid  warning: smtputf8_enable is true, but EAI support is not compiled in
 echo "smtputf8_enable = no" >> /etc/postfix/main.cf
-echo "inet_interfaces = 127.0.0.1" >> /etc/postfix/main.cf
+
+cat > /etc/postfix/main.cf << EOF
+# limit smtp to loopback interface & compute engine doesn't support ipv6
+inet_interfaces = loopback-only
+inet_protocols = ipv4
+EOF
 
 # Do we want to modify the config first with the script?
 [ -f /etc/service/postfix/run.config ] && source /etc/service/postfix/run.config
 
 if [[ ! -z "$MAILNAME" ]]; then
 	echo "$MAILNAME" > /etc/mailname
-	postconf -e myhostname="$MAILNAME"
+	postconf -e myorigin="$MAILNAME"
+
+	cat > /etc/postfix/main.cf <<- EOF
+	# Force ehlo behavior
+	smtp_always_send_ehlo = yes
+	smtp_helo_name = $MAILNAME
+	EOF
 fi
 
 if [[ ! -z "$MY_NETWORKS" ]]; then
@@ -31,16 +42,29 @@ fi
 
 if [[ ! -z "$RELAY" ]]; then
 	# setup the relay
-	echo "relay_host = $RELAY" >> /etc/postfix/main.cf
+	cat > /etc/postfix/main.cf <<- EOF
+	relay_host = $RELAY
+
+	# These lines can be used, if the result is not as expected
+	debug_peer_list = smtp-relay.gmail.com
+	debug_peer_level = 2
+	EOF
 fi
 
 if [[ ! -z "$TLS" ]]; then
-	echo "smtp_use_tls = yes" >> /etc/postfix/main.cf
+	# setup tls
+	cat > /etc/postfix/main.cf <<- EOF
+	smtp_use_tls = yes
+	smtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt
+	EOF
 fi
 
 if [[ ! -z "$SASL_AUTH" ]]; then
-	# setup tls
-	echo -e "smtp_sasl_auth_enable = yes\nsmtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd\nsmtp_sasl_security_options = noanonymous" >> /etc/postfix/main.cf
+	cat > /etc/postfix/main.cf <<- EOF
+	smtp_sasl_auth_enable = yes
+	smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd
+	smtp_sasl_security_options = noanonymous
+	EOF
 
 	# generate the SASL password map
 	echo "$RELAY $SASL_AUTH" > /etc/postfix/sasl_passwd
