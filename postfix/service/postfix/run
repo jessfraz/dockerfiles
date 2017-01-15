@@ -3,6 +3,7 @@ set -e
 
 # Avoid  warning: smtputf8_enable is true, but EAI support is not compiled in
 echo "smtputf8_enable = no" >> /etc/postfix/main.cf
+echo "inet_interfaces = 127.0.0.1" >> /etc/postfix/main.cf
 
 # Do we want to modify the config first with the script?
 [ -f /etc/service/postfix/run.config ] && source /etc/service/postfix/run.config
@@ -33,9 +34,13 @@ if [[ ! -z "$RELAY" ]]; then
 	echo "relay_host = $RELAY" >> /etc/postfix/main.cf
 fi
 
+if [[ ! -z "$TLS" ]]; then
+	echo "smtp_use_tls = yes" >> /etc/postfix/main.cf
+fi
+
 if [[ ! -z "$SASL_AUTH" ]]; then
 	# setup tls
-	echo -e "smtp_sasl_auth_enable = yes\nsmtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd\nsmtp_sasl_security_options = noanonymous\nsmtp_use_tls = yes\ninet_interfaces = 127.0.0.1" >> /etc/postfix/main.cf
+	echo -e "smtp_sasl_auth_enable = yes\nsmtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd\nsmtp_sasl_security_options = noanonymous" >> /etc/postfix/main.cf
 
 	# generate the SASL password map
 	echo "$RELAY $SASL_AUTH" > /etc/postfix/sasl_passwd
