@@ -4,7 +4,7 @@ set -e
 # Avoid  warning: smtputf8_enable is true, but EAI support is not compiled in
 echo "smtputf8_enable = no" >> /etc/postfix/main.cf
 
-cat > /etc/postfix/main.cf << EOF
+cat >> /etc/postfix/main.cf << EOF
 # limit smtp to loopback interface & compute engine doesn't support ipv6
 inet_interfaces = loopback-only
 inet_protocols = ipv4
@@ -17,7 +17,7 @@ if [[ ! -z "$MAILNAME" ]]; then
 	echo "$MAILNAME" > /etc/mailname
 	postconf -e myorigin="$MAILNAME"
 
-	cat > /etc/postfix/main.cf <<- EOF
+	cat >> /etc/postfix/main.cf <<- EOF
 	# Force ehlo behavior
 	smtp_always_send_ehlo = yes
 	smtp_helo_name = $MAILNAME
@@ -42,7 +42,7 @@ fi
 
 if [[ ! -z "$RELAY" ]]; then
 	# setup the relay
-	cat > /etc/postfix/main.cf <<- EOF
+	cat >> /etc/postfix/main.cf <<- EOF
 	relay_host = $RELAY
 
 	# These lines can be used, if the result is not as expected
@@ -53,14 +53,14 @@ fi
 
 if [[ ! -z "$TLS" ]]; then
 	# setup tls
-	cat > /etc/postfix/main.cf <<- EOF
+	cat >> /etc/postfix/main.cf <<- EOF
 	smtp_use_tls = yes
 	smtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt
 	EOF
 fi
 
 if [[ ! -z "$SASL_AUTH" ]]; then
-	cat > /etc/postfix/main.cf <<- EOF
+	cat >> /etc/postfix/main.cf <<- EOF
 	smtp_sasl_auth_enable = yes
 	smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd
 	smtp_sasl_security_options = noanonymous
