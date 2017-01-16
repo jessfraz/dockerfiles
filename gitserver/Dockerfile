@@ -11,6 +11,7 @@ MAINTAINER Jessie Frazelle <jess@linux.com>
 ENV HOME /root
 
 RUN apk --no-cache add \
+	bash \
 	git \
 	openssh \
 	&& sed -i "s/#PasswordAuthentication yes/PasswordAuthentication no/" /etc/ssh/sshd_config \
