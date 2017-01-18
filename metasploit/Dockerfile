@@ -1,4 +1,4 @@
-FROM kalilinux/kali-linux-docker
+FROM r.j3ss.co/kalilinux
 MAINTAINER Christian Koep <christian.koep@fom-net.de>
 
 RUN apt-get update && apt-get upgrade -y && apt-get install -y \
