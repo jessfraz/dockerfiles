@@ -1,4 +1,4 @@
-# Visual Studio in a container
+# Visual Studio Code in a container
 #	NOTE: Needs the redering device (yeah... idk)
 #
 # docker run -d \
