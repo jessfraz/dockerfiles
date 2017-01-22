@@ -1,10 +1,4 @@
-FROM debian:sid
+FROM alpine:3.5
 MAINTAINER Jessie Frazelle <jess@linux.com>
-
-RUN apt-get update && apt-get install -y \
-	ca-certificates \
-	wrk \
-	--no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/*
-
-ENTRYPOINT [ "wrk" ]
+RUN apk add --no-cache wrk
+ENTRYPOINT ["wrk"]
