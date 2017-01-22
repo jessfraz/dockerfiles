@@ -6,7 +6,8 @@ RUN apk add --no-cache \
 	gfortran \
 	openjdk8-jre-base \
 	lapack \
-	python
+	python \
+	py2-pip
 
 # Install the requirements
 RUN set -x \
@@ -17,7 +18,6 @@ RUN set -x \
 		libffi-dev \
 		libressl-dev \
 		python-dev \
-	py2-pip \
 	&& ln -s /usr/include/locale.h /usr/include/xlocale.h \
 	&& git clone --depth 1 https://github.com/sarahsharp/foss-heartbeat.git /usr/src/foss-heartbeat \
 	&& ( \
