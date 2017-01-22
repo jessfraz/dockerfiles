@@ -2,9 +2,11 @@ FROM alpine:latest
 
 RUN apk add --no-cache \
 	ca-certificates \
+	bash \
 	gfortran \
+	openjdk8-jre-base \
 	lapack \
-    python
+	python
 
 # Install the requirements
 RUN set -x \
