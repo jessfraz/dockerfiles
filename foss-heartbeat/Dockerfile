@@ -27,17 +27,4 @@ RUN set -x \
 	) \
 	&& apk del .build-deps
 
-# Install Stanford CoreNLP
-RUN set -x \
-	&& apk add --no-cache --virtual .build-deps \
-		curl \
-		git \
-	&& git clone --depth 1 https://github.com/stanfordnlp/CoreNLP.git /usr/src/CoreNLP \
-	&& ( \
-		cd /usr/src/CoreNLP/liblocal \
-		&& curl -sSLO http://nlp.stanford.edu/software/stanford-corenlp-models-current.jar \
-		&& curl -sSLO http://nlp.stanford.edu/software/stanford-english-corenlp-models-current.jar \
-	) \
-	&& apk del .build-deps
-
 WORKDIR /usr/src/foss-heartbeat
