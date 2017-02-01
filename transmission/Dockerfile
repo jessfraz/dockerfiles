@@ -23,7 +23,10 @@ MAINTAINER Jessie Frazelle <jess@linux.com>
 
 RUN apk --no-cache add \
 	transmission-daemon \
-	&& mkdir -p /transmission/{download,watch,incomplete,config} \
+	&& mkdir -p /transmission/download \
+		/transmission/watch \
+		/transmission/incomplete \
+		/transmission/config \
 	&& chmod 1777 /transmission
 
 ENV TRANSMISSION_HOME /transmission/config
