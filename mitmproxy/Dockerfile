@@ -1,38 +1,50 @@
-FROM debian:stretch
+FROM alpine:3.4
 MAINTAINER Jessie Frazelle <jess@linux.com>
+ENV LANG=en_US.UTF-8
 
-RUN apt-get update && apt-get install -y \
-	libxslt1.1 \
-	libjpeg62-turbo \
-	python-minimal \
-	python-pip \
-	--no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/*
+COPY requirements.txt /tmp/requirements.txt
 
-ENV LANG en_US.UTF-8
-EXPOSE 8080
+# add our user first to make sure the ID get assigned consistently,
+# regardless of whatever dependencies get added
+RUN addgroup -S mitmproxy && adduser -S -G mitmproxy mitmproxy \
+    && apk add --no-cache \
+        su-exec \
+        git \
+        g++ \
+        libffi \
+        libffi-dev \
+        libjpeg-turbo \
+        libjpeg-turbo-dev \
+        libstdc++ \
+        libxml2 \
+        libxml2-dev \
+        libxslt \
+        libxslt-dev \
+        openssl \
+        openssl-dev \
+        python3 \
+        python3-dev \
+        zlib \
+        zlib-dev \
+    && python3 -m ensurepip \
+    && LDFLAGS=-L/lib pip3 install -r /tmp/requirements.txt \
+    && apk del --purge \
+        git \
+        g++ \
+        libffi-dev \
+        libjpeg-turbo-dev \
+        libxml2-dev \
+        libxslt-dev \
+        openssl-dev \
+        python3-dev \
+        zlib-dev \
+    && rm /tmp/requirements.txt \
+    && rm -rf ~/.cache/pip
 
-RUN buildDeps=' \
-		gcc \
-		libjpeg-dev \
-		libffi-dev \
-		libssl-dev \
-		libxml2-dev \
-		libxslt1-dev \
-		python-dev \
-		python-setuptools \
-		zlib1g-dev \
-	' \
-	&& set -x \
-	&& apt-get update && apt-get install -y ${buildDeps} --no-install-recommends \
-	&& pip install setuptools mitmproxy \
-	&& apt-get purge -y --auto-remove ${buildDeps} \
-	&& rm -rf /var/lib/apt/lists/*
+VOLUME /home/mitmproxy/.mitmproxy
 
-ENV HOME /home/mitm
-RUN useradd --create-home --home-dir $HOME mitm \
-	&& chown -R mitm:mitm $HOME
+COPY docker-entrypoint.sh /usr/local/bin/
+ENTRYPOINT ["docker-entrypoint.sh"]
 
-USER mitm
-
-ENTRYPOINT [ "mitmproxy" ]
+EXPOSE 8080 8081
+CMD ["mitmproxy"]
