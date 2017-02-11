@@ -1,4 +1,8 @@
-FROM alpine:3.5
+FROM alpine:latest
 MAINTAINER Jessie Frazelle <jess@linux.com>
-RUN apk add --no-cache wrk ca-certificates
-ENTRYPOINT ["wrk"]
+
+RUN apk --no-cache add \
+	ca-certificates \
+	wrk
+
+CMD [ "wrk" ]
