@@ -1,14 +1,17 @@
 FROM alpine:latest
 
 RUN apk --no-cache add \
-	ca-certificates
+	bzr \
+	ca-certificates \
+	git \
+	rpm \
+	xz
 
 ENV PATH /go/bin:/usr/local/go/bin:$PATH
 ENV GOPATH /go
 
 RUN buildDeps=' \
 		go \
-		git \
 		gcc \
 		g++ \
 		libc-dev \
