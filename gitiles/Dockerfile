@@ -1,35 +1,56 @@
 FROM java:8-alpine
 MAINTAINER Jessie Frazelle <jess@linux.com>
 
-# install buck
+# install bazel
+ENV BAZEL_VERSION 0.4.4
 RUN buildDeps=' \
-		apache-ant \
 		bash \
+		build-base \
 		curl \
-		git \
-		perl \
-		python \
+		gnupg \
+		linux-headers \
 		zip \
 	' \
 	set -x \
 	&& apk --no-cache add $buildDeps \
-	--repository https://dl-3.alpinelinux.org/alpine/edge/community/ \
-	&& git clone --depth 1 https://github.com/facebook/buck.git /buck \
+	&& curl -sSL "https://github.com/bazelbuild/bazel/releases/download/${BAZEL_VERSION}/bazel-${BAZEL_VERSION}-dist.zip" -o "/tmp/bazel-${BAZEL_VERSION}-dist.zip" \
+	&& curl -sSL "https://github.com/bazelbuild/bazel/releases/download/${BAZEL_VERSION}/bazel-${BAZEL_VERSION}-dist.zip.sig" -o "/tmp/bazel-${BAZEL_VERSION}-dist.zip.sig" \
+	&& curl -sSL "https://github.com/bazelbuild/bazel/releases/download/${BAZEL_VERSION}/bazel-${BAZEL_VERSION}-dist.zip.sha256" -o "/tmp/bazel-${BAZEL_VERSION}-dist.zip.sha256" \
+	&& export GNUPGHOME="$(mktemp -d)" \
+	&& curl -sSL "https://bazel.build/bazel-release.pub.gpg" | gpg --no-tty --import \
+	&& gpg --batch --verify "/tmp/bazel-${BAZEL_VERSION}-dist.zip.sig" "/tmp/bazel-${BAZEL_VERSION}-dist.zip" \
 	&& ( \
-		cd /buck \
-		&& ant \
-		&& ln -snfv ${PWD}/bin/buck /usr/bin/buck \
+		cd /tmp \
+		&& cat "bazel-${BAZEL_VERSION}-dist.zip.sha256" | sha256sum -c - \
 	) \
-	&& git clone --depth 1 --recurse-submodules https://gerrit.googlesource.com/gitiles /gitiles \
+	&& rm -r "$GNUPGHOME" "/tmp/bazel-${BAZEL_VERSION}-dist.zip.sig" "/tmp/bazel-${BAZEL_VERSION}-dist.zip.sha256" \
+	&& mkdir -p /tmp/bazel \
+	&& unzip "/tmp/bazel-${BAZEL_VERSION}-dist.zip" -d /tmp/bazel \
+	&& rm "/tmp/bazel-${BAZEL_VERSION}-dist.zip" \
 	&& ( \
-		cd /gitiles \
-		&& touch .nobuckcheck \
-		&& git submodule update --init \
-		&& buck build gitiles-dev:dev \
+		cd /tmp/bazel \
+		&& unset JAVA_VERSION \
+		&& bash ./compile.sh compile \
+		&& mv output/bazel /usr/bin/bazel \
 	) \
 	&& apk del $buildDeps \
-	&& rm -rf /buck
+	&& rm -rf /tmp/bazel*
 
-COPY start.sh /start.sh
 
-ENTRYPOINT [ "/start.sh" ]
+# install gitiles
+RUN buildDeps=' \
+		git \
+	' \
+	set -x \
+	&& apk --no-cache add $buildDeps \
+	&& git clone --depth 1 --recurse-submodules https://gerrit.googlesource.com/gitiles /usr/src/gitiles \
+	&& ( \
+		cd /usr/src/gitiles \
+		&& git submodule update --init \
+		&& bazel build //... \
+	) \
+	&& apk del $buildDeps
+
+COPY start.sh /usr/bin/start.sh
+
+ENTRYPOINT [ "/usr/bin/start.sh" ]

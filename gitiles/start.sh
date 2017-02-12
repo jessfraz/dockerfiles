@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-ROOT=/gitiles
+ROOT=/usr/src/gitiles
 PROPERTIES=
 
 if [ "x$1" != "x" ]; then
