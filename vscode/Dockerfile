@@ -50,8 +50,9 @@ ENV HOME /home/user
 RUN useradd --create-home --home-dir $HOME user \
 	&& chown -R user:user $HOME
 
-ENV CODE_VERSION 1.8.1-1482158209
-ENV CODE_COMMIT ee428b0eead68bf0fb99ab5fdc4439be227b6281
+# https://code.visualstudio.com/Download
+ENV CODE_VERSION 1.9.1-1486597190
+ENV CODE_COMMIT f9d0c687ff2ea7aabd85fb9a43129117c0ecf519
 
 # download the source
 RUN buildDeps=' \
