@@ -5,9 +5,9 @@ ROOT=/usr/src/gitiles
 PROPERTIES=
 
 if [ "x$1" != "x" ]; then
-	PROPERTIES="-Dcom.google.gitiles.configPath=$1"
+	PROPERTIES="--jvm_flag=-Dcom.google.gitiles.configPath=$1"
 else
-	PROPERTIES="-Dcom.google.gitiles.configPath=/gitfiles.config"
+	PROPERTIES="--jvm_flag=-Dcom.google.gitiles.configPath=/gitfiles.config"
 	cat > /gitfiles.config <<-EOF
 	[gitiles]
 		# Repositories placed here
@@ -25,6 +25,6 @@ else
 	EOF
 fi
 
-PROPERTIES="$PROPERTIES -Dcom.google.gitiles.sourcePath=$ROOT"
+PROPERTIES="$PROPERTIES --jvm_flag=-Dcom.google.gitiles.sourcePath=$ROOT"
 
-exec java $PROPERTIES -jar "$ROOT/buck-out/gen/gitiles-dev/dev.jar"
+exec "${ROOT}/bazel-bin/gitiles-dev/dev" $PROPERTIES

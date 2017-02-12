@@ -56,7 +56,6 @@ hashicorp/consul
 CouchPotato/CouchPotatoServer
 pooler/cpuminer
 curl/curl
-bazelbuild/bazel
 opendnssec/SoftHSMv2
 irssi/irssi
 zyedidia/micro
