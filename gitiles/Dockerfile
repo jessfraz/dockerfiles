@@ -1,35 +1,42 @@
-FROM java:8-alpine
+FROM java:8
 MAINTAINER Jessie Frazelle <jess@linux.com>
 
-# install buck
+RUN apt-get update && apt-get install -y \
+	ca-certificates \
+	--no-install-recommends \
+	&& rm -rf /var/lib/apt/lists/*
+
+# install bazel
 RUN buildDeps=' \
-		apache-ant \
-		bash \
+		curl \
+	' \
+	&& set -x \
+	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends \
+	&& rm -rf /var/lib/apt/lists/* \
+	&& curl -sSL https://bazel.build/bazel-release.pub.gpg | apt-key add - \
+	&& echo "deb [arch=amd64] http://storage.googleapis.com/bazel-apt stable jdk1.8" >> /etc/apt/sources.list.d/bazel.list \
+	&& apt-get update && apt-get install -y \
+	bazel \
+	--no-install-recommends \
+	&& apt-get purge -y --auto-remove $buildDeps
+
+# install gitiles
+RUN buildDeps=' \
 		curl \
 		git \
-		perl \
-		python \
 		zip \
 	' \
 	set -x \
-	&& apk --no-cache add $buildDeps \
-	--repository https://dl-3.alpinelinux.org/alpine/edge/community/ \
-	&& git clone --depth 1 https://github.com/facebook/buck.git /buck \
+	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends \
+	&& rm -rf /var/lib/apt/lists/* \
+	&& git clone --depth 1 --recurse-submodules https://gerrit.googlesource.com/gitiles /usr/src/gitiles \
 	&& ( \
-		cd /buck \
-		&& ant \
-		&& ln -snfv ${PWD}/bin/buck /usr/bin/buck \
-	) \
-	&& git clone --depth 1 --recurse-submodules https://gerrit.googlesource.com/gitiles /gitiles \
-	&& ( \
-		cd /gitiles \
-		&& touch .nobuckcheck \
+		cd /usr/src/gitiles \
 		&& git submodule update --init \
-		&& buck build gitiles-dev:dev \
+		&& bazel build //... \
 	) \
-	&& apk del $buildDeps \
-	&& rm -rf /buck
+	&& apt-get purge -y --auto-remove $buildDeps
 
-COPY start.sh /start.sh
+COPY start.sh /usr/bin/start.sh
 
-ENTRYPOINT [ "/start.sh" ]
+ENTRYPOINT [ "/usr/bin/start.sh" ]

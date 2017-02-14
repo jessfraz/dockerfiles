@@ -35,6 +35,8 @@ get_latest() {
 		dir="couchpotato"
 	elif [[ "$dir" == "SoftHSMv2" ]]; then
 		dir="golang-softhsm2"
+	elif [[ "$dir" == "bazel" ]]; then
+		dir="gitiles"
 	fi
 
 	local current=$(cat "${dir}/Dockerfile" | grep -m 1 VERSION | awk '{print $(NF)}')

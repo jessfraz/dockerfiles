@@ -1,4 +1,4 @@
-FROM alpine:3.4
+FROM alpine:latest
 MAINTAINER Jessie Frazelle <jess@linux.com>
 ENV LANG=en_US.UTF-8
 

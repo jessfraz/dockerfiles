@@ -13,8 +13,10 @@ RUN adduser -u 1001 -D user \
 
 ENV LANG C.UTF-8
 
-ENV IRSSI_VERSION 1.0.0
+ENV IRSSI_VERSION 1.0.1
+# https://otr.cypherpunks.ca/index.php#downloads
 ENV LIB_OTR_VERSION 4.1.1
+# https://github.com/cryptodotis/irssi-otr/releases
 ENV IRSSI_OTR_VERSION 1.0.2
 
 RUN set -x \
@@ -61,7 +63,7 @@ RUN set -x \
 	&& curl -sSL "https://otr.cypherpunks.ca/libotr-${LIB_OTR_VERSION}.tar.gz.asc" -o /tmp/libotr.tar.gz.asc \
 	&& export GNUPGHOME="$(mktemp -d)" \
 # gpg: key 42C2ABAD: public key "OTR Dev Team (Signing Key) <otr@cypherpunks.ca>" imported
-	&& gpg --no-tty --keyserver pgp.mit.edu --recv-keys 22DF3305DF56667CE15784FCF24DE08F42C2ABAD \
+	&& curl -sSL https://otr.cypherpunks.ca/gpgkey.asc | gpg --no-tty --import \
 	&& gpg --batch --verify /tmp/libotr.tar.gz.asc /tmp/libotr.tar.gz \
 	&& rm -r "$GNUPGHOME" /tmp/libotr.tar.gz.asc \
 	&& mkdir -p /usr/src/libotr \
