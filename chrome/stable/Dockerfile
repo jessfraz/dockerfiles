@@ -1,18 +1,31 @@
-# Run Chrome in a container
+## Run Chrome in a container
 #
-# docker run -it \
-#	--net host \ # may as well YOLO
-#	--cpuset-cpus 0 \ # control the cpu
-#	--memory 512mb \ # max memory it can use
-#	-v /tmp/.X11-unix:/tmp/.X11-unix \ # mount the X11 socket
-#	-e DISPLAY=unix$DISPLAY \
-#	-v $HOME/Downloads:/root/Downloads \
-#	-v $HOME/.config/google-chrome/:/data \ # if you want to save state
-#	--device /dev/snd \ # so we have sound
-#	-v /dev/shm:/dev/shm \
-#	--name chrome \
-#	jess/chrome
+## Selinux must be either disabled or an additional policy
+## is required to allow Docker to connect to the X11 socket
+# sudo setenforce 0
 #
+## Chrome is running as the root user inside the container
+## so root must be permitted to connect to the X11 socket
+# xhost + SI:localuser:root
+#
+# docker run -d \
+#        --memory 3gb \
+#        --net host \
+#        -v /etc/localtime:/etc/localtime:ro \
+#        -v /tmp/.X11-unix:/tmp/.X11-unix \
+#        -e DISPLAY=unix$DISPLAY \
+#        -v $HOME/Downloads:/root/Downloads \
+#        -v /dev/shm:/dev/shm \
+#        -v /etc/hosts:/etc/hosts \
+#        -v $HOME/.config/google-chrome/:/data \
+#        --device /dev/snd \
+#        --device /dev/dri \
+#        --device /dev/video0 \
+#        --group-add audio \
+#        --group-add video \
+#        --name chrome \
+#        jess/chrome --user-data-dir=/data --force-device-scale-factor=1 \
+#        --proxy-server="$proxy" --host-resolver-rules="$map" "$args"
 
 # Base docker image
 FROM debian:sid
