@@ -2,6 +2,7 @@ FROM alpine:latest
 MAINTAINER Jessie Frazelle <jess@linux.com>
 
 RUN apk --no-cache add \
+	bash \
 	python \
 	py-cffi \
 	py-configargparse \
