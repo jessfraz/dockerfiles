@@ -13,7 +13,8 @@
 #	--name chrome \
 #	jess/chrome
 #
-# For Ubuntu I had to add --privileged to above `docker run` command
+# For Ubuntu I had to add download Jessie's chrome.json.
+# wget wget https://raw.githubusercontent.com/jfrazelle/dotfiles/master/etc/docker/seccomp/chrome.json -o ~/chrome.json
 
 # Base docker image
 FROM debian:sid
@@ -43,7 +44,6 @@ RUN apt-get update && apt-get install -y \
 	&& apt-get purge --auto-remove -y curl \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& rm -rf /src/*.deb
-USER root
 RUN groupadd -r chrome && useradd -r -g chrome -G audio,video chrome \
     && mkdir -p /home/chrome/Downloads && chown -R chrome:chrome /home/chrome
 
