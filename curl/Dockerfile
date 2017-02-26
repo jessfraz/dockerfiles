@@ -13,7 +13,7 @@ RUN apk add --no-cache \
 	nghttp2 \
 	openssl
 
-ENV CURL_VERSION 7.52.1
+ENV CURL_VERSION 7.53.1
 
 RUN set -x \
     && apk add --no-cache --virtual .build-deps \
