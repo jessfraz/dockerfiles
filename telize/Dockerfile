@@ -1,11 +1,5 @@
-FROM debian:jessie
+FROM debian:stretch
 MAINTAINER Jessie Frazelle <jess@linux.com>
-
-RUN apt-get update && apt-get install -y \
-	gnupg \
-	--no-install-recommends \
-	&& apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62 \
-	&& echo "deb http://nginx.org/packages/mainline/debian/ jessie nginx" >> /etc/apt/sources.list
 
 RUN apt-get update && apt-get install -y \
 	ca-certificates \
@@ -40,8 +34,10 @@ RUN buildDeps=' \
 	&& curl -sSL http://download.maxmind.com/download/geoip/database/asnum/GeoIPASNum.dat.gz -o /usr/share/GeoIP/GeoIPASNum.dat.gz \
 	&& gunzip /usr/share/GeoIP/*gz \
 	&& git clone --depth 1 --branch "${TELIZE_VERSION}" https://github.com/fcambus/telize.git /usr/src/telize \
-	&& cd /usr/src/telize \
-	&& cp timezone*.conf /etc/nginx/ \
+	&& ( \
+		cd /usr/src/telize \
+		&& cp timezone*.conf /etc/nginx/ \
+	) \
 	&& rm -rf /usr/src/telize \
 	&& apt-get purge -y --auto-remove $buildDeps
 
