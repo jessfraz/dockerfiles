@@ -1,0 +1,68 @@
+#! /bin/sh
+#
+# distccd Debian init.d script contributed by Jason Thomas.  (Debian #161136)
+#
+# skeleton	example file to build /etc/init.d/ scripts.
+#		This file should be used to construct scripts for /etc/init.d.
+#
+#		Written by Miquel van Smoorenburg <miquels@cistron.nl>.
+#		Modified for Debian GNU/Linux
+#		by Ian Murdock <imurdock@gnu.ai.mit.edu>.
+#
+# Version:	@(#)skeleton  1.9.1  08-Apr-2002  miquels@cistron.nl
+#
+
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+DAEMON=/usr/bin/distccd
+NAME=distccd
+DESC="Distributed Compiler Daemon"
+DAEMON_ARGS="--nice=10 --port=4200 --pid-file=/var/run/$NAME.pid \
+	--log-file=/var/log/$NAME.log --daemon"
+
+test -x $DAEMON || exit 0
+
+set -e
+
+# we need permission to write to the pid file
+touch /var/run/$NAME.pid
+chown distccd /var/run/$NAME.pid
+
+case "$1" in
+	start)
+		echo -n "Starting $DESC: $NAME"
+		start-stop-daemon --start --quiet --pidfile /var/run/$NAME.pid \
+			--chuid distccd \
+			--exec $DAEMON -- $DAEMON_ARGS
+		echo "."
+		;;
+	stop)
+		echo -n "Stopping $DESC: $NAME "
+		start-stop-daemon --stop --quiet --pidfile /var/run/$NAME.pid \
+			--oknodo \
+			--exec $DAEMON
+		echo "."
+		;;
+	restart|force-reload)
+		#
+		#	If the "reload" option is implemented, move the "force-reload"
+		#	option to the "reload" entry above. If not, "force-reload" is
+		#	just the same as "restart".
+		#
+		echo -n "Restarting $DESC: $NAME"
+		start-stop-daemon --stop --quiet --pidfile /var/run/$NAME.pid \
+			--oknodo \
+			--exec $DAEMON
+		sleep 1
+		start-stop-daemon --start --quiet --pidfile /var/run/$NAME.pid \
+			--chuid distccd \
+			--exec $DAEMON -- $DAEMON_ARGS
+		echo "."
+		;;
+	*)
+		N=/etc/init.d/$NAME
+		echo "Usage: $N {start|stop|restart|force-reload}" >&2
+		exit 1
+		;;
+esac
+
+exit 0
