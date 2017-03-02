@@ -4,6 +4,7 @@ RUN apk add --no-cache \
 	bash \
 	ca-certificates \
 	libsasl \
+	mailx \
 	postfix \
 	rsyslog \
 	runit
