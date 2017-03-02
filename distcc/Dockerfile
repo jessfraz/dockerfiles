@@ -16,8 +16,6 @@ RUN apt-get update && apt-get install -y \
 ENV HOME /root
 WORKDIR $HOME
 
-ENV JOBS 4
-
 COPY distccd-init /usr/local/bin/distccd-init
 
-CMD [ "distccd-init", "start" ]
+ENTRYPOINT [ "distccd-init" ]
