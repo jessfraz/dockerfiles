@@ -8,7 +8,7 @@
 #	-e DISPLAY=unix$DISPLAY \
 #	-v $HOME/Downloads:/home/chrome/Downloads \
 #	-v $HOME/.config/google-chrome/:/data \ # if you want to save state
-#	--security-opt seccomp=/etc/docker/seccomp/chrome.json
+#	--security-opt seccomp=$HOME/chrome.json \
 #	--device /dev/snd \ # so we have sound
 #	-v /dev/shm:/dev/shm \
 #	--name chrome \
