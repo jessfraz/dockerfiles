@@ -15,7 +15,7 @@
 #	jess/chrome:beta
 #
 # You will want the custom seccomp profile:
-# 	wget https://raw.githubusercontent.com/jfrazelle/dotfiles/master/etc/docker/seccomp/chrome.json -o ~/chrome.json
+# 	wget https://raw.githubusercontent.com/jfrazelle/dotfiles/master/etc/docker/seccomp/chrome.json -O ~/chrome.json
 
 # Base docker image
 FROM debian:sid
