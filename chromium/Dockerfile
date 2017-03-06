@@ -38,7 +38,7 @@ RUN apt-get update && apt-get install -y \
       libv4l-0 \
       fonts-symbola \
       --no-install-recommends \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
     && mkdir -p /etc/chromium.d/ \
     && /bin/echo -e 'export GOOGLE_API_KEY="AIzaSyCkfPOPZXDKNn8hhgu3JrA62wIgC93d44k"\nexport GOOGLE_DEFAULT_CLIENT_ID="811574891467.apps.googleusercontent.com"\nexport GOOGLE_DEFAULT_CLIENT_SECRET="kdloedMFGdGla2P1zacGjAQh"' > /etc/chromium.d/googleapikeys \
     && dpkg -i '/src/google-talkplugin_current_amd64.deb'
