@@ -1,23 +1,21 @@
-# DESCRIPTION:	  Create chromium container with its dependencies
-# AUTHOR:		  Jessie Frazelle <jess@linux.com>
-# COMMENTS:
-#	This file describes how to build a Chromium container with all
-#	dependencies installed. It uses native X11 unix socket.
-#	Tested on Debian Jessie
-# USAGE:
-#	# Download Chromium Dockerfile
-#	wget https://raw.githubusercontent.com/jessfraz/dockerfiles/master/chromium/Dockerfile
+# Run Chromium in a container
 #
-#	# Build chromium image
-#	docker build -t chromium .
+# docker run -it \
+#	--net host \ # may as well YOLO
+#	--cpuset-cpus 0 \ # control the cpu
+#	--memory 512mb \ # max memory it can use
+#	-v /tmp/.X11-unix:/tmp/.X11-unix \ # mount the X11 socket
+#	-e DISPLAY=unix$DISPLAY \
+#	-v $HOME/Downloads:/home/chromium/Downloads \
+#	-v $HOME/.config/chromium/:/data \ # if you want to save state
+#	--security-opt seccomp=$HOME/chrome.json \
+#	--device /dev/snd \ # so we have sound
+#	-v /dev/shm:/dev/shm \
+#	--name chromium \
+#	jess/chromium
 #
-#	# Run stateful data-on-host chromium. For ephemeral, remove -v /data/chromium:/data
-#	docker run -v /data/chromium:/data -v /tmp/.X11-unix:/tmp/.X11-unix \
-#		-e DISPLAY=unix$DISPLAY chromium
-
-#	# To run stateful dockerized data containers
-#	docker run --volumes-from chromium-data -v /tmp/.X11-unix:/tmp/.X11-unix \
-#		-e DISPLAY=unix$DISPLAY chromium
+# You will want the custom seccomp profile:
+# 	wget https://raw.githubusercontent.com/jfrazelle/dotfiles/master/etc/docker/seccomp/chrome.json -O ~/chrome.json
 
 # Base docker image
 FROM debian:stretch
