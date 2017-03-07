@@ -25,7 +25,7 @@
 # host firewall is unconfigured.
 #
 FROM debian:stretch
-MAINTAINER Jessie Frazelle <jess@linux.com>
+LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 RUN apt-get update && LC_ALL=C DEBIAN_FRONTEND=noninteractive \
 	apt-get install -y \

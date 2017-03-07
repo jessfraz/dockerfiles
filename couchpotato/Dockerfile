@@ -10,7 +10,7 @@
 # 	jess/couchpotato
 #
 FROM alpine:latest
-MAINTAINER Jessie Frazelle <jess@linux.com>
+LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 
 RUN apk add --no-cache \

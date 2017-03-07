@@ -1,5 +1,5 @@
 FROM python:3-alpine
-MAINTAINER Justin Garrison <justinleegarrison@gmail.com>
+LABEL maintainer "Justin Garrison <justinleegarrison@gmail.com>"
 
 RUN apk add --no-cache \
 	mplayer \

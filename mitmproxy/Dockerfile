@@ -1,5 +1,5 @@
 FROM alpine:latest
-MAINTAINER Jessie Frazelle <jess@linux.com>
+LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 ENV LANG=en_US.UTF-8
 
 COPY requirements.txt /tmp/requirements.txt

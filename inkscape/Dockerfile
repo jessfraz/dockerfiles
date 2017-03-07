@@ -6,7 +6,7 @@
 #	infoslack/inkscape
 #
 FROM ubuntu:16.04
-MAINTAINER Daniel Romero <infoslack@gmail.com>
+LABEL maintainer "Daniel Romero <infoslack@gmail.com>"
 
 ENV DEBIAN_FRONTEND noninteractive
 

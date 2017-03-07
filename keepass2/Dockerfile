@@ -18,7 +18,7 @@
 #
 
 FROM debian:sid
-MAINTAINER Christian Koep <christian.koep@fom-net.de>
+LABEL maintainer "Christian Koep <christian.koep@fom-net.de>"
 
 ENV DEBIAN_FRONTEND noninteractive
 

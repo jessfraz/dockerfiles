@@ -1,5 +1,5 @@
 FROM alpine:latest
-MAINTAINER Jessie Frazelle <jess@linux.com>
+LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 ENV PATH /go/bin:/usr/local/go/bin:$PATH
 ENV GOPATH /go
