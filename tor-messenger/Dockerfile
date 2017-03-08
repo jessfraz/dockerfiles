@@ -10,7 +10,7 @@ MAINTAINER Christian Koep <christian.koep@fom-net.de>
 
 ENV HOME /home/user
 ENV LANG C.UTF-8
-ENV TOR_VERSION 0.3.0b1
+ENV TOR_VERSION 0.4.0b1
 ENV TOR_FINGERPRINT 0xB01C8B006DA77FAA
 
 RUN apt-get update && apt-get -y install \
@@ -33,13 +33,13 @@ RUN useradd --create-home --home-dir $HOME user && chown -R user:user $HOME
 
 RUN cd /tmp && \
 	curl -sSOL https://dist.torproject.org/tormessenger/${TOR_VERSION}/tor-messenger-linux64-${TOR_VERSION}_en-US.tar.xz && \
-	curl -sSOL https://dist.torproject.org/tormessenger/${TOR_VERSION}/sha256sums-unsigned-build.txt && \
-	curl -sSOL https://dist.torproject.org/tormessenger/${TOR_VERSION}/sha256sums-unsigned-build.txt.asc && \
+	curl -sSOL https://dist.torproject.org/tormessenger/${TOR_VERSION}/sha256sums-signed-build.txt && \
+	curl -sSOL https://dist.torproject.org/tormessenger/${TOR_VERSION}/sha256sums-signed-build.txt.asc && \
 	mkdir ~/.gnupg && \
 	gpg --no-tty --keyserver pgp.mit.edu --recv-keys ${TOR_FINGERPRINT} || \
 	gpg --fingerprint --keyid-format LONG ${TOR_FINGERPRINT} | grep "Key fingerprint = E4AC D397 5427 A5BA 8450   A1BE B01C 8B00 6DA7 7FAA" && \
-	gpg --verify sha256sums-unsigned-build.txt.asc && \
-	grep $(sha256sum tor-messenger-linux64-${TOR_VERSION}_en-US.tar.xz) sha256sums-unsigned-build.txt && \
+	gpg --verify sha256sums-signed-build.txt.asc && \
+	grep $(sha256sum tor-messenger-linux64-${TOR_VERSION}_en-US.tar.xz) sha256sums-signed-build.txt && \
 	tar xfv tor-messenger-linux64-${TOR_VERSION}_en-US.tar.xz -C /usr/local/bin && \
 	rm -rf tor-messenger*	&& \
 	chown -R user.user /usr/local/bin/tor-messenger && \
