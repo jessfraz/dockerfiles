@@ -24,7 +24,8 @@ ENV HOME /home/wireshark
 RUN useradd --create-home --home-dir $HOME wireshark \
 	&& chown -R wireshark:wireshark $HOME
 
-RUN setcap 'CAP_NET_RAW+eip CAP_NET_ADMIN+eip' /usr/bin/dumpcap
+RUN chown root:wireshark /usr/bin/dumpcap \
+	&& setcap 'CAP_NET_RAW+eip CAP_NET_ADMIN+eip' /usr/bin/dumpcap
 
 USER wireshark
 
