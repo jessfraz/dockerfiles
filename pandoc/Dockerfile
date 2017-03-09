@@ -1,5 +1,5 @@
 FROM haskell
-MAINTAINER Jessie Frazelle <jess@linux.com>
+LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 RUN cabal update && cabal install pandoc pandoc-citeproc
 

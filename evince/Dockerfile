@@ -13,7 +13,7 @@
 #
 
 FROM debian:stretch
-MAINTAINER Christian Koep <christian.koep@fom-net.de>
+LABEL maintainer "Christian Koep <christian.koep@fom-net.de>"
 
 RUN apt-get -qq update && apt-get install -y \
 	evince \

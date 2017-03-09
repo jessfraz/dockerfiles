@@ -30,7 +30,7 @@
 # 	rm vboxdrv
 #
 FROM debian:sid
-MAINTAINER Jessie Frazelle <jess@linux.com>
+LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 RUN buildDeps=' \
 		ca-certificates \

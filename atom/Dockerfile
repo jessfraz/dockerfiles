@@ -20,7 +20,7 @@
 
 # Base docker image
 FROM debian:stretch
-MAINTAINER Jessie Frazelle <jess@linux.com>
+LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \

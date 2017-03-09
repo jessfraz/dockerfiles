@@ -1,5 +1,5 @@
 FROM debian:sid
-MAINTAINER Christian Koep <christian.koep@fom-net.de>
+LABEL maintainer "Christian Koep <christian.koep@fom-net.de>"
 
 ENV ROUTERSPLOIT_VERSION v2.2.1
 
