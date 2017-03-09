@@ -6,7 +6,7 @@
 #	jess/tor-messenger
 #
 FROM debian:stretch
-MAINTAINER Christian Koep <christian.koep@fom-net.de>
+LABEL maintainer "Christian Koep <christian.koep@fom-net.de>"
 
 ENV HOME /home/user
 ENV LANG C.UTF-8

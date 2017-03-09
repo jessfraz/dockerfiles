@@ -8,7 +8,7 @@
 #	jess/wireshark
 #
 FROM ubuntu:16.04
-MAINTAINER Jessie Frazelle <jess@linux.com>
+LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y \
@@ -23,6 +23,9 @@ RUN apt-get update && apt-get install -y \
 ENV HOME /home/wireshark
 RUN useradd --create-home --home-dir $HOME wireshark \
 	&& chown -R wireshark:wireshark $HOME
+
+RUN chown root:wireshark /usr/bin/dumpcap \
+	&& setcap 'CAP_NET_RAW+eip CAP_NET_ADMIN+eip' /usr/bin/dumpcap
 
 USER wireshark
 

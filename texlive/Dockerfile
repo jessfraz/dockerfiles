@@ -7,7 +7,7 @@
 # https://github.com/andygrunwald/FOM-LaTeX-Template
 
 FROM debian:stretch
-MAINTAINER Christian Koep <christian.koep@fom-net.de>
+LABEL maintainer "Christian Koep <christian.koep@fom-net.de>"
 
 RUN apt-get update && apt-get install -y \
     texlive-full \
