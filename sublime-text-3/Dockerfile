@@ -24,7 +24,7 @@
 #
 
 FROM debian:stretch
-MAINTAINER Christian Koep <christian.koep@fom-net.de>
+LABEL maintainer "Christian Koep <christian.koep@fom-net.de>"
 
 # Installing the libcanberra-gtk-module gets rid of a lot of annoying error messages.
 RUN apt-get update && apt-get -y install \

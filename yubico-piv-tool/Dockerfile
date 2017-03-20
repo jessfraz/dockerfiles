@@ -7,7 +7,7 @@
 #	jess/yubico-piv-tool
 #
 FROM ubuntu:16.04
-MAINTAINER Jessie Frazelle <jess@linux.com>
+LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 RUN apt-get update && apt-get install -y \
 	software-properties-common \
