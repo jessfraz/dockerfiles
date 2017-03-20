@@ -14,7 +14,7 @@ RUN apk add --no-cache \
 	python
 
 # Get the source
-ENV PLEXPY_VERSION v1.4.16
+ENV PLEXPY_VERSION v1.4.17
 RUN git clone https://github.com/drzoidberg33/plexpy.git /opt/plexpy \
 	&& ( \
 		cd /opt/plexpy \

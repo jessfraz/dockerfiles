@@ -13,7 +13,7 @@ RUN adduser -u 1001 -D user \
 
 ENV LANG C.UTF-8
 
-ENV IRSSI_VERSION 1.0.1
+ENV IRSSI_VERSION 1.0.2
 # https://otr.cypherpunks.ca/index.php#downloads
 ENV LIB_OTR_VERSION 4.1.1
 # https://github.com/cryptodotis/irssi-otr/releases
