@@ -37,6 +37,8 @@ get_latest() {
 		dir="golang-softhsm2"
 	elif [[ "$dir" == "bazel" ]]; then
 		dir="gitiles"
+	elif [[ "$dir" == "oauth2_proxy" ]]; then
+		dir="oauth2-proxy"
 	fi
 
 	local current=$(cat "${dir}/Dockerfile" | grep -m 1 VERSION | awk '{print $(NF)}')
@@ -59,6 +61,7 @@ curl/curl
 opendnssec/SoftHSMv2
 irssi/irssi
 zyedidia/micro
+bitly/oauth2_proxy
 JonnyWong16/plexpy
 powershell/powershell
 ricochet-im/ricochet

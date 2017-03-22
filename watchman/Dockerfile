@@ -6,14 +6,16 @@ RUN apt-get update && apt-get install -y \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
-ENV WATCHMAN_VERSION v4.7.0
+ENV WATCHMAN_VERSION v4.8.0-rc1
 
 RUN buildDeps=' \
 		autoconf \
 		automake \
 		clang \
 		git \
+		libtool \
 		make \
+		pkg-config \
 	' \
 	&& set -x \
 	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends \

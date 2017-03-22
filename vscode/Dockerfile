@@ -51,8 +51,8 @@ RUN useradd --create-home --home-dir $HOME user \
 	&& chown -R user:user $HOME
 
 # https://code.visualstudio.com/Download
-ENV CODE_VERSION 1.9.1-1486597190
-ENV CODE_COMMIT f9d0c687ff2ea7aabd85fb9a43129117c0ecf519
+ENV CODE_VERSION 1.10.2-1488981323
+ENV CODE_COMMIT 8076a19fdcab7e1fc1707952d652f0bb6c6db331
 
 # download the source
 RUN buildDeps=' \

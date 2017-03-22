@@ -6,8 +6,7 @@ ENV GOPATH /go
 #ENV GO15VENDOREXPERIMENT 1
 
 RUN	apk --no-cache add \
-	ca-certificates \
-	curl
+	ca-certificates
 
 ENV CONSUL_VERSION v0.7.5
 
