@@ -59,6 +59,7 @@ CouchPotato/CouchPotatoServer
 pooler/cpuminer
 curl/curl
 opendnssec/SoftHSMv2
+google/guetzli
 irssi/irssi
 zyedidia/micro
 bitly/oauth2_proxy
