@@ -1,11 +1,6 @@
-# version: 0.0.2
+# version: 0.0.3
 # author: Vadim Sloun <github@roundside.com>
 # description: Dockerized Freemind (v1.0.1 Beta 2) ("http://freemind.sourceforge.net/"), based on Ubuntu 16.10, uses X11 socket
-#
-# howto
-#
-#   build image:
-#    docker build -t freemind .
 #
 #   run container:
 #    docker run --rm \
