@@ -6,11 +6,11 @@
 #	jess/tor-messenger
 #
 FROM debian:stretch
-LABEL maintainer "Christian Koep <christian.koep@fom-net.de>"
+LABEL maintainer "Christian Koep <christiankoep@gmail.com>"
 
 ENV HOME /home/user
 ENV LANG C.UTF-8
-ENV TOR_VERSION 0.4.0b1
+ENV TOR_VERSION 0.4.0b2
 ENV TOR_FINGERPRINT 0xB01C8B006DA77FAA
 
 RUN apt-get update && apt-get -y install \
