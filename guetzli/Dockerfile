@@ -6,7 +6,7 @@
 # 	--verbose /tmp/example.jpg /tmp/example.compressed.jpg
 
 FROM alpine:latest
-LABEL maintainer "Christian Koep <christian.koep@fom-net.de>"
+LABEL maintainer "Christian Koep <christiankoep@gmail.com>"
 
 RUN apk --no-cache add \
 		libpng \

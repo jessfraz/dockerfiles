@@ -1,5 +1,5 @@
 FROM r.j3ss.co/kalilinux
-LABEL maintainer "Christian Koep <christian.koep@fom-net.de>"
+LABEL maintainer "Christian Koep <christiankoep@gmail.com>"
 
 RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     metasploit-framework \
