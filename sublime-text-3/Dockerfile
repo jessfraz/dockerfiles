@@ -1,5 +1,5 @@
 # DESCRIPTION:	Create sublime-text 3 container with its dependencies (https://www.sublimetext.com/3)
-# AUTHORS:		Christian Koep <christian.koep@fom-net.de>, Chuck Knox <charles.m.knox@gmail.com>
+# AUTHORS:		Christian Koep <christiankoep@gmail.com>, Chuck Knox <charles.m.knox@gmail.com>
 # USAGE:
 #	# Build sublime-text 3 image
 #	docker build -t sublime-text:3 .
@@ -24,7 +24,7 @@
 #
 
 FROM debian:stretch
-LABEL maintainer "Christian Koep <christian.koep@fom-net.de>"
+LABEL maintainer "Christian Koep <christiankoep@gmail.com>"
 
 # Installing the libcanberra-gtk-module gets rid of a lot of annoying error messages.
 RUN apt-get update && apt-get -y install \

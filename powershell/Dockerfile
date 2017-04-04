@@ -1,5 +1,5 @@
 FROM ubuntu:16.04
-LABEL maintainer "Christian Koep <christian.koep@fom-net.de>"
+LABEL maintainer "Christian Koep <christiankoep@gmail.com>"
 
 ENV POWERSHELL_VERSION 6.0.0-alpha.17
 

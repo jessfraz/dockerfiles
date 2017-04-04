@@ -8,7 +8,7 @@
 #		keepassxc
 #
 FROM alpine:latest
-LABEL maintainer "Christian Koep <christian.koep@fom-net.de>"
+LABEL maintainer "Christian Koep <christiankoep@gmail.com>"
 
 ENV KEEPASSXC_VERSION 2.1.1
 

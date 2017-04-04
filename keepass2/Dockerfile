@@ -1,5 +1,5 @@
 # DESCRIPTION:	Create keepass2 container with its dependencies
-# AUTHOR:		Christian Koep <christian.koep@fom-net.de>
+# AUTHOR:		Christian Koep <christiankoep@gmail.com>
 # USAGE:
 #	# Build keepass2 image
 #	docker build -t keepass2 .
@@ -18,7 +18,7 @@
 #
 
 FROM debian:sid
-LABEL maintainer "Christian Koep <christian.koep@fom-net.de>"
+LABEL maintainer "Christian Koep <christiankoep@gmail.com>"
 
 ENV DEBIAN_FRONTEND noninteractive
 

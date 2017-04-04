@@ -1,5 +1,5 @@
 # DESCRIPTION:	Create evince container with its dependencies (https://wiki.gnome.org/Apps/Evince)
-# AUTHOR:		Christian Koep <christian.koep@fom-net.de>
+# AUTHOR:		Christian Koep <christiankoep@gmail.com>
 # USAGE:
 #	# Build evince image
 #	docker build -t evince .
@@ -13,7 +13,7 @@
 #
 
 FROM debian:stretch
-LABEL maintainer "Christian Koep <christian.koep@fom-net.de>"
+LABEL maintainer "Christian Koep <christiankoep@gmail.com>"
 
 RUN apt-get -qq update && apt-get install -y \
 	evince \
