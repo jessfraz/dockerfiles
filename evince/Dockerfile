@@ -1,23 +1,18 @@
-# DESCRIPTION:	Create evince container with its dependencies (https://wiki.gnome.org/Apps/Evince)
-# AUTHOR:		Christian Koep <christiankoep@gmail.com>
-# USAGE:
-#	# Build evince image
-#	docker build -t evince .
+# Evince in a container
 #
-#	# Run the container and mount your documents
-#	docker run -it \
-#		-v $HOME/documents/:/root/documents/ \
-#		-v /tmp/.X11-unix:/tmp/.X11-unix \
-#		-e DISPLAY=$DISPLAY \
-#		evince
+# docker run -it \
+#	-v $HOME/documents/:/root/documents/ \
+#	-v /tmp/.X11-unix:/tmp/.X11-unix \
+#	-e DISPLAY=$DISPLAY \
+#	evince
 #
 
-FROM debian:stretch
+FROM alpine:latest
 LABEL maintainer "Christian Koep <christiankoep@gmail.com>"
 
-RUN apt-get -qq update && apt-get install -y \
+RUN apk --no-cache add \
+	--repository https://dl-3.alpinelinux.org/alpine/edge/testing \
 	evince \
-	--no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/*
+	ttf-opensans
 
 CMD ["/usr/bin/evince"]
