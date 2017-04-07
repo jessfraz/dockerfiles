@@ -10,12 +10,12 @@
 #	--name libreoffice \
 #	jess/libreoffice
 #
-FROM debian:stretch
+FROM alpine:latest
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
-RUN apt-get update && apt-get install -y \
+RUN apk --no-cache add \
+	--repository https://dl-3.alpinelinux.org/alpine/edge/testing \
 	libreoffice \
-	--no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/*
+	ttf-dejavu
 
 ENTRYPOINT [ "libreoffice" ]
