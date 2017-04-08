@@ -45,6 +45,6 @@ RUN	apk --no-cache add --repository https://dl-3.alpinelinux.org/alpine/edge/com
 		qt5-qtbase \
 		qt5-qtbase-x11 \
 		qt5-qttools \
-		ttf-ubuntu-font-family
+		ttf-dejavu
 
 ENTRYPOINT [ "/usr/local/bin/keepassxc" ]
