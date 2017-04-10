@@ -1,7 +1,7 @@
 #!/bin/bash
 
 repo=$1
-if [ $repo != *.git ]; then
+if [[ "$repo" != *.git ]]; then
 	repo="${repo}.git"
 fi
 echo "Creating $repo"
