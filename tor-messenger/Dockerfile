@@ -50,4 +50,4 @@ WORKDIR $HOME
 
 USER user
 
-CMD ["/usr/local/bin/tor-messenger/Browser/start-tor-messenger", "--verbose"]
+CMD [ "/usr/local/bin/tor-messenger/Browser/start-tor-messenger", "--verbose", "--log", "/dev/stdout" ]

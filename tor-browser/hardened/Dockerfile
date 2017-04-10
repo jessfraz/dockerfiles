@@ -51,4 +51,4 @@ WORKDIR $HOME
 USER user
 
 ENTRYPOINT ["/bin/bash"]
-CMD [ "/usr/local/bin/Browser/start-tor-browser" ]
+CMD [ "/usr/local/bin/Browser/start-tor-browser", "--log", "/dev/stdout" ]
