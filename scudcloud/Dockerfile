@@ -15,6 +15,8 @@
 FROM ubuntu:16.04
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
+ENV DEBIAN_FRONTEND noninteractive
+
 RUN apt-get update && apt-get install -y \
 	dbus-x11 \
 	hunspell-en-us \
