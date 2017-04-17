@@ -44,6 +44,7 @@ RUN apt-get update && apt-get install -y \
 	libxss1 \
 	libxtst6 \
 	liblzma5 \
+	libxkbfile1 \
 	--no-install-recommends
 
 ENV HOME /home/user
@@ -51,8 +52,8 @@ RUN useradd --create-home --home-dir $HOME user \
 	&& chown -R user:user $HOME
 
 # https://code.visualstudio.com/Download
-ENV CODE_VERSION 1.10.2-1488981323
-ENV CODE_COMMIT 8076a19fdcab7e1fc1707952d652f0bb6c6db331
+ENV CODE_VERSION 1.11.2-1492070517
+ENV CODE_COMMIT 6eaebe3b9c70406d67c97779468c324a7a95db0e
 
 # download the source
 RUN buildDeps=' \

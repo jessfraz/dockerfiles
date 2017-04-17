@@ -38,7 +38,7 @@ RUN buildDeps=' \
 	&& rm -rf /usr/src/keepassxc \
 	&& echo "Build complete."
 
-RUN	apk --no-cache add --repository https://dl-3.alpinelinux.org/alpine/edge/community \
+RUN	apk --no-cache add \
 		libmicrohttpd \
 		libgcrypt \
 		mesa-dri-intel \
