@@ -26,7 +26,7 @@ RUN buildDeps=' \
                 qt5-qttools-dev \
 	' \
 	set -x \
-	&& apk --no-cache add --repository https://dl-3.alpinelinux.org/alpine/edge/community $buildDeps \
+	&& apk --no-cache add $buildDeps \
 	&& git clone --depth 1 --branch ${KEEPASSXC_VERSION} https://github.com/keepassxreboot/keepassxc.git /usr/src/keepassxc \
 	&& cd /usr/src/keepassxc \
 	&& mkdir build \
