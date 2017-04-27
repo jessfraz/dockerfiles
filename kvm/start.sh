@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+set -o pipefail
 
 # add the correct user perms
 gpasswd -a root libvirt

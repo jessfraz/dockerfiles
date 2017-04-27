@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+set -o pipefail
 
 : LDAP_ROOTPASS=${LDAP_ROOTPASS}
 : LDAP_DOMAIN=${LDAP_DOMAIN}

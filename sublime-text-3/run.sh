@@ -1,5 +1,7 @@
 #!/bin/bash
 set -e
+set -o pipefail
+
 if [ -z ${NEWUSER+x} ]; then
 	echo 'WARN: No user was defined, defaulting to root.'
 	echo 'WARN: Sublime will save files as root:root.'

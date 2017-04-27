@@ -1,5 +1,6 @@
 #!/bin/bash
-
+set -e
+set -o pipefail
 
 mkdir -p /var/lib/mpd/{playlists,music} \
 	&& touch /var/lib/mpd/{state,tag_cache} \
