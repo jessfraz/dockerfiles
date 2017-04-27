@@ -1,4 +1,4 @@
 #!/bin/bash
 
-su user -c /usr/bin/code
+su user -c /usr/bin/editor
 sleep infinity
