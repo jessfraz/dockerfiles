@@ -1,4 +1,6 @@
 #!/bin/bash
+set -e
+set -o pipefail
 
 repo=$1
 if [[ "$repo" != *.git ]]; then

@@ -7,7 +7,7 @@ ENV GOPATH /go
 RUN	apk --no-cache add \
 	ca-certificates
 
-ENV OAUTH2_VERSION v2.1
+ENV OAUTH2_VERSION v2.2
 
 RUN buildDeps=' \
 		go \
