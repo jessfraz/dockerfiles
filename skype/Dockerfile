@@ -35,7 +35,7 @@ RUN curl -sSL "https://download.skype.com/linux/skype-debian_${SKYPE_VERSION}_i3
 ENV HOME /home/skype
 RUN useradd --create-home --home-dir $HOME skype \
 	&& chown -R skype:skype $HOME \
-	&& usermod -a -G audio,video skype
+	&& usermod -a -G audio,video,irc skype
 
 WORKDIR $HOME
 USER skype
