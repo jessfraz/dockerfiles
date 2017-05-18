@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y \
 	libdbus-glib-1-2 \
 	libgtk2.0-0 \
 	libxrender1 \
+	libx11-xcb1 \
 	libxt6 \
 	xz-utils \
 	--no-install-recommends \
