@@ -17,6 +17,7 @@ RUN set -x \
 		cmake \
 		curl-dev \
 		git \
+		libressl-dev \
 		libxml2-dev \
 	&& git clone --depth 1 https://github.com/LastPass/lastpass-cli.git /usr/src/lastpass-cli \
 	&& ( \

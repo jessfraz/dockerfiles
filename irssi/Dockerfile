@@ -44,7 +44,7 @@ RUN set -x \
 # gpg: key DDBEF0E1: public key "The Irssi project <staff@irssi.org>" imported
 	&& gpg --no-tty --keyserver ha.pool.sks-keyservers.net --recv-keys 7EE65E3082A5FB06AC7C368D00CCB587DDBEF0E1 \
 	&& gpg --batch --verify /tmp/irssi.tar.xz.asc /tmp/irssi.tar.xz \
-	&& rm -r "$GNUPGHOME" /tmp/irssi.tar.xz.asc \
+	&& rm -rf "$GNUPGHOME" /tmp/irssi.tar.xz.asc \
 	&& mkdir -p /usr/src \
 	&& tar -xJf /tmp/irssi.tar.xz -C /usr/src \
 	&& rm /tmp/irssi.tar.xz \
@@ -65,7 +65,7 @@ RUN set -x \
 # gpg: key 42C2ABAD: public key "OTR Dev Team (Signing Key) <otr@cypherpunks.ca>" imported
 	&& curl -sSL https://otr.cypherpunks.ca/gpgkey.asc | gpg --no-tty --import \
 	&& gpg --batch --verify /tmp/libotr.tar.gz.asc /tmp/libotr.tar.gz \
-	&& rm -r "$GNUPGHOME" /tmp/libotr.tar.gz.asc \
+	&& rm -rf "$GNUPGHOME" /tmp/libotr.tar.gz.asc \
 	&& mkdir -p /usr/src/libotr \
 	&& tar -xzf /tmp/libotr.tar.gz -C /usr/src/libotr --strip-components 1 \
 	&& rm /tmp/libotr.tar.gz \
@@ -81,7 +81,7 @@ RUN set -x \
 	&& curl -sSL "https://github.com/cryptodotis/irssi-otr/archive/v${IRSSI_OTR_VERSION}.tar.gz" -o /tmp/irssi-otr.tar.gz \
 	&& mkdir -p /usr/src/irssi-otr \
 	&& tar -xf /tmp/irssi-otr.tar.gz -C /usr/src/irssi-otr --strip-components 1 \
-	&& rm /tmp/irssi-otr.tar.gz \
+	&& rm -f /tmp/irssi-otr.tar.gz \
 	&& ( \
 		cd /usr/src/irssi-otr \
 		&& ./bootstrap \

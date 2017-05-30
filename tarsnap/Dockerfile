@@ -17,6 +17,7 @@ RUN set -x \
 		make \
 		openssl-dev \
 		perl-digest-sha1 \
+		perl-utils \
 		tar \
 		zlib-dev \
 	&& curl -sSL "https://www.tarsnap.com/download/tarsnap-autoconf-${TARSNAP_VERSION}.tgz" -o /tmp/tarsnap.tgz \

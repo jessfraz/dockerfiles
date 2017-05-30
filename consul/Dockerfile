@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:3.5
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 ENV PATH /go/bin:/usr/local/go/bin:$PATH
@@ -34,7 +34,10 @@ RUN buildDeps=' \
 	&& XC_ARCH="amd64" XC_OS="linux" make all \
 	&& mv bin/consul /usr/bin/ \
 	&& cd ui \
-	&& gem install bundler io-console --no-ri --no-rdoc \
+	&& gem install \
+		bundler \
+		io-console \
+		--no-ri --no-rdoc \
 	&& bundle install \
 	&& make dist \
 	&& mkdir -p /usr/src/consul \
