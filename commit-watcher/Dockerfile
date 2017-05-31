@@ -1,4 +1,4 @@
-FROM ruby:2.3-alpine
+FROM ruby:alpine
 
 RUN	apk add --no-cache \
 	ca-certificates \
@@ -15,11 +15,15 @@ RUN	set -x \
 	cmake \
 	libxml2-dev \
 	libxslt-dev \
+	ruby-json \
 	&& git clone --depth 1 https://github.com/srcclr/commit-watcher.git /usr/src/commit-watcher \
 	&& cd /usr/src/commit-watcher \
+	&& gem install \
+		activesupport-json_encoder \
+		--no-rdoc --no-ri \
 	&& bundle config build.nokogiri --use-system-libraries \
+	&& bundle update sdoc \
 	&& bundle install \
-	&& gem install activesupport-json_encoder --no-rdoc --no-ri \
 	&& apk del .build-deps
 
 WORKDIR /usr/src/commit-watcher
