@@ -1,41 +1,51 @@
-FROM java:8
+FROM alpine:latest
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
-RUN apt-get update && apt-get install -y \
+ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk
+
+RUN apk add --no-cache \
+	bash \
 	ca-certificates \
-	--no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/*
+	openjdk8
+
+# https://github.com/bazelbuild/bazel/releases
+ENV BAZEL_VERSION 0.5.0
+# https://gerrit.googlesource.com/gitiles/
+ENV GITILES_VERSION v0.2-1
 
 # install bazel
-RUN buildDeps=' \
-		curl \
-	' \
-	&& set -x \
-	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/* \
-	&& curl -sSL https://bazel.build/bazel-release.pub.gpg | apt-key add - \
-	&& echo "deb [arch=amd64] http://storage.googleapis.com/bazel-apt stable jdk1.8" >> /etc/apt/sources.list.d/bazel.list \
-	&& apt-get update && apt-get install -y \
-	bazel \
-	--no-install-recommends \
-	&& apt-get purge -y --auto-remove $buildDeps
-
-# install gitiles
-RUN buildDeps=' \
+RUN set -x \
+	&& apk add --no-cache --virtual=.build-deps \
+		build-base \
 		curl \
 		git \
+		linux-headers \
+		python \
 		zip \
-	' \
-	set -x \
-	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/* \
-	&& git clone --depth 1 --recurse-submodules https://gerrit.googlesource.com/gitiles /usr/src/gitiles \
+	&& : install Bazel to build gitiles \
+    && curl -sSL "https://github.com/bazelbuild/bazel/releases/download/${BAZEL_VERSION}/bazel-${BAZEL_VERSION}-dist.zip" -o /tmp/bazel.zip \
+    && mkdir "/tmp/bazel-${BAZEL_VERSION}" \
+    && unzip -qd "/tmp/bazel-${BAZEL_VERSION}" /tmp/bazel.zip \
+	&& rm -rf /tmp/bazel.zip \
+	&& ( \
+    	cd "/tmp/bazel-${BAZEL_VERSION}" \
+    	&& : add -fpermissive compiler option to avoid compilation failure \
+    	&& sed -i -e '/"-std=c++0x"/{h;s//"-fpermissive"/;x;G}' tools/cpp/cc_configure.bzl \
+    	&& : add '#include <sys/stat.h>' to avoid mode_t type error \
+    	&& sed -i -e '/#endif  \/\/ COMPILER_MSVC/{h;s//#else/;G;s//#include <sys\/stat.h>/;G;}' third_party/ijar/common.h \
+    	&& bash compile.sh \
+    	&& cp -p output/bazel /usr/bin/ \
+	) \
+	&& git clone --depth 1 --branch "${GITILES_VERSION}" https://gerrit.googlesource.com/gitiles /usr/src/gitiles \
 	&& ( \
 		cd /usr/src/gitiles \
-		&& git submodule update --init \
-		&& bazel build //... \
+		&& bazel build gitiles-dev:dev \
+		&& cp -rL bazel-bin bin \
+		&& rm -rf bazel-bin \
 	) \
-	&& apt-get purge -y --auto-remove $buildDeps
+	&& : clean up unneeded packages and files \
+    && apk del .build-deps \
+	&& rm -rf /usr/bin/bazel /tmp/* /root/.cache "/tmp/bazel-${BAZEL_VERSION}"
 
 COPY start.sh /usr/bin/start.sh
 
