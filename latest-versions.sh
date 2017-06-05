@@ -44,9 +44,12 @@ get_latest() {
 
 	local current=$(cat "${dir}/Dockerfile" | grep -m 1 VERSION | awk '{print $(NF)}')
 
-	if [[ "$tag" =~ "$current" ]] || [[ "$name" =~ "$current" ]] || [[ "$current" =~ "$tag" ]]; then
+	if [[ "$tag" =~ "$current" ]] || [[ "$name" =~ "$current" ]] || [[ "$current" =~ "$tag" ]] || [[ "$current" == "master" ]]; then
 		echo -e "\e[36m${dir}:\e[39m current ${current} | ${tag} | ${name}"
 	else
+		if [[ "$dir" != "vscode" ]] && [[ "$dir" != "zookeeper" ]]; then
+			bad_versions+=( "${dir}" )
+		fi
 		echo -e "\e[31m${dir}:\e[39m current ${current} | ${tag} | ${name} | https://github.com/${repo}/releases"
 	fi
 }
@@ -78,10 +81,18 @@ znc/znc
 apache/zookeeper
 )
 
+bad_versions=()
+
 main() {
 	for p in ${projects[@]}; do
 		get_latest "$p"
 	done
+
+	if [[ ${#bad_versions[@]} -ne 0 ]]; then
+		echo
+		echo "These Dockerfiles are not up to date: ${bad_versions[@]}" >&2
+		exit 1
+	fi
 }
 
 main
