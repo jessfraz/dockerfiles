@@ -19,7 +19,7 @@ COPY telize.conf /etc/nginx/conf.d/telize.conf
 
 EXPOSE 80 443
 
-ENV TELIZE_VERSION 1.07
+ENV TELIZE_VERSION master
 
 RUN buildDeps=' \
 		curl \
@@ -29,9 +29,9 @@ RUN buildDeps=' \
 	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& mkdir -p /usr/share/GeoIP \
-	&& curl -sSL https://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz -o /usr/share/GeoIP/GeoIP.dat.gz \
-	&& curl -sSL http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz -o /usr/share/GeoIP/GeoLiteCity.dat.gz \
-	&& curl -sSL http://download.maxmind.com/download/geoip/database/asnum/GeoIPASNum.dat.gz -o /usr/share/GeoIP/GeoIPASNum.dat.gz \
+	&& curl -sSL https://geolite.maxmind.com/download/geoip/database/GeoIPv6.dat.gz -o /usr/share/GeoIP/GeoIPv6.dat.gz \
+	&& curl -sSL http://geolite.maxmind.com/download/geoip/database/GeoLiteCityv6-beta/GeoLiteCityv6.dat.gz -o /usr/share/GeoIP/GeoLiteCityv6.dat.gz \
+	&& curl -sSL http://download.maxmind.com/download/geoip/database/asnum/GeoIPASNumv6.dat.gz -o /usr/share/GeoIP/GeoIPASNumv6.dat.gz \
 	&& gunzip /usr/share/GeoIP/*gz \
 	&& git clone --depth 1 --branch "${TELIZE_VERSION}" https://github.com/fcambus/telize.git /usr/src/telize \
 	&& ( \
