@@ -1,5 +1,5 @@
-# This script gets the latest GitHub releases for the specified projects.
 #!/bin/bash
+# This script gets the latest GitHub releases for the specified projects.
 set -e
 set -o pipefail
 
