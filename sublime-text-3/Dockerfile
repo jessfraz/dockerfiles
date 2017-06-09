@@ -52,7 +52,6 @@ RUN apt-get update && apt-get -y install \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
-
 # In order to prevent writing as root:root in Sublime, we have to run the Sublime Text container
 # as the user that creates the container. Normally we do this by passing $UID.
 # But just passing $UID along isn't enough - Sublime has to be started by a user that exists.
