@@ -15,20 +15,19 @@ FROM debian:jessie
 # Tell debconf to run in non-interactive mode
 ENV DEBIAN_FRONTEND noninteractive
 
-# Setup multiarch because Skype is 32bit only
-# Make sure the repository information is up to date
-RUN dpkg --add-architecture i386 && \
-	apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y \
+	apt-transport-https \
 	ca-certificates \
 	curl \
 	--no-install-recommends
 
-ENV SKYPE_VERSION 4.3.0.37-1
+# Add the skype debian repo
+RUN curl -sSL https://repo.skype.com/data/SKYPE-GPG-KEY | apt-key add -
+RUN echo "deb [arch=amd64] https://repo.skype.com/deb stable main" > /etc/apt/sources.list.d/skype.list
 
-# Install Skype
-RUN curl -sSL "https://download.skype.com/linux/skype-debian_${SKYPE_VERSION}_i386.deb" > /usr/src/skype.deb && \
-	dpkg --force-depends -i /usr/src/skype.deb && \
-	apt-get install -fy \
+RUN apt-get update && apt-get -y install \
+	skypeforlinux \
+	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
 # Make a user
@@ -41,4 +40,4 @@ WORKDIR $HOME
 USER skype
 
 # Start Skype
-ENTRYPOINT ["skype"]
+ENTRYPOINT ["skypeforlinux"]
