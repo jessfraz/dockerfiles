@@ -12,64 +12,48 @@
 FROM debian:stretch
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
+# Tell debconf to run in non-interactive mode
+ENV DEBIAN_FRONTEND noninteractive
+
 RUN apt-get update && apt-get install -y \
+	apt-transport-https \
+	ca-certificates \
+	curl \
 	gnupg \
+	--no-install-recommends
+
+# Add the vscode debian repo
+RUN curl -sSL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | apt-key add -
+RUN echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list
+
+RUN apt-get update && apt-get -y install \
+	code \
 	libasound2 \
 	libatk1.0-0 \
 	libcairo2 \
 	libcups2 \
-	libdatrie1 \
-	libdbus-1-3 \
+	libexpat1 \
 	libfontconfig1 \
 	libfreetype6 \
-	libgconf-2-4 \
-	libgcrypt20 \
-	libgl1-mesa-dri \
-	libgl1-mesa-glx \
-	libgdk-pixbuf2.0-0 \
-	libglib2.0-0 \
 	libgtk2.0-0 \
-	libgpg-error0 \
-	libgraphite2-3 \
-	libnotify-bin \
-	libnss3 \
-	libnspr4 \
 	libpango-1.0-0 \
-	libpangocairo-1.0-0 \
+	libx11-xcb1 \
 	libxcomposite1 \
 	libxcursor1 \
-	libxdmcp6 \
+	libxdamage1 \
+	libxext6 \
+	libxfixes3 \
 	libxi6 \
 	libxrandr2 \
 	libxrender1 \
 	libxss1 \
 	libxtst6 \
-	liblzma5 \
-	libxkbfile1 \
-	--no-install-recommends
+	--no-install-recommends \
+	&& rm -rf /var/lib/apt/lists/*
 
 ENV HOME /home/user
 RUN useradd --create-home --home-dir $HOME user \
 	&& chown -R user:user $HOME
-
-# https://code.visualstudio.com/Download
-ENV CODE_VERSION 1.12.2-1494422229
-ENV CODE_COMMIT 19222cdc84ce72202478ba1cec5cb557b71163de
-
-# download the source
-RUN buildDeps=' \
-		ca-certificates \
-		curl \
-	' \
-	&& set -x \
-	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends \
-	&& curl -sL https://deb.nodesource.com/setup_6.x | bash - \
-	&& apt-get update && apt-get install -y nodejs --no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/* \
-	&& curl -sSL "https://az764295.vo.msecnd.net/stable/${CODE_COMMIT}/code_${CODE_VERSION}_amd64.deb" -o /tmp/vs.deb \
-	&& apt-get purge -y --auto-remove $buildDeps \
-	&& dpkg -i /tmp/vs.deb \
-	&& rm -rf /tmp/vs.deb
 
 COPY start.sh /usr/local/bin/start.sh
 

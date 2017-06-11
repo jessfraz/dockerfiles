@@ -2,8 +2,6 @@
 set -e
 set -o pipefail
 
-GRSEC_VERSION=3.1-4.4.5-201603142220
-
 linux_next(){
 	(
 	cd /usr/src
@@ -72,28 +70,10 @@ install_kernel(){
 		git clone --depth 1 --branch aufs${MAJOR_MINOR_VERSION} --single-branch https://github.com/sfjro/aufs4-standalone.git $aufsdir
 	fi
 
-	if [[ "$OPT" == "grsec" ]]; then
-		# get the grsec patches
-		grsecdir=/tmp/grsec
-		if [[ -d $grsecdir ]]; then
-			rm -rf $grsecdir
-		fi
-		mkdir -p $grsecdir
-		curl -sSL -o "${grsecdir}/grsecurity.patch" "https://grsecurity.net/test/grsecurity-${GRSEC_VERSION}.patch"
-		curl -sSL -o "${grsecdir}/grsecurity.patch.sig" "https://grsecurity.net/test/grsecurity-${GRSEC_VERSION}.patch.sig"
-		# add the gpg key
-		gpg --no-tty --keyserver pgp.mit.edu --recv-keys "DE94 52CE 46F4 2094 907F 108B 44D1 C0F8 2525 FE49"
-		# verify the patch
-		gpg --verify $grsecdir/grsecurity.patch.sig
-	fi
-
 	# apply the patches and compile the kernel
 	cd /usr/src/linux-${VERSION}
 
 	# apply the patches
-	if [[ "$OPT" == "grsec" ]]; then
-		patch -p1 < $grsecdir/grsecurity.patch || true
-	fi
 	if [[ "$OPT" == "aufs" ]]; then
 		git apply $aufsdir/aufs4-kbuild.patch
 		git apply $aufsdir/aufs4-base.patch
@@ -105,11 +85,6 @@ install_kernel(){
 	if [[ "$OPT" == "aufs" ]]; then
 		# remove aufs source
 		rm -rf $aufsdir
-	fi
-
-	if [[ "$OPT" == "grsec" ]]; then
-		# remove grsecdir
-		rm -rf $grsecdir
 	fi
 
 	if [[ ! -f .config ]] && [[ -f ../config ]]; then

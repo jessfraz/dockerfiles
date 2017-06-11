@@ -47,7 +47,7 @@ get_latest() {
 	if [[ "$tag" =~ "$current" ]] || [[ "$name" =~ "$current" ]] || [[ "$current" =~ "$tag" ]] || [[ "$current" == "master" ]]; then
 		echo -e "\e[36m${dir}:\e[39m current ${current} | ${tag} | ${name}"
 	else
-		if [[ "$dir" != "vscode" ]] && [[ "$dir" != "zookeeper" ]]; then
+		if [[ "$dir" != "zookeeper" ]]; then
 			bad_versions+=( "${dir}" )
 		fi
 		echo -e "\e[31m${dir}:\e[39m current ${current} | ${tag} | ${name} | https://github.com/${repo}/releases"
@@ -65,6 +65,7 @@ curl/curl
 opendnssec/SoftHSMv2
 google/guetzli
 irssi/irssi
+keepassxreboot/keepassxc
 zyedidia/micro
 bitly/oauth2_proxy
 JonnyWong16/plexpy
@@ -75,8 +76,8 @@ tarsnap/tarsnap
 fcambus/telize
 mitchellh/vagrant
 hashicorp/vault
-microsoft/vscode
 facebook/watchman
+wireguard/wireguard
 znc/znc
 apache/zookeeper
 )
