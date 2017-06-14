@@ -18,15 +18,14 @@
 # 	wget https://raw.githubusercontent.com/jfrazelle/dotfiles/master/etc/docker/seccomp/chrome.json -O ~/chrome.json
 
 # Base docker image
-FROM debian:stretch
+FROM ubuntu:16.04
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 ADD https://dl.google.com/linux/direct/google-talkplugin_current_amd64.deb /src/google-talkplugin_current_amd64.deb
 
 # Install Chromium
 RUN apt-get update && apt-get install -y \
-      chromium \
-      chromium-l10n \
+      chromium-browser \
       fonts-liberation \
       fonts-roboto \
       hicolor-icon-theme \
@@ -50,5 +49,5 @@ RUN groupadd -r chromium && useradd -r -g chromium -G audio,video chromium \
 # Run as non privileged user
 USER chromium
 
-ENTRYPOINT [ "/usr/bin/chromium" ]
+ENTRYPOINT [ "/usr/bin/chromium-browser" ]
 CMD [ "--user-data-dir=/data" ]
