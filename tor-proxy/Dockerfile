@@ -7,7 +7,7 @@
 # 	--name torproxy \
 # 	jess/tor-proxy
 #
-FROM alpine:edge
+FROM alpine:latest
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 RUN apk --no-cache add \
