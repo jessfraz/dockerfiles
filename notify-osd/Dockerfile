@@ -13,7 +13,7 @@
 #	-v /etc/passwd:/etc/passwd:ro \
 #	-v /etc/group:/etc/group:ro \
 #	-u $(whoami) -w "$HOME" \
-#	-v /home/jessie/.Xauthority:/home/jessie/.Xauthority \
+#	-v $HOME/.Xauthority:$HOME/.Xauthority \
 #	--name notify-osd \
 #	jess/notify-osd
 
