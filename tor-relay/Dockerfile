@@ -16,7 +16,7 @@
 # 		--name tor-relay \
 # 		jess/tor-relay -f /etc/tor/torrc.exit
 #
-FROM alpine:edge
+FROM alpine:latest
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 RUN apk --no-cache add \
@@ -35,5 +35,9 @@ COPY torrc.exit /etc/tor/torrc.exit
 RUN chown -R tor /etc/tor
 
 USER tor
+
+RUN mkdir /var/lib/tor/.tor
+VOLUME /var/lib/tor/.tor
+RUN chown -R tor /var/lib/tor/.tor
 
 ENTRYPOINT [ "tor" ]
