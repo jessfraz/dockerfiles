@@ -4,7 +4,7 @@ RUN apt-get update && apt-get install -y \
 	sqlite3 \
 	&& rm -rf /var/lib/apt/lists/*
 
-ENV SOFTHSM_VERSION 2.2.0
+ENV SOFTHSM_VERSION 2.3.0rc1
 
 RUN buildDeps=' \
 		autoconf \

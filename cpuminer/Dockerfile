@@ -6,7 +6,7 @@ RUN apk add --no-cache \
 	curl \
 	libressl
 
-ENV CPUMINER_VERSION v2.4.5
+ENV CPUMINER_VERSION v2.5.0
 RUN set -x \
 	&& apk add --no-cache --virtual .build-deps \
 		autoconf \
