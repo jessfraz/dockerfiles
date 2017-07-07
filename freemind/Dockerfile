@@ -1,6 +1,10 @@
 # version: 0.0.3
-# author: Vadim Sloun <github@roundside.com>
-# description: Dockerized Freemind (v1.0.1 Beta 2) ("http://freemind.sourceforge.net/"), based on Ubuntu 16.10, uses X11 socket
+# description: Dockerized Freemind (v1.0.1 Beta 2), based on Alpine Linux, uses X11 socket
+#
+# howto
+#
+#   build image:
+#    docker build -t freemind .
 #
 #   run container:
 #    docker run --rm \
@@ -14,30 +18,30 @@
 #      -v /tmp/.X11-unix:/tmp/.X11-unix \
 #      -e DISPLAY=$DISPLAY freemind
 #
-#    NOTE: mounted config directories should have correct permissions, otherwise Freemind will not work properly.
-#     For example:
-#      mkdir ~/.freemind && chmod 777 ~/.freemind
-#
-#    NOTE: on Linux distros you may need explicitly allow access to X server through xhost command:
-#      xhost local:freemind
+#    NOTES:
+#     Volumes: mounted config directories should have correct permissions, otherwise Freemind will not work properly
+#     Xhost: on Linux distros you may need explicitly allow access to X server through xhost command: xhost local:freemind
+#     Fonts: font settings for JRE: https://wiki.archlinux.org/index.php/Java_Runtime_Environment_fonts#Anti-aliasing
 
-FROM ubuntu:16.10
-WORKDIR /opt/freemind
+FROM alpine
+LABEL maintainer="VS <github@roundside.com"
 
-ENV dir /home/freemind
-ENV user freemind
-ENV fm /opt/freemind/freemind.sh
-ENV fmlink /usr/local/bin/freemind
+ENV FREEMIND_BASE_DIR /home/freemind
+ENV FU freemind
+ENV FMURL "https://downloads.sourceforge.net/project/freemind/freemind-unstable/1.1.0_Beta2/freemind-bin-max-1.1.0_Beta_2.zip"
+ENV _JAVA_OPTIONS '-Dawt.useSystemAAFontSettings=gasp'
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get upgrade -yqq && \
-  apt-get install -yqq wget ca-certificates unzip default-jre \
-  libjgoodies-forms-java libjibx1.2-java libjibx-java libjibx1.2-java \
-  libjibx-java libxpp3-java libgnu-regexp-java simplyhtml libxalan2-java \
-  xdg-utils java-wrappers --no-install-recommends && apt-get clean && \
-  useradd $user -s `which bash` -d $dir && mkdir $dir && chown $user.$user $dir && \
-  wget --quiet "https://downloads.sourceforge.net/project/freemind/freemind-unstable/1.1.0_Beta2/freemind-bin-max-1.1.0_Beta_2.zip" \
-   -O ./freemind.zip && unzip freemind.zip && rm freemind.zip && \
-  chmod +x $fm && ln -s $fm $fmlink && export FREEMIND_BASE_DIR=/opt/freemind
+WORKDIR /home/$FU
 
-USER freemind
-CMD ["freemind"]
+RUN apk update && apk upgrade && apk add \
+     openjdk8-jre \
+     ttf-dejavu \
+     fontconfig \
+     wget && \
+     wget --quiet $FMURL -O fm.zip && \
+     unzip fm.zip && rm fm.zip && \
+     chmod +x freemind.sh && \
+     adduser $FU -S -s /bin/sh && chown -R $FU.nogroup /home/$FU
+
+USER $FU
+CMD ["/home/freemind/freemind.sh"]
