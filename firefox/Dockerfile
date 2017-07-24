@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y \
 	gnupg \
 	--no-install-recommends \
 	&& apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 0AB215679C571D1C8325275B9BDB3D89CE49EC21 \
-	&& echo "deb http://ppa.launchpad.net/mozillateam/firefox-next/ubuntu wily main" >> /etc/apt/sources.list.d/firefox.list \
+	&& echo "deb http://ppa.launchpad.net/mozillateam/firefox-next/ubuntu xenial main" >> /etc/apt/sources.list.d/firefox.list \
 	&& apt-get update && apt-get install -y \
 	ca-certificates \
 	firefox \
