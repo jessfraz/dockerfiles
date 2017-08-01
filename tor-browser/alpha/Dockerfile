@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -y \
 	libasound2 \
 	libdbus-glib-1-2 \
 	libgtk2.0-0 \
+	libx11-xcb-dev \
 	libxrender1 \
 	libxt6 \
 	xz-utils \
