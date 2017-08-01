@@ -19,6 +19,7 @@ RUN apt-get update && apt-get install -y \
 	libdbus-glib-1-2 \
 	libgtk2.0-0 \
 	libxrender1 \
+	libx11-xcb-dev \
 	libx11-xcb1 \
 	libxt6 \
 	xz-utils \
@@ -32,7 +33,7 @@ RUN useradd --create-home --home-dir $HOME user \
 ENV LANG C.UTF-8
 
 # https://www.torproject.org/projects/torbrowser.html.en
-ENV TOR_VERSION 7.0.2
+ENV TOR_VERSION 7.0.3
 ENV TOR_FINGERPRINT 0x4E2C6E8793298290
 
 # download tor and check signature
