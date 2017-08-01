@@ -6,7 +6,7 @@ RUN apk add --no-cache \
 	gnupg \
 	&& rm -rf /var/lib/apt/lists/*
 
-ENV TARSNAP_VERSION 1.0.38
+ENV TARSNAP_VERSION 1.0.39
 
 RUN set -x \
 	&& apk add --no-cache --virtual .build-deps \

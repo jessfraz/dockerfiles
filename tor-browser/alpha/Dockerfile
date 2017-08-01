@@ -2,6 +2,8 @@
 #
 # docker run -v /tmp/.X11-unix:/tmp/.X11-unix \
 #	-v /dev/snd:/dev/snd \
+#	-v /dev/shm:/dev/shm \
+#	-v /etc/machine-id:/etc/machine-id:ro \
 #	-e DISPLAY=unix$DISPLAY \
 #	jess/tor-browser:alpha
 #
@@ -29,7 +31,7 @@ RUN useradd --create-home --home-dir $HOME user \
 ENV LANG C.UTF-8
 
 # https://www.torproject.org/projects/torbrowser.html.en
-ENV TOR_VERSION 7.5a1
+ENV TOR_VERSION 7.5a2
 ENV TOR_FINGERPRINT 0x4E2C6E8793298290
 
 # download tor and check signature

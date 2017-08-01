@@ -4,7 +4,7 @@ LABEL maintainer "Christian Koep <christiankoep@gmail.com>"
 ENV PATH /go/bin:/usr/local/go/bin:$PATH
 ENV GOPATH /go
 
-ENV MICRO_VERSION v1.2.0
+ENV MICRO_VERSION v1.3.0
 
 RUN buildDeps=' \
 		go \
