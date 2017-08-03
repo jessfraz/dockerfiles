@@ -25,6 +25,7 @@ RUN	apt-get update && apt-get install -y \
 	libgl1-mesa-dri \
 	libgl1-mesa-glx \
 	libpangoxft-1.0-0 \
+	libpulse0 \
 	libssl1.0.0 \
 	libssl1.0.2 \
 	libxss1 \
