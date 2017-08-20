@@ -3,7 +3,8 @@
 # docker run -d \
 #		-v /tmp/.X11-unix:/tmp/.X11-unix \
 #		-v /etc/machine-id:/etc/machine-id:ro \
-#		-v /usr/share/X11/xkb:/usr/share/X11/xkb/:ro
+#		-v /usr/share/X11/xkb:/usr/share/X11/xkb/:ro \
+#		-v $HOME/.config/keepassxc:/root/.config/keepassxc \
 #		-e DISPLAY=unix$DISPLAY \
 #		keepassxc
 #
