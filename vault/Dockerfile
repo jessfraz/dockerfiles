@@ -7,7 +7,7 @@ ENV GOPATH /go
 RUN	apk --no-cache add \
 	ca-certificates
 
-ENV VAULT_VERSION v0.8.0-rc1
+ENV VAULT_VERSION v0.8.1
 
 RUN buildDeps=' \
 		bash \
