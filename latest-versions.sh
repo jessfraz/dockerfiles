@@ -76,7 +76,6 @@ tarsnap/tarsnap
 fcambus/telize
 mitchellh/vagrant
 hashicorp/vault
-facebook/watchman
 wireguard/wireguard
 znc/znc
 apache/zookeeper
