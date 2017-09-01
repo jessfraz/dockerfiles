@@ -60,7 +60,6 @@ camlistore/camlistore
 certbot/certbot
 hashicorp/consul
 CouchPotato/CouchPotatoServer
-pooler/cpuminer
 curl/curl
 opendnssec/SoftHSMv2
 google/guetzli
