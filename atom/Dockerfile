@@ -42,7 +42,7 @@ RUN apt-get update && apt-get install -y \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
-ENV ATOM_VERSION 1.19.5
+ENV ATOM_VERSION 1.19.7
 
 # download the source
 RUN buildDeps=' \
