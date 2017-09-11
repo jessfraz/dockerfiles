@@ -61,7 +61,6 @@ certbot/certbot
 hashicorp/consul
 CouchPotato/CouchPotatoServer
 curl/curl
-opendnssec/SoftHSMv2
 google/guetzli
 irssi/irssi
 keepassxreboot/keepassxc
