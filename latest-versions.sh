@@ -17,13 +17,13 @@ get_latest() {
 	local repo=$1
 
 	local resp=$(curl -sSL -H "${AUTH_HEADER}" -H "${API_HEADER}" "${URI}/repos/${repo}/releases/latest")
-	local tag=$(echo $resp | jq --raw-output .tag_name)
-	local name=$(echo $resp | jq --raw-output .name)
+	local tag=$(echo $resp | jq -e --raw-output .tag_name)
+	local name=$(echo $resp | jq -e --raw-output .name)
 
 	if [[ "$tag" == "null" ]]; then
 		# get the latest tag
 		local resp=$(curl -sSL -H "${AUTH_HEADER}" -H "${API_HEADER}" "${URI}/repos/${repo}/tags")
-		local tag=$(echo $resp | jq --raw-output .[0].name)
+		local tag=$(echo $resp | jq -e --raw-output .[0].name)
 	fi
 
 	if [[ "$name" == "null" ]] || [[ "$name" == "" ]]; then
