@@ -38,11 +38,12 @@ RUN apt-get update && apt-get install -y \
 	libxkbfile1 \
 	libxss1 \
 	libxtst6 \
+	libx11-xcb-dev \
 	xdg-utils \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
-ENV ATOM_VERSION 1.20.0
+ENV ATOM_VERSION 1.20.1
 
 # download the source
 RUN buildDeps=' \
