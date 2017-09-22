@@ -40,6 +40,7 @@ RUN echo "deb https://packagecloud.io/slacktechnologies/slack/debian/ jessie mai
 RUN apt-get update && apt-get -y install \
 	libasound2 \
 	libx11-xcb1 \
+	libxkbfile1 \a
 	slack-desktop \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
