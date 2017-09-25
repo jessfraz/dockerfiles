@@ -24,6 +24,13 @@ If you **don't** need to specify a password, you can use `docker-compose run -d 
 If you OpenVPN configuration needs extra files (certificates etc) you can drop them in this directory too.
 
 
+## How to fix DNS
+To let OpenVPN change your resolv.conf file you need to add 2 scripts to your configuration to trigger the Alpine provided scripts.  
+```
+up /usr/share/openvpn/up.sh
+down /usr/share/openvpn/down.sh
+```
+
 ## Why?
 
 Because we're the containerati and we like when things are [neatly arranged in their boxes](https://twitter.com/zooeypeng/status/613053137050439681).
