@@ -11,7 +11,7 @@
 FROM alpine:latest
 LABEL maintainer "Christian Koep <christiankoep@gmail.com>"
 
-ENV KEEPASSXC_VERSION 2.2.0
+ENV KEEPASSXC_VERSION 2.2.1
 
 RUN buildDeps=' \
                 automake \
