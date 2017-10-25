@@ -1,4 +1,4 @@
-FROM debian:sid
+FROM debian:stretch
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 RUN dpkg --add-architecture i386 \
