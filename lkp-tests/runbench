@@ -21,7 +21,7 @@ echo "Installing dependencies for ${ARG}..."
 lkp install "$JOB_FILE"
 
 echo "Running ${ARG}..."
-lkp run "$JOB_FILE"
+lkp run "$JOB_FILE" || true
 
 echo "Getting result from ${ARG}..."
-lkp stat
+lkp stat -p "${ARG}"

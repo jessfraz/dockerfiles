@@ -62,9 +62,6 @@ WORKDIR /usr/src/lkp-tests
 RUN make install \
 	&& lkp install
 
-# Setup the data directory
-RUN mkdir -p /lkp/data/mresult_root
-
 # Create the lkp user and group
 RUN groupadd --gid 1090 lkp
 RUN useradd --uid 1090 --gid 1090 lkp
