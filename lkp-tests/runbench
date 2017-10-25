@@ -12,11 +12,14 @@ if [[ ! -f "$JOB_FILE" ]]; then
 	exit 1
 fi
 
+# mount the debug filesystem
+mount -t debugfs none /sys/kernel/debug/
+
 echo "Installing dependencies for ${ARG}..."
 lkp install "$JOB_FILE"
 
 echo "Running ${ARG}..."
-lkp run "$JOB_FILE" || true
+lkp run "$JOB_FILE"
 
 echo "Getting result from ${ARG}..."
 lkp stat
