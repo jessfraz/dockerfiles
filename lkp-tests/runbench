@@ -13,7 +13,9 @@ if [[ ! -f "$JOB_FILE" ]]; then
 fi
 
 # mount the debug filesystem
-mount -t debugfs none /sys/kernel/debug/
+if ! grep -qs '/sys/kernel/debug' /proc/mounts; then
+	mount -t debugfs none /sys/kernel/debug/
+fi
 
 echo "Installing dependencies for ${ARG}..."
 lkp install "$JOB_FILE"
