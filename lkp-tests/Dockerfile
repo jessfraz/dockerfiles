@@ -1,6 +1,7 @@
 FROM debian:stretch
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
+ENV DEBIAN_FRONTEND noninteractive
 RUN dpkg --add-architecture i386 \
 	&& apt-get update && apt-get install -y \
 	automake \
@@ -33,9 +34,11 @@ RUN dpkg --add-architecture i386 \
 	linux-libc-dev:i386 \
 	linux-perf \
 	make \
+	nfs-common \
 	openssl \
 	patch \
 	perl \
+	psmisc \
 	rsync \
 	ruby \
 	ruby-dev \
@@ -47,7 +50,12 @@ RUN dpkg --add-architecture i386 \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& ln -snf /usr/bin/perf_4.9 /usr/bin/perf
 
-RUN	git clone --depth 1 https://github.com/fengguang/lkp-tests.git /usr/src/lkp-tests
+ENV KERNEL_VERSION v4.13
+ENV LKP_GIT_WORK_TREE /usr/src/linux
+RUN git clone -b "${KERNEL_VERSION}" https://kernel.googlesource.com/pub/scm/linux/kernel/git/torvalds/linux.git "${LKP_GIT_WORK_TREE}"
+
+ENV LKP_SRC /usr/src/lkp-tests
+RUN	git clone https://github.com/fengguang/lkp-tests.git "${LKP_SRC}"
 
 WORKDIR /usr/src/lkp-tests
 
