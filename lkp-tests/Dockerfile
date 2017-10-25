@@ -44,7 +44,8 @@ RUN dpkg --add-architecture i386 \
 	wget \
 	zlib1g-dev \
 	--no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/*
+	&& rm -rf /var/lib/apt/lists/* \
+	&& ln -snf /usr/bin/perf_4.9 /usr/bin/perf
 
 RUN	git clone --depth 1 https://github.com/fengguang/lkp-tests.git /usr/src/lkp-tests
 
