@@ -16,6 +16,10 @@ WORKDIR /usr/src/lkp-tests
 RUN make install \
 	&& lkp install
 
-COPY run.sh /usr/local/bin/run-hackbench
+# Create the lkp user and group
+RUN groupadd --gid 1090 lkp
+RUN useradd --uid 1090 --gid 1090 lkp
+
+COPY run.sh /usr/local/bin/run-bench
 
 CMD [ "lkp" ]

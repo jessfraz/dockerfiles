@@ -1,10 +1,20 @@
-#!/bin/sh
+#!/bin/bash
+set -e
+set -o pipefail
 
-echo "Installing dependencies for hackbench..."
-yes | lkp install ./jobs/hackbench-100.yaml
+ARG=$1
+JOB_FILE="./jobs/${ARG}.yaml"
 
-echo "Running hackbench..."
-yes | lkp run ./jobs/hackbench-100.yaml
+if [[ ! -f "$JOB_FILE" ]]; then
+	echo "$JOB_FILE does not exist, please select a job that is in the jobs directory." 1>&2;
+	exit 1
+fi
 
-echo "Getting result from hackbench..."
-lkp stat hackbench
+echo "Installing dependencies for ${ARG}..."
+lkp install "$JOB_FILE"
+
+echo "Running ${ARG}..."
+lkp run "$JOB_FILE"
+
+echo "Getting result from ${ARG}..."
+lkp stat
