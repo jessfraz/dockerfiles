@@ -7,6 +7,8 @@ JOB_FILE="./jobs/${ARG}.yaml"
 
 if [[ ! -f "$JOB_FILE" ]]; then
 	echo "$JOB_FILE does not exist, please select a job that is in the jobs directory." 1>&2;
+	echo "For example:" 1>&2;
+	echo "     runbench hackbench-100" 1>&2;
 	exit 1
 fi
 
@@ -14,7 +16,7 @@ echo "Installing dependencies for ${ARG}..."
 lkp install "$JOB_FILE"
 
 echo "Running ${ARG}..."
-lkp run "$JOB_FILE"
+lkp run "$JOB_FILE" || true
 
 echo "Getting result from ${ARG}..."
 lkp stat
