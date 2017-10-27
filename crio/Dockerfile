@@ -15,6 +15,13 @@ LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 RUN apt-get update && apt-get install -y \
 	btrfs-tools \
 	ca-certificates \
+	libapparmor1 \
+	libassuan0 \
+	libdevmapper1.02.1 \
+	libglib2.0-0 \
+	libgpgme11 \
+	libseccomp2 \
+	libselinux1 \
 	thin-provisioning-tools \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
@@ -71,8 +78,7 @@ RUN buildDeps=' \
 	&& git clone --depth 1 -b "$RUNC_VERSION" https://github.com/opencontainers/runc.git "${GOPATH}/src/github.com/opencontainers/runc" \
 	&& ( \
 		cd "${GOPATH}/src/github.com/opencontainers/runc" \
-		&& sed -i "s#go build -i#go build#" Makefile \
-		&& make static BUILDTAGS="seccomp selinux apparmor" EXTRA_FLAGS="-a -installsuffix netgo" \
+		&& make BUILDTAGS="seccomp selinux apparmor" \
 		&& make install PREFIX="" \
 	) \
 	&& ( \
@@ -84,13 +90,11 @@ RUN buildDeps=' \
 	&& git clone --depth 1 -b "$CRIO_VERSION" https://github.com/kubernetes-incubator/cri-o.git "${GOPATH}/src/github.com/kubernetes-incubator/cri-o" \
 	&& ( \
 		cd "${GOPATH}/src/github.com/kubernetes-incubator/cri-o" \
-		&& sed -i "s#-ldflags '#-a -installsuffix netgo -ldflags '-linkmode external -s -extldflags -static #" Makefile \
-		&& CGO_ENABLED=1 make binaries crio.conf BUILDTAGS="netgo cgo seccomp apparmor selinux $(./hack/btrfs_tag.sh) $(./hack/libdm_tag.sh) $(./hack/btrfs_installed_tag.sh)" \
+		&& make binaries crio.conf BUILDTAGS="seccomp apparmor selinux $(./hack/btrfs_tag.sh) $(./hack/libdm_tag.sh) $(./hack/btrfs_installed_tag.sh)" \
 		&& make install.bin install.config PREFIX="" \
 		&& sed -i 's#runtime = "/usr/bin/runc"#runtime = "/sbin/runc"#' /etc/crio/crio.conf \
 	) \
 	&& rm -rf "$BUILDPATH" "$GOPATH" "/usr/local/go" \
-	&& find / -iname "*ostree*" | xargs rm -vrf \
 	&& apt-get purge -y --auto-remove $buildDeps
 
 CMD [ "crio" ]
