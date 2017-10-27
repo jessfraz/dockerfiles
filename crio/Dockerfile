@@ -1,6 +1,7 @@
 # Usage:
 # docker run --rm -it \
 # 	--privileged \
+#	--net host \
 #	-v /var/lib/containers:/var/lib/containers \
 #	-v /var/run:/var/run \
 #	-v /dev:/dev \
@@ -15,6 +16,7 @@ LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 RUN apt-get update && apt-get install -y \
 	btrfs-tools \
 	ca-certificates \
+	iptables \
 	libapparmor1 \
 	libassuan0 \
 	libdevmapper1.02.1 \
@@ -28,10 +30,12 @@ RUN apt-get update && apt-get install -y \
 
 ENV OSTREE_VERSION v2017.12
 ENV GO_VERSION 1.9.1
+ENV CNI_PLUGINS_VERSION v0.6.0
 ENV RUNC_VERSION v1.0.0-rc4
 ENV CRIO_VERSION v1.0.0
 
 # Install ostree
+# Install CNI plugins
 # Install runc (installs to /sbin/runc)
 # Install CRI-O (installs to /usr/bin/crio)
 # NOTE: The install docker the templates package is a stop gap for it not being
@@ -75,6 +79,13 @@ RUN buildDeps=' \
 	&& curl -fsSL "https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz" | tar -xzC /usr/local \
 	&& export PATH=/go/bin:/usr/local/go/bin:$PATH \
 	&& export GOPATH="$(mktemp -d)" \
+	&& git clone --depth 1 -b "$CNI_PLUGINS_VERSION" https://github.com/containernetworking/plugins.git "${GOPATH}/src/github.com/containernetworking/plugins" \
+	&& ( \
+		cd "${GOPATH}/src/github.com/containernetworking/plugins" \
+		&& ./build.sh \
+		&& mkdir -p /opt/cni/bin \
+		&& mv bin/* /opt/cni/bin/ \
+	) \
 	&& git clone --depth 1 -b "$RUNC_VERSION" https://github.com/opencontainers/runc.git "${GOPATH}/src/github.com/opencontainers/runc" \
 	&& ( \
 		cd "${GOPATH}/src/github.com/opencontainers/runc" \
@@ -96,5 +107,7 @@ RUN buildDeps=' \
 	) \
 	&& rm -rf "$BUILDPATH" "$GOPATH" "/usr/local/go" \
 	&& apt-get purge -y --auto-remove $buildDeps
+
+COPY net.d /etc/cni/net.d
 
 CMD [ "crio" ]
