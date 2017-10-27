@@ -13,73 +13,68 @@ LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 # Install CRI-O/runc/ostree dependencies
 RUN apt-get update && apt-get install -y \
-	autoconf \
-	automake \
-	bison \
 	btrfs-tools \
 	ca-certificates \
-	curl \
-	e2fslibs-dev \
-	gcc \
-	git \
-	libapparmor-dev \
-	libassuan-dev \
-	libc6-dev \
-	libdevmapper-dev \
-	libfuse-dev \
-	libglib2.0-dev \
-	libgpg-error-dev \
-	libgpgme11-dev \
-	liblzma-dev \
-	libseccomp-dev \
-	libselinux1-dev \
-	libtool \
-	make \
-	pkg-config \
+	thin-provisioning-tools \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
-# Install ostree
 ENV OSTREE_VERSION v2017.12
-RUN set -x \
+ENV GO_VERSION 1.9.1
+ENV RUNC_VERSION v1.0.0-rc4
+ENV CRIO_VERSION v1.0.0
+
+# Install ostree
+# Install runc (installs to /sbin/runc)
+# Install CRI-O (installs to /usr/bin/crio)
+# NOTE: The install docker the templates package is a stop gap for it not being
+# vendored into the crio repository
+RUN buildDeps=' \
+		autoconf \
+		automake \
+		bison \
+		curl \
+		e2fslibs-dev \
+		gcc \
+		git \
+		libapparmor-dev \
+		libassuan-dev \
+		libc6-dev \
+		libdevmapper-dev \
+		libfuse-dev \
+		libglib2.0-dev \
+		libgpg-error-dev \
+		libgpgme11-dev \
+		liblzma-dev \
+		libseccomp-dev \
+		libselinux1-dev \
+		libtool \
+		make \
+		pkg-config \
+	' \
+	&& set -x \
+	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends \
+	&& rm -rf /var/lib/apt/lists/* \
 	&& export BUILDPATH="$(mktemp -d)" \
 	&& git clone --depth 1 -b "$OSTREE_VERSION" --recursive https://github.com/ostreedev/ostree.git "${BUILDPATH}/ostree" \
 	&& ( \
 		cd "${BUILDPATH}/ostree" \
 		&& git submodule update --init \
 		&& env NOCONFIGURE=1 ./autogen.sh \
-		&& ./configure --prefix=/ \
+		&& ./configure --prefix="" \
 		&& make \
 		&& make install \
 	) \
-	&& rm -rf "$BUILDPATH"
-
-# Install Go
-ENV GO_VERSION 1.9.1
-RUN curl -fsSL "https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz" \
-	| tar -xzC /usr/local
-
-ENV PATH /go/bin:/usr/local/go/bin:$PATH
-ENV GOPATH /go
-
-# Install runc (installs to /sbin/runc)
-ENV RUNC_VERSION v1.0.0-rc4
-RUN set -x \
+	&& curl -fsSL "https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz" | tar -xzC /usr/local \
+	&& export PATH=/go/bin:/usr/local/go/bin:$PATH \
 	&& export GOPATH="$(mktemp -d)" \
 	&& git clone --depth 1 -b "$RUNC_VERSION" https://github.com/opencontainers/runc.git "${GOPATH}/src/github.com/opencontainers/runc" \
 	&& ( \
 		cd "${GOPATH}/src/github.com/opencontainers/runc" \
-		&& make static BUILDTAGS="seccomp selinux apparmor" \
+		&& sed -i "s#go build -i#go build#" Makefile \
+		&& make static BUILDTAGS="seccomp selinux apparmor" EXTRA_FLAGS="-a -installsuffix netgo" \
 		&& make install PREFIX="" \
 	) \
-	&& rm -rf "$GOPATH"
-
-# Install CRI-O (installs to /usr/bin/crio)
-# NOTE: The install docker the templates package is a stop gap for it not being
-# vendored into the crio repository
-ENV CRIO_VERSION v1.0.0
-RUN set -x \
-	&& export GOPATH="$(mktemp -d)" \
 	&& ( \
 		go get -u github.com/docker/docker/daemon/logger/templates \
 		&& cd "${GOPATH}/src/github.com/docker/docker" \
@@ -89,9 +84,13 @@ RUN set -x \
 	&& git clone --depth 1 -b "$CRIO_VERSION" https://github.com/kubernetes-incubator/cri-o.git "${GOPATH}/src/github.com/kubernetes-incubator/cri-o" \
 	&& ( \
 		cd "${GOPATH}/src/github.com/kubernetes-incubator/cri-o" \
-		&& make binaries crio.conf BUILDTAGS="seccomp apparmor selinux" \
+		&& sed -i "s#-ldflags '#-a -installsuffix netgo -ldflags '-linkmode external -s -extldflags -static #" Makefile \
+		&& CGO_ENABLED=1 make binaries crio.conf BUILDTAGS="netgo cgo seccomp apparmor selinux $(./hack/btrfs_tag.sh) $(./hack/libdm_tag.sh) $(./hack/btrfs_installed_tag.sh)" \
 		&& make install.bin install.config PREFIX="" \
+		&& sed -i 's#runtime = "/usr/bin/runc"#runtime = "/sbin/runc"#' /etc/crio/crio.conf \
 	) \
-	&& rm -rf "$GOPATH"
+	&& rm -rf "$BUILDPATH" "$GOPATH" "/usr/local/go" \
+	&& find / -iname "*ostree*" | xargs rm -vrf \
+	&& apt-get purge -y --auto-remove $buildDeps
 
 CMD [ "crio" ]
