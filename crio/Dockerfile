@@ -110,5 +110,6 @@ RUN buildDeps=' \
 	&& apt-get purge -y --auto-remove $buildDeps
 
 COPY net.d /etc/cni/net.d
+COPY policy.json /etc/containers/policy.json
 
 CMD [ "crio" ]
