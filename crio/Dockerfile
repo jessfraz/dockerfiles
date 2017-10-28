@@ -104,6 +104,7 @@ RUN buildDeps=' \
 		&& make binaries crio.conf BUILDTAGS="seccomp apparmor selinux $(./hack/btrfs_tag.sh) $(./hack/libdm_tag.sh) $(./hack/btrfs_installed_tag.sh)" \
 		&& make install.bin install.config PREFIX="" \
 		&& sed -i 's#runtime = "/usr/bin/runc"#runtime = "/sbin/runc"#' /etc/crio/crio.conf \
+		&& sed -i 's#conmon = "/usr/local/libexec/crio/conmon"#conmon = "/libexec/crio/conmon"#' /etc/crio/crio.conf \
 	) \
 	&& rm -rf "$BUILDPATH" "$GOPATH" "/usr/local/go" \
 	&& apt-get purge -y --auto-remove $buildDeps
