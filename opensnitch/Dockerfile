@@ -11,4 +11,4 @@
 #
 FROM r.j3ss.co/opensnitchd:latest
 
-ENTRYPOINT ["/usr/local/bin/opensnitch-qt"]
+ENTRYPOINT ["/usr/local/bin/opensnitch-qt", "--debug"]
