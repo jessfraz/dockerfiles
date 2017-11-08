@@ -11,4 +11,14 @@
 #
 FROM r.j3ss.co/opensnitchd:latest
 
+ENV HOME /home/user
+RUN useradd --create-home --home-dir $HOME user \
+	&& mkdir -p $HOME/.cache/dconf \
+	&& mkdir -p $HOME/.dbus \
+	&& chown -R user:user $HOME
+
+WORKDIR $HOME
+
+USER user
+
 ENTRYPOINT ["/usr/local/bin/opensnitch-qt", "--debug"]
