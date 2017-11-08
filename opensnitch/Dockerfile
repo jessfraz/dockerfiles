@@ -4,6 +4,7 @@
 #		-v /tmp/.X11-unix:/tmp/.X11-unix \
 #		-e "DISPLAY=unix${DISPLAY}" \
 #		--net host \
+#		--cap-add NET_ADMIN \
 #		--name opensnitch \
 #		r.j3ss.co/opensnitch
 #

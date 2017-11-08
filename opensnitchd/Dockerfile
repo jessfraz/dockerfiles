@@ -2,11 +2,13 @@
 #	docker run  -d \
 #		--name=opensnitchd \
 #		--net host \
+#		--cap-add NET_ADMIN \
 #		r.j3ss.co/opensnitchd
 #
 FROM alpine:latest
 
 RUN apk add --no-cache \
+	iptables \
 	libcap \
 	libnetfilter_queue \
 	libnfnetlink \
@@ -17,6 +19,7 @@ RUN apk add --no-cache \
 	tcpdump \
 	--repository https://dl-3.alpinelinux.org/alpine/edge/testing
 
+ENV XTABLES_LIBDIR "/usr/lib/xtables"
 ENV OPENSNITCH_VERSION master
 
 RUN buildDeps=' \
@@ -40,4 +43,4 @@ RUN buildDeps=' \
 	&& apk del $buildDeps \
 	&& echo "Build complete."
 
-CMD ["/usr/bin/opensnitchd"]
+ENTRYPOINT ["/usr/bin/opensnitchd", "--debug"]
