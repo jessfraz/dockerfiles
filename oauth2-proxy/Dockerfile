@@ -22,6 +22,7 @@ RUN buildDeps=' \
 	&& go get github.com/bitly/oauth2_proxy \
 	&& cd /go/src/github.com/bitly/oauth2_proxy \
 	&& git checkout "${OAUTH2_VERSION}" \
+	&& go get -d github.com/bitly/oauth2_proxy \
 	&& go build \
 	&& mv oauth2_proxy /usr/bin/ \
 	&& apk del $buildDeps \
