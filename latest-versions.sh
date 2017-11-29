@@ -72,6 +72,7 @@ ricochet-im/ricochet
 reverse-shell/routersploit
 tarsnap/tarsnap
 fcambus/telize
+hashicorp/terraform
 mitchellh/vagrant
 hashicorp/vault
 wireguard/wireguard
