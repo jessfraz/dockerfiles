@@ -18,7 +18,7 @@
 # 	wget https://raw.githubusercontent.com/jfrazelle/dotfiles/master/etc/docker/seccomp/chrome.json -O ~/chrome.json
 
 # Base docker image
-FROM debian:stretch
+FROM debian:buster
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 ADD https://dl.google.com/linux/direct/google-talkplugin_current_amd64.deb /src/google-talkplugin_current_amd64.deb

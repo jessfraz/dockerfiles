@@ -9,7 +9,7 @@
 #    --name vscode \
 #    jess/vscode
 
-FROM debian:stretch
+FROM debian:buster
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 # Tell debconf to run in non-interactive mode

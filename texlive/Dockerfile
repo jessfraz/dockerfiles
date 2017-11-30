@@ -6,7 +6,7 @@
 # Example use case:
 # https://github.com/andygrunwald/FOM-LaTeX-Template
 
-FROM debian:stretch
+FROM debian:buster
 LABEL maintainer "Christian Koep <christiankoep@gmail.com>"
 
 RUN apt-get update && apt-get install -y \

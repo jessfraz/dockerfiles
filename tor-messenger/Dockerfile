@@ -5,7 +5,7 @@
 #	-e DISPLAY=unix$DISPLAY \
 #	jess/tor-messenger
 #
-FROM debian:stretch
+FROM debian:buster
 LABEL maintainer "Christian Koep <christiankoep@gmail.com>"
 
 ENV HOME /home/user

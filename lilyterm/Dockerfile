@@ -5,7 +5,7 @@
 #
 
 # Base docker image
-FROM debian:stretch
+FROM debian:buster
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 # Install all the things

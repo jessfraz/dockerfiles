@@ -23,7 +23,7 @@
 #	(see: https://stackoverflow.com/questions/28392949/running-chromium-inside-docker-gtk-cannot-open-display-0)
 #
 
-FROM debian:stretch
+FROM debian:buster
 LABEL maintainer "Christian Koep <christiankoep@gmail.com>"
 
 RUN apt-get update && apt-get -y install \

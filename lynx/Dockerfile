@@ -4,7 +4,7 @@
 #	--name lynx \
 #	jess/lynx github.com/jessfraz
 #
-FROM debian:stretch
+FROM debian:buster
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 RUN apt-get update && apt-get install -y \

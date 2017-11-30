@@ -6,7 +6,7 @@
 #	-v /etc/localtime:/etc/localtime:ro \
 #	r.j3ss.co/bcc-tools
 #
-FROM debian:stretch
+FROM debian:buster
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 ENV DEBIAN_FRONTEND noninteractive

@@ -1,5 +1,5 @@
 # Wine docker image base
-FROM debian:stretch
+FROM debian:buster
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 # install wine
