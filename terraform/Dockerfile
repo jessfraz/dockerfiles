@@ -22,8 +22,6 @@ RUN buildDeps=' \
 	' \
 	set -x \
 	&& apk --no-cache add --repository https://dl-3.alpinelinux.org/alpine/edge/community $buildDeps \
-	&& go get github.com/Soulou/curl-unix-socket \
-	&& mv /go/bin/curl-unix-socket /usr/bin/ \
 	&& mkdir -p /go/src/github.com/hashicorp /etc/terraform.d \
 	&& git clone --depth 1 --branch ${TERRAFORM_VERSION} https://github.com/hashicorp/terraform /go/src/github.com/hashicorp/terraform \
 	&& cd /go/src/github.com/hashicorp/terraform \
