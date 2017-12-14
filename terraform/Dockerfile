@@ -1,4 +1,4 @@
-FROM alpine:3.6
+FROM alpine:latest
 LABEL maintainer "Sid Carter <me@sidcarter.com>"
 
 ENV PATH /go/bin:/usr/local/go/bin:$PATH
