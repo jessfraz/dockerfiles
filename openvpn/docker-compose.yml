@@ -2,6 +2,7 @@ vpn:
   build: .
   volumes:
     - .:/etc/openvpn
+    - /etc/resolv.conf:/etc/resolv.conf
   net: host
   devices:
     - /dev/net/tun:/dev/net/tun
