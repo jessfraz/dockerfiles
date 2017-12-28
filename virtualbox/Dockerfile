@@ -14,20 +14,19 @@
 # copy the files you need for the module from the container that
 # is currently running to your host
 #
-# first the script:
-# 	docker cp virtualbox:/usr/lib/virtualbox/vboxdrv.sh .
+# first the lib:
+# 	docker cp virtualbox:/usr/lib/virtualbox /usr/lib
 #
 # then the share
 # 	docker cp virtualbox:/usr/share/virtualbox /usr/share
 #
 # then run the script:
-# 	./vboxdrv.sh setup
+# 	/usr/lib/virtualbox/vboxdrv.sh setup
 #
 # it will recompile the module, you can then see it in lsmod
 #
 # then you can remove all the shit you copied
-# 	rm -rf /usr/share/virtualbox
-# 	rm vboxdrv.sh
+# 	rm -rf /usr/share/virtualbox /usr/lib/virtualbox
 #
 FROM debian:sid
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
