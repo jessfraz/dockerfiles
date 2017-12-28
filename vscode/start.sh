@@ -1,2 +1,2 @@
 #!/bin/bash
-docker run  -v $HOME:/home/user -e DISPLAY=10.0.0.236:0  -v /tmp/.X11-unix:/tmp/.X11-unix code
+docker run -e DISPLAY=$(ifconfig | sed -En 's/127.0.0.1//;s/.*inet (addr:)?(([0-9]*\.){3}[0-9]*).*/\2/p'):0 -v $HOME:/home/user -v /tmp/.X11-unix:/tmp/.X11-unix code
