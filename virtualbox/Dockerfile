@@ -27,7 +27,7 @@
 #
 # then you can remove all the shit you copied
 # 	rm -rf /usr/share/virtualbox
-# 	rm vboxdrv
+# 	rm vboxdrv.sh
 #
 FROM debian:sid
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
