@@ -24,6 +24,7 @@ get_latest() {
 		# get the latest tag
 		local resp=$(curl -sSL -H "${AUTH_HEADER}" -H "${API_HEADER}" "${URI}/repos/${repo}/tags")
 		local tag=$(echo $resp | jq -e --raw-output .[0].name)
+		tag=${tag#release-}
 	fi
 
 	if [[ "$name" == "null" ]] || [[ "$name" == "" ]]; then
