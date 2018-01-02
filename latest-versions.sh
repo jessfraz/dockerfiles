@@ -61,6 +61,7 @@ atom/atom
 camlistore/camlistore
 certbot/certbot
 hashicorp/consul
+coredns/coredns
 CouchPotato/CouchPotatoServer
 curl/curl
 google/guetzli
