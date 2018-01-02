@@ -3,8 +3,9 @@ LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 RUN apk --no-cache add \
     freeradius \
-	freeradius-sqlite \
+	freeradius-python \
 	freeradius-radclient \
+	freeradius-sqlite \
 	openssl-dev \
 	sqlite
 
