@@ -29,5 +29,4 @@ RUN buildDeps=' \
 	&& echo "Build complete."
 
 
-ENTRYPOINT [ "coredns" ]
-CMD [ "--help" ]
+ENTRYPOINT [ "coredns", "-log" ]
