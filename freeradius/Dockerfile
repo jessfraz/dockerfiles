@@ -5,6 +5,7 @@ RUN apk --no-cache add \
     freeradius \
 	freeradius-python \
 	freeradius-radclient \
+	freeradius-sql \
 	freeradius-sqlite \
 	openssl-dev \
 	python2 \
