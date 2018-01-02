@@ -8,8 +8,5 @@ RUN apk --no-cache add \
 	openssl-dev \
 	sqlite
 
-RUN	chgrp radius /usr/sbin/radiusd \
-	&& chmod g+rwx /usr/sbin/radiusd
-
 ENTRYPOINT [ "radiusd" ]
 CMD [ "-xx","-f" ]
