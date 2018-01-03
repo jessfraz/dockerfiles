@@ -1,4 +1,5 @@
-FROM haskell
+FROM debian:buster-slim
+
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 RUN apt-get update && apt-get install -y \
@@ -6,6 +7,6 @@ RUN apt-get update && apt-get install -y \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
-RUN cabal update && cabal install shellcheck
+RUN apt-get update && apt-get install -y shellcheck
 
 CMD ["shellcheck"]
