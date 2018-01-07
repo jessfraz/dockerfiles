@@ -10,7 +10,7 @@
 #	-v $HOME/.config/google-chrome/:/data \ # if you want to save state
 #	--security-opt seccomp=$HOME/chrome.json \
 #	--device /dev/snd \ # so we have sound
-#       --device /dev/dri \
+#   --device /dev/dri \
 #	-v /dev/shm:/dev/shm \
 #	--name chrome \
 #	jess/chrome
