@@ -10,6 +10,7 @@
 #	-v $HOME/.config/google-chrome/:/data \ # if you want to save state
 #	--security-opt seccomp=$HOME/chrome.json \
 #	--device /dev/snd \ # so we have sound
+#   --device /dev/dri \
 #	-v /dev/shm:/dev/shm \
 #	--name chrome \
 #	jess/chrome
@@ -25,6 +26,7 @@ ADD https://dl.google.com/linux/direct/google-talkplugin_current_amd64.deb /src/
 
 # Install Chrome
 RUN apt-get update && apt-get install -y \
+	libcanberra-gtk* \
 	apt-transport-https \
 	ca-certificates \
 	curl \
