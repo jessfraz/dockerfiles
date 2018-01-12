@@ -31,8 +31,13 @@ COPY torrc.bridge /etc/tor/torrc.bridge
 COPY torrc.middle /etc/tor/torrc.middle
 COPY torrc.exit /etc/tor/torrc.exit
 
+# copy the run script
+COPY run.sh /run.sh
+RUN chmod u+rwx /run.sh
+
 # default environment variables
 ENV RELAY_NICKNAME hacktheplanet
+ENV RELAY_TYPE middle
 
 # make sure files are owned by tor user
 RUN chown -R tor /etc/tor
@@ -43,4 +48,4 @@ RUN mkdir /var/lib/tor/.tor
 VOLUME /var/lib/tor/.tor
 RUN chown -R tor /var/lib/tor/.tor
 
-ENTRYPOINT [ "tor" ]
+ENTRYPOINT [ "/run.sh" ]
