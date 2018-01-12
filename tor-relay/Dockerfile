@@ -31,6 +31,9 @@ COPY torrc.bridge /etc/tor/torrc.bridge
 COPY torrc.middle /etc/tor/torrc.middle
 COPY torrc.exit /etc/tor/torrc.exit
 
+# default environment variables
+ENV RELAY_NICKNAME hacktheplanet
+
 # make sure files are owned by tor user
 RUN chown -R tor /etc/tor
 

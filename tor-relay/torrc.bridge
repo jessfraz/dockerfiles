@@ -97,7 +97,7 @@ ORPort 9001
 # OutboundBindAddress 10.0.0.5
 
 ## A handle for your relay, so people don't have to refer to it by key.
-Nickname hacktheplanet
+Nickname ${RELAY_NICKNAME}
 
 ## Define these to limit how much relayed traffic you will allow. Your
 ## own traffic is still unthrottled. Note that RelayBandwidthRate must
