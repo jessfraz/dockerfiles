@@ -38,6 +38,8 @@ RUN chmod u+rwx /run.sh
 # default environment variables
 ENV RELAY_NICKNAME hacktheplanet
 ENV RELAY_TYPE middle
+ENV RELAY_BANDWIDTH_RATE 100 KBytes
+ENV RELAY_BANDWIDTH_BURST 200 KBytes
 
 # make sure files are owned by tor user
 RUN chown -R tor /etc/tor

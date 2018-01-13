@@ -107,6 +107,8 @@ Nickname ${RELAY_NICKNAME}
 ## 2^20, etc.
 #RelayBandwidthRate 100 KBytes  # Throttle traffic to 100KB/s (800Kbps)
 #RelayBandwidthBurst 200 KBytes # But allow bursts up to 200KB (1600Kb)
+RelayBandwidthRate ${RELAY_BANDWIDTH_RATE}
+RelayBandwidthBurst ${RELAY_BANDWIDTH_BURST}
 
 ## Use these to restrict the maximum traffic per day, week, or month.
 ## Note that this threshold applies separately to sent and received bytes,
@@ -199,7 +201,7 @@ ExitPolicy accept *:563       # NNTP over SSL
 ExitPolicy accept *:587       # SUBMISSION (authenticated clients [MUA's like Thunderbird] send mail over STARTTLS SMTP here)
 ExitPolicy accept *:636       # LDAP over SSL
 ExitPolicy accept *:706       # SILC
-ExitPolicy accept *:749       # kerberos 
+ExitPolicy accept *:749       # kerberos
 ExitPolicy accept *:873       # rsync
 ExitPolicy accept *:902-904   # VMware
 ExitPolicy accept *:981       # Remote HTTPS management for firewall
@@ -229,8 +231,8 @@ ExitPolicy accept *:5222-5223 # XMPP, XMPP over SSL
 ExitPolicy accept *:5228      # Android Market
 ExitPolicy accept *:5900      # VNC
 ExitPolicy accept *:6660-6669 # IRC
-ExitPolicy accept *:6679      # IRC SSL  
-ExitPolicy accept *:6697      # IRC SSL  
+ExitPolicy accept *:6679      # IRC SSL
+ExitPolicy accept *:6697      # IRC SSL
 ExitPolicy accept *:8000      # iRDMI
 ExitPolicy accept *:8008      # HTTP alternate
 ExitPolicy accept *:8074      # Gadu-Gadu
