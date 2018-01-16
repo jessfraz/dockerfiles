@@ -11,6 +11,7 @@ RUN dpkg --add-architecture arm64 \
 	crossbuild-essential-ppc64el \
 	git \
 	kernel-package \
+	libelf-dev \
 	make \
 	libncurses5-dev \
 	libssl-dev \
