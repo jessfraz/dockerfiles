@@ -9,6 +9,8 @@ RUN dpkg --add-architecture arm64 \
 	gnupg \
 	crossbuild-essential-arm64 \
 	crossbuild-essential-ppc64el \
+	gcc \
+	gcc-7-plugin-dev \
 	git \
 	kernel-package \
 	libelf-dev \
