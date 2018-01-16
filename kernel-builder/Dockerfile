@@ -22,6 +22,6 @@ WORKDIR $HOME
 
 ENV JOBS 4
 
-COPY install_kernel /usr/local/bin/install_kernel
+COPY build_kernel /usr/local/bin/build_kernel
 
 CMD [ "bash" ]

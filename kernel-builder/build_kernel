@@ -54,11 +54,11 @@ install_kernel(){
 
 	# get the kernel source
 	if [[ "$VERSION" == *-rc* ]]; then
-		[ -d /usr/src/linux-${VERSION} ] || curl -sSL https://kernel.org/pub/linux/kernel/v${MAJOR_VERSION}.x/testing/linux-${VERSION}.tar.xz | tar -v -C /usr/src -xJ
+		[ -d /usr/src/linux-${VERSION} ] || curl -sSL "https://git.kernel.org/torvalds/t/linux-${VERSION}.tar.gz" | tar -v -C /usr/src -x
 
 		MAJOR_MINOR_VERSION="${MAJOR_VERSION}.x-rcN"
 	else
-		[ -d /usr/src/linux-${VERSION} ] || curl -sSL https://cdn.kernel.org/pub/linux/kernel/v${MAJOR_VERSION}.x/linux-${VERSION}.tar.xz | tar -v -C /usr/src -xJ
+		[ -d /usr/src/linux-${VERSION} ] || curl -sSL "https://cdn.kernel.org/pub/linux/kernel/v${MAJOR_VERSION}.x/linux-${VERSION}.tar.xz" | tar -v -C /usr/src -xJ
 	fi
 
 	if [[ "$OPT" == "aufs" ]]; then
