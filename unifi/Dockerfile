@@ -54,7 +54,7 @@ RUN apt-get update && apt-get install -y \
 
 # unifi version
 # From: https://www.ubnt.com/download/unifi/
-ENV UNIFI_VERSION "5.6.22"
+ENV UNIFI_VERSION "5.6.29"
 
 # install unifi
 RUN buildDeps=' \
