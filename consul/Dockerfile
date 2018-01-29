@@ -8,7 +8,7 @@ ENV GOPATH /go
 RUN	apk --no-cache add \
 	ca-certificates
 
-ENV CONSUL_VERSION v1.0.2
+ENV CONSUL_VERSION v1.0.3
 
 RUN buildDeps=' \
 		bash \

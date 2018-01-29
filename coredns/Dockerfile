@@ -7,7 +7,7 @@ ENV GOPATH /go
 RUN	apk --no-cache add \
 	ca-certificates
 
-ENV COREDNS_VERSION v1.0.3
+ENV COREDNS_VERSION v1.0.5
 
 RUN buildDeps=' \
 		go \
