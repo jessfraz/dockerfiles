@@ -21,4 +21,4 @@ RUN cd /usr/src \
 	&& apt-get install -fy \
 	&& rm -rf /var/lib/apt/lists/* /usr/src/*
 
-ENTRYPOINT [ "/usr/bin/powershell" ]
+ENTRYPOINT [ "/usr/bin/pwsh" ]
