@@ -14,7 +14,7 @@ RUN	apt-get update && apt-get install -y \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
-ENV	VAGRANT_VERSION 2.0.1
+ENV	VAGRANT_VERSION 2.0.2
 
 ADD	https://releases.hashicorp.com/vagrant/${VAGRANT_VERSION}/vagrant_${VAGRANT_VERSION}_x86_64.deb /src/vagrant_${VAGRANT_VERSION}_x86_64.deb
 
