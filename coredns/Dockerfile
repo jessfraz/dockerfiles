@@ -22,7 +22,7 @@ RUN buildDeps=' \
 	&& apk --no-cache add $buildDeps \
 	&& git clone --depth 1 --branch ${COREDNS_VERSION} https://github.com/coredns/coredns /go/src/github.com/coredns/coredns \
 	&& cd /go/src/github.com/coredns/coredns \
-	&& make \
+	&& make CHECKS="godeps" \
 	&& mv coredns /usr/bin/coredns \
 	&& apk del $buildDeps \
 	&& rm -rf /go \
