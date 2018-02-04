@@ -54,7 +54,7 @@ RUN apt-get update && apt-get install -y \
 
 # unifi version
 # From: https://www.ubnt.com/download/unifi/
-ENV UNIFI_VERSION "5.6.22"
+ENV UNIFI_VERSION "5.6.29"
 
 # install unifi
 RUN buildDeps=' \
@@ -72,7 +72,14 @@ RUN buildDeps=' \
 	&& echo "Build complete."
 
 WORKDIR /config
-EXPOSE 8080 8081 8443 8843 8880
+
+# 3478 - STUN
+# 8080 - device inform (http)
+# 8443 - web management (https)
+# 8843 - guest portal (https)
+# 8880 - guest portal (http)
+# ref https://help.ubnt.com/hc/en-us/articles/218506997-UniFi-Ports-Used
+EXPOSE 3478/udp 8080 8081 8443 8843 8880
 
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 
