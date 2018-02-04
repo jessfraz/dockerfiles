@@ -7,7 +7,10 @@
 #
 FROM debian:sid
 
-RUN apt-get update && apt-get install -y \
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN mkdir -p /etc/xdg/QtProject && \
+	apt-get update && apt-get install -y \
 	ca-certificates \
 	iptables \
 	libcap2 \
