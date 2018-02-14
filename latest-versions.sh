@@ -35,6 +35,8 @@ get_latest() {
 
 	if [[ "$dir" == "CouchPotatoServer" ]]; then
 		dir="couchpotato"
+	elif [[ "$dir" == "cri-o" ]]; then
+		dir="crio"
 	elif [[ "$dir" == "SoftHSMv2" ]]; then
 		dir="golang-softhsm2"
 	elif [[ "$dir" == "bazel" ]]; then
@@ -63,6 +65,7 @@ certbot/certbot
 hashicorp/consul
 coredns/coredns
 CouchPotato/CouchPotatoServer
+kubernetes-incubator/cri-o
 curl/curl
 google/guetzli
 irssi/irssi

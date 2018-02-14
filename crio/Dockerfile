@@ -28,11 +28,11 @@ RUN apt-get update && apt-get install -y \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
+ENV CRIO_VERSION v1.9.3
 ENV OSTREE_VERSION v2017.12
-ENV GO_VERSION 1.9.1
+ENV GO_VERSION 1.9.4
 ENV CNI_PLUGINS_VERSION v0.6.0
 ENV RUNC_VERSION v1.0.0-rc4
-ENV CRIO_VERSION v1.0.0
 
 # Install ostree
 # Install CNI plugins
