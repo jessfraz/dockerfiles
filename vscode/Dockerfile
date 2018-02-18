@@ -28,6 +28,7 @@ RUN echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable ma
 
 RUN apt-get update && apt-get -y install \
 	code \
+	git \
 	libasound2 \
 	libatk1.0-0 \
 	libcairo2 \
