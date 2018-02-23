@@ -1,4 +1,4 @@
-FROM debian:sid
+FROM debian:buster
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 RUN dpkg --add-architecture arm64 \
