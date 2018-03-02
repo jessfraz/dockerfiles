@@ -8,15 +8,17 @@
 #		-e DISPLAY=unix$DISPLAY \
 #		keepassxc
 #
-FROM alpine:latest
+FROM alpine:edge
 LABEL maintainer "Christian Koep <christiankoep@gmail.com>"
 
 ENV KEEPASSXC_VERSION 2.3.0
 
 RUN buildDeps=' \
                 automake \
+				argon2-dev \
                 bash \
                 cmake \
+				curl-dev \
                 g++ \
                 gcc \
                 git \
@@ -27,7 +29,8 @@ RUN buildDeps=' \
                 qt5-qttools-dev \
 	' \
 	set -x \
-	&& apk --no-cache add $buildDeps \
+	&& apk --no-cache add \
+		$buildDeps \
 	&& git clone --depth 1 --branch ${KEEPASSXC_VERSION} https://github.com/keepassxreboot/keepassxc.git /usr/src/keepassxc \
 	&& cd /usr/src/keepassxc \
 	&& mkdir build \
@@ -40,6 +43,8 @@ RUN buildDeps=' \
 	&& echo "Build complete."
 
 RUN	apk --no-cache add \
+		argon2-libs \
+		libcurl \
 		libmicrohttpd \
 		libgcrypt \
 		mesa-dri-intel \
