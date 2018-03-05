@@ -19,6 +19,7 @@ RUN dpkg --add-architecture i386 \
 	gcc \
 	git \
 	gzip \
+	hdparm \
 	iperf \
 	kmod \
 	libaudit-dev \
