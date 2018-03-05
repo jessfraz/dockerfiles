@@ -23,6 +23,7 @@ RUN dpkg --add-architecture i386 \
 	iperf \
 	kmod \
 	libaudit-dev \
+	libbabeltrace-ctf-dev \
 	libc6-dev \
 	libc6-dev:i386 \
 	libdw-dev \
@@ -30,6 +31,9 @@ RUN dpkg --add-architecture i386 \
 	libklibc-dev \
 	liblzma-dev \
 	libnuma-dev \
+	libperl-dev \
+	libslang2-dev \
+	libssl-dev \
 	libtool \
 	libunwind-dev \
 	linux-libc-dev \
@@ -42,11 +46,13 @@ RUN dpkg --add-architecture i386 \
 	perl \
 	procps \
 	psmisc \
+	python-dev \
 	rsync \
 	rt-tests \
 	ruby \
 	ruby-dev \
 	sysstat \
+	systemtap-sdt-dev \
 	time \
 	wget \
 	zlib1g-dev \
