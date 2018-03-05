@@ -19,6 +19,7 @@ RUN dpkg --add-architecture i386 \
 	gcc \
 	git \
 	gzip \
+	iperf \
 	kmod \
 	libaudit-dev \
 	libc6-dev \
@@ -38,6 +39,7 @@ RUN dpkg --add-architecture i386 \
 	openssl \
 	patch \
 	perl \
+	procps \
 	psmisc \
 	rsync \
 	rt-tests \
