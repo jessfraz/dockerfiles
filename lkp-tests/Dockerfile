@@ -40,6 +40,7 @@ RUN dpkg --add-architecture i386 \
 	perl \
 	psmisc \
 	rsync \
+	rt-tests \
 	ruby \
 	ruby-dev \
 	sysstat \
