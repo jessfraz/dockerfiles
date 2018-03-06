@@ -41,6 +41,8 @@ get_latest() {
 		dir="golang-softhsm2"
 	elif [[ "$dir" == "bazel" ]]; then
 		dir="gitiles"
+	elif [[ "$dir" == "byte-unixbench" ]]; then
+		dir="unixbench"
 	elif [[ "$dir" == "zookeeper" ]]; then
 		dir="zookeeper/3.5"
 	elif [[ "$dir" == "oauth2_proxy" ]]; then
@@ -79,6 +81,7 @@ reverse-shell/routersploit
 tarsnap/tarsnap
 fcambus/telize
 hashicorp/terraform
+kdlucas/byte-unixbench
 mitchellh/vagrant
 hashicorp/vault
 wireguard/wireguard
