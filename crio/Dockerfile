@@ -18,9 +18,7 @@ RUN apt-get update && apt-get install -y \
 	ca-certificates \
 	iptables \
 	libapparmor1 \
-	libassuan0 \
 	libdevmapper1.02.1 \
-	libglib2.0-0 \
 	libgpgme11 \
 	libseccomp2 \
 	libselinux1 \
@@ -29,53 +27,32 @@ RUN apt-get update && apt-get install -y \
 	&& rm -rf /var/lib/apt/lists/*
 
 ENV CRIO_VERSION v1.9.6
-ENV OSTREE_VERSION v2017.12
 ENV GO_VERSION 1.9.4
 ENV CNI_PLUGINS_VERSION v0.6.0
 ENV RUNC_VERSION v1.0.0-rc4
 
-# Install ostree
 # Install CNI plugins
 # Install runc (installs to /sbin/runc)
 # Install CRI-O (installs to /usr/bin/crio)
 # NOTE: The install docker the templates package is a stop gap for it not being
 # vendored into the crio repository
 RUN buildDeps=' \
-		autoconf \
-		automake \
-		bison \
 		curl \
 		e2fslibs-dev \
 		gcc \
 		git \
 		libapparmor-dev \
-		libassuan-dev \
 		libc6-dev \
 		libdevmapper-dev \
-		libfuse-dev \
-		libglib2.0-dev \
-		libgpg-error-dev \
 		libgpgme11-dev \
-		liblzma-dev \
+		libostree-dev \
 		libseccomp-dev \
 		libselinux1-dev \
-		libtool \
 		make \
-		pkg-config \
 	' \
 	&& set -x \
 	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/* \
-	&& export BUILDPATH="$(mktemp -d)" \
-	&& git clone --depth 1 -b "$OSTREE_VERSION" --recursive https://github.com/ostreedev/ostree.git "${BUILDPATH}/ostree" \
-	&& ( \
-		cd "${BUILDPATH}/ostree" \
-		&& git submodule update --init \
-		&& env NOCONFIGURE=1 ./autogen.sh \
-		&& ./configure --prefix="" \
-		&& make \
-		&& make install \
-	) \
 	&& curl -fsSL "https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz" | tar -xzC /usr/local \
 	&& export PATH=/go/bin:/usr/local/go/bin:$PATH \
 	&& export GOPATH="$(mktemp -d)" \
@@ -106,7 +83,7 @@ RUN buildDeps=' \
 		&& sed -i 's#runtime = "/usr/bin/runc"#runtime = "/sbin/runc"#' /etc/crio/crio.conf \
 		&& sed -i 's#conmon = "/usr/local/libexec/crio/conmon"#conmon = "/libexec/crio/conmon"#' /etc/crio/crio.conf \
 	) \
-	&& rm -rf "$BUILDPATH" "$GOPATH" "/usr/local/go" \
+	&& rm -rf "$GOPATH" "/usr/local/go" \
 	&& apt-get purge -y --auto-remove $buildDeps
 
 COPY net.d /etc/cni/net.d
