@@ -3,7 +3,7 @@
 # docker run -v /tmp/.X11-unix:/tmp/.X11-unix \
 #	-v /inkscape/:/workspace \
 #	-e DISPLAY=unix$DISPLAY \
-#	infoslack/inkscape
+#	jess/inkscape
 #
 FROM ubuntu:16.04
 LABEL maintainer "Daniel Romero <infoslack@gmail.com>"
