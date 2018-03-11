@@ -43,6 +43,8 @@ get_latest() {
 		dir="gitiles"
 	elif [[ "$dir" == "byte-unixbench" ]]; then
 		dir="unixbench"
+	elif [[ "$dir" == "Tautulli" ]]; then
+		dir="plexpy"
 	elif [[ "$dir" == "zookeeper" ]]; then
 		dir="zookeeper/3.5"
 	elif [[ "$dir" == "oauth2_proxy" ]]; then
@@ -74,7 +76,7 @@ irssi/irssi
 keepassxreboot/keepassxc
 zyedidia/micro
 bitly/oauth2_proxy
-JonnyWong16/plexpy
+Tautulli/Tautulli
 powershell/powershell
 ricochet-im/ricochet
 reverse-shell/routersploit
