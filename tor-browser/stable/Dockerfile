@@ -33,7 +33,7 @@ RUN useradd --create-home --home-dir $HOME user \
 ENV LANG C.UTF-8
 
 # https://www.torproject.org/projects/torbrowser.html.en
-ENV TOR_VERSION 7.5
+ENV TOR_VERSION 7.5.1
 ENV TOR_FINGERPRINT 0x4E2C6E8793298290
 
 # download tor and check signature
@@ -47,7 +47,7 @@ RUN cd /tmp \
 			keyserver.ubuntu.com \
 			hkp://keyserver.ubuntu.com:80 \
 			pgp.mit.edu) ; do \
-		gpg --no-tty --keyserver "pool.sks-keyservers.net" --recv-keys ${TOR_FINGERPRINT} && break || : ; \
+		gpg --no-tty --keyserver "${server}" --recv-keys ${TOR_FINGERPRINT} && break || : ; \
 	done \
 	&& gpg --fingerprint --keyid-format LONG ${TOR_FINGERPRINT} | grep "Key fingerprint = EF6E 286D DA85 EA2A 4BA7  DE68 4E2C 6E87 9329 8290" \
 	&& gpg --verify tor-browser-linux64-${TOR_VERSION}_en-US.tar.xz.asc \
