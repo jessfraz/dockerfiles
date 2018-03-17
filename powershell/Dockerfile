@@ -1,7 +1,7 @@
 FROM ubuntu:16.04
 LABEL maintainer "Christian Koep <christiankoep@gmail.com>"
 
-ENV POWERSHELL_VERSION 6.0.1
+ENV POWERSHELL_VERSION 6.0.2
 
 RUN apt-get update && apt-get install -y \
 	ca-certificates \
