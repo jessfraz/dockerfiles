@@ -11,12 +11,11 @@ RUN apk --no-cache add \
 	ca-certificates \
 	clisp
 
-# Install quicklisp
-RUN wget -O /quicklisp.lisp https://beta.quicklisp.org/quicklisp.lisp && \
-    clisp -x "(load 'quicklisp) (quicklisp-quickstart:install)"
-
 COPY .clisprc.lisp /home/user/.clisprc.lisp
 COPY --from=cl-k8s /cl-k8s /home/user/quicklisp/local-projects/cl-k8s
+
+# Install quicklisp
+RUN wget -O /home/user/quicklisp.lisp https://beta.quicklisp.org/quicklisp.lisp
 
 ENV HOME /home/user
 RUN adduser -u 1001 -D user \
@@ -25,5 +24,8 @@ RUN adduser -u 1001 -D user \
 USER user
 
 WORKDIR $HOME
+
+# Install quicklisp
+RUN clisp -x '(load "quicklisp.lisp") (quicklisp-quickstart:install)'
 
 ENTRYPOINT [ "clisp" ]
