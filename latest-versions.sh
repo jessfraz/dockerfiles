@@ -45,6 +45,8 @@ get_latest() {
 		dir="unixbench"
 	elif [[ "$dir" == "Tautulli" ]]; then
 		dir="plexpy"
+	elif [[ "$dir" == "nginx" ]]; then
+		dir="telize"
 	elif [[ "$dir" == "zookeeper" ]]; then
 		dir="zookeeper/3.5"
 	elif [[ "$dir" == "oauth2_proxy" ]]; then
@@ -99,7 +101,7 @@ powershell/powershell
 ricochet-im/ricochet
 reverse-shell/routersploit
 tarsnap/tarsnap
-fcambus/telize
+nginx/nginx
 hashicorp/terraform
 kdlucas/byte-unixbench
 mitchellh/vagrant
