@@ -59,6 +59,7 @@ RUN buildDeps=' \
 	&& dpkg -i /tmp/google-talkplugin-amd64.deb \
 	&& rm -rf /tmp/*.deb \
 	&& apt-get purge -y --auto-remove $buildDeps
+
 # Add chrome user
 RUN groupadd -r chrome && useradd -r -g chrome -G audio,video chrome \
     && mkdir -p /home/chrome/Downloads && chown -R chrome:chrome /home/chrome
