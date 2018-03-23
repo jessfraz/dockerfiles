@@ -27,11 +27,11 @@ ADD https://dl.google.com/linux/direct/google-talkplugin_current_amd64.deb /src/
 # Install Chrome
 RUN apt-get update && apt-get install -y \
 	apt-transport-https \
-        libcanberra-gtk* \
 	ca-certificates \
 	curl \
 	gnupg \
 	hicolor-icon-theme \
+	libcanberra-gtk* \
 	libgl1-mesa-dri \
 	libgl1-mesa-glx \
 	libpango1.0-0 \
@@ -44,11 +44,21 @@ RUN apt-get update && apt-get install -y \
 	&& apt-get update && apt-get install -y \
 	google-chrome-beta \
 	--no-install-recommends \
-	&& dpkg -i '/src/google-talkplugin_current_amd64.deb' \
 	&& apt-get purge --auto-remove -y curl \
-	&& rm -rf /var/lib/apt/lists/* \
-	&& rm -rf /src/*.deb
+	&& rm -rf /var/lib/apt/lists/*
 
+# Download the google-talkplugin
+RUN buildDeps=' \
+		ca-certificates \
+		curl \
+	' \
+	&& set -x \
+	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends \
+	&& rm -rf /var/lib/apt/lists/* \
+	&& curl -sSL "https://dl.google.com/linux/direct/google-talkplugin_current_amd64.deb" -o /tmp/google-talkplugin-amd64.deb \
+	&& dpkg -i /tmp/google-talkplugin-amd64.deb \
+	&& rm -rf /tmp/*.deb \
+	&& apt-get purge -y --auto-remove $buildDeps
 # Add chrome user
 RUN groupadd -r chrome && useradd -r -g chrome -G audio,video chrome \
     && mkdir -p /home/chrome/Downloads && chown -R chrome:chrome /home/chrome
