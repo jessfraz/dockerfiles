@@ -112,13 +112,14 @@ Tautulli/Tautulli
 powershell/powershell
 ricochet-im/ricochet
 reverse-shell/routersploit
+rstudio/rstudio
 tarsnap/tarsnap
+fcambus/telize
 nginx/nginx
 simplresty/ngx_devel_kit
 openresty/lua-nginx-module
 leev/ngx_http_geoip2_module
 maxmind/libmaxminddb
-fcambus/telize
 hashicorp/terraform
 kdlucas/byte-unixbench
 mitchellh/vagrant
