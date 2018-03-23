@@ -1,7 +1,7 @@
-FROM alpine:3.5
+FROM alpine:latest
 
 RUN apk add --no-cache \
-	lua-cjson \
+	lua5.1-cjson \
 	luajit
 
 ENV NGINX_VERSION 1.12.2
