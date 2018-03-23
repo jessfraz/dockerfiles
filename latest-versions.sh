@@ -45,15 +45,25 @@ get_latest() {
 		dir="unixbench"
 	elif [[ "$dir" == "Tautulli" ]]; then
 		dir="plexpy"
-	elif [[ "$dir" == "nginx" ]]; then
-		dir="telize"
 	elif [[ "$dir" == "zookeeper" ]]; then
 		dir="zookeeper/3.5"
 	elif [[ "$dir" == "oauth2_proxy" ]]; then
 		dir="oauth2-proxy"
 	fi
 
-	local current=$(cat "${dir}/Dockerfile" | grep -m 1 VERSION | awk '{print $(NF)}')
+	# Change to upper case for grep
+	local udir=$(echo $dir | awk '{print toupper($0)}')
+	# Replace dashes (-) with underscores (_)
+	udir=${udir//-/_}
+
+	local current
+	if [[ ! -d "$dir" ]]; then
+		# If the directory does not exist, then grep all for it
+		current=$(grep -m 1 "${udir}_VERSION"  **/Dockerfile | awk '{print $(NF)}')
+	else
+		current=$(cat "${dir}/Dockerfile" | grep -m 1 "${udir}_VERSION" | awk '{print $(NF)}')
+	fi
+
 
 	compare "$name" "$dir" "$tag" "$current" "https://github.com/${repo}/releases"
 }
@@ -93,6 +103,7 @@ kubernetes-incubator/cri-o
 curl/curl
 google/guetzli
 irssi/irssi
+cryptodotis/irssi-otr
 keepassxreboot/keepassxc
 zyedidia/micro
 bitly/oauth2_proxy
@@ -102,6 +113,11 @@ ricochet-im/ricochet
 reverse-shell/routersploit
 tarsnap/tarsnap
 nginx/nginx
+simplresty/ngx_devel_kit
+openresty/lua-nginx-module
+leev/ngx_http_geoip2_module
+maxmind/libmaxminddb
+fcambus/telize
 hashicorp/terraform
 kdlucas/byte-unixbench
 mitchellh/vagrant

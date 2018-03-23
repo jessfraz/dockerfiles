@@ -4,13 +4,13 @@ RUN apk add --no-cache \
 	lua5.1-cjson \
 	luajit
 
-ENV NGINX_VERSION 1.12.2
+ENV NGINX_VERSION 1.13.10
 # https://github.com/simplresty/ngx_devel_kit/releases
-ENV DEVELKIT_MODULE_VERSION v0.3.1rc1
+ENV NGX_DEVEL_KIT_VERSION v0.3.1rc1
 # https://github.com/openresty/lua-nginx-module/releases
-ENV LUA_MODULE_VERSION v0.10.12rc2
+ENV LUA_NGINX_MODULE_VERSION v0.10.12rc2
 # https://github.com/leev/ngx_http_geoip2_module/releases
-ENV GEOIP2_MODULE_VERSION 2.0
+ENV NGX_HTTP_GEOIP2_MODULE_VERSION 2.0
 # https://github.com/maxmind/libmaxminddb/releases
 ENV LIBMAXMINDDB_VERSION 1.3.2
 
@@ -89,9 +89,9 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 		luajit-dev \
 		musl-utils \
 		file \
-	&& git clone --depth 1 --branch "${DEVELKIT_MODULE_VERSION}" https://github.com/simplresty/ngx_devel_kit.git /usr/src/ngx_devel_kit \
-	&& git clone --depth 1 --branch "${LUA_MODULE_VERSION}" https://github.com/openresty/lua-nginx-module.git /usr/src/lua-nginx-module \
-	&& git clone --depth 1 --branch "${GEOIP2_MODULE_VERSION}" https://github.com/leev/ngx_http_geoip2_module.git /usr/src/ngx_http_geoip2_module \
+	&& git clone --depth 1 --branch "${NGX_DEVEL_KIT_VERSION}" https://github.com/simplresty/ngx_devel_kit.git /usr/src/ngx_devel_kit \
+	&& git clone --depth 1 --branch "${LUA_NGINX_MODULE_VERSION}" https://github.com/openresty/lua-nginx-module.git /usr/src/lua-nginx-module \
+	&& git clone --depth 1 --branch "${NGX_HTTP_GEOIP2_MODULE_VERSION}" https://github.com/leev/ngx_http_geoip2_module.git /usr/src/ngx_http_geoip2_module \
 	&& mkdir -p /usr/src/libmaxminddb \
 	&& curl -sSL "https://github.com/maxmind/libmaxminddb/releases/download/${LIBMAXMINDDB_VERSION}/libmaxminddb-${LIBMAXMINDDB_VERSION}.tar.gz" | tar -xzf - --strip-components 1 -C /usr/src/libmaxminddb \
 	&& ( \
