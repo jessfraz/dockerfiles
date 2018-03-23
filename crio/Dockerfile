@@ -56,7 +56,7 @@ RUN buildDeps=' \
 	&& curl -fsSL "https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz" | tar -xzC /usr/local \
 	&& export PATH=/go/bin:/usr/local/go/bin:$PATH \
 	&& export GOPATH="$(mktemp -d)" \
-	&& git clone --depth 1 -b "$CNI_PLUGINS_VERSION" https://github.com/containernetworking/plugins.git "${GOPATH}/src/github.com/containernetworking/plugins" \
+	&& git clone --depth 1 -b "$PLUGINS_VERSION" https://github.com/containernetworking/plugins.git "${GOPATH}/src/github.com/containernetworking/plugins" \
 	&& ( \
 		cd "${GOPATH}/src/github.com/containernetworking/plugins" \
 		&& ./build.sh \
