@@ -37,10 +37,6 @@ get_latest() {
 		dir="couchpotato"
 	elif [[ "$dir" == "cri-o" ]]; then
 		dir="crio"
-	elif [[ "$dir" == "SoftHSMv2" ]]; then
-		dir="golang-softhsm2"
-	elif [[ "$dir" == "bazel" ]]; then
-		dir="gitiles"
 	elif [[ "$dir" == "byte-unixbench" ]]; then
 		dir="unixbench"
 	elif [[ "$dir" == "Tautulli" ]]; then
@@ -55,11 +51,12 @@ get_latest() {
 	local udir=$(echo $dir | awk '{print toupper($0)}')
 	# Replace dashes (-) with underscores (_)
 	udir=${udir//-/_}
+	udir=${udir%/*}
 
 	local current
 	if [[ ! -d "$dir" ]]; then
 		# If the directory does not exist, then grep all for it
-		current=$(grep -m 1 "${udir}_VERSION"  **/Dockerfile | awk '{print $(NF)}')
+		current=$(grep -m 1 "${udir}_VERSION"  **/Dockerfile | head -n 1 | awk '{print $(NF)}')
 	else
 		current=$(cat "${dir}/Dockerfile" | grep -m 1 "${udir}_VERSION" | awk '{print $(NF)}')
 	fi
@@ -100,7 +97,11 @@ hashicorp/consul
 coredns/coredns
 CouchPotato/CouchPotatoServer
 kubernetes-incubator/cri-o
+containernetworking/plugins
+opencontainers/runc
 curl/curl
+google/gitiles
+bazelbuild/bazel
 google/guetzli
 irssi/irssi
 cryptodotis/irssi-otr

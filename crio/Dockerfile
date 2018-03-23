@@ -28,8 +28,8 @@ RUN apt-get update && apt-get install -y \
 
 ENV CRIO_VERSION v1.10.0-beta.1
 ENV GO_VERSION 1.9.4
-ENV CNI_PLUGINS_VERSION v0.6.0
-ENV RUNC_VERSION v1.0.0-rc4
+ENV PLUGINS_VERSION v0.7.0
+ENV RUNC_VERSION v0.1.1
 
 # Install CNI plugins
 # Install runc (installs to /sbin/runc)
