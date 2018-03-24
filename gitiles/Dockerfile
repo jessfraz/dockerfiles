@@ -39,7 +39,7 @@ RUN set -x \
 	&& git clone --depth 1 --branch "${GITILES_VERSION}" https://gerrit.googlesource.com/gitiles /usr/src/gitiles \
 	&& ( \
 		cd /usr/src/gitiles \
-		&& bazel build gitiles-dev:dev \
+		&& bazel build --incompatible_disallow_uncalled_set_constructor=false gitiles-dev:dev \
 		&& cp -rL bazel-bin bin \
 		&& rm -rf bazel-bin \
 	) \

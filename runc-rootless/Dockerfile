@@ -1,5 +1,5 @@
 FROM golang:1.9-alpine AS runc
-ARG RUNC_VERSION 9f9c96235cc97674e935002fc3d78361b696a69e
+ENV RUNC_VERSION 9f9c96235cc97674e935002fc3d78361b696a69e
 RUN apk add --no-cache \
 	bash \
 	curl \
