@@ -48,17 +48,16 @@ RUN apt-get update && apt-get install -y \
 	&& rm -rf /var/lib/apt/lists/*
 
 # Download the google-talkplugin
-RUN buildDeps=' \
+RUN set -x \
+	&& apt-get update \
+	&& apt-get install -y --no-install-recommends \
 		ca-certificates \
 		curl \
-	' \
-	&& set -x \
-	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& curl -sSL "https://dl.google.com/linux/direct/google-talkplugin_current_amd64.deb" -o /tmp/google-talkplugin-amd64.deb \
 	&& dpkg -i /tmp/google-talkplugin-amd64.deb \
 	&& rm -rf /tmp/*.deb \
-	&& apt-get purge -y --auto-remove $buildDeps
+	&& apt-get purge -y --auto-remove curl
 
 # Add chrome user
 RUN groupadd -r chrome && useradd -r -g chrome -G audio,video chrome \
