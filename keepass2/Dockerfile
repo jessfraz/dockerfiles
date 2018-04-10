@@ -8,6 +8,7 @@
 #	docker run -it \
 #		-v /home/$USER/DB.kdbx:/root/DB.kdbx \
 #		-v /tmp/.X11-unix:/tmp/.X11-unix \
+#		-v /home/$USER/keepass2-plugins:/usr/lib/keepass2/Plugins \
 #		-e DISPLAY=$DISPLAY \
 #		keepass2 "$@"
 #
@@ -25,6 +26,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y \
 	keepass2 \
 	xdotool \
+	mono-dmcs \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
