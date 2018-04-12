@@ -7,7 +7,7 @@ ENV GOPATH /go
 RUN	apk --no-cache add \
 	ca-certificates
 
-ENV TERRAFORM_VERSION v0.11.5
+ENV TERRAFORM_VERSION v0.11.7
 
 RUN buildDeps=' \
 		bash \
