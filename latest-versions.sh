@@ -84,7 +84,9 @@ compare() {
 		echo -e "\e[36m${dir}:\e[39m current ${current} | ${tag} | ${name}"
 	else
 		# add to the bad versions
-		bad_versions+=( "${dir}" )
+		if [[ "$dir" != "rstudio" ]]; then
+			bad_versions+=( "${dir}" )
+		fi
 		echo -e "\e[31m${dir}:\e[39m current ${current} | ${tag} | ${name} | ${releases}"
 	fi
 }

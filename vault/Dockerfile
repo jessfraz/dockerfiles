@@ -18,6 +18,7 @@ RUN buildDeps=' \
 		libc-dev \
 		libgcc \
 		make \
+		yarn \
 		zip \
 	' \
 	set -x \
@@ -26,7 +27,8 @@ RUN buildDeps=' \
 	&& git clone --depth 1 --branch ${VAULT_VERSION} https://github.com/hashicorp/vault /go/src/github.com/hashicorp/vault \
 	&& cd /go/src/github.com/hashicorp/vault \
 	&& go get github.com/mitchellh/gox \
-	&& XC_ARCH="amd64" XC_OS="linux" XC_OSARCH="linux/amd64" make bin \
+	&& yarn add bower \
+	&& XC_ARCH="amd64" XC_OS="linux" XC_OSARCH="linux/amd64" make bootstrap static-dist bin \
 	&& mv bin/vault /usr/bin/ \
 	&& apk del $buildDeps \
 	&& rm -rf /go \
