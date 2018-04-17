@@ -1,4 +1,4 @@
-FROM alpine:3.5
+FROM alpine:latest
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 ENV PATH /go/bin:/usr/local/go/bin:$PATH
@@ -29,19 +29,7 @@ RUN buildDeps=' \
 	&& mkdir -p /go/src/github.com/hashicorp /etc/consul.d \
 	&& git clone --depth 1 --branch ${CONSUL_VERSION} https://github.com/hashicorp/consul /go/src/github.com/hashicorp/consul \
 	&& cd /go/src/github.com/hashicorp/consul \
-	&& XC_ARCH="amd64" XC_OS="linux" make all \
-	&& mv bin/consul /usr/bin/ \
-	&& cd ui \
-	&& gem install \
-		bundler \
-		io-console \
-		--no-ri --no-rdoc \
-	&& bundle install \
-	&& make dist \
-	&& mkdir -p /usr/src/consul \
-	&& mv index.html /usr/src/consul \
-	&& mv static /usr/src/consul/ \
-	&& mv javascripts /usr/src/consul/ \
+	&& XC_ARCH="amd64" XC_OS="linux" make bin \
 	&& apk del $buildDeps \
 	&& rm -rf /go \
 	&& echo "Build complete."
