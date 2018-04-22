@@ -22,6 +22,10 @@ LABEL "docker_run_flags"="-d \
 	--link transmission:transmission \
  	--name couchpotato"
 
+# A list of comma-separated dependencies
+LABEL "depends"="https://cdn.rawgit.com/jessfraz/dockerfiles/aa2b6dfc/transmission/Dockerfile"
+LABEL "dev_depends"=""
+
 
 RUN apk add --no-cache \
 	ca-certificates \
