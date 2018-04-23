@@ -7,6 +7,8 @@ RUN pwsh -c "Install-Module PowerShellGet -Force"
 # Install the Azure Resource Manager modules from the PowerShell Gallery
 RUN pwsh -c "Install-Module -Name AzureRM -AllowClobber -Force"
 
-# You will have to load the module into the session with:
-# 	Import-Module -Name AzureRM
+# Install Azure Active Directory module
+# Install the Azure Active Directory modules from the PowerShell Gallery
+RUN pwsh -c "Install-Module -Name AzureAD -AllowClobber -Force"
+
 ENTRYPOINT [ "pwsh" ]
