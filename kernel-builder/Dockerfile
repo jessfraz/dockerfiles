@@ -4,8 +4,10 @@ LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 RUN dpkg --add-architecture arm64 \
 	&& dpkg --add-architecture ppc64el \
 	&& apt-get update && apt-get install -y \
+	bison \
 	ca-certificates \
 	curl \
+	flex \
 	gnupg \
 	crossbuild-essential-arm64 \
 	crossbuild-essential-ppc64el \
