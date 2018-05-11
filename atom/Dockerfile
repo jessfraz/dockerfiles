@@ -19,7 +19,7 @@
 #
 
 # Base docker image
-FROM debian:buster
+FROM debian:sid
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 # Install dependencies
