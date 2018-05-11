@@ -1,6 +1,6 @@
 FROM java:8-alpine
 
-ENV ZOOKEEPER_VERSION 3.5.4-rc0
+ENV ZOOKEEPER_VERSION 3.5.3-beta
 ENV PATH $PATH:/opt/zookeeper/bin/
 
 # the start files for zookeeper use bash
