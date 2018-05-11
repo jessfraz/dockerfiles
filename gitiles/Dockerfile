@@ -9,7 +9,7 @@ RUN apk add --no-cache \
 	openjdk8
 
 # https://github.com/bazelbuild/bazel/releases
-ENV BAZEL_VERSION 0.12.0
+ENV BAZEL_VERSION 0.13.0
 # https://gerrit.googlesource.com/gitiles/
 ENV GITILES_VERSION v0.2-1
 

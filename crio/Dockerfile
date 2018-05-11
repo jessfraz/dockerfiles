@@ -26,7 +26,7 @@ RUN apt-get update && apt-get install -y \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
-ENV CRIO_VERSION v1.9.11
+ENV CRIO_VERSION v1.9.12
 ENV GO_VERSION 1.9.4
 ENV PLUGINS_VERSION v0.7.1
 ENV RUNC_VERSION v0.1.1
