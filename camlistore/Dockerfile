@@ -7,7 +7,7 @@ ENV GOPATH /go
 RUN	apk --no-cache add \
 	ca-certificates
 
-ENV CAMLISTORE_VERSION 0.9
+ENV CAMLISTORE_VERSION 0.10
 
 RUN buildDeps=' \
 		go \
