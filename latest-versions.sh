@@ -93,7 +93,6 @@ compare() {
 
 projects=(
 atom/atom
-camlistore/camlistore
 certbot/certbot
 hashicorp/consul
 coredns/coredns
@@ -111,6 +110,7 @@ keepassxreboot/keepassxc
 zyedidia/micro
 bitly/oauth2_proxy
 Tautulli/Tautulli
+perkeep/perkeep
 powershell/powershell
 ricochet-im/ricochet
 reverse-shell/routersploit
