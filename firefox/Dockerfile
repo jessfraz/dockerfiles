@@ -1,3 +1,14 @@
+# Run firefox in a container
+#
+# docker run -d \
+#	--net=host \
+#	-e DISPLAY \
+#	-v $HOME/.Xauthority:/root/.Xauthority \
+#	--name firefox \
+#	firefox
+#
+# Above the most basic way to run the container, you'll probably want use volumes to keep date, --device /dev/snd for sound, ...
+
 FROM debian:sid
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
