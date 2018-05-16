@@ -1,3 +1,31 @@
+# Run the Ubiquiti UniFi Controller in a container
+#
+# Setup a local directory to store your unifi controller config:
+# 	mkdir -p ~/.config/unifi/
+# 	chmod -R 0700 ~/.config/unifi/
+#
+# If you have already been using a locally installed unifi controller,
+# copy the contents of your existing unifi config:
+#	cp -R /var/lib/unifi/* ~/.config/unifi/	# Linux
+#	cp -R ~/Library/Application\ Support/UniFi/* ~/.config/unifi/ # MacOS
+#
+# Build the docker image (from directory with this Dockerfile & entrypoint.sh):
+#	docker build -t unifi .
+#
+# Start a unifi controller container:
+#	docker run \ # interactive mode isn't necessary
+#		-v ~/.config/unifi:/config \ # for persistent config
+#		-p 8080:8080 -p 8443:8443 -p 8843:8843 -p 8880:8880 -p 3478:3478/udp \
+#		--name unifi \
+#		unifi
+#
+# Access the controller in your browser at: https://127.0.0.1:8443
+#
+# If existing devices are showing up as "disconnected" once logged in, 
+# SSH into each device and run:
+# 	set-inform http://ip_of_docker_host:8080/inform
+#
+
 FROM ubuntu:16.04
 
 # environment settings
