@@ -44,4 +44,3 @@ RUN rm /tmp/zoom_setup.deb \
 # RUN chmod 755 /sbin/entrypoint.sh
 WORKDIR /usr/bin
 CMD [ "./zoom" ]
-#ENTRYPOINT ["/sbin/entrypoint.sh"]
