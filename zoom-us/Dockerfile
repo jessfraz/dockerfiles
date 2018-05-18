@@ -26,21 +26,14 @@ RUN apt-get install -qy curl sudo desktop-file-utils lib32z1 \
   libxcb-keysyms1 libxcb-xtest0 ibus ibus-gtk libibus-qt1 ibus-qt4 \
   libnss3 libxss1
 
-# install some GL gfx deps
-RUN apt-get install -y mesa-utils
-
 ARG ZOOM_URL=https://zoom.us/client/latest/zoom_amd64.deb
 
-# Grab the client .deb
-# Install the client .deb
-# Cleanup
+#install zoom
 RUN curl -sSL $ZOOM_URL -o /tmp/zoom_setup.deb
 RUN dpkg -i /tmp/zoom_setup.deb
 RUN apt-get -f install
 RUN rm /tmp/zoom_setup.deb \
   && rm -rf /var/lib/apt/lists/*
 
-# COPY entrypoint.sh /sbin/entrypoint.sh
-# RUN chmod 755 /sbin/entrypoint.sh
 WORKDIR /usr/bin
 CMD [ "./zoom" ]
