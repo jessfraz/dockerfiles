@@ -14,6 +14,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 # Dependencies for the client .deb
 RUN apt-get update && apt-get install -y \
+	ca-certificates \
 	curl \
 	desktop-file-utils \
 	ibus \
