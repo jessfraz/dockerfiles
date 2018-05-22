@@ -97,9 +97,6 @@ certbot/certbot
 hashicorp/consul
 coredns/coredns
 CouchPotato/CouchPotatoServer
-kubernetes-incubator/cri-o
-containernetworking/plugins
-opencontainers/runc
 curl/curl
 google/gitiles
 bazelbuild/bazel
