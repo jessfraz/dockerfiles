@@ -12,28 +12,51 @@ FROM debian:buster
 
 ENV DEBIAN_FRONTEND noninteractive
 
-# Refresh package lists
-RUN apt-get update
-RUN apt-get -qy dist-upgrade
-
 # Dependencies for the client .deb
-RUN apt-get install -qy curl sudo desktop-file-utils lib32z1 \
-  libx11-6 libasound2-dev libegl1-mesa libxcb-shm0 \
-  libglib2.0-0 libgl1-mesa-glx libxrender1 libxcomposite1 libxslt1.1 \
-  libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev libxi6 libsm6 \
-  libfontconfig1 libpulse0 libsqlite3-0 \
-  libxcb-shape0 libxcb-xfixes0 libxcb-randr0 libxcb-image0 \
-  libxcb-keysyms1 libxcb-xtest0 ibus ibus-gtk libibus-qt1 ibus-qt4 \
-  libnss3 libxss1
+RUN apt-get update && apt-get install -y \
+	curl \
+	desktop-file-utils \
+	ibus \
+	ibus-gtk \
+	ibus-qt4 \
+	lib32z1 \
+	libx11-6 \
+	libasound2-dev \
+	libegl1-mesa \
+	libxcb-shm0 \
+	libglib2.0-0 \
+	libgl1-mesa-glx \
+	libxrender1 \
+	libxcomposite1 \
+	libxslt1.1 \
+	libgstreamer1.0-dev \
+	libgstreamer-plugins-base1.0-dev \
+	libxi6 \
+	libsm6 \
+	libfontconfig1 \
+	libpulse0 \
+	libsqlite3-0 \
+	libxcb-shape0 \
+	libxcb-xfixes0 \
+	libxcb-randr0 \
+	libxcb-image0 \
+	libxcb-keysyms1 \
+	libxcb-xtest0 \
+	libibus-qt1 \
+	libnss3 \
+	libxss1 \
+	sudo \
+	--no-install-recommends \
+	&& rm -rf /var/lib/apt/lists/*
 
 ARG ZOOM_URL=https://zoom.us/client/latest/zoom_amd64.deb
 
 #install zoom
-RUN curl -sSL $ZOOM_URL -o /tmp/zoom_setup.deb
-RUN dpkg -i /tmp/zoom_setup.deb
-RUN apt-get -f install
-RUN rm /tmp/zoom_setup.deb \
-  && rm -rf /var/lib/apt/lists/*
+RUN curl -sSL $ZOOM_URL -o /tmp/zoom_setup.deb \
+	&& dpkg -i /tmp/zoom_setup.deb \
+	&& apt-get -f install \
+	&& rm /tmp/zoom_setup.deb \
+	&& rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/bin
 CMD [ "./zoom" ]
