@@ -33,10 +33,9 @@ for f in "${files[@]}"; do
 		continue
 	fi
 
-	image=${f%Dockerfile}
-	base=${image%%\/*}
-	suite=${image##*\/}
 	build_dir=$(dirname $f)
+	base=${build_dir%%\/*}
+	suite=${build_dir##*\/}
 
 	if [[ -z "$suite" ]]; then
 		suite=latest
