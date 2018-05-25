@@ -6,6 +6,7 @@ RUN dpkg --add-architecture arm64 \
 	&& apt-get update && apt-get install -y \
 	bison \
 	ca-certificates \
+	cpio \
 	curl \
 	fakeroot \
 	flex \
