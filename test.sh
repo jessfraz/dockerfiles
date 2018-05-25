@@ -33,9 +33,10 @@ for f in "${files[@]}"; do
 		continue
 	fi
 
-	build_dir=$(dirname $f)
-	base=${build_dir%%\/*}
-	suite=${build_dir##*\/}
+	build_dir=$(dirname "$f")
+	base="${build_dir%%\/*}"
+	suite="${build_dir##$base}"
+	suite="${suite##\/}"
 
 	if [[ -z "$suite" ]]; then
 		suite=latest
