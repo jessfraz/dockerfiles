@@ -7,6 +7,7 @@ RUN dpkg --add-architecture arm64 \
 	bison \
 	ca-certificates \
 	curl \
+	fakeroot \
 	flex \
 	gnupg \
 	crossbuild-essential-arm64 \
