@@ -1,12 +1,12 @@
 # Usage:
 #
-# (this uses a custom kernel module hence the mounts)
+# This uses a custom installs a kernel module hence the mounts
+
 # docker run --rm -it \
 # 	--name wireguard \
-# 	--privileged \
-# 	-v /lib/modules:/lib/modules:ro \
+# 	-v /lib/modules:/lib/modules \
 # 	-v /usr/src:/usr/src:ro \
-# 	r.j3ss.co/wireguard
+# 	r.j3ss.co/wireguard:install
 #
 FROM alpine:latest
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
@@ -14,6 +14,7 @@ LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 RUN apk add --no-cache \
 	build-base \
 	ca-certificates \
+	libelf-dev \
 	libmnl-dev
 
 # https://git.zx2c4.com/WireGuard/refs/
@@ -34,4 +35,4 @@ RUN set -x \
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 
 ENTRYPOINT [ "/usr/local/bin/entrypoint.sh" ]
-CMD [ "wg" ]
+CMD [ "wg", "--help" ]

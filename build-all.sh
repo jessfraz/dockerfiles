@@ -32,8 +32,8 @@ build_and_push(){
 		sleep 15
 	done
 
-	# also push the tag latest for "stable" (chrome) or "3.5" tags for zookeeper
-	if [[ "$suite" == "stable" ]] || [[ "$suite" == "3.5" ]]; then
+	# also push the tag latest for "stable" (chrome), "tools" (wireguard) or "3.5" tags for zookeeper
+	if [[ "$suite" == "stable" ]] || [[ "$suite" == "3.5" ]] || [[ "$suite" == "tools" ]]; then
 		docker tag ${REPO_URL}/${base}:${suite} ${REPO_URL}/${base}:latest
 		docker push --disable-content-trust=false ${REPO_URL}/${base}:latest
 	fi
