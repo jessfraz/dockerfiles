@@ -15,6 +15,7 @@ RUN apk add --no-cache \
 	mpc1-dev \
 	mpfr-dev \
 	ncurses-dev \
+	perl \
 	tar
 
 ENV HOME /root

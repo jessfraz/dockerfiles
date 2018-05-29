@@ -73,7 +73,7 @@ install_kernel(){
 		fi
 
 		# Git clone and apply the patches for the aufs filesystem.
-		if [[ "$OPT" == "aufs" ]]; then
+		if [[ "$OPT" == "aufs" ]] && [[ ! -d "${DIR}/fs/aufs" ]]; then
 			aufsdir=/aufs4-standalone
 
 			echo "Cloning the git patches for the aufs filesystem..."
@@ -135,3 +135,7 @@ install_kernel(){
 }
 
 install_kernel $@
+
+echo "Kernel successfully installed!"
+echo "You will now want to run update-initramfs and update-grub"
+echo "or the equivalent for your system."
