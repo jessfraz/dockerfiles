@@ -11,12 +11,14 @@ RUN apk add --no-cache \
 	flex \
 	git \
 	gmp-dev \
+	grub \
 	libressl-dev \
 	mpc1-dev \
 	mpfr-dev \
 	ncurses-dev \
 	perl \
-	tar
+	tar \
+	xz
 
 ENV HOME /root
 WORKDIR $HOME
