@@ -26,4 +26,6 @@ ENV JOBS 4
 
 COPY build_kernel /usr/local/bin/build_kernel
 
+RUN echo "build_kernel [version]" > /root/.bash_history
+
 ENTRYPOINT [ "bash" ]
