@@ -63,7 +63,7 @@ echo
 main(){
 	# get the dockerfiles
 	IFS=$'\n'
-	files=( $(find . -iname '*Dockerfile' | sed 's|./||' | sort) )
+	files=( $(find -L . -iname '*Dockerfile' | sed 's|./||' | sort) )
 	unset IFS
 
 	# build all dockerfiles
