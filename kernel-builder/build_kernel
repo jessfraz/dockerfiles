@@ -138,7 +138,7 @@ install_kernel $@
 
 echo "Kernel successfully installed!"
 echo "You will now want to run:"
-echo "\tupdate-initramfs -u -k all"
-echo "\tand"
-echo "\tupdate-grub2"
+echo "    update-initramfs -u -k all"
+echo "and"
+echo "    update-grub2"
 echo "or the equivalent for your system."
