@@ -11,7 +11,6 @@ RUN apk add --no-cache \
 	flex \
 	git \
 	gmp-dev \
-	grub \
 	libressl-dev \
 	mpc1-dev \
 	mpfr-dev \
