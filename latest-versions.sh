@@ -94,7 +94,6 @@ compare() {
 }
 
 projects=(
-atom/atom
 certbot/certbot
 hashicorp/consul
 coredns/coredns
