@@ -8,7 +8,8 @@
 # 	jess/nes /games/zelda.rom
 #
 FROM debian:sid
-LABEL maintainer "Jessie Frazelle <jess@linux.com>"
+LABEL 	maintainer.name="Jessie Frazelle"\
+	maintainer.email="jess@linux.com"
 
 RUN apt-get update && apt-get install -y \
 	binutils \
