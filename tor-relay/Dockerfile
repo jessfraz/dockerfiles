@@ -20,6 +20,7 @@ FROM alpine:latest
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 RUN apk --no-cache add \
+	bash \
 	tor
 
 # default port to used for incoming Tor connections
