@@ -22,7 +22,7 @@ RUN adduser -u 1001 -D user \
 
 ENV LANG C.UTF-8
 
-ENV ZNC_VERSION 1.6.5
+ENV ZNC_VERSION 1.7.0
 
 RUN set -x \
 	&& apk add --no-cache --virtual .build-deps \

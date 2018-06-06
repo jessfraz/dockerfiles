@@ -1,0 +1,4 @@
+#!/bin/bash
+skypeforlinux
+sleep 3
+while ps -C skypeforlinux >/dev/null;do sleep 3;done

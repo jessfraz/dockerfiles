@@ -24,7 +24,6 @@ RUN echo "deb [trusted=yes] https://repo.iovisor.org/apt/xenial xenial-nightly m
 
 RUN apt-get update && apt-get install -y \
 	binutils \
-	bcc \
 	bcc-tools \
 	libbcc-examples \
 	python-bcc \

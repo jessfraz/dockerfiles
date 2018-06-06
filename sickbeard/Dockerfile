@@ -18,9 +18,10 @@ RUN apk add --no-cache \
 	ca-certificates \
 	git \
 	python \
-	py-cheetah \
+	py-pip \
 	py-setuptools
 
+RUN pip install cheetah
 
 ENV SICKBEARD_VERSION torrent_1080_subtitles
 

@@ -7,7 +7,7 @@ ENV GOPATH /go
 RUN	apk --no-cache add \
 	ca-certificates
 
-ENV TERRAFORM_VERSION v0.11.2
+ENV TERRAFORM_VERSION v0.11.7
 
 RUN buildDeps=' \
 		bash \
@@ -24,7 +24,7 @@ RUN buildDeps=' \
 	&& mkdir -p /go/src/github.com/hashicorp /etc/terraform.d \
 	&& git clone --depth 1 --branch ${TERRAFORM_VERSION} https://github.com/hashicorp/terraform /go/src/github.com/hashicorp/terraform \
 	&& cd /go/src/github.com/hashicorp/terraform \
-	&& XC_ARCH="amd64" XC_OS="linux" make bin \
+	&& XC_ARCH="amd64" XC_OS="linux" make fmt bin \
 	&& mv bin/terraform /usr/bin/terraform \
 	&& apk del $buildDeps \
 	&& rm -rf /go \

@@ -31,12 +31,15 @@
 FROM debian:sid
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
+ENV DEBIAN_FRONTEND noninteractive
+
 RUN buildDeps=' \
 		ca-certificates \
 		curl \
 		gnupg \
 	' \
 	&& set -x \
+	&& mkdir -p /etc/xdg/QtProject \
 	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& curl -sSL https://www.virtualbox.org/download/oracle_vbox_2016.asc | apt-key add - \

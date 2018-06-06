@@ -38,7 +38,7 @@ RUN set -x \
 		gcc \
 		libc-dev \
 		libgcc \
-	&& go get github.com/jessfraz/reg \
+	&& go get github.com/genuinetools/reg \
 	&& mv ${GOPATH}/bin/reg /usr/bin/reg \
 	&& apk del .build-deps \
 	&& rm -rf /go \

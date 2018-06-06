@@ -30,6 +30,8 @@ RUN apt-get update && apt-get -y install \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
+COPY run-skype-and-wait-for-exit /usr/local/bin
+
 # Make a user
 ENV HOME /home/skype
 RUN useradd --create-home --home-dir $HOME skype \
@@ -40,4 +42,5 @@ WORKDIR $HOME
 USER skype
 
 # Start Skype
-ENTRYPOINT ["skypeforlinux"]
+ENTRYPOINT ["run-skype-and-wait-for-exit"]
+

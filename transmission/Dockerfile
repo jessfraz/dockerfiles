@@ -21,6 +21,12 @@
 FROM alpine:latest
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
+# machine parsable metadata, for https://github.com/pycampers/dockapt
+LABEL "registry_image"="r.j3ss.co/transmission"
+LABEL "docker_run_flags"="-d --name transmission \
+		-v ~/Downloads:/transmission/download \
+		-p 9091:9091 -p 51413:51413 -p 51413:51413/udp"
+
 RUN apk --no-cache add \
 	transmission-daemon \
 	&& mkdir -p /transmission/download \
