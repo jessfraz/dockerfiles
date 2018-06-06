@@ -97,7 +97,7 @@ ORPort 9001
 # OutboundBindAddress 10.0.0.5
 
 ## A handle for your relay, so people don't have to refer to it by key.
-Nickname hacktheplanet
+Nickname ${RELAY_NICKNAME}
 
 ## Define these to limit how much relayed traffic you will allow. Your
 ## own traffic is still unthrottled. Note that RelayBandwidthRate must
@@ -107,6 +107,8 @@ Nickname hacktheplanet
 ## 2^20, etc.
 #RelayBandwidthRate 100 KBytes  # Throttle traffic to 100KB/s (800Kbps)
 #RelayBandwidthBurst 200 KBytes # But allow bursts up to 200KB (1600Kb)
+RelayBandwidthRate ${RELAY_BANDWIDTH_RATE}
+RelayBandwidthBurst ${RELAY_BANDWIDTH_BURST}
 
 ## Use these to restrict the maximum traffic per day, week, or month.
 ## Note that this threshold applies separately to sent and received bytes,
