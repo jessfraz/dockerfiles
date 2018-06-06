@@ -49,7 +49,7 @@ RUN apt-get update && apt-get install -y \
 	&& /usr/sbin/update-locale LANG=en_US.UTF-8 \
 	&& rm -rf /var/lib/apt/lists/*
 
-ENV RSTUDIO_VERSION 1.1.447
+ENV RSTUDIO_VERSION 1.1.453
 
 # Download the source
 RUN buildDeps=' \
