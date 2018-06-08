@@ -7,7 +7,8 @@ RUN apk add --no-cache \
 	openjdk8-jre-base \
 	lapack \
 	python \
-	py2-pip
+	py2-pip \
+	py2-numpy
 
 # Install the requirements
 RUN set -x \
