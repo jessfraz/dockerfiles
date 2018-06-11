@@ -1,11 +1,16 @@
-FROM python:3-alpine
+FROM python:2-alpine
 
 RUN apk add --no-cache --virtual .build-deps \
 		build-base \
-	&& pip3 install --no-cache-dir  \
+		git \
+	&& git clone --depth 1 https://github.com/Runscope/requestbin /src \
+    && pip install -r /src/requirements.txt \
+	&& pip install --no-cache-dir  \
 		gevent \
 		gunicorn \
-		requestbin \
+    && rm -rf ~/.pip/cache \
 	&& apk del .build-deps
 
-CMD ["gunicorn", "-b", "0.0.0.0:8080", "requestbin:app", "--worker-class", "gevent"]
+WORKDIR /src
+
+CMD ["gunicorn", "-b", "0.0.0.0:8080", "requestbin:app", "-k", "gevent"]
