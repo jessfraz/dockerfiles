@@ -6,7 +6,7 @@
 #	-v $HOME/rscripts:/root/rscripts \
 #	--device /dev/dri \
 #	--name rstudio \
-#	jess/rsudio
+#	jess/rstudio
 #
 
 # Base docker image
