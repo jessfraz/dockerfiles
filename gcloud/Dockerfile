@@ -5,7 +5,7 @@ RUN set -x \
 		curl \
 		ca-certificates \
 		tar \
-	&& curl -sSL -o /tmp/google-cloud-sdk.tar.gz https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz \
+	&& curl -sSL -o /tmp/google-cloud-sdk.tar.gz https://dl.google.com/dl/cloudsdk/channels/rapid/google-cloud-sdk.tar.gz \
 	&& mkdir -p /usr/src/google-cloud-sdk \
 	&& tar -xzf /tmp/google-cloud-sdk.tar.gz -C /usr/src/google-cloud-sdk --strip-components 1 \
 	&& rm /tmp/google-cloud-sdk.tar.gz \
