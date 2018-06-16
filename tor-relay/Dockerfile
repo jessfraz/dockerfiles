@@ -34,7 +34,7 @@ COPY torrc.exit /etc/tor/torrc.exit
 
 # copy the run script
 COPY run.sh /run.sh
-RUN chmod u+rwx /run.sh
+RUN chmod ugo+rx /run.sh
 
 # default environment variables
 ENV RELAY_NICKNAME hacktheplanet
