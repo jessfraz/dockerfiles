@@ -16,6 +16,7 @@ RUN apt-get update && apt-get install -y \
 RUN cd /usr/src \
 	&& curl -L -O "https://github.com/PowerShell/PowerShell/releases/download/v${POWERSHELL_VERSION}/powershell-preview_${POWERSHELL_VERSION}-1.debian.9_amd64.deb" \
 	&& dpkg -i "powershell-preview_${POWERSHELL_VERSION}-1.debian.9_amd64.deb" \
+	&& ln -snf /opt/microsoft/powershell/6-preview/pwsh /usr/bin/pwsh \
 	&& apt-get install -fy \
 	&& rm -rf /var/lib/apt/lists/* /usr/src/*
 
