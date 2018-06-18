@@ -100,6 +100,7 @@ hashicorp/consul
 coredns/coredns
 CouchPotato/CouchPotatoServer
 curl/curl
+GoogleCloudPlatform/cloud-sdk-docker
 google/gitiles
 bazelbuild/bazel
 google/guetzli
