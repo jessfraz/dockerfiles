@@ -126,6 +126,7 @@ hashicorp/terraform
 kdlucas/byte-unixbench
 mitchellh/vagrant
 hashicorp/vault
+v2tec/watchtower
 wireguard/wireguard
 znc/znc
 apache/zookeeper
