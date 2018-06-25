@@ -94,15 +94,13 @@ install_kernel(){
 
 
 	# Install Wireguard VPN into the kernel.
-	if [[ ! -f "${DIR}/net/wireguard/allowedips.c" ]]; then
+	if [[ "$OPT" == "wireguard" ]] && [[ ! -f "${DIR}/net/wireguard/allowedips.c" ]]; then
 		echo "Applying patch for Wireguard VPN..."
 		(
 		cd "$DIR"
 		/wireguard/contrib/kernel-tree/create-patch.sh | patch -p1
 		)
 		echo "Patch for Wireguard VPN successfully applied!"
-	else
-		echo "Patch for Wireguard VPN has already been applied!"
 	fi
 
 	# Copy the config from /usr/src/config if it does not already exist.
@@ -118,7 +116,9 @@ install_kernel(){
 		fi
 
 		# Add the config options for Wireguard VPN.
-		echo "CONFIG_WIREGUARD=y" >> .config
+		if [[ "$OPT" == "wireguard" ]]; then
+			echo "CONFIG_WIREGUARD=y" >> .config
+		fi
 		)
 	fi
 
