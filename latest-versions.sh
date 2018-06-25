@@ -16,9 +16,9 @@ AUTH_HEADER="Authorization: token ${GITHUB_TOKEN}"
 get_latest() {
 	local repo=$1
 
-	local resp=$(curl -sSL -H "${AUTH_HEADER}" -H "${API_HEADER}" "${URI}/repos/${repo}/releases/latest")
-	local tag=$(echo $resp | jq -e --raw-output .tag_name)
-	local name=$(echo $resp | jq -e --raw-output .name)
+	local resp=$(curl -sSL -H "${AUTH_HEADER}" -H "${API_HEADER}" "${URI}/repos/${repo}/releases")
+	local tag=$(echo $resp | jq -e --raw-output .[0].tag_name)
+	local name=$(echo $resp | jq -e --raw-output .[0].name)
 
 	if [[ "$tag" == "null" ]]; then
 		# get the latest tag
@@ -86,7 +86,7 @@ compare() {
 		echo -e "\e[36m${dir}:\e[39m current ${current} | ${tag} | ${name}"
 	else
 		# add to the bad versions
-		if [[ "$dir" != "rstudio" ]] && [[ "$dir" != "bazel" ]] && [[ "$dir" != "azure-cli-extension-noelbundick" ]]; then
+		if [[ "$dir" != "rstudio" ]] && [[ "$dir" != "bazel" ]]; then
 			bad_versions+=( "${dir}" )
 		fi
 		echo -e "\e[31m${dir}:\e[39m current ${current} | ${tag} | ${name} | ${releases}"
