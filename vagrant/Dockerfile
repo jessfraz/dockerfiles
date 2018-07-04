@@ -14,7 +14,7 @@ RUN	apt-get update && apt-get install -y \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
-ENV	VAGRANT_VERSION 2.1.1
+ENV	VAGRANT_VERSION 2.1.2
 
 # download the source
 RUN buildDeps=' \

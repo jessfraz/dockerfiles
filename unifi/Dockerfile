@@ -21,7 +21,7 @@
 #
 # Access the controller in your browser at: https://127.0.0.1:8443
 #
-# If existing devices are showing up as "disconnected" once logged in, 
+# If existing devices are showing up as "disconnected" once logged in,
 # SSH into each device and run:
 # 	set-inform http://ip_of_docker_host:8080/inform
 #
@@ -82,7 +82,7 @@ RUN apt-get update && apt-get install -y \
 
 # unifi version
 # From: https://www.ubnt.com/download/unifi/
-ENV UNIFI_VERSION "5.7.23"
+ENV UNIFI_VERSION "5.8.24"
 
 # install unifi
 RUN buildDeps=' \
