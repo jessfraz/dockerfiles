@@ -132,6 +132,10 @@ install_kernel(){
 	echo "Installing the kernel..."
 	make install
 	)
+	(
+	echo "Stripping the modules..."
+	find /lib/modules/ -name *.ko -exec strip --strip-unneeded {} +
+	)
 }
 
 install_kernel $@
