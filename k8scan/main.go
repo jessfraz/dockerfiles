@@ -6,6 +6,7 @@ import (
 	"errors"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"net"
 	"net/http"
 	"os"
@@ -38,8 +39,15 @@ func main() {
 		}
 	}()
 
+	// Set the logger to nil so we ignore messages from the Dial that don't matter.
+	// See: https://github.com/golang/go/issues/19895#issuecomment-292793756
+	log.SetFlags(0)
+	log.SetOutput(ioutil.Discard)
+
 	logrus.Infof("Scanning for Kubernetes Dashboards and API Servers on %s over port range %d-%d", cidr, beginPort, endPort)
 	logrus.Infof("This may take a bit...")
+
+	startTime := time.Now()
 
 	ip, ipnet, err := net.ParseCIDR(cidr)
 	if err != nil {
@@ -80,6 +88,9 @@ func main() {
 	}
 
 	wg.Wait()
+
+	since := time.Since(startTime)
+	logrus.Infof("Scan took: %s", since.String())
 }
 
 func portOpen(ip string, port int) bool {
