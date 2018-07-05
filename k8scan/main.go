@@ -82,7 +82,7 @@ func main() {
 				}
 				fmt.Printf("%s:%d\t%s\t%s\t%s\n",
 					ip, port,
-					info.Organization.Handle, info.Organization.Name, info.Organization.Reference)
+					info.Net.Organization.Handle, info.Net.Organization.Name, info.Net.Organization.Reference)
 			}
 		}(ip.String())
 	}
@@ -153,6 +153,10 @@ func isKubernetesDashboard(ip string, port int) bool {
 }
 
 type ARINResponse struct {
+	Net NetJSON `json:"net,omitempty"`
+}
+
+type NetJSON struct {
 	Organization OrganizationJSON `json:"orgReg,omitempty"`
 }
 
