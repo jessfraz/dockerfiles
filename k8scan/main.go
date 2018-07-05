@@ -143,7 +143,7 @@ func isKubernetesDashboard(ip string, port int) bool {
 	}
 
 	body := strings.ToLower(string(b))
-	if strings.Contains(body, "kubernetes") ||
+	if (strings.Contains(body, "kubernetes") && strings.Contains(body, "pod")) ||
 		(strings.Contains(body, "versions") && strings.Contains(body, "serverAddress")) {
 		logrus.Infof("uri: %s", uri)
 		return true
@@ -157,7 +157,7 @@ type ARINResponse struct {
 }
 
 type NetJSON struct {
-	Organization OrganizationJSON `json:"orgReg,omitempty"`
+	Organization OrganizationJSON `json:"orgRef,omitempty"`
 }
 
 type OrganizationJSON struct {
