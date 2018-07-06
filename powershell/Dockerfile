@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM debian:sid
 LABEL maintainer "Christian Koep <christiankoep@gmail.com>"
 
 ENV POWERSHELL_VERSION 6.1.0-preview.3

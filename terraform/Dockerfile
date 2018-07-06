@@ -24,7 +24,7 @@ RUN buildDeps=' \
 	&& mkdir -p /go/src/github.com/hashicorp /etc/terraform.d \
 	&& git clone --depth 1 --branch ${TERRAFORM_VERSION} https://github.com/hashicorp/terraform /go/src/github.com/hashicorp/terraform \
 	&& cd /go/src/github.com/hashicorp/terraform \
-	&& XC_ARCH="amd64" XC_OS="linux" make fmt bin \
+	&& CGO_ENABLED=0 XC_ARCH="amd64" XC_OS="linux" make fmt bin \
 	&& mv bin/terraform /usr/bin/terraform \
 	&& apk del $buildDeps \
 	&& rm -rf /go \
