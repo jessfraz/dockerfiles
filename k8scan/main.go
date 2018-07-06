@@ -56,12 +56,15 @@ func main() {
 
 	var wg sync.WaitGroup
 	for ip := ip.Mask(ipnet.Mask); ipnet.Contains(ip); inc(ip) {
-		wg.Add(1)
-		go func(ip string) {
-			defer wg.Done()
+		for port := beginPort; port <= endPort; port++ {
+			wg.Add(1)
+			go func(ip string, port int) {
+				defer wg.Done()
 
-			scanIP(ip)
-		}(ip.String())
+				scanIP(ip, port)
+
+			}(ip.String(), port)
+		}
 	}
 
 	wg.Wait()
@@ -70,31 +73,29 @@ func main() {
 	logrus.Infof("Scan took: %s", since.String())
 }
 
-func scanIP(ip string) {
-	for port := beginPort; port <= endPort; port++ {
-		// Check if the port is open.
-		ok := portOpen(ip, port)
-		if !ok {
-			return
-		}
-
-		// Check if it's a kubernetes dashboard.
-		ok = isKubernetesDashboard(ip, port)
-		if !ok {
-			return
-		}
-
-		fmt.Printf("%s:%d\n", ip, port)
-		// Get the info for the ip address.
-		info, err := getIPInfo(ip)
-		if err != nil {
-			logrus.Warnf("ip info err: %v", err)
-			return
-		}
-		fmt.Printf("%s:%d\t%s\t%s\t%s\n",
-			ip, port,
-			info.Net.Organization.Handle, info.Net.Organization.Name, info.Net.Organization.Reference)
+func scanIP(ip string, port int) {
+	// Check if the port is open.
+	ok := portOpen(ip, port)
+	if !ok {
+		return
 	}
+
+	// Check if it's a kubernetes dashboard.
+	ok = isKubernetesDashboard(ip, port)
+	if !ok {
+		return
+	}
+
+	fmt.Printf("%s:%d\n", ip, port)
+	// Get the info for the ip address.
+	info, err := getIPInfo(ip)
+	if err != nil {
+		logrus.Warnf("ip info err: %v", err)
+		return
+	}
+	fmt.Printf("%s:%d\t%s\t%s\t%s\n",
+		ip, port,
+		info.Net.Organization.Handle, info.Net.Organization.Name, info.Net.Organization.Reference)
 }
 
 func portOpen(ip string, port int) bool {
