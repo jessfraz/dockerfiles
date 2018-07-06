@@ -7,8 +7,8 @@ RUN apk add --no-cache \
 	openjdk8-jre-base \
 	lapack \
 	python \
-	py2-pip \
-	py2-numpy
+	py-pip \
+	py-numpy
 
 # Install the requirements
 RUN set -x \
@@ -17,7 +17,7 @@ RUN set -x \
 		git \
 		lapack-dev \
 		libffi-dev \
-		libressl-dev \
+		openssl-dev \
 		python-dev \
 	&& ln -s /usr/include/locale.h /usr/include/xlocale.h \
 	&& git clone --depth 1 https://github.com/sarahsharp/foss-heartbeat.git /usr/src/foss-heartbeat \
