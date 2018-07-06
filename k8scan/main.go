@@ -147,8 +147,9 @@ func isKubernetesDashboard(ip string, port int) bool {
 	}
 
 	body := strings.ToLower(string(b))
-	if (strings.Contains(body, "kubernetes") && strings.Contains(body, "pod")) ||
-		(strings.Contains(body, "versions") && strings.Contains(body, "serverAddress")) {
+	if (strings.Contains(body, "kubernetes") && strings.Contains(body, "dashboard")) ||
+		(strings.Contains(body, `"versions"`) && strings.Contains(body, `"serverAddress`)) ||
+		(strings.Contains(body, `"paths"`) && strings.Contains(body, `"/api"`)) {
 		logrus.Infof("uri: %s", uri)
 		return true
 	}
