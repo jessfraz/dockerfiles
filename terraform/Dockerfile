@@ -26,7 +26,7 @@ RUN go install ./vendor/...
 RUN XC_ARCH="amd64" XC_OS="linux" LD_FLAGS=" -extldflags -static" make bin \
 	&& mv bin/terraform /usr/bin/terraform
 
-FROM scratch
+FROM alpine:latest
 
 COPY --from=builder /usr/bin/terraform /usr/bin/terraform
 COPY --from=builder /etc/ssl/certs/ /etc/ssl/certs
