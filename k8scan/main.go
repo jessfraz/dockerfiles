@@ -20,11 +20,13 @@ import (
 )
 
 const (
-	cidr      = "0.0.0.0/0"
-	beginPort = 80
-	endPort   = 65535
+	cidr = "0.0.0.0/0"
 
 	arinAPIEndpoint = "http://whois.arin.net/rest/ip/%s"
+)
+
+var (
+	ports = []int{80, 443, 9001, 8001}
 )
 
 func main() {
@@ -44,7 +46,7 @@ func main() {
 	log.SetFlags(0)
 	log.SetOutput(ioutil.Discard)
 
-	logrus.Infof("Scanning for Kubernetes Dashboards and API Servers on %s over port range %d-%d", cidr, beginPort, endPort)
+	logrus.Infof("Scanning for Kubernetes Dashboards and API Servers on %s over port range %#v", cidr, ports)
 	logrus.Infof("This may take a bit...")
 
 	startTime := time.Now()
@@ -56,7 +58,7 @@ func main() {
 
 	var wg sync.WaitGroup
 	for ip := ip.Mask(ipnet.Mask); ipnet.Contains(ip); inc(ip) {
-		for port := beginPort; port <= endPort; port++ {
+		for _, port := range ports {
 			wg.Add(1)
 			go func(ip string, port int) {
 				defer wg.Done()
