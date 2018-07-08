@@ -113,7 +113,7 @@ func portOpen(ip string, port int) bool {
 
 func isKubernetesDashboard(ip string, port int) bool {
 	client := &http.Client{
-		Timeout: time.Second * 3,
+		Timeout: time.Second * 10,
 		Transport: &http.Transport{
 			TLSClientConfig: &tls.Config{
 				InsecureSkipVerify: true,
