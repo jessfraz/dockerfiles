@@ -178,7 +178,7 @@ ContactInfo ${CONTACT_GPG_FINGERPRINT} ${CONTACT_NAME} ${CONTACT_EMAIL}
 ##
 #ExitPolicy accept *:6660-6667,reject *:* # allow irc ports but no more
 #ExitPolicy accept *:119 # accept nntp as well as default exit policy
-#ExitPolicy reject *:* # no exits allowed
+ExitPolicy reject *:* # no exits allowed
 
 ## Bridge relays (or "bridges") are Tor relays that aren't listed in the
 ## main directory. Since there is no complete public list of them, even an
