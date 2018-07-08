@@ -85,18 +85,13 @@ RUN apt-get update && apt-get install -y \
 ENV UNIFI_VERSION "5.8.24"
 
 # install unifi
-RUN buildDeps=' \
+RUN apt-get update && apt-get install -y \
 		curl \
-	' \
-	set -x \
-	&& apt-get update && apt-get install -y \
- 		$buildDeps \
 		--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& curl -o /tmp/unifi.deb -L "http://dl.ubnt.com/unifi/${UNIFI_VERSION}/unifi_sysvinit_all.deb" \
 	&& dpkg -i /tmp/unifi.deb \
 	&& rm -rf /tmp/unifi.deb \
-	&& apt-get purge -y $buildDeps \
 	&& echo "Build complete."
 
 WORKDIR /config
