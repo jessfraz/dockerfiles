@@ -28,4 +28,4 @@ FROM scratch
 COPY --from=builder /usr/bin/k8scan /usr/bin/k8scan
 COPY --from=builder /etc/ssl/certs/ /etc/ssl/certs
 
-CMD [ "k8scan" ]
+ENTRYPOINT [ "k8scan" ]
