@@ -266,6 +266,9 @@ ARIN: %s
 	  %s
 `,
 			time.Now().Format(time.UnixDate),
+			ip,
+			port,
+			uri,
 			arinInfo.Net.Organization.Handle,
 			arinInfo.Net.Organization.Name,
 			arinInfo.Net.Organization.Reference,
