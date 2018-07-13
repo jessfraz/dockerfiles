@@ -6,7 +6,7 @@
 # Go tests use this curl binary for integration tests.
 #
 
-FROM alpine:edge
+FROM alpine:latest
 
 RUN apk add --no-cache \
 	ca-certificates \
