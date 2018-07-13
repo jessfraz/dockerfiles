@@ -12,6 +12,7 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
+	"strconv"
 	"strings"
 	"sync"
 	"syscall"
@@ -35,7 +36,8 @@ var (
 
 	cidr string
 
-	ports = []int{80, 443, 9001, 8001}
+	defaultPorts = intSlice{80, 443, 9001, 8001}
+	ports        intSlice
 
 	mailgunDomain  string
 	mailgunAPIKey  string
@@ -44,11 +46,69 @@ var (
 	debug bool
 )
 
+// intSlice is a slice of ints
+type intSlice []int
+
+// implement the flag interface for intSlice
+func (i *intSlice) String() (out string) {
+	for k, v := range *i {
+		if k < len(*i)-1 {
+			out += fmt.Sprintf("%d, ", v)
+		} else {
+			out += fmt.Sprintf("%d", v)
+		}
+	}
+	return out
+}
+
+func (i *intSlice) Set(value string) error {
+	// Set the default if nothing was given.
+	if len(value) <= 0 {
+		*i = defaultPorts
+		return nil
+	}
+
+	// Split on "," for individual ports and ranges.
+	r := strings.Split(value, ",")
+	for _, pr := range r {
+		// Split on "-" to denote a range.
+		if strings.Contains(pr, "-") {
+			p := strings.SplitN(pr, "-", 2)
+			begin, err := strconv.Atoi(p[0])
+			if err != nil {
+				return err
+			}
+			end, err := strconv.Atoi(p[1])
+			if err != nil {
+				return err
+			}
+			if begin > end {
+				return fmt.Errorf("end port can not be greater than the beginning port: %d > %d", end, begin)
+			}
+			for port := begin; port <= end; port++ {
+				*i = append(*i, port)
+			}
+
+			return nil
+		}
+
+		// It is not a range just parse the port
+		port, err := strconv.Atoi(pr)
+		if err != nil {
+			return err
+		}
+		*i = append(*i, port)
+	}
+
+	return nil
+}
+
 func init() {
 	flag.DurationVar(&timeoutPing, "timeout-ping", 2*time.Second, "Timeout for checking that the port is open")
 	flag.DurationVar(&timeoutGet, "timeout-get", 10*time.Second, "Timeout for getting the contents of the URL")
 
 	flag.StringVar(&cidr, "cidr", defaultCIDR, "IP CIDR to scan")
+	flag.Var(&ports, "ports", fmt.Sprintf("Ports to scan (ex. 80-443 or 80,443,8080 or 1-20,22,80-443) (default: %s)", defaultPorts.String()))
 
 	flag.StringVar(&mailgunAPIKey, "mailgun-api-key", "", "Mailgun API Key to use for sending email (optional)")
 	flag.StringVar(&mailgunDomain, "mailgun-domain", "", "Mailgun Domain to use for sending email (optional)")
@@ -207,14 +267,17 @@ func isKubernetesDashboard(ip string, port int) (bool, string) {
 	return false, ""
 }
 
+// ARINResponse describes the data struct that holds the response from ARIN.
 type ARINResponse struct {
 	Net NetJSON `json:"net,omitempty"`
 }
 
+// NETJSON holds the net data from the ARIN response.
 type NetJSON struct {
 	Organization OrganizationJSON `json:"orgRef,omitempty"`
 }
 
+// OrganizationJSON holds the organization data from the ARIN response.
 type OrganizationJSON struct {
 	Handle    string `json:"@handle,omitempty"`
 	Name      string `json:"@name,omitempty"`

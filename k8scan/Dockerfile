@@ -16,8 +16,15 @@ RUN set -x \
 		libc-dev \
 		libgcc \
 		make \
+	&& go get honnef.co/go/tools/cmd/staticcheck \
+	&& go get github.com/golang/lint/golint \
 	&& cd /go/src/k8scan/ \
 	&& go get -d . \
+	&& gofmt -s -l . \
+	&& go vet ./... \
+	&& golint ./... \
+	&& staticcheck ./... \
+	&& go test ./... \
 	&& CGO_ENABLED=0 go build -a -tags netgo -ldflags '-w -extldflags "-static"' -o /usr/bin/k8scan *.go \
 	&& apk del .build-deps \
 	&& rm -rf /go \
@@ -29,3 +36,4 @@ COPY --from=builder /usr/bin/k8scan /usr/bin/k8scan
 COPY --from=builder /etc/ssl/certs/ /etc/ssl/certs
 
 ENTRYPOINT [ "k8scan" ]
+CMD [ "--help" ]
