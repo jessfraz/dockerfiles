@@ -31,7 +31,7 @@ RUN set -x \
 	&& CGO_ENABLED=0 go build -a -tags netgo -ldflags '-w -extldflags "-static"' -o /usr/bin/k8scan *.go \
 	&& echo "Build complete."
 
-FROM scratch
+FROM r.j3ss.co/masscan
 
 COPY --from=builder /usr/bin/k8scan /usr/bin/k8scan
 COPY --from=builder /etc/ssl/certs/ /etc/ssl/certs

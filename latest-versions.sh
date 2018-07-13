@@ -107,6 +107,7 @@ google/guetzli
 irssi/irssi
 cryptodotis/irssi-otr
 keepassxreboot/keepassxc
+robertdavidgraham/masscan
 zyedidia/micro
 bitly/oauth2_proxy
 Tautulli/Tautulli
