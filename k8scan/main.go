@@ -36,7 +36,7 @@ var (
 
 	cidr string
 
-	defaultPorts = intSlice{80, 443, 9001, 8001}
+	defaultPorts = intSlice{80, 443, 8001, 9001}
 	ports        intSlice
 
 	mailgunDomain  string
@@ -53,7 +53,7 @@ type intSlice []int
 func (i *intSlice) String() (out string) {
 	for k, v := range *i {
 		if k < len(*i)-1 {
-			out += fmt.Sprintf("%d, ", v)
+			out += fmt.Sprintf("%d,", v)
 		} else {
 			out += fmt.Sprintf("%d", v)
 		}
@@ -89,7 +89,7 @@ func (i *intSlice) Set(value string) error {
 				*i = append(*i, port)
 			}
 
-			return nil
+			continue
 		}
 
 		// It is not a range just parse the port
@@ -272,7 +272,7 @@ type ARINResponse struct {
 	Net NetJSON `json:"net,omitempty"`
 }
 
-// NETJSON holds the net data from the ARIN response.
+// NetJSON holds the net data from the ARIN response.
 type NetJSON struct {
 	Organization OrganizationJSON `json:"orgRef,omitempty"`
 }

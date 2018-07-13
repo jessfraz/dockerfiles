@@ -1,8 +1,9 @@
 package main
 
 import (
-	"reflect"
 	"testing"
+
+	"github.com/google/go-cmp/cmp"
 )
 
 func TestARINResponse(t *testing.T) {
@@ -54,7 +55,7 @@ func TestParsePortRange(t *testing.T) {
 		if err := i.Set(testFunc.given); err != nil {
 			t.Fatal(err)
 		}
-		if reflect.DeepEqual(testFunc.expected, i) {
+		if !cmp.Equal(testFunc.expected, i) {
 			t.Fatalf("expected: %#v\ngot: %#v", testFunc.expected, i)
 		}
 	}

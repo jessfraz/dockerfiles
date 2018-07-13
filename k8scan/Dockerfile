@@ -5,20 +5,23 @@ ENV PATH /go/bin:/usr/local/go/bin:$PATH
 ENV GOPATH /go
 
 RUN	apk add --no-cache \
-	ca-certificates
+	ca-certificates \
+	git \
+	gcc \
+	libc-dev \
+	libgcc \
+	make
 
-COPY main.go /go/src/k8scan/
+# Get go deps for tests etc.
+RUN go get honnef.co/go/tools/cmd/staticcheck \
+		github.com/golang/lint/golint \
+		github.com/google/go-cmp/cmp
+
+WORKDIR /go/src/k8scan
+
+COPY *.go /go/src/k8scan/
 
 RUN set -x \
-	&& apk add --no-cache --virtual .build-deps \
-		git \
-		gcc \
-		libc-dev \
-		libgcc \
-		make \
-	&& go get honnef.co/go/tools/cmd/staticcheck \
-	&& go get github.com/golang/lint/golint \
-	&& cd /go/src/k8scan/ \
 	&& go get -d . \
 	&& gofmt -s -l . \
 	&& go vet ./... \
@@ -26,8 +29,6 @@ RUN set -x \
 	&& staticcheck ./... \
 	&& go test ./... \
 	&& CGO_ENABLED=0 go build -a -tags netgo -ldflags '-w -extldflags "-static"' -o /usr/bin/k8scan *.go \
-	&& apk del .build-deps \
-	&& rm -rf /go \
 	&& echo "Build complete."
 
 FROM scratch
