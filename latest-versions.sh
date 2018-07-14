@@ -113,6 +113,7 @@ bitly/oauth2_proxy
 Tautulli/Tautulli
 perkeep/perkeep
 powershell/powershell
+Radarr/Radarr
 cesanta/docker_auth
 ricochet-im/ricochet
 reverse-shell/routersploit
