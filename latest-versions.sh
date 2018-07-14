@@ -109,6 +109,7 @@ cryptodotis/irssi-otr
 keepassxreboot/keepassxc
 robertdavidgraham/masscan
 zyedidia/micro
+nzbget/nzbget
 bitly/oauth2_proxy
 Tautulli/Tautulli
 perkeep/perkeep
