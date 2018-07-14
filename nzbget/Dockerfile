@@ -18,11 +18,13 @@ RUN wget "https://github.com/nzbget/nzbget/releases/download/v${NZBGET_VERSION}/
     && git clone --depth=1 "https://github.com/clinton-hall/nzbToMedia.git" /opt/nzbget/scripts/nzbToMedia \
 	&& rm -f /tmp/nzbget.bin
 
+COPY nzbget.conf /config/nzbget.conf
+
 RUN addgroup -g 666 -S nzbget \
 	&& adduser -u 666 -SHG nzbget nzbget \
 	&& mkdir -p /movies /downloads /comics /tvseries \
-	&& chown -R nzbget:nzbget /movies /downloads /comics /tvseries /opt/nzbget
+	&& chown -R nzbget:nzbget /movies /downloads /comics /tvseries /config /opt/nzbget
 
 USER nzbget
 
-ENTRYPOINT [ "/opt/nzbget/nzbget", "-s", "-o", "FlushQueue=no", "-o", "OutputMode=loggable", "-c", "/opt/nzbget/nzbget.conf" ]
+ENTRYPOINT [ "/opt/nzbget/nzbget", "-s", "-o", "FlushQueue=no", "-o", "OutputMode=loggable", "-c", "/config/nzbget.conf" ]
