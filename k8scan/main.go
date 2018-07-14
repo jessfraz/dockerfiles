@@ -466,8 +466,14 @@ func doMasscan() ([]MasscanResult, error) {
 	}
 
 	m := []MasscanResult{}
+
+	// Return early if empty.
+	if len(b) <= 0 {
+		return m, nil
+	}
+
 	if err := json.Unmarshal(b, &m); err != nil {
-		return nil, fmt.Errorf("unmarshal json failed: %v", err)
+		return nil, fmt.Errorf("unmarshal json failed: %v\nbody: %s", err, string(b))
 	}
 
 	logrus.Debugf("masscan result: %#v", m)
@@ -480,5 +486,11 @@ func cleanMasscanOutputFile(file string) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-	return []byte(strings.TrimSuffix(strings.TrimSpace(string(b)), ",\n]") + "]"), nil
+
+	s := strings.TrimSpace(string(b))
+	if len(s) <= 0 {
+		return nil, nil
+	}
+
+	return []byte(strings.TrimSuffix(s, ",\n]") + "]"), nil
 }
