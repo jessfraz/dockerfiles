@@ -176,9 +176,7 @@ func main() {
 			logrus.Fatal(err)
 		}
 
-		if len(m) <= 0 {
-			logrus.Warn("No open ports found")
-		}
+		logrus.Infof("Found %d open ports", len(m))
 
 		for _, result := range m {
 			for _, port := range result.Ports {
