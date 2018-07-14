@@ -246,7 +246,7 @@ func scanIP(ip string, port int) {
 func portOpen(ip string, port int) bool {
 	c, err := net.DialTimeout("tcp", fmt.Sprintf("%s:%d", ip, port), timeoutPing)
 	if err != nil {
-		logrus.Debugf("listen at %s:%s failed: %v", ip, port, err)
+		logrus.Debugf("listen at %s:%d failed: %v", ip, port, err)
 		return false
 	}
 	if c != nil {
@@ -284,7 +284,7 @@ func isKubernetesDashboard(ip string, port int) (bool, string) {
 		resp, err = client.Get(uri)
 	}
 	if err != nil {
-		logrus.Debugf("getting %s:%s failed: %v", ip, port, err)
+		logrus.Debugf("getting %s:%d failed: %v", ip, port, err)
 		return false, ""
 	}
 	defer resp.Body.Close()
