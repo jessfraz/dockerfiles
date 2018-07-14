@@ -28,6 +28,10 @@ RUN XC_ARCH="amd64" XC_OS="linux" LD_FLAGS=" -extldflags -static" make bin \
 
 FROM alpine:latest
 
+RUN apk add --no-cache \
+	bash \
+	tar
+
 COPY --from=builder /usr/bin/terraform /usr/bin/terraform
 COPY --from=builder /etc/ssl/certs/ /etc/ssl/certs
 
