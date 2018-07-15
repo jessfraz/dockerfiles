@@ -95,6 +95,7 @@ compare() {
 
 projects=(
 noelbundick/azure-cli-extension-noelbundick
+browsh-org/browsh
 certbot/certbot
 hashicorp/consul
 coredns/coredns
