@@ -109,6 +109,7 @@ irssi/irssi
 cryptodotis/irssi-otr
 keepassxreboot/keepassxc
 robertdavidgraham/masscan
+MidnightCommander/mc
 zyedidia/micro
 nzbget/nzbget
 bitly/oauth2_proxy
