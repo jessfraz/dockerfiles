@@ -1,0 +1,29 @@
+# required by sys-apps/apparmor-utils (argument)
+=sys-apps/apparmor-utils-2.12.0 ~amd64
+# required by app-editors/neovim-0.3.0::gentoo
+# required by app-editors/neovim (argument)
+=dev-libs/msgpack-1.1.0 ~amd64
+# required by sys-apps/nvme-cli (argument)
+=sys-apps/nvme-cli-1.5 ~amd64
+# required by app-editors/neovim (argument)
+=app-editors/neovim-0.3.0 ~amd64
+# required by sys-apps/fwupdate-12::gentoo
+# required by sys-apps/fwupdate (argument)
+=sys-libs/efivar-35 ~amd64
+# required by sys-apps/fwupdate-12::gentoo
+# required by sys-apps/fwupdate (argument)
+=sys-libs/libsmbios-2.4.2 ~amd64
+# required by sys-apps/apparmor-utils-2.12.0::gentoo
+# required by sys-apps/apparmor-utils (argument)
+=sys-apps/apparmor-2.12.0 ~amd64
+# required by sys-libs/nss-usrfiles (argument)
+=sys-libs/nss-usrfiles-2.18.1 **
+# required by sys-apps/fwupd-1.1.0-r1::gentoo
+# required by sys-apps/fwupd (argument)
+=dev-libs/appstream-glib-0.7.9 ~amd64
+# required by net-wireless/iwd (argument)
+=net-wireless/iwd-0.3 ~amd64
+# required by sys-apps/fwupd (argument)
+=sys-apps/fwupd-1.1.0-r1 ~amd64
+# required by sys-apps/fwupdate (argument)
+=sys-apps/fwupdate-12 ~amd64

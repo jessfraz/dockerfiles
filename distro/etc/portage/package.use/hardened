@@ -1,0 +1,14 @@
+# Mike Gilbert <floppym@gentoo.org> (12 Mar 2018)
+# Satisfy REQUIRED_USE by default, bug 650030.
+net-nds/rpcbind warmstarts
+
+# Magnus Granberg <zorry@gentoo.org> (14 Jan, 2015)
+# We need to have the pic flag on.
+# Bugs 358929, 490276, 513464, 523736 and 512208.
+media-libs/x264 pic
+media-video/ffmpeg pic
+media-video/libav pic
+media-libs/mesa pic
+media-libs/libpostproc pic
+media-libs/xvid pic
+app-emulation/open-vm-tools pic

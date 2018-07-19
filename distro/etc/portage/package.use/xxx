@@ -1,0 +1,31 @@
+# required by sys-auth/consolekit-1.2.0::gentoo
+# required by sys-apps/fwupd-1.1.0-r1::gentoo[-systemd]
+# required by sys-apps/fwupd (argument)
+>=dev-libs/glib-2.52.3 dbus
+# required by x11-libs/gtk+-3.22.30::gentoo
+# required by dev-libs/appstream-glib-0.7.9::gentoo
+# required by sys-apps/fwupd-1.1.0-r1::gentoo
+# required by sys-apps/fwupd (argument)
+>=x11-libs/cairo-1.14.12 X
+# required by app-editors/neovim-0.3.0::gentoo
+# required by app-editors/neovim (argument)
+>=dev-lua/mpack-1.0.4 luajit
+# required by sys-apps/systemd-238-r7::gentoo
+# required by sys-apps/gentoo-systemd-integration-7::gentoo
+>=sys-apps/dbus-1.10.24 systemd
+# required by virtual/libusb-1-r2::gentoo
+# required by dev-libs/libgusb-0.2.11::gentoo
+# required by sys-apps/fwupd-1.1.0-r1::gentoo
+# required by sys-apps/fwupd (argument)
+>=dev-libs/libusb-1.0.21 udev
+# required by dev-libs/libgusb-0.2.11::gentoo
+# required by sys-apps/fwupd-1.1.0-r1::gentoo
+# required by sys-apps/fwupd (argument)
+>=virtual/libusb-1-r2 udev
+# required by app-editors/neovim-0.3.0::gentoo
+# required by app-editors/neovim (argument)
+>=dev-lua/lpeg-1.0.1 luajit
+# required by sys-auth/polkit-0.113-r4::gentoo[-elogind,-systemd]
+# required by sys-apps/fwupd-1.1.0-r1::gentoo
+# required by sys-apps/fwupd (argument)
+>=sys-auth/consolekit-1.2.0 policykit
