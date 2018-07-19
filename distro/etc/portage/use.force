@@ -1,3 +1,0 @@
-# Make sure people don't accidentally turn of ssp/pie in important packages.
-pie
-ssp

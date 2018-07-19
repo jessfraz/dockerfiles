@@ -1,6 +1,0 @@
-package.use.force
-# Mike Gilbert <floppym@gentoo.org> (22 Apr 2015)
-# Force systemd to avoid depgraph breakage, bug 547360.
-virtual/libgudev systemd
-virtual/libudev systemd
-virtual/udev systemd
