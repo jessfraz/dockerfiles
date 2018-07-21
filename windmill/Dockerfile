@@ -1,6 +1,7 @@
 FROM ruby:alpine
 
 RUN	apk add --no-cache \
+	bash \
 	ca-certificates \
 	libxml2 \
 	libxslt \
@@ -27,4 +28,7 @@ RUN	set -x \
 
 WORKDIR /usr/src/windmill
 
-CMD [ "rake", "db:setup", "&&", "ruby", "server.rb" ]
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+
+ENTRYPOINT [ "entrypoint.sh" ]
+CMD [ "ruby", "server.rb" ]
