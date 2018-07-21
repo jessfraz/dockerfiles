@@ -113,6 +113,7 @@ MidnightCommander/mc
 zyedidia/micro
 nzbget/nzbget
 bitly/oauth2_proxy
+facebook/osquery
 Tautulli/Tautulli
 perkeep/perkeep
 powershell/powershell
