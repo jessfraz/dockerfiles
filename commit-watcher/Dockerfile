@@ -11,19 +11,22 @@ RUN	apk add --no-cache \
 
 RUN	set -x \
 	&& apk add --no-cache --virtual .build-deps \
-	build-base \
-	cmake \
-	libxml2-dev \
-	libxslt-dev \
-	ruby-json \
+		build-base \
+		cmake \
+		libxml2-dev \
+		libxslt-dev \
+		pkgconfig \
+		ruby-json \
 	&& git clone --depth 1 https://github.com/srcclr/commit-watcher.git /usr/src/commit-watcher \
-	&& cd /usr/src/commit-watcher \
-	&& gem install \
-		activesupport-json_encoder \
-		--no-rdoc --no-ri \
-	&& bundle config build.nokogiri --use-system-libraries \
-	&& bundle update sdoc \
-	&& bundle install \
+	&& ( \
+		cd /usr/src/commit-watcher \
+		&& gem install \
+			activesupport-json_encoder \
+			--no-rdoc --no-ri \
+		&& bundle config build.nokogiri --use-system-libraries \
+		&& bundle update sdoc \
+		&& bundle install \
+	) \
 	&& apk del .build-deps
 
 WORKDIR /usr/src/commit-watcher
