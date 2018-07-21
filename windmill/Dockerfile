@@ -31,4 +31,4 @@ WORKDIR /usr/src/windmill
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 
 ENTRYPOINT [ "entrypoint.sh" ]
-CMD [ "ruby", "server.rb" ]
+CMD [ "puma", "-C", "puma.rb" ]
