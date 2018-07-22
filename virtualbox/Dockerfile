@@ -28,10 +28,16 @@
 # then you can remove all the shit you copied
 # 	rm -rf /usr/share/virtualbox /usr/lib/virtualbox
 #
-FROM debian:sid
+FROM debian:stretch-slim
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt-get update && apt-get install -y \
+	libcurl3 \
+	libvpx4 \
+	--no-install-recommends \
+	&& rm -rf /var/lib/apt/lists/*
 
 RUN buildDeps=' \
 		ca-certificates \
