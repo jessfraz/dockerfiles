@@ -6,7 +6,7 @@
 #		-v /usr/share/X11/xkb:/usr/share/X11/xkb/:ro \
 #		-v $HOME/.config/keepassxc:/root/.config/keepassxc \
 #		-e DISPLAY=unix$DISPLAY \
-#		keepassxc
+#		jess/keepassxc
 #
 FROM alpine:edge
 LABEL maintainer "Christian Koep <christiankoep@gmail.com>"
