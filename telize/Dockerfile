@@ -4,7 +4,7 @@ RUN apk add --no-cache \
 	lua5.1-cjson \
 	luajit
 
-ENV NGINX_VERSION 1.15.1
+ENV NGINX_VERSION 1.15.2
 # https://github.com/simplresty/ngx_devel_kit/releases
 ENV NGX_DEVEL_KIT_VERSION v0.3.1rc1
 # https://github.com/openresty/lua-nginx-module/releases
