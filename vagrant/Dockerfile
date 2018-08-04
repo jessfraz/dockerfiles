@@ -2,17 +2,21 @@ FROM debian:sid-slim
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 RUN	apt-get update && apt-get install -y \
+	bridge-utils \
 	gcc \
 	libxslt-dev \
 	libxml2-dev \
+	libvirt0 \
 	libvirt-dev \
 	make \
 	pkg-config \
+	qemu-kvm \
 	ruby-dev \
 	ruby-fog \
 	zlib1g-dev \
 	--no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/*
+	&& rm -rf /var/lib/apt/lists/* \
+	&& ldconfig -p
 
 ENV	VAGRANT_VERSION 2.1.2
 

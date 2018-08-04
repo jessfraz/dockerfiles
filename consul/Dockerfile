@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
-ENV CONSUL_VERSION v1.2.1
+ENV CONSUL_VERSION v1.2.2
 
 RUN go get github.com/hashicorp/consul
 
