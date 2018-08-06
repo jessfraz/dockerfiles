@@ -11,7 +11,8 @@ FROM alpine:latest
 RUN apk add --no-cache \
 	ca-certificates \
 	git \
-	python
+	python \
+	py-pip
 
 # Get the source
 ENV PLEXPY_VERSION v2.1.18
