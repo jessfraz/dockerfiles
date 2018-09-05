@@ -1,31 +1,25 @@
-FROM alpine:edge
+FROM golang:1.10-alpine AS builder
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
-ENV PATH /go/bin:/usr/local/go/bin:$PATH
-ENV GOPATH /go
+RUN	apk --no-cache add \
+	ca-certificates \
+	git
+
+ENV PERKEEP_VERSION 0.10
+
+RUN mkdir -p /go/src/perkeep.org \
+	&& git clone --depth 1 --branch "${PERKEEP_VERSION}" https://camlistore.googlesource.com/camlistore.git /go/src/perkeep.org \
+	&& cd /go/src/perkeep.org \
+	&& go run make.go \
+	&& cp -vr /go/bin/* /usr/local/bin/ \
+	&& echo "Build complete."
+
+FROM alpine:latest
 
 RUN	apk --no-cache add \
 	ca-certificates
 
-ENV PERKEEP_VERSION 0.10
-
-RUN buildDeps=' \
-		go \
-		git \
-		gcc \
-		libc-dev \
-		libgcc \
-	' \
-	set -x \
-	&& apk --no-cache add $buildDeps \
-	&& mkdir -p /go/src/perkeep.org \
-	&& git clone --depth 1 --branch "${PERKEEP_VERSION}" https://camlistore.googlesource.com/camlistore.git /go/src/perkeep.org \
-	&& cd /go/src/perkeep.org \
-	&& go run make.go \
-	&& cp -r /go/bin/* /usr/local/bin/ \
-	&& apk del $buildDeps \
-	&& rm -rf /go \
-	&& echo "Build complete."
-
+COPY --from=builder /usr/local/bin/pk* /usr/bin/
+COPY --from=builder /usr/local/bin/perkeepd /usr/bin/perkeepd
 
 ENTRYPOINT [ "perkeepd" ]
