@@ -2,7 +2,9 @@ FROM alpine:latest
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 RUN apk add --no-cache \
-	ca-certificates
+	ca-certificates \
+	gmp \
+	libgomp
 
 RUN set -x \
 	&& apk add --no-cache --virtual .build-deps \
