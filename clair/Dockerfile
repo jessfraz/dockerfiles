@@ -24,4 +24,5 @@ RUN buildDeps=' \
 
 FROM alpine:latest
 COPY --from=builder /go/bin/clair /usr/bin/clair
+COPY --from=builder /etc/ssl/certs/ /etc/ssl/certs
 ENTRYPOINT [ "clair" ]
