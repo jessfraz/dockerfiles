@@ -81,12 +81,13 @@ get_latest_unifi() {
 
 compare() {
 	local name="$1" dir="$2" tag="$3" current="$4" releases="$5"
+	ignore_dirs=( "bazel" "bcc" "mc" "nzbget" "powershell" "rstudio" )
 
 	if [[ "$tag" =~ "$current" ]] || [[ "$name" =~ "$current" ]] || [[ "$current" =~ "$tag" ]] || [[ "$current" == "master" ]]; then
 		echo -e "\e[36m${dir}:\e[39m current ${current} | ${tag} | ${name}"
 	else
 		# add to the bad versions
-		if [[ "$dir" != "rstudio" ]] && [[ "$dir" != "bazel" ]] && [[ "$dir" != "mc" ]] && [[ "$dir" != "powershell" ]] && [[ "$dir" != "bcc-tools" ]]; then
+		if [[ ! " ${ignore_dirs[@]} " =~ " ${dir} " ]]; then
 			bad_versions+=( "${dir}" )
 		fi
 		echo -e "\e[31m${dir}:\e[39m current ${current} | ${tag} | ${name} | ${releases}"
