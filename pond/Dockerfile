@@ -1,8 +1,26 @@
-FROM debian:buster-slim as builder
+FROM golang:latest as builder
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 ENV PATH /go/bin:/usr/local/go/bin:$PATH
 ENV GOPATH /go
+
+RUN	apt-get update && apt-get install -y \
+	libgtk-3-dev \
+	libgtkspell3-3-dev \
+	libtspi-dev \
+	pkg-config \
+	--no-install-recommends \
+	&& rm -rf /var/lib/apt/lists/*
+
+RUN go get -d -v github.com/agl/pond/client \
+	&& go get -d -v github.com/agl/pond/server
+
+WORKDIR /go/src/github.com/agl/pond
+
+RUN go build -o /usr/bin/pond-client ./client \
+	&& go build -o /usr/bin/pond-server ./server
+
+FROM debian:buster-slim
 
 RUN	apt-get update && apt-get install -y \
 	ca-certificates \
@@ -11,28 +29,6 @@ RUN	apt-get update && apt-get install -y \
 	libtspi1 \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
-
-RUN buildDeps=' \
-		golang \
-		git \
-		gcc \
-		libgtk-3-dev \
-		libgtkspell3-3-dev \
-		libtspi-dev \
-		pkg-config \
-	' \
-	set -x \
-	&& apt-get update \
-	&& apt-get install -y $buildDeps --no-install-recommends \
-	&& go get -d -v github.com/agl/pond/client \
-	&& go get -d -v github.com/agl/pond/server \
-	&& cd /go/src/github.com/agl/pond \
-	&& go build -o /usr/bin/pond-client ./client \
-	&& go build -o /usr/bin/pond-server ./server \
-	&& apt-get purge -y --auto-remove $buildDeps \
-	&& rm -rf /var/lib/apt/lists/* \
-	&& rm -rf /go \
-	&& echo "Build complete."
 
 # create pond user
 ENV HOME /home/pond
@@ -44,4 +40,5 @@ USER pond
 
 COPY --from=builder /usr/bin/pond-client /usr/bin/pond-client
 COPY --from=builder /usr/bin/pond-server /usr/bin/pond-server
+
 CMD [ "pond-client", "-cli" ]
