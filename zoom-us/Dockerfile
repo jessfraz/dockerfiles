@@ -7,7 +7,7 @@
 #	-v /dev/shm:/dev/shm \
 #	zoom-us
 
-FROM debian:sid
+FROM debian:sid-slim
 
 ENV DEBIAN_FRONTEND noninteractive
 

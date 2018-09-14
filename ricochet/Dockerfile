@@ -9,7 +9,7 @@
 # 	--name ricochet \
 # 	jess/ricochet
 #
-FROM debian:sid
+FROM debian:sid-slim
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 ENV DEBIAN_FRONTEND noninteractive

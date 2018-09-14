@@ -18,7 +18,7 @@
 #	(see: https://stackoverflow.com/questions/28392949/running-chromium-inside-docker-gtk-cannot-open-display-0)
 #
 
-FROM debian:sid
+FROM debian:sid-slim
 LABEL maintainer "Christian Koep <christiankoep@gmail.com>"
 
 ENV DEBIAN_FRONTEND noninteractive

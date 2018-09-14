@@ -7,7 +7,7 @@
 # 	--device /dev/dri \
 # 	jess/nes /games/zelda.rom
 #
-FROM debian:sid
+FROM debian:sid-slim
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 RUN apt-get update && apt-get install -y \

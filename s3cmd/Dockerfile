@@ -7,7 +7,7 @@
 #	--name s3cmd \
 #	jess/s3cmd
 #
-FROM debian:sid
+FROM debian:sid-slim
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 RUN apt-get update && apt-get install -y \

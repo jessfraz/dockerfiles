@@ -19,7 +19,7 @@
 # 	wget https://raw.githubusercontent.com/jfrazelle/dotfiles/master/etc/docker/seccomp/chrome.json -O ~/chrome.json
 
 # Base docker image
-FROM debian:sid
+FROM debian:sid-slim
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 # Install Chrome
