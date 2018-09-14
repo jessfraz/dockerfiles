@@ -26,10 +26,6 @@ RUN set -x \
 
 FROM alpine:latest
 
-RUN apk add --no-cache \
-    bash \
-    tar
-
 COPY --from=builder /usr/bin/coredns /usr/bin/coredns
 
 ENTRYPOINT [ "coredns", "-log" ]
