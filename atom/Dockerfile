@@ -19,7 +19,7 @@
 #
 
 # Base docker image
-FROM debian:stretch-slim
+FROM debian:buster-slim
 
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
@@ -47,7 +47,6 @@ RUN apt-get update && apt-get install -y \
 	libasound2 \
 	libcap2 \
 	libgconf-2-4 \
-	libgnome-keyring-dev \
 	libgtk2.0-0 \
 	libnotify4 \
 	libnss3 \
