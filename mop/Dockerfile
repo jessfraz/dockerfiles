@@ -5,7 +5,7 @@
 # 	--name mop \
 # 	r.j3ss.co/mop
 #
-FROM alpine:latest
+FROM alpine:latest as builder
 
 RUN apk --no-cache add \
 	ca-certificates
@@ -24,9 +24,8 @@ RUN buildDeps=' \
 	set -x \
 	&& apk --no-cache add $buildDeps \
 	&& go get github.com/mop-tracker/mop/cmd/mop \
-	&& mv /go/bin/mop /usr/bin/mop \
-	&& apk del $buildDeps \
-	&& rm -rf /go \
 	&& echo "Build complete."
 
+FROM alpine:latest
+COPY --from=builder /go/bin/mop /usr/bin/mop
 ENTRYPOINT [ "mop" ]
