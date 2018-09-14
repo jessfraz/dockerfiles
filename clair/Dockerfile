@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:latest as builder
 
 RUN apk --no-cache add \
 	bzr \
@@ -20,9 +20,8 @@ RUN buildDeps=' \
 	set -x \
 	&& apk --no-cache add $buildDeps \
 	&& go get github.com/coreos/clair/cmd/clair \
-	&& mv /go/bin/clair /usr/bin/clair \
-	&& apk del $buildDeps \
-	&& rm -rf /go \
 	&& echo "Build complete."
 
+FROM alpine:latest
+COPY --from=builder /go/bin/clair /usr/bin/clair
 ENTRYPOINT [ "clair" ]
