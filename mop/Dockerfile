@@ -28,4 +28,5 @@ RUN buildDeps=' \
 
 FROM alpine:latest
 COPY --from=builder /go/bin/mop /usr/bin/mop
+COPY --from=builder /etc/ssl/certs/ /etc/ssl/certs
 ENTRYPOINT [ "mop" ]
