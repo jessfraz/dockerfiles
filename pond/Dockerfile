@@ -1,4 +1,4 @@
-FROM debian:buster-slim
+FROM debian:buster-slim as builder
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 ENV PATH /go/bin:/usr/local/go/bin:$PATH
@@ -42,4 +42,6 @@ RUN useradd --create-home --home-dir $HOME pond \
 WORKDIR $HOME
 USER pond
 
+COPY --from=builder /usr/bin/pond-client /usr/bin/pond-client
+COPY --from=builder /usr/bin/pond-server /usr/bin/pond-server
 CMD [ "pond-client", "-cli" ]
