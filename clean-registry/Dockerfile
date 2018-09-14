@@ -1,3 +1,4 @@
+FROM r.j3ss.co/reg as reg
 FROM jess/gcloud
 
 RUN	apk add --no-cache \
@@ -15,20 +16,7 @@ RUN set -x \
 	&& apk del .build-deps
 
 WORKDIR /root
-ENV GOPATH /go
 
-# Install reg
-RUN set -x \
-	&& apk add --no-cache --virtual .build-deps \
-		go \
-		git \
-		gcc \
-		libc-dev \
-		libgcc \
-	&& go get github.com/genuinetools/reg \
-	&& mv ${GOPATH}/bin/reg /usr/bin/reg \
-	&& apk del .build-deps \
-	&& rm -rf /go \
-	&& echo "Build complete."
+COPY --from=reg /usr/bin/reg /usr/bin/reg
 
 ENTRYPOINT ["clean-registry"]
