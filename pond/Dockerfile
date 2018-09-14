@@ -1,4 +1,4 @@
-FROM debian:buster
+FROM debian:buster-slim
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 ENV PATH /go/bin:/usr/local/go/bin:$PATH
