@@ -1,30 +1,20 @@
-FROM alpine:latest
+FROM golang:alpine as builder
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
+
+RUN	apk --no-cache add \
+	ca-certificates \
+	gcc \
+	git \
+	libc-dev
 
 ENV PATH /go/bin:/usr/local/go/bin:$PATH
 ENV GOPATH /go
-ENV GO15VENDOREXPERIMENT 1
 
-RUN	apk update && apk add \
-	ca-certificates \
-	&& rm -rf /var/cache/apk/*
+RUN go get github.com/sourcegraph/checkup/cmd/checkup
 
-RUN buildDeps=' \
-		go \
-		git \
-		gcc \
-		libc-dev \
-		libgcc \
-	' \
-	set -x \
-	&& apk update \
-	&& apk add --no-cache --repository https://dl-3.alpinelinux.org/alpine/edge/community $buildDeps \
-	&& go get github.com/sourcegraph/checkup/cmd/checkup \
-	&& cp /go/bin/checkup /usr/bin/checkup \
-	&& apk del $buildDeps \
-	&& rm -rf /var/cache/apk/* \
-	&& rm -rf /go \
-	&& echo "Build complete."
+FROM alpine:latest
 
+COPY --from=builder /go/bin/checkup /usr/bin/checkup
+COPY --from=builder /etc/ssl/certs/ /etc/ssl/certs
 
 ENTRYPOINT [ "checkup" ]
