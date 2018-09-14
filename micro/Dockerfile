@@ -25,4 +25,5 @@ RUN buildDeps=' \
 
 FROM alpine:latest
 COPY --from=builder /go/bin/micro /usr/bin/micro
+COPY --from=builder /etc/ssl/certs/ /etc/ssl/certs
 ENTRYPOINT [ "micro" ]
