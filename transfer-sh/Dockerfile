@@ -28,6 +28,7 @@ RUN	set -x \
 FROM alpine:latest
 
 COPY --from=builder /usr/bin/transfer.sh /usr/bin/transfer.sh
+COPY --from=builder /etc/ssl/certs/ /etc/ssl/certs
 
 ENTRYPOINT [ "transfer.sh" ]
 CMD [ "--help" ]
