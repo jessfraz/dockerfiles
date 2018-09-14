@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM alpine:latest
 
 RUN apk add --no-cache \
 	bash \
@@ -7,7 +7,8 @@ RUN apk add --no-cache \
 	mailx \
 	postfix \
 	rsyslog \
-	runit
+	runit \
+	--repository https://dl-3.alpinelinux.org/alpine/edge/main
 
 COPY service /etc/service
 COPY runit_bootstrap /usr/sbin/runit_bootstrap

@@ -8,7 +8,7 @@
 #		-e DISPLAY=unix$DISPLAY \
 #		jess/keepassxc
 #
-FROM alpine:edge
+FROM alpine:latest
 LABEL maintainer "Christian Koep <christiankoep@gmail.com>"
 
 ENV KEEPASSXC_VERSION 2.3.4
@@ -31,6 +31,7 @@ RUN buildDeps=' \
 	set -x \
 	&& apk --no-cache add \
 		$buildDeps \
+		--repository https://dl-3.alpinelinux.org/alpine/edge/main \
 	&& git clone --depth 1 --branch ${KEEPASSXC_VERSION} https://github.com/keepassxreboot/keepassxc.git /usr/src/keepassxc \
 	&& cd /usr/src/keepassxc \
 	&& mkdir build \
