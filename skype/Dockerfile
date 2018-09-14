@@ -10,7 +10,7 @@
 #	--name skype \
 #	jess/skype
 #
-FROM debian:jessie
+FROM debian:jessie-slim
 
 # Tell debconf to run in non-interactive mode
 ENV DEBIAN_FRONTEND noninteractive

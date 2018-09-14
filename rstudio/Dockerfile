@@ -10,7 +10,7 @@
 #
 
 # Base docker image
-FROM debian:jessie
+FROM debian:jessie-slim
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 # Install Rstudio deps

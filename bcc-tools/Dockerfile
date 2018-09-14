@@ -53,7 +53,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Build libbcc
-ENV BCC_VERSION v1
+ENV BCC_VERSION v0.7.0
 RUN git clone --depth 1 --branch "$BCC_VERSION" https://github.com/iovisor/bcc.git /usr/src/bcc
 RUN ( \
 		cd /usr/src/bcc \
