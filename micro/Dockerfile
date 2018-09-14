@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:latest as builder
 LABEL maintainer "Christian Koep <christiankoep@gmail.com>"
 
 ENV PATH /go/bin:/usr/local/go/bin:$PATH
@@ -21,10 +21,8 @@ RUN buildDeps=' \
 	&& cd /go/src/github.com/zyedidia/micro \
 	&& mkdir -p /go/bin \
 	&& make install \
-	&& mv /go/bin/micro /usr/bin/micro \
-	&& rm -rf /go/src/github.com/zyedidia/micro \
-	&& apk del $buildDeps \
-	&& rm -rf /go \
 	&& echo "Build complete."
 
+FROM alpine:latest
+COPY --from=builder /go/bin/micro /usr/bin/micro
 ENTRYPOINT [ "micro" ]
