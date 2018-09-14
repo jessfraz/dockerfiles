@@ -82,7 +82,7 @@ RUN apt-get update && apt-get install -y \
 
 # unifi version
 # From: https://www.ubnt.com/download/unifi/
-ENV UNIFI_VERSION "5.8.28"
+ENV UNIFI_VERSION "5.8.30"
 
 # install unifi
 RUN apt-get update && apt-get install -y \
@@ -106,7 +106,6 @@ WORKDIR /config
 EXPOSE 3478/udp 8080 8081 8443 8843 8880 6789
 
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
-RUN chmod +x /usr/local/bin/entrypoint.sh
 
 ENTRYPOINT [ "entrypoint.sh" ]
 CMD ["java", "-Xmx1024M", "-jar", "/usr/lib/unifi/lib/ace.jar", "start"]

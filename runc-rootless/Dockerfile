@@ -14,7 +14,7 @@ RUN git clone https://github.com/jessfraz/runc.git "$GOPATH/src/github.com/openc
 	&& make static BUILDTAGS="seccomp" EXTRA_FLAGS="-buildmode pie" EXTRA_LDFLAGS="-extldflags \\\"-fno-PIC -static\\\"" \
 	&& mv runc /usr/bin/runc
 
-FROM alpine
+FROM alpine:latest
 MAINTAINER Jessica Frazelle <jess@linux.com>
 RUN apk add --no-cache \
 	bash \

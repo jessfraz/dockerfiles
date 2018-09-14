@@ -18,7 +18,7 @@ RUN apk add --no-cache \
 	libmnl-dev
 
 # https://git.zx2c4.com/WireGuard/refs/
-ENV WIREGUARD_VERSION 0.0.20180904
+ENV WIREGUARD_VERSION 0.0.20180910
 
 RUN set -x \
 	&& apk add --no-cache --virtual .build-deps \

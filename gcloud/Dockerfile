@@ -1,7 +1,7 @@
 FROM python:2-alpine
 
 ENV PATH $PATH:/usr/src/google-cloud-sdk/bin
-ENV CLOUD_SDK_DOCKER_VERSION 214.0.0
+ENV CLOUD_SDK_DOCKER_VERSION 216.0.0
 
 RUN set -x \
 	&& apk add --no-cache --virtual .build-deps \
