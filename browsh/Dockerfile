@@ -41,7 +41,7 @@ RUN set -x \
 	&& firefox --version
 
 # Install browsh.
-ENV BROWSH_VERSION 1.4.12
+ENV BROWSH_VERSION 1.4.13
 RUN wget "https://github.com/browsh-org/browsh/releases/download/v${BROWSH_VERSION}/browsh_${BROWSH_VERSION}_linux_amd64" -O /home/browsh/bin/browsh \
 	&& chmod a+x /home/browsh/bin/browsh
 
