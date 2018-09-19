@@ -12,7 +12,7 @@ RUN apk add --no-cache \
 	npm \
 	yarn
 
-ENV FLEET_VERSION 2.0.0-rc4
+ENV FLEET_VERSION 2.0.0-rc5
 
 RUN git clone --depth 1 --branch "${FLEET_VERSION}" https://github.com/kolide/fleet.git /go/src/github.com/kolide/fleet
 
