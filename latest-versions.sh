@@ -83,7 +83,7 @@ get_latest_unifi() {
 
 compare() {
 	local name="$1" dir="$2" tag="$3" current="$4" releases="$5"
-	ignore_dirs=( "bazel" "bcc" "mc" "nzbget" "powershell" "rstudio" )
+	ignore_dirs=( "bazel" "bcc" "mc" "nzbget" "osquery" "powershell" "rstudio" )
 
 	if [[ "$tag" =~ "$current" ]] || [[ "$name" =~ "$current" ]] || [[ "$current" =~ "$tag" ]] || [[ "$current" == "master" ]]; then
 		echo -e "\e[36m${dir}:\e[39m current ${current} | ${tag} | ${name}"
