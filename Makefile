@@ -23,7 +23,7 @@ run: ## Run a Dockerfile from the command at the top of the file (ex. DIR=telnet
 test: shellcheck dockerfiles ## Runs the tests on the repository.
 
 .PHONY: dockerfiles
-dockerfiles: ## Tests the changes to the Dockefiles build.
+dockerfiles: ## Tests the changes to the Dockerfiles build.
 	@$(CURDIR)/test.sh
 
 # if this session isn't interactive, then we don't want to allocate a
