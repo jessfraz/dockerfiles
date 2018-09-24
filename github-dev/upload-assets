@@ -36,6 +36,18 @@ main(){
 
 	echo "Uploading files: ${files[@]}"
 	echo "For tag name: ${tag_name} tag id: ${tag_id}"
+
+	for file in ${files[@]}; do
+		filename=$(basename "$file")
+		curl -sSL -H "${AUTH_HEADER}" -H "${API_HEADER}" \
+			--data-binary @"$file" \
+			-H "Content-Type: application/octet-stream" \
+			"${URI}/repos/${GITHUB_REPOSITORY}/releases/${tag_id}/assets?name=${filename}"
+
+		echo "Successfully uploaded: ${file}!"
+	done
+
+	echo "Uploading assets to ${tag_name} complete!"
 }
 
 main $@
