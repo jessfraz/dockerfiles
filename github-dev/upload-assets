@@ -42,7 +42,7 @@ main(){
 		curl -sSL -H "${AUTH_HEADER}" -H "${API_HEADER}" \
 			--data-binary @"$file" \
 			-H "Content-Type: application/octet-stream" \
-			"${URI}/repos/${GITHUB_REPOSITORY}/releases/${tag_id}/assets?name=${filename}"
+			"https://uploads.github.com/repos/${GITHUB_REPOSITORY}/releases/${tag_id}/assets?name=${filename}"
 
 		echo "Successfully uploaded: ${file}!"
 	done
