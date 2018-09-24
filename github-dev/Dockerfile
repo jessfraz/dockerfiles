@@ -5,6 +5,7 @@ RUN	apk add --no-cache \
 	bash \
 	ca-certificates \
 	curl \
-	jq
+	jq \
+	make
 
 COPY upload-assets /usr/bin/upload-assets
