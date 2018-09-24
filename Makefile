@@ -20,7 +20,7 @@ run: ## Run a Dockerfile from the command at the top of the file (ex. DIR=telnet
 	@$(CURDIR)/run.sh "$(DIR)"
 
 .PHONY: test
-test: shellcheck dockerfiles ## Runs the tests on the repository.
+test: dockerfiles shellcheck ## Runs the tests on the repository.
 
 .PHONY: dockerfiles
 dockerfiles: ## Tests the changes to the Dockerfiles build.
