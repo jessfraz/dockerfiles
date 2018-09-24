@@ -18,7 +18,7 @@ command_not_found_handle () {
 	# would prevent the container from starting)
 	DEVICES=
 	for DEV in /dev/kvm /dev/ttyUSB* /dev/dri/* /dev/snd/*; do
-		if [ -b "$DEV" -o -c "$DEV" ]; then
+		if [ -b "$DEV" ] || [ -c "$DEV" ]; then
 			DEVICES="$DEVICES --device $DEV:$DEV"
 		fi
 	done
@@ -36,9 +36,13 @@ command_not_found_handle () {
 	DASHT=
 	tty -s && DASHT=-t
 
+	# shellcheck disable=SC2086
+	# shellcheck disable=SC2046
 	docker run $DASHT -i -u $(whoami) -w "$HOME" \
 		$(env | cut -d= -f1 | awk '{print "-e", $1}') \
-		$DOCKERFILES_RUN_FLAGS $DEVICES $VOLUMES \
+		$DOCKERFILES_RUN_FLAGS \
+		$DEVICES \
+		$VOLUMES \
 		-v /etc/passwd:/etc/passwd:ro \
 		-v /etc/group:/etc/group:ro \
 		-v /etc/localtime:/etc/localtime:ro \

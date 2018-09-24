@@ -16,8 +16,7 @@ set -e
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 DAEMON=/usr/bin/distccd
 NAME=distccd
-DESC="Distributed Compiler Daemon"
-DAEMON_ARGS="--nice=10 --port=4200 --pid-file=/var/run/$NAME.pid --no-detach $@"
+DAEMON_ARGS="--nice=10 --port=4200 --pid-file=/var/run/${NAME}.pid --no-detach $*"
 
 test -x $DAEMON || exit 0
 
@@ -26,4 +25,5 @@ test -x $DAEMON || exit 0
 touch /var/run/$NAME.pid
 chown distccd /var/run/$NAME.pid
 
+# shellcheck disable=SC2086
 exec $DAEMON $DAEMON_ARGS
