@@ -57,7 +57,8 @@ main(){
 	echo "Uploading files: ${files[*]}"
 	echo "For tag name: ${tag_name} tag id: ${tag_id}"
 
-	for file in "${files[@]}"; do
+	# shellcheck disable=SC2068
+	for file in ${files[@]}; do
 		filename=$(basename "$file")
 		curl -XPOST -sSL -H "${AUTH_HEADER}" \
 			--data-binary @"$file" \
