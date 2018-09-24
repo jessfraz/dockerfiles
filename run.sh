@@ -27,7 +27,7 @@ for name in "$@"; do
 		exit 1
 	fi
 
-	script=$(sed -n '/docker run/,/^#$/p' "$name/Dockerfile" | head -n -1 | sed "s/#//" | sed "s#\\\##" | tr '\n' ' ' | sed "s/\$@//" | sed 's/""//')
+	script=$(sed -n '/docker run/,/^#$/p' "$name/Dockerfile" | head -n -1 | sed "s/#//" | sed "s#\\\\##" | tr '\n' ' ' | sed "s/\$@//" | sed 's/""//')
 	echo "Running: $script"
 
 	if [ $TEST ]; then

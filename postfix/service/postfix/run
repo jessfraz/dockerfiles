@@ -11,6 +11,7 @@ inet_protocols = ipv4
 EOF
 
 # Do we want to modify the config first with the script?
+# shellcheck disable=SC1091
 [ -f /etc/service/postfix/run.config ] && source /etc/service/postfix/run.config
 
 if [[ ! -z "$MAILNAME" ]]; then
@@ -79,5 +80,5 @@ if [[ ! -z "$SASL_AUTH" ]]; then
 	chmod 600 /etc/postfix/sasl_passwd.db
 fi
 
-exec /usr/lib/postfix/master -c /etc/postfix -d 2>&1
+/usr/lib/postfix/master -c /etc/postfix -d 2>&1
 tail -F /var/log/mail.log

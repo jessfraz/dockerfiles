@@ -138,6 +138,7 @@ install_kernel(){
 	)
 }
 
+# shellcheck disable=SC2068
 install_kernel $@
 
 echo "Kernel successfully installed!"
