@@ -37,8 +37,8 @@ main(){
 	# Get the tags.
 	tag_response=$(curl -sSL -H "${AUTH_HEADER}" -H "${API_HEADER}" "${URI}/repos/${GITHUB_REPOSITORY}/tags")
 
-	tag_name=$(echo $tag_response | jq -e --raw-output .[0].name)
-	tag_id=$(echo $tag_response | jq -e --raw-output .[0].id)
+	tag_name=$(echo "$tag_response" | jq -e --raw-output .[0].name)
+	tag_id=$(echo "$tag_response" | jq -e --raw-output .[0].id)
 
 	# Get the latest release.
 	latest_response=$(curl -sSL -H "${AUTH_HEADER}" -H "${API_HEADER}" "${URI}/repos/${GITHUB_REPOSITORY}/releases/latest")
@@ -48,18 +48,18 @@ main(){
 	if [[ "$tag_name" != "$latest_release" ]]; then
 		# Create the release.
 		echo "Creating release for tag name: ${tag_name}"
-		response=$(curl -XPOST -sSL -H "${AUTH_HEADER}" -H "${API_HEADER}" "${URI}/repos/${GITHUB_REPOSITORY}/release" --data '{"tag_name": "'${tag_name}'","name":"'${tag_name}'","draft":false,"prerelease":false}')
-		release_id=$(echo $response | jq -e --raw-output .id)
+		response=$(curl -XPOST -sSL -H "${AUTH_HEADER}" -H "${API_HEADER}" "${URI}/repos/${GITHUB_REPOSITORY}/release" --data '{"tag_name": "'"${tag_name}"'","name":"'"${tag_name}"'","draft":false,"prerelease":false}')
+		release_id=$(echo "$response" | jq -e --raw-output .id)
 	fi
 
 
 	# Upload the files.
-	echo "Uploading files: ${files[@]}"
+	echo "Uploading files: ${files[*]}"
 	echo "For tag name: ${tag_name} tag id: ${tag_id}"
 
-	for file in ${files[@]}; do
+	for file in "${files[@]}"; do
 		filename=$(basename "$file")
-		curl -XPOST -sSL -H "${AUTH_HEADER}" -H "${API_HEADER}" \
+		curl -XPOST -sSL -H "${AUTH_HEADER}" \
 			--data-binary @"$file" \
 			-H "Content-Type: application/octet-stream" \
 			"https://uploads.github.com/repos/${GITHUB_REPOSITORY}/releases/${release_id}/assets?name=${filename}"
@@ -70,4 +70,4 @@ main(){
 	echo "Uploading assets to ${tag_name} complete!"
 }
 
-main $@
+main "$@"
