@@ -29,7 +29,8 @@ files=( $(validate_diff --name-only -- '*Dockerfile') )
 unset IFS
 
 # build the changed dockerfiles
-for f in "${files[@]}"; do
+# shellcheck disable=SC2068
+for f in ${files[@]}; do
 	if ! [[ -e "$f" ]]; then
 		continue
 	fi
