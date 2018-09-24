@@ -1,24 +1,37 @@
 .PHONY: build
 build: ## Builds all the dockerfiles in the repository.
-	./build-all.sh
+	@$(CURDIR)/build-all.sh
 
 .PHONY: latest-versions
 latest-versions: ## Checks all the latest versions of the Dockerfile contents.
-	./latest-versions.sh
+	@$(CURDIR)/latest-versions.sh
+
+check_defined = \
+				$(strip $(foreach 1,$1, \
+				$(call __check_defined,$1,$(strip $(value 2)))))
+__check_defined = \
+				  $(if $(value $1),, \
+				  $(error Undefined $1$(if $2, ($2))$(if $(value @), \
+				  required by target `$@')))
+
+.PHONY: run
+run: ## Run a Dockerfile from the command at the top of the file (ex. DIR=telnet).
+	@:$(call check_defined, DIR, directory of the Dockefile)
+	@$(CURDIR)/run.sh "$(DIR)"
 
 .PHONY: test
 test: shellcheck dockerfiles ## Runs the tests on the repository.
 
 .PHONY: dockerfiles
 dockerfiles: ## Tests the changes to the Dockefiles build.
-	./test.sh
+	@$(CURDIR)/test.sh
 
 # if this session isn't interactive, then we don't want to allocate a
 # TTY, which would fail, but if it is interactive, we do want to attach
 # so that the user can send e.g. ^C through.
 INTERACTIVE := $(shell [ -t 0 ] && echo 1 || echo 0)
 ifeq ($(INTERACTIVE), 1)
-        DOCKER_FLAGS += -t
+	DOCKER_FLAGS += -t
 endif
 
 .PHONY: shellcheck

@@ -1,7 +1,7 @@
 # command to run Telnet
 # docker run -it --rm \
 #	--log-driver none \
-#	jess/telnet "$@"
+#	jess/telnet towel.blinkenlights.nl
 #
 FROM alpine:latest
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
