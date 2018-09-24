@@ -114,6 +114,7 @@ keepassxreboot/keepassxc
 robertdavidgraham/masscan
 MidnightCommander/mc
 zyedidia/micro
+zeit/now-cli
 nzbget/nzbget
 bitly/oauth2_proxy
 facebook/osquery
