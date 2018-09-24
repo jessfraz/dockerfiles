@@ -45,6 +45,8 @@ get_latest() {
 		dir="zookeeper/3.5"
 	elif [[ "$dir" == "oauth2_proxy" ]]; then
 		dir="oauth2-proxy"
+	elif [[ "$dir" == "now-cli" ]]; then
+		dir="now"
 	elif [[ "$dir" == "wireguard" ]]; then
 		dir="wireguard/install"
 	fi
