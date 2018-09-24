@@ -11,6 +11,7 @@ LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 RUN apt-get update && apt-get install -y \
 	pcscd \
+	procps \
 	software-properties-common \
 	--no-install-recommends && \
 	add-apt-repository ppa:yubico/stable && \

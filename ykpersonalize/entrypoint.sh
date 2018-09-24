@@ -3,7 +3,8 @@ set -e
 set -o pipefail
 
 init(){
-	local pcscd_running=$(ps -aux | grep [p]cscd)
+	local pcscd_running
+	pcscd_running=$(pgrep pcscd)
 	if [ -z "$pcscd_running" ]; then
 		echo "starting pcscd in backgroud"
 		pcscd --debug --apdu
