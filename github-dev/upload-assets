@@ -58,12 +58,14 @@ main(){
 	# shellcheck disable=SC2068
 	for file in ${files[@]}; do
 		filename=$(basename "$file")
+		rp=$(realpath "$file")
+
 		curl -XPOST -sSL -H "${AUTH_HEADER}" \
-			--data-binary @"$file" \
+			--data-binary @"$rp" \
 			-H "Content-Type: application/octet-stream" \
 			"https://uploads.github.com/repos/${GITHUB_REPOSITORY}/releases/${release_id}/assets?name=${filename}&access_token=${GITHUB_TOKEN}"
 
-		echo "Successfully uploaded: ${file}!"
+		echo "Successfully uploaded: ${rp}!"
 	done
 
 	echo "Uploading assets to ${tag_name} complete!"
