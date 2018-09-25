@@ -56,6 +56,7 @@ stop() {
     echo "Done."
 }
 
+# shellcheck disable=SC2145
 echo "Running $@"
 if [[ "$(basename "$1")" == "$DAEMON" ]]; then
     trap stop SIGINT SIGTERM
