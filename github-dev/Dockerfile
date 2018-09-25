@@ -17,3 +17,4 @@ RUN go get honnef.co/go/tools/cmd/staticcheck
 ENV GO111MODULE on
 
 COPY upload-assets /usr/bin/upload-assets
+COPY release-email-notification /usr/bin/release-email-notification
