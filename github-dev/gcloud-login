@@ -1,5 +1,7 @@
 #!/bin/bash
+set -e
+set -o pipefail
 
 echo "$GCLOUD_KEY"
 
-echo "$GCLOUD_KEY" > ${HOME}/.gcloud.json
+echo "$GCLOUD_KEY" > "${HOME}/.gcloud.json"
