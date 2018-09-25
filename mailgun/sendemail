@@ -8,6 +8,10 @@ if [[ -z "$MAILGUN_API_KEY" ]]; then
 	exit 1
 fi
 
+if [[ ! -z "$MAILGUN_DOMAIN" ]]; then
+	MAILGUN_DOMAIN_NAME=$MAILGUN_DOMAIN
+fi
+
 if [[ -z "$MAILGUN_DOMAIN_NAME" ]]; then
 	echo "Set the MAILGUN_DOMAIN_NAME env variable."
 	exit 1
