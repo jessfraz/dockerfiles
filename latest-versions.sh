@@ -1,7 +1,5 @@
 #!/bin/bash
 # This script gets the latest GitHub releases for the specified projects.
-set -e
-set -o pipefail
 
 if [[ -z "$GITHUB_TOKEN" ]]; then
 	echo "Set the GITHUB_TOKEN env variable."
@@ -19,9 +17,9 @@ get_latest() {
 	local resp
 	resp=$(curl -sSL -H "${AUTH_HEADER}" -H "${API_HEADER}" "${URI}/repos/${repo}/releases")
 	local tag
-	tag=$(echo "$resp" | jq -e --raw-output .[0].tag_name || echo "null")
+	tag=$(echo "$resp" | jq -e --raw-output .[0].tag_name)
 	local name
-	name=$(echo "$resp" | jq -e --raw-output .[0].name || echo "null")
+	name=$(echo "$resp" | jq -e --raw-output .[0].name)
 
 	if [[ "$tag" == "null" ]]; then
 		# get the latest tag
