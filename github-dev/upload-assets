@@ -49,11 +49,16 @@ main(){
 	latest_release=$(echo "$latest_response" | jq -e --raw-output .tag_name)
 	release_id=$(echo "$latest_response" | jq -e --raw-output .id)
 
-	if [[ "$tag_name" != "$latest_release" ]]; then
+	if [[ "$tag_name" != "$latest_release" ]] || [[ "$release_id" == "null" ]]; then
 		# Create the release.
 		echo "Creating release for tag name: ${tag_name}"
-		response=$(curl -XPOST -sSL -H "${AUTH_HEADER}" -H "${API_HEADER}" "${URI}/repos/${GITHUB_REPOSITORY}/release" --data '{"tag_name": "'"${tag_name}"'","name":"'"${tag_name}"'","draft":false,"prerelease":false}')
+		response=$(curl -XPOST -sSL -H "${AUTH_HEADER}" -H "${API_HEADER}" "${URI}/repos/${GITHUB_REPOSITORY}/releases" --data '{"tag_name": "'"${tag_name}"'","name":"'"${tag_name}"'","draft":false,"prerelease":false}')
 		release_id=$(echo "$response" | jq -e --raw-output .id)
+	fi
+
+	if [[ "$release_id" == "null" ]]; then
+		echo "Release ID cannot be null."
+		exit 1
 	fi
 
 
