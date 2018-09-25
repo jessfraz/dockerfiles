@@ -9,4 +9,6 @@ RUN	apk add --no-cache \
 	jq \
 	make
 
+ENV GO111MODULE on
+
 COPY upload-assets /usr/bin/upload-assets
