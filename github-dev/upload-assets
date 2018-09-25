@@ -1,5 +1,4 @@
 #!/bin/bash
-set -x
 
 if [[ ! -z "$TOKEN" ]]; then
 	GITHUB_TOKEN=$TOKEN
