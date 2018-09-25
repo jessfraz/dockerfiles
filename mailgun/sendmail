@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
 set -o pipefail
+set -x
 
 if [[ -z "$MAILGUN_API_KEY" ]]; then
 	echo "Set the MAILGUN_API_KEY env variable."
