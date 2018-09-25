@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo "$GCLOUD_KEY"
+
+echo "$GCLOUD_KEY" > ${HOME}/.gcloud.json
