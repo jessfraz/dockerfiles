@@ -8,7 +8,11 @@ RUN	apk add --no-cache \
 	gcc \
 	git \
 	jq \
-	make
+	make \
+	musl-dev
+
+RUN go get github.com/golang/lint/golint
+RUN go get honnef.co/go/tools/cmd/staticcheck
 
 ENV GO111MODULE on
 
