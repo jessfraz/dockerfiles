@@ -34,8 +34,8 @@ fi
 
 curl -sSL --user "api:${MAILGUN_API_KEY}" \
 	"https://api.mailgun.net/v3/${MAILGUN_DOMAIN_NAME}/messages" \
-	-F "from='Excited User <mailgun@"${MAILGUN_DOMAIN_NAME}">'" \
+	-F 'from="Excited User <mailgun@'"${MAILGUN_DOMAIN_NAME}"'>"' \
 	-F "to=${TO_NAME}" \
 	-F "to=${TO_EMAIL}" \
-	-F "subject='"${SUBJECT}"'" \
-	-F "text='"${BODY}"'"
+	-F 'subject="'"${SUBJECT}"'"' \
+	-F 'text="'"${BODY}"'"'
