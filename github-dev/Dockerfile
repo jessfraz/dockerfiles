@@ -7,6 +7,7 @@ RUN	apk add --no-cache \
 	curl \
 	gcc \
 	git \
+	gnupg \
 	jq \
 	make \
 	musl-dev
