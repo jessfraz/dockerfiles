@@ -36,7 +36,6 @@ main(){
 	tag_response=$(curl -sSL -H "${AUTH_HEADER}" -H "${API_HEADER}" "${URI}/repos/${GITHUB_REPOSITORY}/tags")
 
 	tag_name=$(echo "$tag_response" | jq -e --raw-output .[0].name)
-	tag_id=$(echo "$tag_response" | jq -e --raw-output .[0].id)
 
 	# Get the latest release.
 	latest_response=$(curl -sSL -H "${AUTH_HEADER}" -H "${API_HEADER}" "${URI}/repos/${GITHUB_REPOSITORY}/releases/latest")
@@ -53,7 +52,7 @@ main(){
 
 	# Upload the files.
 	echo "Uploading files: ${files[*]}"
-	echo "For tag name: ${tag_name} tag id: ${tag_id}"
+	echo "For tag name: ${tag_name}"
 
 	# shellcheck disable=SC2068
 	for file in ${files[@]}; do
