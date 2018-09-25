@@ -4,6 +4,6 @@ LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 RUN apk add --no-cache \
 	bash
 
-COPY sendmail /usr/bin/sendmail
+COPY sendemail /usr/bin/sendemail
 
-ENTRYPOINT [ "sendmail" ]
+ENTRYPOINT [ "sendemail" ]
