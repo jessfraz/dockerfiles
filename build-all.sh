@@ -85,7 +85,7 @@ run(){
 	if [[ "$f" == "" ]]; then
 		main "$args"
 	else
-		"$args"
+		$args
 	fi
 }
 
