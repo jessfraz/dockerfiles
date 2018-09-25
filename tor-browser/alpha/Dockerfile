@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y \
 	gnupg \
 	libasound2 \
 	libdbus-glib-1-2 \
-	libgtk2.0-0 \
+	libgtk-3-0 \
 	libxrender1 \
 	libx11-xcb-dev \
 	libx11-xcb1 \
