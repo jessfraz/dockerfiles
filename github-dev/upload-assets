@@ -59,7 +59,7 @@ main(){
 		filename=$(basename "$file")
 		rp=$(realpath "$file")
 
-		curl -XPOST -sSL -H "${AUTH_HEADER}" \
+		curl -sSL -H "${AUTH_HEADER}" \
 			--data-binary @"$rp" \
 			-H "Content-Type: application/octet-stream" \
 			"https://uploads.github.com/repos/${GITHUB_REPOSITORY}/releases/${release_id}/assets?name=${filename}&access_token=${GITHUB_TOKEN}"
