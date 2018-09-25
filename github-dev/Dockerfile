@@ -13,6 +13,7 @@ RUN	apk add --no-cache \
 
 RUN go get github.com/golang/lint/golint
 RUN go get honnef.co/go/tools/cmd/staticcheck
+# TODO: remove this eventually
 RUN go get golang.org/x/crypto/ssh/terminal
 
 COPY upload-assets /usr/bin/upload-assets
