@@ -15,6 +15,11 @@ if [[ -z "$GITHUB_REPOSITORY" ]]; then
 	exit 1
 fi
 
+if [[ -z "$GITHUB_REF" ]]; then
+	echo "Set the GITHUB_REF env variable."
+	exit 1
+fi
+
 URI=https://api.github.com
 API_VERSION=v3
 API_HEADER="Accept: application/vnd.github.${API_VERSION}+json"
@@ -31,6 +36,8 @@ main(){
 
 	# Validate the GitHub token.
 	curl -o /dev/null -sSL -H "${AUTH_HEADER}" -H "${API_HEADER}" "${URI}/repos/${GITHUB_REPOSITORY}" || { echo "Error: Invalid repo, token or network issue!";  exit 1; }
+
+	echo "Github ref: ${GITHUB_REF}"
 
 	# Get the tags.
 	tag_response=$(curl -sSL -H "${AUTH_HEADER}" -H "${API_HEADER}" "${URI}/repos/${GITHUB_REPOSITORY}/tags")
