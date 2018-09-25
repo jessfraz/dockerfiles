@@ -23,4 +23,3 @@ COPY --from=builder /usr/bin/now /usr/bin/now
 COPY --from=builder /etc/ssl/certs/ /etc/ssl/certs
 
 ENTRYPOINT [ "now" ]
-CMD [ "--help" ]
