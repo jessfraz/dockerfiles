@@ -19,9 +19,9 @@ get_latest() {
 	local resp
 	resp=$(curl -sSL -H "${AUTH_HEADER}" -H "${API_HEADER}" "${URI}/repos/${repo}/releases")
 	local tag
-	tag=$(echo "$resp" | jq -e --raw-output .[0].tag_name)
+	tag=$(echo "$resp" | jq -e --raw-output .[0].tag_name || echo "null")
 	local name
-	name=$(echo "$resp" | jq -e --raw-output .[0].name)
+	name=$(echo "$resp" | jq -e --raw-output .[0].name || echo "null")
 
 	if [[ "$tag" == "null" ]]; then
 		# get the latest tag
