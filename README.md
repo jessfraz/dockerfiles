@@ -14,3 +14,16 @@ continuously on a private registry at [r.j3ss.co](https://r.j3ss.co/) for public
 welcome.)
 
 You may also want to checkout my [dotfiles](https://github.com/jessfraz/dotfiles), specifically the aliases for all these files which are here: [github.com/jessfraz/dotfiles/blob/master/.dockerfunc](https://github.com/jessfraz/dotfiles/blob/master/.dockerfunc).
+
+## Using the `Makefile`
+
+```
+$ make help
+build                          Builds all the dockerfiles in the repository.
+dockerfiles                    Tests the changes to the Dockerfiles build.
+image                          Build a Dockerfile (ex. DIR=telnet).
+latest-versions                Checks all the latest versions of the Dockerfile contents.
+run                            Run a Dockerfile from the command at the top of the file (ex. DIR=telnet).
+shellcheck                     Runs the shellcheck tests on the scripts.
+test                           Runs the tests on the repository.
+```
