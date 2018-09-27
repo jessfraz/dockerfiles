@@ -40,12 +40,10 @@ main(){
 		fi
 
 		echo "Deleting branch ref $ref for owner ${owner}/${repo}..."
-		set -x
 		curl -XDELETE -sSL \
 			-H "${AUTH_HEADER}" \
 			-H "${API_HEADER}" \
 			"${URI}/repos/${owner}/${repo}/git/refs/heads/${ref}"
-		set +x
 
 		echo "Branch delete success!"
 	fi
