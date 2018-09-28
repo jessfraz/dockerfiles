@@ -22,16 +22,16 @@ API_HEADER="Accept: application/vnd.github.${API_VERSION}+json"
 AUTH_HEADER="Authorization: token ${GITHUB_TOKEN}"
 
 main(){
-	action=$(cat "$GITHUB_EVENT_PATH" | jq --raw-output .action)
-	merged=$(cat "$GITHUB_EVENT_PATH" | jq --raw-output .pull_request.merged)
+	action=$(jq --raw-output .action "$GITHUB_EVENT_PATH")
+	merged=$(jq --raw-output .pull_request.merged "$GITHUB_EVENT_PATH")
 
 	echo "action: $action merged: $merged"
 
 	if [[ "$action" == "closed" ]] && [[ "$merged" == "true" ]]; then
 		# delete the branch.
-		ref=$(cat "$GITHUB_EVENT_PATH" | jq --raw-output .pull_request.head.ref)
-		owner=$(cat "$GITHUB_EVENT_PATH" | jq --raw-output .pull_request.head.repo.owner.login)
-		repo=$(cat "$GITHUB_EVENT_PATH" | jq --raw-output .pull_request.head.repo.name)
+		ref=$(jq --raw-output .pull_request.head.ref "$GITHUB_EVENT_PATH")
+		owner=$(jq --raw-output .pull_request.head.repo.owner.login "$GITHUB_EVENT_PATH")
+		repo=$(jq --raw-output .pull_request.head.repo.name "$GITHUB_EVENT_PATH")
 
 		if [[ "$ref" == "master" ]]; then
 			# Never delete the master branch.
