@@ -1,3 +1,12 @@
+# youtube-dl
+#
+#   docker run \
+#       --rm \
+#       -v "${HOME}/Downloads:/home/youtube-dl/Downloads" \
+#       --name youtube-dl \
+#       youtube-dl "$@"
+#
+
 FROM python:3-alpine
 
 RUN addgroup -g 1000 youtube-dl \
