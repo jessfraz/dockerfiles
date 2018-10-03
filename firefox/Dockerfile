@@ -1,3 +1,26 @@
+# firefox
+#
+#    docker run -it \
+#        --rm \
+#        --memory 2gb \
+#        --net host \
+#        --cpuset-cpus 0 \
+#        -v /etc/localtime:/etc/localtime:ro \
+#        -v /tmp/.X11-unix:/tmp/.X11-unix \
+#        -v "${HOME}/.firefox/cache:/home/firefox/.cache/mozilla" \
+#        -v "${HOME}/.firefox/mozilla:/home/firefox/.mozilla" \
+#        -v "${HOME}/Downloads:/home/firefox/Downloads" \
+#        -v "${HOME}/Pictures:/home/firefox/Pictures" \
+#        -v "${HOME}/Torrents:/home/firefox/Torrents" \
+#        -e "DISPLAY=unix${DISPLAY}" \
+#        -e GDK_SCALE \
+#        -e GDK_DPI_SCALE \
+#        -v /dev/shm:/dev/shm \
+#        --device /dev/snd \
+#        --device /dev/dri \
+#        --name firefox \
+#        jess/firefox "$@"
+
 FROM debian:sid-slim
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
@@ -25,10 +48,15 @@ RUN apt-get update && apt-get install -y \
 
 ENV LANG en-US
 
+RUN groupadd -r firefox && useradd -m -g firefox -G audio,video firefox \
+    && chown -R firefox:firefox /home/firefox
+
 COPY local.conf /etc/fonts/local.conf
 
 RUN echo 'pref("browser.tabs.remote.autostart", false);' >> /etc/firefox/syspref.js
 
 COPY entrypoint.sh /usr/bin/startfirefox
+
+USER firefox
 
 ENTRYPOINT [ "startfirefox" ]
