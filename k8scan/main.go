@@ -405,7 +405,7 @@ func inc(ip net.IP) {
 }
 
 func sendEmail(uri, ip string, port int, arinInfo ARINResponse) error {
-	mailgunClient := mailgun.NewMailgun(mailgunDomain, mailgunAPIKey, "")
+	mailgunClient := mailgun.NewMailgun(mailgunDomain, mailgunAPIKey)
 
 	msg, _, err := mailgunClient.Send(mailgunClient.NewMessage(
 		/* From */ fmt.Sprintf("%s <%s>", emailSender, emailSender),
