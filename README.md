@@ -15,7 +15,7 @@ welcome.)
 
 You may also want to checkout my [dotfiles](https://github.com/jessfraz/dotfiles), specifically the aliases for all these files which are here: [github.com/jessfraz/dotfiles/blob/master/.dockerfunc](https://github.com/jessfraz/dotfiles/blob/master/.dockerfunc).
 
-## Using the `Makefile`
+#### Using the `Makefile`
 
 ```
 $ make help
