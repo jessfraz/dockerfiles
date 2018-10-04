@@ -1,6 +1,6 @@
 ## dockerfiles
 
-[![Travis CI](https://travis-ci.org/jessfraz/dockerfiles.svg?branch=master)](https://travis-ci.org/jessfraz/dockerfiles)
+[![Travis CI](https://img.shields.io/travis/jessfraz/dockerfiles.svg?style=for-the-badge)](https://travis-ci.org/jessfraz/dockerfiles)
 
 This is a repo to hold various Dockerfiles for images I create.
 
