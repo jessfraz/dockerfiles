@@ -1,3 +1,7 @@
 #!/bin/bash
 
-[ -e /dev/snd ] && exec apulse firefox || exec firefox
+if [[ -e /dev/snd ]]; then
+	exec apulse firefox
+else
+	exec firefox
+fi
