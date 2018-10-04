@@ -1,0 +1,55 @@
+#!/bin/bash
+##############################################################################
+# clean-registry
+# -----------
+# Deletes old registry blobs that are not used in the latest version of the tag.
+# This script assumes your registry is hosted on Google Cloud Storage.
+#
+# Usage:
+#       clean-registry
+#
+# :authors: Jess Frazelle, @jessfraz
+# :date: 20 September 2016
+# :version: 0.0.1
+##############################################################################
+set -e
+set -o pipefail
+
+REPO_URL="${REPO_URL:-r.j3ss.co}"
+BUCKET_PREFIX="gs://${REPO_URL}/docker/registry/v2"
+JOBS=${JOBS:-10}
+
+# get the repos
+mapfile -t repos < <(gsutil ls "${BUCKET_PREFIX}/repositories/" | awk -F"/" '{print $(NF-1)}')
+
+for repo in "${repos[@]}"; do
+	# get the tags
+	mapfile -t tags < <(gsutil ls "${BUCKET_PREFIX}/repositories/${repo}/_manifests/tags/" | awk -F"/" '{print $(NF-1)}')
+
+	for tag in "${tags[@]}"; do
+		echo "repo: $repo | tag: $tag"
+
+		# get the latest index for the tag
+		current=$(gsutil cat "${BUCKET_PREFIX}/repositories/${repo}/_manifests/tags/${tag}/current/link" || true)
+		if [[ "$current" == "true" ]]; then
+			continue
+		fi
+		# split on : since the link comes back as:
+		# sha256:97bf033cf680a2fe49a6f0df40ac76dba97bc71745aeb06018dbf9df5de74bd6
+		ha=${current%:*}
+		id=${current#*:}
+
+		echo "repo: $repo | tag: $tag | current: ${ha}:${id}"
+
+		# get the shas
+		mapfile -t shas < <(gsutil ls "${BUCKET_PREFIX}/repositories/${repo}/_manifests/tags/${tag}/index/${ha}/" | awk -F"/" '{print $(NF-1)}')
+
+		# remove the current sha
+		shas=( "${shas[@]/$id}" )
+
+		# shellcheck disable=SC2199
+		if [[ "${shas[@]}" != "" ]] && [[ ! -z "${shas[@]}" ]]; then
+			parallel -j"${JOBS}" reg rm "${REPO_URL}/${repo}@${ha}:{1}" ::: "${shas[@]}" || true
+		fi
+	done
+done
