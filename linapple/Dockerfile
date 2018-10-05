@@ -30,6 +30,7 @@ RUN set -x \
 	&& apk del .build-deps
 
 COPY Frogger.dsk /usr/src/games/
+COPY quest1.dsk /usr/src/games/
 
-ENTRYPOINT ["linapple", "-1"]
-CMD ["/usr/src/games/Frogger.dsk"]
+ENTRYPOINT ["linapple"]
+CMD ["-1", "/usr/src/games/quest1.dsk"]
