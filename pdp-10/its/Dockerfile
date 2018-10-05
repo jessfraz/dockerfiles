@@ -12,6 +12,7 @@ RUN buildDeps=' \
 		git \
 		libc6-dev \
 		make \
+		libncurses5-dev \
 	' \
 	&& set -x \
 	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends \
