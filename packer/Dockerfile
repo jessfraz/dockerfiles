@@ -25,6 +25,10 @@ RUN XC_ARCH="amd64" XC_OS="linux" LD_FLAGS=" -extldflags -static" make releasebi
 
 FROM alpine:latest
 
+RUN apk add --no-cache \
+	bash \
+	tar
+
 COPY --from=builder /usr/bin/packer /usr/bin/packer
 COPY --from=builder /etc/ssl/certs/ /etc/ssl/certs
 
