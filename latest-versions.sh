@@ -122,6 +122,7 @@ zeit/now-cli
 nzbget/nzbget
 bitly/oauth2_proxy
 facebook/osquery
+hashicorp/packer
 Tautulli/Tautulli
 perkeep/perkeep
 powershell/powershell
