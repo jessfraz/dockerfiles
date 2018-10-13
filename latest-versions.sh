@@ -103,6 +103,7 @@ noelbundick/azure-cli-extension-noelbundick
 iovisor/bcc
 browsh-org/browsh
 certbot/certbot
+cloudflare/cfssl
 hashicorp/consul
 coredns/coredns
 CouchPotato/CouchPotatoServer
