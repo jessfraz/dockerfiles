@@ -118,6 +118,7 @@ keepassxreboot/keepassxc
 robertdavidgraham/masscan
 MidnightCommander/mc
 zyedidia/micro
+hashicorp/nomad
 zeit/now-cli
 nzbget/nzbget
 bitly/oauth2_proxy

@@ -22,8 +22,6 @@ WORKDIR /go/src/github.com/hashicorp/vault
 
 RUN git checkout "${VAULT_VERSION}"
 
-#RUN yarn global add bower
-
 RUN XC_ARCH="amd64" XC_OS="linux" XC_OSARCH="linux/amd64" LD_FLAGS=" -extldflags -static " make bootstrap static-dist bin \
 	&& mv bin/vault /usr/bin/vault
 
