@@ -8,7 +8,8 @@ RUN echo "@testing http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/re
 	dbus-x11 \
     ca-certificates \
 	firefox@testing \
-	hicolor-icon-theme \
+	ffmpeg \
+    hicolor-icon-theme \
 	mesa-dri-intel \
 	mesa-gl \
 	ttf-dejavu
