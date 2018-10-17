@@ -1,3 +1,13 @@
+# Run HTTPBin in a container
+#
+# USAGE
+# 
+# docker run -d \
+#	-p 8080:8080 \
+#	--name httpbin \
+#	jess/httpbin
+#
+
 FROM python:3-alpine
 
 RUN apk add --no-cache --virtual .build-deps \
