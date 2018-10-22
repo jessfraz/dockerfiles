@@ -14,7 +14,7 @@ RUN	apk add --no-cache \
 
 # Get go deps for tests etc.
 RUN go get honnef.co/go/tools/cmd/staticcheck \
-		github.com/golang/lint/golint \
+		golang.org/x/lint/golint \
 		github.com/google/go-cmp/cmp
 
 WORKDIR /go/src/k8scan
