@@ -12,7 +12,7 @@ RUN	apk add --no-cache \
 	make \
 	musl-dev
 
-RUN go get github.com/golang/lint/golint
+RUN go get golang.org/x/lint/golint
 RUN go get honnef.co/go/tools/cmd/staticcheck
 # TODO: remove this eventually
 RUN go get golang.org/x/crypto/ssh/terminal
