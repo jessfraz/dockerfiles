@@ -1,6 +1,6 @@
-FROM docker
+FROM docker:latest
 
-RUN apk install --no-cache \
+RUN apk add --no-cache \
 	bash \
 	ca-certificates \
 	curl \
