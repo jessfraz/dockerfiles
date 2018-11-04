@@ -11,6 +11,7 @@ RUN	apk add --no-cache \
 	gcc \
 	git \
 	libgcc \
+	linux-headers \
 	make \
 	musl-dev \
 	npm \

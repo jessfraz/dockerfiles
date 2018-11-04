@@ -29,12 +29,12 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y \
 	apt-transport-https \
 	ca-certificates \
-	curl \
 	gnupg \
+	wget \
 	--no-install-recommends
 
 # Add the atom debian repo
-RUN curl -sSL https://packagecloud.io/AtomEditor/atom/gpgkey | apt-key add -
+RUN wget -qO- https://packagecloud.io/AtomEditor/atom/gpgkey | apt-key add -
 RUN sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" > /etc/apt/sources.list.d/atom.list'
 
 # Install dependencies
