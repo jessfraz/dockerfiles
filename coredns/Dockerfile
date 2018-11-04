@@ -9,7 +9,7 @@ RUN apk --no-cache add \
 	git \
 	make
 
-ENV COREDNS_VERSION v1.2.4
+ENV COREDNS_VERSION v1.2.5
 
 RUN git clone --depth 1 --branch ${COREDNS_VERSION} https://github.com/coredns/coredns /go/src/github.com/coredns/coredns
 

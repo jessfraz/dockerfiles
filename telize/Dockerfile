@@ -8,7 +8,7 @@ ENV NGINX_VERSION 1.15.5
 # https://github.com/simplresty/ngx_devel_kit/releases
 ENV NGX_DEVEL_KIT_VERSION v0.3.1rc1
 # https://github.com/openresty/lua-nginx-module/releases
-ENV LUA_NGINX_MODULE_VERSION v0.10.13
+ENV LUA_NGINX_MODULE_VERSION v0.10.14rc2
 # https://github.com/leev/ngx_http_geoip2_module/releases
 ENV NGX_HTTP_GEOIP2_MODULE_VERSION 3.2
 # https://github.com/maxmind/libmaxminddb/releases
