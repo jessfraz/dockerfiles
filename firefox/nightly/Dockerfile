@@ -1,16 +1,27 @@
+FROM debian:sid-slim as downloader
+
+RUN apt-get update && apt-get install -y \
+    ca-certificates \
+    curl \
+    bzip2 \
+    xz-utils \
+    --no-install-recommends \
+    && cd /opt/ \
+    && curl -fSL -o firefox.tar.bz2 "https://download.mozilla.org/?product=firefox-nightly-latest-ssl&os=linux64&lang=en-US" \
+    && tar xvjf firefox.tar.bz2 \
+    && rm firefox.tar.bz2
+
 FROM debian:sid-slim
+
+COPY --from=downloader /opt/firefox/ /opt/firefox/
 
 RUN apt-get update && apt-get install -y \
     apulse \
-    dirmngr \
-    gnupg \
     ca-certificates \
     hicolor-icon-theme \
     libasound2 \
     libgl1-mesa-dri \
     libgl1-mesa-glx \
-    curl \
-    bzip2 \
     libgtk-3-0 \
     libdbus-glib-1-2 \
     libxrender1 \
@@ -18,13 +29,8 @@ RUN apt-get update && apt-get install -y \
     libx11-xcb1 \
     libxt6 \
     ffmpeg \
-    xz-utils \
     libpulse0 \
     --no-install-recommends \
-    && cd /opt/ \
-    && curl -fSL -o firefox.tar.bz2 "https://download.mozilla.org/?product=firefox-nightly-latest-ssl&os=linux64&lang=en-US" \
-    && tar xvjf firefox.tar.bz2 \
-    && rm firefox.tar.bz2 \
     && ln -s /opt/firefox/firefox /usr/local/bin/ \
     && update-alternatives --install /usr/bin/x-www-browser x-www-browser /opt/firefox/firefox 200 \
     && update-alternatives --set x-www-browser /opt/firefox/firefox \
