@@ -1,6 +1,8 @@
 FROM debian:sid-slim as downloader
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update \
+    && apt-get upgrade -y \
+    && apt-get install -y \
     ca-certificates \
     curl \
     bzip2 \
@@ -15,7 +17,9 @@ FROM debian:sid-slim
 
 COPY --from=downloader /opt/firefox/ /opt/firefox/
 
-RUN apt-get update && apt-get install -y \
+RUN apt-get update \
+    && apt-get upgrade -y \
+    && apt-get install -y \
     apulse \
     ca-certificates \
     hicolor-icon-theme \
@@ -34,6 +38,7 @@ RUN apt-get update && apt-get install -y \
     && ln -s /opt/firefox/firefox /usr/local/bin/ \
     && update-alternatives --install /usr/bin/x-www-browser x-www-browser /opt/firefox/firefox 200 \
     && update-alternatives --set x-www-browser /opt/firefox/firefox \
+    && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 
 ENV LANG en-US
