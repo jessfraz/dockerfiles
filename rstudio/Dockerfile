@@ -50,7 +50,7 @@ RUN apt-get update && apt-get install -y \
 	&& rm -rf /var/lib/apt/lists/*
 
 # https://www.rstudio.com/products/rstudio/download/#download
-ENV RSTUDIO_VERSION 1.1.456
+ENV RSTUDIO_VERSION 1.1.463
 
 # Download the source
 RUN buildDeps=' \
