@@ -13,7 +13,7 @@ RUN	apk add --no-cache \
 
 ENV TERRAFORM_VERSION v0.11.10
 
-RUN go get github.com/hashicorp/terraform
+RUN go get github.com/hashicorp/terraform || true
 
 WORKDIR /go/src/github.com/hashicorp/terraform
 
