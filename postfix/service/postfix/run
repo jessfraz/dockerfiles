@@ -81,4 +81,3 @@ if [[ ! -z "$SASL_AUTH" ]]; then
 fi
 
 /usr/lib/postfix/master -c /etc/postfix -d 2>&1
-tail -F /var/log/mail.log
