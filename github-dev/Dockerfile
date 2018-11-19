@@ -10,7 +10,9 @@ RUN	apk add --no-cache \
 	gnupg \
 	jq \
 	make \
-	musl-dev
+	musl-dev \
+	libseccomp-dev \
+	linux-headers
 
 RUN go get golang.org/x/lint/golint
 RUN go get honnef.co/go/tools/cmd/staticcheck
