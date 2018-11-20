@@ -21,5 +21,4 @@ RUN go get golang.org/x/crypto/ssh/terminal
 
 COPY upload-assets /usr/bin/upload-assets
 COPY release-email-notification /usr/bin/release-email-notification
-COPY gcloud-login /usr/bin/gcloud-login
 COPY cleanup-pr-branch /usr/bin/cleanup-pr-branch

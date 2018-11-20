@@ -1,5 +1,0 @@
-#!/bin/bash
-set -e
-set -o pipefail
-
-gpg --batch --yes --passphrase "$GCLOUD_KEY" --cipher-algo AES256 -o "${HOME}/gcloud.key" "${GITHUB_WORKSPACE}/.gcloud.key.gpg"
