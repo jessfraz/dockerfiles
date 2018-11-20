@@ -44,7 +44,6 @@ RUN apt-get update && apt-get install -y \
 	libluajit-5.1-dev \
 	arping \
 	iperf \
-	netperf \
 	ethtool \
 	devscripts \
 	zlib1g-dev \
