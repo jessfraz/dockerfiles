@@ -9,7 +9,7 @@
 # 	--name couchpotato \
 # 	jess/couchpotato
 #
-FROM alpine:latest
+FROM python:2-alpine
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 # machine parsable metadata, for https://github.com/pycampers/dockapt
@@ -32,13 +32,9 @@ RUN apk add --no-cache \
 	libxslt-dev \
 	musl-dev \
 	openssl-dev \
-	python \
-	python-dev \
-	py2-pip \
 	&& rm -rf /var/lib/apt/lists/*
 
 RUN pip install \
-	cffi \
 	lxml \
 	pyopenssl
 
