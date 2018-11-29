@@ -38,6 +38,7 @@ RUN apk add --no-cache \
 	&& rm -rf /var/lib/apt/lists/*
 
 RUN pip install \
+	cffi \
 	lxml \
 	pyopenssl
 

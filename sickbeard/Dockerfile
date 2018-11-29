@@ -14,7 +14,7 @@ LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 
 RUN apk add --no-cache \
-	--repository https://dl-3.alpinelinux.org/alpine/edge/community \
+	--repository http://dl-cdn.alpinelinux.org/alpine/edge/community \
 	ca-certificates \
 	git \
 	python \

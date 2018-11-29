@@ -1,7 +1,7 @@
 FROM alpine:latest
 
 RUN apk --no-cache add \
-	--repository https://dl-3.alpinelinux.org/alpine/latest-stable/community \
+	--repository http://dl-cdn.alpinelinux.org/alpine/latest-stable/community \
 	ca-certificates \
 	perl-datetime \
 	perl-timedate

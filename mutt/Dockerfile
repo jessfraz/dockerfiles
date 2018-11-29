@@ -23,7 +23,7 @@ RUN apk --no-cache add \
 	mutt \
 	mutt-doc \
 	vim \
-	--repository https://dl-3.alpinelinux.org/alpine/edge/main
+	--repository http://dl-cdn.alpinelinux.org/alpine/edge/main
 
 # a browser is necessary!
 ENV BROWSER lynx
