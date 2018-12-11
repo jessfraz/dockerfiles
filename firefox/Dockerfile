@@ -17,6 +17,9 @@ RUN apt-get update && apt-get install -y \
 	libgl1-mesa-dri \
 	libgl1-mesa-glx \
 	libpulse0 \
+	fonts-noto \
+	fonts-noto-cjk \
+	fonts-noto-color-emoji \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
