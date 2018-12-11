@@ -34,6 +34,9 @@ RUN apt-get update \
     libxt6 \
     ffmpeg \
     libpulse0 \
+    fonts-noto \
+    fonts-noto-cjk \
+    fonts-noto-color-emoji \
     --no-install-recommends \
     && ln -s /opt/firefox/firefox /usr/local/bin/ \
     && update-alternatives --install /usr/bin/x-www-browser x-www-browser /opt/firefox/firefox 200 \

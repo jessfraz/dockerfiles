@@ -144,12 +144,14 @@ leev/ngx_http_geoip2_module
 maxmind/libmaxminddb
 hashicorp/terraform
 kdlucas/byte-unixbench
-mitchellh/vagrant
+hashicorp/vagrant
 hashicorp/vault
 v2tec/watchtower
 wireguard/wireguard
 znc/znc
 apache/zookeeper
+OJ/gobuster
+OWASP/amass
 )
 
 other_projects=(
