@@ -5,7 +5,6 @@ ENV PATH /go/bin:/usr/local/go/bin:$PATH
 ENV GOPATH /go
 
 RUN	apk add --no-cache \
-	--repository http://dl-cdn.alpinelinux.org/alpine/edge/main/ \
 	bash \
 	ca-certificates \
 	gcc \
@@ -16,6 +15,7 @@ RUN	apk add --no-cache \
 	musl-dev \
 	npm \
 	pkgconf \
+	python2 \
 	yarn \
 	zip
 
