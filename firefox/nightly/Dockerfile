@@ -1,7 +1,6 @@
-FROM debian:sid-slim as downloader
+FROM westonsteimel/debian:sid-slim as downloader
 
 RUN apt-get update \
-    && apt-get upgrade -y \
     && apt-get install -y \
     ca-certificates \
     curl \
@@ -13,12 +12,11 @@ RUN apt-get update \
     && tar xvjf firefox.tar.bz2 \
     && rm firefox.tar.bz2
 
-FROM debian:sid-slim
+FROM westonsteimel/debian:sid-slim
 
 COPY --from=downloader /opt/firefox/ /opt/firefox/
 
 RUN apt-get update \
-    && apt-get upgrade -y \
     && apt-get install -y \
     apulse \
     ca-certificates \
