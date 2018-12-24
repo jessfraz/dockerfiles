@@ -39,6 +39,8 @@ RUN apt-get update \
     && ln -s /opt/firefox/firefox /usr/local/bin/ \
     && update-alternatives --install /usr/bin/x-www-browser x-www-browser /opt/firefox/firefox 200 \
     && update-alternatives --set x-www-browser /opt/firefox/firefox \
+    && apt-get autoremove -y \
+    && apt-get autoclean -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 
