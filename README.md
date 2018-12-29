@@ -9,6 +9,12 @@ This is a repo to hold various Dockerfiles for images I create.
 
 <!-- toc -->
 
+- [About](#about)
+- [Resources](#resources)
+  * [My dotfiles](#my-dotfiles)
+- [Contributing](#contributing)
+  * [Using the `Makefile`](#using-the-makefile)
+
 <!-- tocstop -->
 
 ## About
