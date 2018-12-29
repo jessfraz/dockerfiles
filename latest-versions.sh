@@ -121,6 +121,7 @@ keepassxreboot/keepassxc
 robertdavidgraham/masscan
 MidnightCommander/mc
 zyedidia/micro
+mitmproxy/mitmproxy
 hashicorp/nomad
 zeit/now-cli
 nzbget/nzbget
