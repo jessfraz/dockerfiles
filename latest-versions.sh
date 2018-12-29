@@ -136,7 +136,6 @@ ricochet-im/ricochet
 reverse-shell/routersploit
 rstudio/rstudio
 tarsnap/tarsnap
-fcambus/telize
 nginx/nginx
 simplresty/ngx_devel_kit
 openresty/lua-nginx-module
