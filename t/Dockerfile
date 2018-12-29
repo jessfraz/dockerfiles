@@ -7,7 +7,7 @@ RUN	apk add --no-cache \
 RUN	set -x \
 	&& apk add --no-cache --virtual .build-deps \
 	build-base \
-	&& gem install io-console t --no-rdoc --no-ri \
+	&& gem install io-console t --no-document \
 	&& apk del .build-deps
 
 ENTRYPOINT	["t"]

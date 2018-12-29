@@ -15,7 +15,10 @@ get_latest() {
 	local repo=$1
 
 	local resp
-	resp=$(curl -sSL -H "${AUTH_HEADER}" -H "${API_HEADER}" "${URI}/repos/${repo}/releases" | jq --raw-output '[.[] | select(.prerelease == false)]')
+	resp=$(curl -sSL -H "${AUTH_HEADER}" -H "${API_HEADER}" "${URI}/repos/${repo}/releases")
+	if [[ "$repo" != "Radarr/Radarr" ]]; then
+		resp=$(echo "$resp" | jq --raw-output '[.[] | select(.prerelease == false)]')
+	fi
 	local tag
 	tag=$(echo "$resp" | jq -e --raw-output .[0].tag_name)
 	local name
