@@ -46,15 +46,15 @@ for repo in "${repos[@]}"; do
 			# continue the loop since we cannot cat
 			continue
 		fi
-		manifest_media_type=$(echo ${manifest} | jq -r '.mediaType')
+		manifest_media_type=$(echo "${manifest}" | jq -r '.mediaType')
 		echo "media-type: $manifest_media_type"
 
 
 		if [ "${manifest_media_type}" == "application/vnd.docker.distribution.manifest.list.v2+json" ] ; then
 			# we have a manifest list and fetch the referenced manifests
-			additional_manifests=( $(echo ${manifest} | jq -r '.["manifests"] | .[].digest' | cut -d: -f2) )
+			mapfile -t additional_manifests < <(echo "${manifest}" | jq -r '.["manifests"] | .[].digest' | cut -d: -f2)
 
-			echo "additional_manifests: ${additional_manifests[@]}"
+			echo "additional_manifests: ${additional_manifests[*]}"
 		fi
 
 		echo "repo: $repo | tag: $tag | current: ${ha}:${id}"
@@ -67,7 +67,7 @@ for repo in "${repos[@]}"; do
 
 		# shellcheck disable=SC2199
 		if [[ "${shas[@]}" != "" ]] && [[ ! -z "${shas[@]}" ]]; then
-			echo "[to be removed]: ${shas[@]}"
+			echo "[to be removed]: ${shas[*]}"
 			#parallel -j"${JOBS}" reg rm "${REPO_URL}/${repo}@${ha}:{1}" ::: "${shas[@]}" || true
 		fi
 	done
