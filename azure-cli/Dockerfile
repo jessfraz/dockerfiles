@@ -15,9 +15,4 @@ RUN set -x \
 		--no-cache-dir \
 	&& apk del .build-deps
 
-# Add extentions
-ENV AZURE_CLI_EXTENSION_NOELBUNDICK_VERSION 0.0.12
-RUN az extension add -y \
-	--source "https://github.com/noelbundick/azure-cli-extension-noelbundick/releases/download/v${AZURE_CLI_EXTENSION_NOELBUNDICK_VERSION}/noelbundick-${AZURE_CLI_EXTENSION_NOELBUNDICK_VERSION}-py2.py3-none-any.whl"
-
 ENTRYPOINT	[ "az" ]

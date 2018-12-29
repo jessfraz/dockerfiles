@@ -15,7 +15,7 @@ get_latest() {
 	local repo=$1
 
 	local resp
-	resp=$(curl -sSL -H "${AUTH_HEADER}" -H "${API_HEADER}" "${URI}/repos/${repo}/releases")
+	resp=$(curl -sSL -H "${AUTH_HEADER}" -H "${API_HEADER}" "${URI}/repos/${repo}/releases" | jq --raw-output '[.[] | select(.prerelease == false)]')
 	local tag
 	tag=$(echo "$resp" | jq -e --raw-output .[0].tag_name)
 	local name
@@ -85,7 +85,7 @@ get_latest_unifi() {
 
 compare() {
 	local name="$1" dir="$2" tag="$3" current="$4" releases="$5"
-	ignore_dirs=( "bazel" "bcc" "mc" "nzbget" "osquery" "powershell" "rstudio" )
+	ignore_dirs=( "bazel" "mc" "nzbget" "rstudio" )
 
 	if [[ "$tag" =~ $current ]] || [[ "$name" =~ $current ]] || [[ "$current" =~ $tag ]] || [[ "$current" == "master" ]]; then
 		echo -e "\\e[36m${dir}:\\e[39m current ${current} | ${tag} | ${name}"
@@ -99,7 +99,6 @@ compare() {
 }
 
 projects=(
-noelbundick/azure-cli-extension-noelbundick
 iovisor/bcc
 browsh-org/browsh
 certbot/certbot
