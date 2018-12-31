@@ -24,10 +24,10 @@ RUN addgroup -g 1000 mitmproxy \
 	&& git clone --branch="v${MITMPROXY_VERSION}" --depth=1 https://github.com/mitmproxy/mitmproxy \
 	&& cd mitmproxy \
 	&& python setup.py bdist_wheel \
-    && LDFAGS=-L/lib pip install dist/mitmproxy-${MITMPROXY_VERSION}-py3-none-any.whl \
+    && LDFAGS=-L/lib pip install --no-cache-dir dist/mitmproxy-${MITMPROXY_VERSION}-py3-none-any.whl \
     && apk del --purge .build-dependencies \
     && cd .. \
-    && rm -rf ~/.cache/pip mitmproxy /var/cache/* \
+    && rm -rf mitmproxy /var/cache/* \
 
 USER mitmproxy
 
