@@ -20,6 +20,7 @@ RUN apt-get update && apt-get install -y \
 	ca-certificates \
 	curl \
 	gnupg \
+	procps \
 	--no-install-recommends
 
 # Add the skype debian repo
