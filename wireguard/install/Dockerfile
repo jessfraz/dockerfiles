@@ -14,11 +14,12 @@ LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 RUN apk add --no-cache \
 	build-base \
 	ca-certificates \
+	elfutils-libelf \
 	libelf-dev \
 	libmnl-dev
 
 # https://git.zx2c4.com/WireGuard/refs/
-ENV WIREGUARD_VERSION 0.0.20181119
+ENV WIREGUARD_VERSION 0.0.20181218
 
 RUN set -x \
 	&& apk add --no-cache --virtual .build-deps \

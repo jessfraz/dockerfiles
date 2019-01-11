@@ -6,7 +6,7 @@ RUN	apk add --no-cache \
 	curl \
 	gzip
 
-ENV NOW_VERSION 13.0.0-canary.16
+ENV NOW_VERSION 12.1.14
 
 RUN curl -sSL -o "/tmp/now.gz" "https://github.com/zeit/now-cli/releases/download/${NOW_VERSION}/now-alpine.gz" \
 	&& gzip -dv "/tmp/now.gz" \

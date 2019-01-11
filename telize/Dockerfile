@@ -4,7 +4,7 @@ RUN apk add --no-cache \
 	lua5.1-cjson \
 	luajit
 
-ENV NGINX_VERSION 1.15.7
+ENV NGINX_VERSION 1.15.8
 # https://github.com/simplresty/ngx_devel_kit/releases
 ENV NGX_DEVEL_KIT_VERSION v0.3.1rc1
 # https://github.com/openresty/lua-nginx-module/releases
@@ -175,7 +175,7 @@ STOPSIGNAL SIGTERM
 
 EXPOSE 80 443
 
-ENV TELIZE_VERSION master
+ENV TELIZE_VERSION 66063c6c6e5bbbafcf493c5bc7c825f0a6e1b03d
 
 RUN set -x \
 	&& apk add --no-cache --virtual .build-deps \
@@ -186,9 +186,10 @@ RUN set -x \
 	&& curl -sSL "http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country.tar.gz" | tar -xzf - --strip-components 1 -C /usr/share/GeoIP \
 	&& curl -sSL "http://geolite.maxmind.com/download/geoip/database/GeoLite2-City.tar.gz" | tar -xzf - --strip-components 1 -C /usr/share/GeoIP \
 	&& curl -sSL "http://geolite.maxmind.com/download/geoip/database/GeoLite2-ASN.tar.gz" | tar -xzf - --strip-components 1 -C /usr/share/GeoIP \
-	&& git clone --depth 1 --branch "${TELIZE_VERSION}" https://github.com/fcambus/telize.git /usr/src/telize \
+	&& git clone https://github.com/fcambus/telize.git /usr/src/telize \
 	&& ( \
 		cd /usr/src/telize \
+		&& git checkout "$TELIZE_VERSION" \
 		&& cp *.conf /etc/nginx/ \
 	) \
 	&& rm -rf /usr/src/telize \

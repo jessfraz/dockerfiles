@@ -5,10 +5,6 @@ RUN pwsh -c "Install-Module PowerShellGet -Force"
 
 # Install Azure PowerShell module
 # Install the Azure Resource Manager modules from the PowerShell Gallery
-RUN pwsh -c "Install-Module -Name AzureRM -AllowClobber -Force"
-
-# Install Azure Active Directory module
-# Install the Azure Active Directory modules from the PowerShell Gallery
-RUN pwsh -c "Install-Module -Name AzureAD -AllowClobber -Force"
+RUN pwsh -c "Install-Module -Name Az -AllowClobber -Force"
 
 ENTRYPOINT [ "pwsh" ]

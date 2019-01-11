@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
-ENV OSQUERY_VERSION 3.3.1
+ENV OSQUERY_VERSION 3.2.6
 
 RUN buildDeps=' \
 		curl \

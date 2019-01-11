@@ -16,6 +16,9 @@ get_latest() {
 
 	local resp
 	resp=$(curl -sSL -H "${AUTH_HEADER}" -H "${API_HEADER}" "${URI}/repos/${repo}/releases")
+	if [[ "$repo" != "Radarr/Radarr" ]]; then
+		resp=$(echo "$resp" | jq --raw-output '[.[] | select(.prerelease == false)]')
+	fi
 	local tag
 	tag=$(echo "$resp" | jq -e --raw-output .[0].tag_name)
 	local name
@@ -85,7 +88,7 @@ get_latest_unifi() {
 
 compare() {
 	local name="$1" dir="$2" tag="$3" current="$4" releases="$5"
-	ignore_dirs=( "bazel" "bcc" "mc" "nzbget" "osquery" "powershell" "rstudio" )
+	ignore_dirs=( "bazel" "mc" "rstudio" )
 
 	if [[ "$tag" =~ $current ]] || [[ "$name" =~ $current ]] || [[ "$current" =~ $tag ]] || [[ "$current" == "master" ]]; then
 		echo -e "\\e[36m${dir}:\\e[39m current ${current} | ${tag} | ${name}"
@@ -99,7 +102,6 @@ compare() {
 }
 
 projects=(
-noelbundick/azure-cli-extension-noelbundick
 iovisor/bcc
 browsh-org/browsh
 certbot/certbot
@@ -119,6 +121,7 @@ keepassxreboot/keepassxc
 robertdavidgraham/masscan
 MidnightCommander/mc
 zyedidia/micro
+mitmproxy/mitmproxy
 hashicorp/nomad
 zeit/now-cli
 nzbget/nzbget
@@ -134,7 +137,6 @@ ricochet-im/ricochet
 reverse-shell/routersploit
 rstudio/rstudio
 tarsnap/tarsnap
-fcambus/telize
 nginx/nginx
 simplresty/ngx_devel_kit
 openresty/lua-nginx-module
