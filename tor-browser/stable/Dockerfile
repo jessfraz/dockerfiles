@@ -14,7 +14,8 @@ RUN apt-get update && apt-get install -y \
 	ca-certificates \
 	curl \
 	dirmngr \
-	gnupg \
+	ffmpeg \
+    gnupg \
 	libasound2 \
 	libdbus-glib-1-2 \
 	libgtk-3-0 \
