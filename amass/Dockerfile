@@ -1,11 +1,11 @@
-FROM golang:1.10-alpine AS builder
+FROM golang:alpine AS builder
 
 RUN	apk --no-cache add \
 	ca-certificates \
     git \
     make
     
-ENV AMASS_VERSION 2.8.8
+ENV AMASS_VERSION 2.9.0
 
 RUN mkdir -p /go/src/amass \
 	&& go get -u github.com/OWASP/Amass/... \
