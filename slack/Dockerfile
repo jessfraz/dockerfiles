@@ -12,38 +12,32 @@
 #	-v "${HOME}/.slack:/root/.config/Slack" \
 #	--ipc="host" \
 #	--name slack \
-#	jess/slack "$@"
+#	westonsteimel/slack "$@"
 
-FROM debian:jessie-slim
-LABEL maintainer "Jessie Frazelle <jess@linux.com>"
+FROM westonsteimel/debian:sid-slim
 
 ENV LC_ALL en_US.UTF-8
 ENV LANG en_US.UTF-8
+ENV SLACK_VERSION 3.3.7
 
-RUN apt-get update && apt-get install -y \
-	apt-transport-https \
+RUN apt-get update \
+    && apt-get install -y \
 	ca-certificates \
 	curl \
-	gnupg \
 	locales \
 	--no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/*
-
-RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
+    && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
 	&& locale-gen en_US.utf8 \
-	&& /usr/sbin/update-locale LANG=en_US.UTF-8
-
-# Add the slack debian repo
-RUN curl -sSL https://packagecloud.io/slacktechnologies/slack/gpgkey | apt-key add -
-RUN echo "deb https://packagecloud.io/slacktechnologies/slack/debian/ jessie main" > /etc/apt/sources.list.d/slacktechnologies_slack.list
-
-RUN apt-get update && apt-get -y install \
+	&& /usr/sbin/update-locale LANG=en_US.UTF-8 \
+    && curl -fSL "https://downloads.slack-edge.com/linux_releases/slack-desktop-${SLACK_VERSION}-amd64.deb" -o /tmp/slack-desktop.deb \
+    && apt-get update && apt-get -y install \
 	libasound2 \
 	libgtk-3-0 \
 	libx11-xcb1 \
 	libxkbfile1 \
-	slack-desktop \
+	/tmp/slack-desktop.deb \
 	--no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/*
+	&& rm -rf /var/lib/apt/lists/* \
+    && rm /tmp/slack-desktop.deb
 
 ENTRYPOINT ["/usr/lib/slack/slack"]
