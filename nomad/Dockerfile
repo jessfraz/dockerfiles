@@ -19,7 +19,7 @@ RUN	apk add --no-cache \
 	yarn \
 	zip
 
-ENV NOMAD_VERSION v0.8.7-rc1
+ENV NOMAD_VERSION v0.9.0-beta2
 
 RUN go get github.com/hashicorp/nomad
 
