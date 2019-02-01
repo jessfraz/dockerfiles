@@ -7,7 +7,7 @@
 #	-e DISPLAY=unix$DISPLAY \
 #	jess/tor-browser:alpha
 #
-FROM debian:buster-slim
+FROM westonsteimel/debian:sid-slim
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 RUN apt-get update && apt-get install -y \
@@ -34,7 +34,7 @@ RUN useradd --create-home --home-dir $HOME user \
 ENV LANG C.UTF-8
 
 # https://www.torproject.org/projects/torbrowser.html.en
-ENV TOR_VERSION 8.5a6
+ENV TOR_VERSION 8.5a7
 ENV TOR_FINGERPRINT 0x4E2C6E8793298290
 
 # download tor and check signature
