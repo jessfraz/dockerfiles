@@ -20,7 +20,11 @@ FROM alpine:edge
 COPY --from=builder /go/bin/hugo /usr/local/bin/hugo
 
 RUN apk --no-cache add \
-    ca-certificates
+    ca-certificates \
+    && addgroup -g 1000 hugo \
+    && adduser -u 1000 -G hugo -s /bin/sh -D hugo
+
+USER hugo
 
 ENTRYPOINT [ "hugo" ]
 CMD [ "--help" ]
