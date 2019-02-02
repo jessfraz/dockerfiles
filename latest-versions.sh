@@ -152,6 +152,7 @@ znc/znc
 apache/zookeeper
 OJ/gobuster
 OWASP/amass
+gohugoio/hugo
 )
 
 other_projects=(
