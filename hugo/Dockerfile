@@ -25,6 +25,6 @@ RUN apk --no-cache add \
     && adduser -u 1000 -G hugo -s /bin/sh -D hugo
 
 USER hugo
+WORKDIR /site
 
 ENTRYPOINT [ "hugo" ]
-CMD [ "--help" ]
