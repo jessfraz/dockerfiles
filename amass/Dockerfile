@@ -5,7 +5,7 @@ RUN	apk --no-cache add \
     git \
     make
     
-ENV AMASS_VERSION 2.9.0
+ENV AMASS_VERSION 2.9.1
 
 RUN mkdir -p /go/src/amass \
 	&& go get -u github.com/OWASP/Amass/... \
@@ -21,6 +21,10 @@ RUN	apk --no-cache add \
 	ca-certificates
 
 COPY --from=builder /usr/local/bin/amass /usr/bin/amass
+COPY --from=builder /usr/local/bin/amass.db /usr/bin/amass.db
+COPY --from=builder /usr/local/bin/amass.netdomains /usr/bin/amass.netdomains
+COPY --from=builder /usr/local/bin/amass.viz /usr/bin/amass.viz
+COPY --from=builder /go/src/github.com/OWASP/Amass/wordlists /wordlists
 
 ENTRYPOINT [ "amass" ]
 
