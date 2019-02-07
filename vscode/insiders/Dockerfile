@@ -7,9 +7,9 @@
 #    -e DISPLAY=unix$DISPLAY \
 #    --device /dev/dri \
 #    --name vscode \
-#    jess/vscode
+#    westonsteimel/vscode
 
-FROM debian:buster-slim
+FROM westonsteimel/debian:sid-slim
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 # Tell debconf to run in non-interactive mode
@@ -50,6 +50,7 @@ RUN apt-get update && apt-get -y install \
 	libxss1 \
 	libxtst6 \
 	openssh-client \
+    fonts-firacode \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
