@@ -1,5 +1,5 @@
 FROM debian:buster-slim
-LABEL maintainer "Jessie Frazelle <jess@linux.com>"
+LABEL maintainer="Jessie Frazelle <jess@linux.com>"
 
 # run
 # docker run -d -p 1234:80 -p 25:25 jess/mailman

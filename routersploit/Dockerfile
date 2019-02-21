@@ -1,5 +1,5 @@
 FROM debian:sid-slim
-LABEL maintainer "Christian Koep <christiankoep@gmail.com>"
+LABEL maintainer="Christian Koep <christiankoep@gmail.com>"
 
 ENV ROUTERSPLOIT_VERSION v3.4.0
 

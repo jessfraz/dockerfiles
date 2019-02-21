@@ -1,5 +1,5 @@
 FROM debian:buster-slim
-LABEL maintainer "Jessie Frazelle <jess@linux.com>"
+LABEL maintainer="Jessie Frazelle <jess@linux.com>"
 
 # Install bash and other deps so we have them.
 RUN apt-get update && apt-get install -y \

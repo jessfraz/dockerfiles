@@ -7,7 +7,7 @@
 #	jess/znc
 #
 FROM alpine:latest
-LABEL maintainer "Jessie Frazelle <jess@linux.com>"
+LABEL maintainer="Jessie Frazelle <jess@linux.com>"
 
 RUN apk add --no-cache \
 	ca-certificates \

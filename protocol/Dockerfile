@@ -1,5 +1,5 @@
 FROM alpine:latest
-LABEL maintainer "James Abley <james.abley@gmail.com>"
+LABEL maintainer="James Abley <james.abley@gmail.com>"
 
 RUN buildDeps=' \
                ca-certificates \

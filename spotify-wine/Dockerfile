@@ -10,7 +10,7 @@
 #	jess/spotify-wine bash
 #
 FROM r.j3ss.co/wine
-LABEL maintainer "Jessie Frazelle <jess@linux.com>"
+LABEL maintainer="Jessie Frazelle <jess@linux.com>"
 
 ADD https://download.scdn.co/SpotifySetup.exe /usr/src/SpotifySetup.exe
 

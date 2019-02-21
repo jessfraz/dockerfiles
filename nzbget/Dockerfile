@@ -1,5 +1,5 @@
 FROM python:2-alpine
-LABEL maintainer "Jessie Frazelle <jess@linux.com>"
+LABEL maintainer="Jessie Frazelle <jess@linux.com>"
 
 ENV LANG "en_US.UTF-8"
 ENV LANGUAGE "en_US.UTF-8"

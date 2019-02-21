@@ -7,7 +7,7 @@
 # https://github.com/andygrunwald/FOM-LaTeX-Template
 
 FROM debian:buster-slim
-LABEL maintainer "Christian Koep <christiankoep@gmail.com>"
+LABEL maintainer="Christian Koep <christiankoep@gmail.com>"
 
 RUN apt-get update && apt-get install -y \
     texlive-full \

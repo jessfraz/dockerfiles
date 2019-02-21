@@ -7,7 +7,7 @@
 # 	jess/plex-home-theater
 #
 FROM ubuntu:16.04
-LABEL maintainer "Jessie Frazelle <jess@linux.com>"
+LABEL maintainer="Jessie Frazelle <jess@linux.com>"
 
 RUN apt-get update && apt-get install -y \
 	software-properties-common \

@@ -1,5 +1,5 @@
 FROM debian:buster-slim
-LABEL maintainer "Jessie Frazelle <jess@linux.com>"
+LABEL maintainer="Jessie Frazelle <jess@linux.com>"
 
 ENV LANG=en_US.UTF-8
 

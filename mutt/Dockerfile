@@ -9,7 +9,7 @@
 #	jess/mutt
 #
 FROM alpine:latest
-LABEL maintainer "Jessie Frazelle <jess@linux.com>"
+LABEL maintainer="Jessie Frazelle <jess@linux.com>"
 
 RUN addgroup -g 1000 user \
 	&& adduser -D -h /home/user -G user -u 1000 user

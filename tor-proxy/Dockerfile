@@ -8,7 +8,7 @@
 # 	jess/tor-proxy
 #
 FROM alpine:latest
-LABEL maintainer "Jessie Frazelle <jess@linux.com>"
+LABEL maintainer="Jessie Frazelle <jess@linux.com>"
 
 RUN apk --no-cache add \
 	tor

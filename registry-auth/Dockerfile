@@ -1,5 +1,5 @@
 FROM python:2-alpine AS buildbase
-LABEL maintainer "Jess Frazelle <jess@linux.com>"
+LABEL maintainer="Jess Frazelle <jess@linux.com>"
 
 RUN apk add --no-cache \
 	bash \

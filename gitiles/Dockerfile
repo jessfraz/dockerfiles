@@ -1,5 +1,5 @@
 FROM alpine:latest
-LABEL maintainer "Jessie Frazelle <jess@linux.com>"
+LABEL maintainer="Jessie Frazelle <jess@linux.com>"
 
 ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk
 

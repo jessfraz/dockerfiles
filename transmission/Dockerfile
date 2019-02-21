@@ -19,7 +19,7 @@
 
 # Base docker image
 FROM alpine:latest
-LABEL maintainer "Jessie Frazelle <jess@linux.com>"
+LABEL maintainer="Jessie Frazelle <jess@linux.com>"
 
 # machine parsable metadata, for https://github.com/pycampers/dockapt
 LABEL "registry_image"="r.j3ss.co/transmission"

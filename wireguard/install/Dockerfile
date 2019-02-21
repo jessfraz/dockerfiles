@@ -9,7 +9,7 @@
 # 	r.j3ss.co/wireguard:install
 #
 FROM alpine:latest
-LABEL maintainer "Jessie Frazelle <jess@linux.com>"
+LABEL maintainer="Jessie Frazelle <jess@linux.com>"
 
 RUN apk add --no-cache \
 	build-base \

@@ -20,7 +20,7 @@
 
 # Base docker image
 FROM debian:sid-slim
-LABEL maintainer "Jessie Frazelle <jess@linux.com>"
+LABEL maintainer="Jessie Frazelle <jess@linux.com>"
 
 # Install Chrome
 RUN apt-get update && apt-get install -y \

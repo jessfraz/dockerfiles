@@ -1,5 +1,5 @@
 FROM golang:alpine as builder
-LABEL maintainer "Jess Frazelle <jess@linux.com>"
+LABEL maintainer="Jess Frazelle <jess@linux.com>"
 
 RUN apk --no-cache add \
 	ca-certificates \

@@ -29,7 +29,7 @@
 # 	rm -rf /usr/share/virtualbox /usr/lib/virtualbox
 #
 FROM debian:stretch-slim
-LABEL maintainer "Jessie Frazelle <jess@linux.com>"
+LABEL maintainer="Jessie Frazelle <jess@linux.com>"
 
 ENV DEBIAN_FRONTEND noninteractive
 

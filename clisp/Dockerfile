@@ -4,7 +4,7 @@ RUN apk add --no-cache \
 RUN git clone https://github.com/brendandburns/cl-k8s.git /cl-k8s
 
 FROM alpine:latest
-LABEL maintainer "Jessie Frazelle <jess@linux.com>"
+LABEL maintainer="Jessie Frazelle <jess@linux.com>"
 
 RUN apk --no-cache add \
 	--repository http://dl-cdn.alpinelinux.org/alpine/edge/testing/ \

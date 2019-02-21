@@ -24,7 +24,7 @@
 #
 
 FROM debian:buster-slim
-LABEL maintainer "Christian Koep <christiankoep@gmail.com>"
+LABEL maintainer="Christian Koep <christiankoep@gmail.com>"
 
 RUN apt-get update && apt-get -y install \
 	apt-transport-https \

@@ -1,5 +1,5 @@
 FROM debian:stretch-slim
-LABEL maintainer "Jessie Frazelle <jess@linux.com>"
+LABEL maintainer="Jessie Frazelle <jess@linux.com>"
 
 RUN apt-get update && apt-get install -y \
 	build-essential \

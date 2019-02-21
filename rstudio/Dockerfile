@@ -11,7 +11,7 @@
 
 # Base docker image
 FROM debian:jessie-slim
-LABEL maintainer "Jessie Frazelle <jess@linux.com>"
+LABEL maintainer="Jessie Frazelle <jess@linux.com>"
 
 # Install Rstudio deps
 RUN apt-get update && apt-get install -y \

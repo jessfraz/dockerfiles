@@ -1,5 +1,5 @@
 FROM r.j3ss.co/wireguard:install
-LABEL maintainer "Jessie Frazelle <jess@linux.com>"
+LABEL maintainer="Jessie Frazelle <jess@linux.com>"
 
 RUN apk add --no-cache \
 	bash \
