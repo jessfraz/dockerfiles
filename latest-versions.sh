@@ -125,7 +125,7 @@ mitmproxy/mitmproxy
 hashicorp/nomad
 zeit/now-cli
 nzbget/nzbget
-bitly/oauth2_proxy
+pusher/oauth2_proxy
 facebook/osquery
 hashicorp/packer
 Tautulli/Tautulli

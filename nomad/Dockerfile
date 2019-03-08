@@ -1,24 +1,32 @@
-FROM golang:1.10-alpine as builder
+FROM golang:1.10 as builder
 MAINTAINER Jessica Frazelle <jess@linux.com>
 
 ENV PATH /go/bin:/usr/local/go/bin:$PATH
 ENV GOPATH /go
 
-RUN	apk add --no-cache \
-	bash \
+RUN apt-get update && apt-get install -y \
+	apt-transport-https \
 	ca-certificates \
+	curl \
+    --no-install-recommends \
+    && rm -rf /var/lib/apt/lists/* \
+	&& curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
+	&& echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+
+RUN curl -sL https://deb.nodesource.com/setup_11.x | bash -
+
+RUN apt-get update && apt-get install -y \
 	gcc \
 	git \
 	g++ \
-	libgcc \
-	linux-headers \
 	make \
-	musl-dev \
-	npm \
+	nodejs \
 	pkgconf \
-	python2 \
+	python \
 	yarn \
-	zip
+	zip \
+    --no-install-recommends \
+    && rm -rf /var/lib/apt/lists/*
 
 ENV NOMAD_VERSION v0.9.0-beta3
 
