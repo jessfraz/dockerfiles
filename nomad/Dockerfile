@@ -9,6 +9,7 @@ RUN	apk add --no-cache \
 	ca-certificates \
 	gcc \
 	git \
+	g++ \
 	libgcc \
 	linux-headers \
 	make \

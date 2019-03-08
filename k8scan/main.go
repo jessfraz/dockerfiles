@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"crypto/tls"
 	"encoding/json"
 	"errors"
@@ -407,7 +408,7 @@ func inc(ip net.IP) {
 func sendEmail(uri, ip string, port int, arinInfo ARINResponse) error {
 	mailgunClient := mailgun.NewMailgun(mailgunDomain, mailgunAPIKey)
 
-	msg, _, err := mailgunClient.Send(mailgunClient.NewMessage(
+	msg, _, err := mailgunClient.Send(context.Background(), mailgunClient.NewMessage(
 		/* From */ fmt.Sprintf("%s <%s>", emailSender, emailSender),
 		/* Subject */ fmt.Sprintf("[k8scan]: found dashboard %s", uri),
 		/* Body */ fmt.Sprintf(`Time: %s
