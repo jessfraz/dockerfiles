@@ -13,6 +13,8 @@
 #
 #	docker run -v /tmp/.X11-unix:/tmp/.X11-unix \
 #		--device=/dev/sda:/dev/sda \
+#		--device=/dev/mem:/dev/mem \
+#		--cap-add SYS_RAWIO \
 #		-e DISPLAY=unix$DISPLAY gparted
 #
 
