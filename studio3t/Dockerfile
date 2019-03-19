@@ -63,7 +63,8 @@ RUN apt-get update \
 
 ## Dependence to open studio3t.
 RUN apt-get install -y openjdk-8-jdk \
-        && apt-get install -y libssl1.0.0 libssl-dev
+        && apt-get install -y libssl1.0.0 libssl-dev \
+        && apt-get install -y curl
 
 USER docker
 
