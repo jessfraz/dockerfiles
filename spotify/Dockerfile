@@ -23,6 +23,7 @@ RUN	apt-get update && apt-get install -y \
 	alsa-utils \
 	libgl1-mesa-dri \
 	libgl1-mesa-glx \
+	libpulse0 \
 	spotify-client \
 	xdg-utils \
 	--no-install-recommends \
