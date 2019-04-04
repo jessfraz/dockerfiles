@@ -88,7 +88,7 @@ RUN apt-get update && apt-get install -y \
 
 # unifi version
 # From: https://www.ubnt.com/download/unifi/
-ENV UNIFI_VERSION "5.10.19"
+ENV UNIFI_VERSION "5.10.20"
 
 # install unifi
 RUN apt-get update && apt-get install -y \
