@@ -12,6 +12,7 @@
 #	--device /dev/snd \ # so we have sound
 #   --device /dev/dri \
 #	-v /dev/shm:/dev/shm \
+#	-e URL \
 #	--name chrome \
 #	jess/chrome
 #
