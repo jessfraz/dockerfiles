@@ -5,7 +5,7 @@
 #	--device /dev/snd:/dev/snd \
 #	--device /dev/dri \
 #	-v /dev/shm:/dev/shm \
-#	zoom-us
+#	jess/zoom-us
 
 FROM debian:sid-slim
 
