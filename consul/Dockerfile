@@ -44,7 +44,10 @@ RUN gem install \
 
 RUN cd ui-v2 \
 	&& yarn install \
-	&& make
+	&& make \
+	&& rm -rf ../pkg/web_ui \
+	&& mkdir -p ../pkg \
+	&& cp -r dist ../pkg/web_ui
 
 RUN TERM=xterm XC_ARCH="amd64" XC_OS="linux" LD_FLAGS=" -extldflags -static" make tools static-assets bin \
 	&& mv bin/consul /usr/bin/consul

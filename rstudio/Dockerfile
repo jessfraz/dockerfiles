@@ -50,7 +50,7 @@ RUN apt-get update && apt-get install -y \
 	&& rm -rf /var/lib/apt/lists/*
 
 # https://www.rstudio.com/products/rstudio/download/#download
-ENV RSTUDIO_VERSION 1.1.463
+ENV RSTUDIO_VERSION 1.2.1335
 
 # Download the source
 RUN buildDeps=' \
@@ -60,7 +60,7 @@ RUN buildDeps=' \
 	&& set -x \
 	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/* \
-	&& curl -sSL "https://download1.rstudio.org/rstudio-${RSTUDIO_VERSION}-amd64.deb" -o /tmp/rstudio-amd64.deb \
+	&& curl -sSL "https://download1.rstudio.org/desktop/trusty/amd64/rstudio-${RSTUDIO_VERSION}-amd64.deb" -o /tmp/rstudio-amd64.deb \
 	&& dpkg -i /tmp/rstudio-amd64.deb \
 	&& rm -rf /tmp/*.deb \
 	&& apt-get purge -y --auto-remove $buildDeps \
