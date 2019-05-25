@@ -82,10 +82,6 @@ WORKDIR /usr/src/lkp-tests
 RUN make install \
 	&& lkp install
 
-# Create the lkp user and group
-RUN groupadd --gid 1090 lkp
-RUN useradd --uid 1090 --gid 1090 lkp
-
 COPY runbench /usr/local/bin/runbench
 
 CMD [ "lkp" ]
