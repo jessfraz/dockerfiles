@@ -7,8 +7,10 @@ ENV GOPATH /go
 RUN	apk add --no-cache \
 	bash \
 	ca-certificates \
+	gcc \
 	git \
 	make \
+	musl-dev \
 	zip
 
 ENV TERRAFORM_VERSION v0.12.0
