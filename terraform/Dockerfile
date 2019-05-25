@@ -11,7 +11,7 @@ RUN	apk add --no-cache \
 	make \
 	zip
 
-ENV TERRAFORM_VERSION v0.11.11
+ENV TERRAFORM_VERSION v0.12.0
 
 RUN go get github.com/hashicorp/terraform || true
 

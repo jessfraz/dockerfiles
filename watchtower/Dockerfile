@@ -10,16 +10,13 @@ RUN apk --no-cache add \
 ENV PATH /go/bin:/usr/local/go/bin:$PATH
 ENV GOPATH /go
 
-ENV WATCHTOWER_VERSION v0.3.0
+ENV WATCHTOWER_VERSION v0.3.5
 
-RUN git clone --depth 1 --branch ${WATCHTOWER_VERSION} https://github.com/v2tec/watchtower /go/src/github.com/v2tec/watchtower
+RUN git clone --depth 1 --branch ${WATCHTOWER_VERSION} https://github.com/containrrr/watchtower /go/src/github.com/containrrr/watchtower
 
-RUN go get github.com/Masterminds/glide
+WORKDIR /go/src/github.com/containrrr/watchtower
 
-WORKDIR /go/src/github.com/v2tec/watchtower
-
-RUN glide install
-RUN go build -o /usr/bin/watchtower
+RUN GO111MODULE=on go build -o /usr/bin/watchtower
 
 FROM alpine:latest
 COPY --from=builder /usr/bin/watchtower /usr/bin/watchtower

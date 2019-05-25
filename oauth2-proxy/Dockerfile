@@ -8,7 +8,7 @@ RUN	apk --no-cache add \
 ENV PATH /go/bin:/usr/local/go/bin:$PATH
 ENV GOPATH /go
 
-ENV OAUTH2_PROXY_VERSION v3.1.0
+ENV OAUTH2_PROXY_VERSION v3.2.0
 
 RUN go get github.com/golang/dep/cmd/dep
 
