@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -y \
 	fcitx-frontend-qt5 \
 	fcitx-modules \
 	fcitx-module-dbus \
+	libclang-dev \
 	libedit2 \
 	libgl1-mesa-dri \
 	libgl1-mesa-glx \
