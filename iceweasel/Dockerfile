@@ -1,9 +1,9 @@
-FROM debian:buster
+FROM debian:buster-slim
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 RUN apt-get update && apt-get install -y \
 	hicolor-icon-theme \
-	iceweasel \
+	firefox-esr \
 	libgl1-mesa-dri \
 	libgl1-mesa-glx \
 	--no-install-recommends \
@@ -11,4 +11,4 @@ RUN apt-get update && apt-get install -y \
 
 COPY local.conf /etc/fonts/local.conf
 
-ENTRYPOINT [ "iceweasel" ]
+ENTRYPOINT [ "firefox" ]

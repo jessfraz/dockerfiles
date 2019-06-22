@@ -9,8 +9,18 @@
 # 	--name couchpotato \
 # 	jess/couchpotato
 #
-FROM alpine:latest
+FROM python:2-alpine
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
+
+# machine parsable metadata, for https://github.com/pycampers/dockapt
+LABEL "registry_image"="r.j3ss.co/couchpotato"
+LABEL "docker_run_flags"="-d \
+ 	--restart always \
+	-p 5050:5050 \
+ 	-v /etc/localtime:/etc/localtime:ro \
+ 	-v /volumes/couchpotato:/data \
+	--link transmission:transmission \
+ 	--name couchpotato"
 
 
 RUN apk add --no-cache \
@@ -22,9 +32,6 @@ RUN apk add --no-cache \
 	libxslt-dev \
 	musl-dev \
 	openssl-dev \
-	python \
-	python-dev \
-	py2-pip \
 	&& rm -rf /var/lib/apt/lists/*
 
 RUN pip install \

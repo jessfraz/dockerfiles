@@ -6,32 +6,63 @@
 #	-v /etc/localtime:/etc/localtime:ro \
 #	r.j3ss.co/bcc-tools
 #
-FROM debian:buster
-LABEL maintainer "Jessie Frazelle <jess@linux.com>"
-
-ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update && apt-get install -y \
-	apt-transport-https \
-	ca-certificates \
-	dirmngr \
-	gnupg \
-	--no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/*
-
-# add the iovisor repository
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys D4284CDD
-RUN echo "deb [trusted=yes] https://repo.iovisor.org/apt/xenial xenial-nightly main" > /etc/apt/sources.list.d/iovisor.list
-
-RUN apt-get update && apt-get install -y \
-	binutils \
-	bcc \
-	bcc-tools \
-	libbcc-examples \
-	python-bcc \
-	--no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/*
+FROM debian:stretch-slim
+MAINTAINER Jessica Frazelle <jess@linux.com>
 
 ENV PATH /usr/share/bcc/tools:$PATH
+
+# Add non-free apt sources
+RUN sed -i "s#deb http://deb.debian.org/debian buster main#deb http://deb.debian.org/debian buster main contrib non-free#g" /etc/apt/sources.list
+
+RUN apt-get update && apt-get install -y \
+    ca-certificates \
+	clang \
+	curl \
+	gcc \
+	git \
+	g++ \
+    --no-install-recommends \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install dependencies for libbcc
+# FROM: https://github.com/iovisor/bcc/blob/master/INSTALL.md#install-build-dependencies
+RUN apt-get update && apt-get install -y \
+	debhelper \
+	cmake \
+	libllvm3.9 \
+	llvm-dev \
+	libclang-dev \
+	libelf-dev \
+	bison \
+	flex \
+	libedit-dev \
+	clang-format \
+	python \
+	python-netaddr \
+	python-pyroute2 \
+	luajit \
+	libluajit-5.1-dev \
+	arping \
+	iperf \
+	ethtool \
+	devscripts \
+	zlib1g-dev \
+	libfl-dev \
+    --no-install-recommends \
+    && rm -rf /var/lib/apt/lists/*
+
+# Build libbcc
+ENV BCC_VERSION v0.9.0
+RUN git clone --depth 1 --branch "$BCC_VERSION" https://github.com/iovisor/bcc.git /usr/src/bcc \
+	&& ( \
+		cd /usr/src/bcc \
+		&& mkdir build \
+		&& cd build \
+		&& cmake .. -DCMAKE_INSTALL_PREFIX=/usr \
+		&& make \
+		&& make install \
+	) \
+	&& rm -rf /usr/src/bcc
 
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 

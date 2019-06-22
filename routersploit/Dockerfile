@@ -1,7 +1,7 @@
-FROM debian:sid
+FROM debian:sid-slim
 LABEL maintainer "Christian Koep <christiankoep@gmail.com>"
 
-ENV ROUTERSPLOIT_VERSION v2.2.1
+ENV ROUTERSPLOIT_VERSION v3.4.0
 
 RUN apt-get update && apt-get install -y \
     git \

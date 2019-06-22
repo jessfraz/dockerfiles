@@ -1,6 +1,9 @@
-FROM haskell
+FROM debian:buster-slim
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
-RUN cabal update && cabal install pandoc pandoc-citeproc
+RUN apt-get update && apt-get install -y \
+	pandoc \
+	--no-install-recommends \
+	&& rm -rf /var/lib/apt/lists/*
 
-ENTRYPOINT [ "pandoc" ]
+ENTRYPOINT ["pandoc"]

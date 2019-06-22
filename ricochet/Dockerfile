@@ -9,10 +9,13 @@
 # 	--name ricochet \
 # 	jess/ricochet
 #
-FROM debian:sid
+FROM debian:sid-slim
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
-RUN apt-get update && apt-get install -y \
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN mkdir -p /etc/xdg/QtProject && \
+	apt-get update && apt-get install -y \
 	dirmngr \
 	gnupg \
 	libasound2 \

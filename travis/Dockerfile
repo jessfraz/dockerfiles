@@ -8,7 +8,7 @@ RUN	apk add --no-cache \
 RUN	set -x \
 	&& apk add --no-cache --virtual .build-deps \
 	build-base \
-	&& gem install travis --no-rdoc --no-ri \
+	&& gem install travis --no-document \
 	&& apk del .build-deps
 
 ENTRYPOINT	["travis"]

@@ -14,7 +14,7 @@ build_and_push(){
 	build_dir=$3
 
 	echo "Building ${REPO_URL}/${base}:${suite} for context ${build_dir}"
-	docker build --rm --force-rm -t ${REPO_URL}/${base}:${suite} ${build_dir} || return 1
+	docker build --rm --force-rm -t "${REPO_URL}/${base}:${suite}" "${build_dir}" || return 1
 
 	# on successful build, push the image
 	echo "                       ---                                   "
@@ -25,16 +25,16 @@ build_and_push(){
 	# absolutely no reason
 	n=0
 	until [ $n -ge 5 ]; do
-		docker push --disable-content-trust=false ${REPO_URL}/${base}:${suite} && break
+		docker push --disable-content-trust=false "${REPO_URL}/${base}:${suite}" && break
 		echo "Try #$n failed... sleeping for 15 seconds"
-		n=$[$n+1]
+		n=$((n+1))
 		sleep 15
 	done
 
-	# also push the tag latest for "stable" (chrome) or "3.5" tags for zookeeper
-	if [[ "$suite" == "stable" ]] || [[ "$suite" == "3.5" ]]; then
-		docker tag ${REPO_URL}/${base}:${suite} ${REPO_URL}/${base}:latest
-		docker push --disable-content-trust=false ${REPO_URL}/${base}:latest
+	# also push the tag latest for "stable" (chrome), "tools" (wireguard) or "3.5" tags for zookeeper
+	if [[ "$suite" == "stable" ]] || [[ "$suite" == "3.5" ]] || [[ "$suite" == "tools" ]]; then
+		docker tag "${REPO_URL}/${base}:${suite}" "${REPO_URL}/${base}:latest"
+		docker push --disable-content-trust=false "${REPO_URL}/${base}:latest"
 	fi
 }
 
@@ -42,7 +42,7 @@ dofile() {
 	f=$1
 	image=${f%Dockerfile}
 	base=${image%%\/*}
-	build_dir=$(dirname $f)
+	build_dir=$(dirname "$f")
 	suite=${build_dir##*\/}
 
 	if [[ -z "$suite" ]] || [[ "$suite" == "$base" ]]; then
@@ -53,7 +53,7 @@ dofile() {
 		$SCRIPT build_and_push "${base}" "${suite}" "${build_dir}"
 	} || {
 	# add to errors
-	echo "${base}:${suite}" >> $ERRORS
+	echo "${base}:${suite}" >> "$ERRORS"
 }
 echo
 echo
@@ -62,31 +62,31 @@ echo
 main(){
 	# get the dockerfiles
 	IFS=$'\n'
-	files=( $(find . -iname '*Dockerfile' | sed 's|./||' | sort) )
+	mapfile -t files < <(find -L . -iname '*Dockerfile' | sed 's|./||' | sort)
 	unset IFS
 
 	# build all dockerfiles
 	echo "Running in parallel with ${JOBS} jobs."
-	parallel --tag --verbose --ungroup -j"${JOBS}" $SCRIPT dofile "{1}" ::: "${files[@]}"
+	parallel --tag --verbose --ungroup -j"${JOBS}" "$SCRIPT" dofile "{1}" ::: "${files[@]}"
 
-	if [[ ! -f $ERRORS ]]; then
+	if [[ ! -f "$ERRORS" ]]; then
 		echo "No errors, hooray!"
 	else
 		echo "[ERROR] Some images did not build correctly, see below." >&2
-		echo "These images failed: $(cat $ERRORS)" >&2
+		echo "These images failed: $(cat "$ERRORS")" >&2
 		exit 1
 	fi
 }
 
 run(){
-	args=$@
+	args=$*
 	f=$1
 
 	if [[ "$f" == "" ]]; then
-		main $args
+		main "$args"
 	else
 		$args
 	fi
 }
 
-run $@
+run "$@"

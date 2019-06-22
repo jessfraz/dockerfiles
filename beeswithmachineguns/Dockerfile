@@ -5,6 +5,7 @@ RUN apk --no-cache add \
 	ca-certificates \
 	python \
 	py-boto \
+	py-future \
 	py-paramiko
 
 RUN buildDeps=' \

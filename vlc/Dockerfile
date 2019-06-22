@@ -9,7 +9,7 @@
 #	--name vlc \
 #	jess/vlc
 #
-FROM debian:buster
+FROM debian:stretch-slim
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 RUN apt-get update && apt-get install -y \

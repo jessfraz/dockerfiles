@@ -80,7 +80,7 @@
 ## See https://www.torproject.org/docs/tor-doc-relay for details.
 
 ## Required: what port to advertise for incoming Tor connections.
-ORPort 9001
+ORPort RELAY_PORT
 ## If you want to listen on a port other than the one advertised in
 ## ORPort (e.g. to advertise 443 but bind to 9090), you can do it as
 ## follows.  You'll need to do ipchains or other port forwarding
@@ -97,7 +97,7 @@ ORPort 9001
 # OutboundBindAddress 10.0.0.5
 
 ## A handle for your relay, so people don't have to refer to it by key.
-Nickname hacktheplanet
+Nickname RELAY_NICKNAME
 
 ## Define these to limit how much relayed traffic you will allow. Your
 ## own traffic is still unthrottled. Note that RelayBandwidthRate must
@@ -107,6 +107,8 @@ Nickname hacktheplanet
 ## 2^20, etc.
 #RelayBandwidthRate 100 KBytes  # Throttle traffic to 100KB/s (800Kbps)
 #RelayBandwidthBurst 200 KBytes # But allow bursts up to 200KB (1600Kb)
+RelayBandwidthRate RELAY_BANDWIDTH_RATE
+RelayBandwidthBurst RELAY_BANDWIDTH_BURST
 
 ## Use these to restrict the maximum traffic per day, week, or month.
 ## Note that this threshold applies separately to sent and received bytes,
@@ -129,7 +131,7 @@ Nickname hacktheplanet
 ## it's an email address and/or generate a new address for this purpose.
 #ContactInfo Random Person <nobody AT example dot com>
 ## You might also include your PGP or GPG fingerprint if you have one:
-ContactInfo ${CONTACT_GPG_FINGERPRINT} ${CONTACT_NAME} ${CONTACT_EMAIL}
+ContactInfo CONTACT_GPG_FINGERPRINT CONTACT_NAME CONTACT_EMAIL
 
 ## Uncomment this to mirror directory information for others. Please do
 ## if you have enough bandwidth.

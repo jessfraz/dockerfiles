@@ -6,7 +6,7 @@
 #
 
 # Base docker image
-FROM debian:buster
+FROM debian:buster-slim
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 # Install all the things

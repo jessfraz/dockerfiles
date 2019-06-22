@@ -6,21 +6,19 @@
 #	-v $HOME/rscripts:/root/rscripts \
 #	--device /dev/dri \
 #	--name rstudio \
-#	jess/rsudio
+#	jess/rstudio
 #
 
 # Base docker image
-FROM debian:jessie
+FROM debian:jessie-slim
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
-ADD https://download1.rstudio.org/rstudio-0.99.484-amd64.deb /src/rstudio.deb
-
-# Install Rstudio
+# Install Rstudio deps
 RUN apt-get update && apt-get install -y \
-	ca-certificates \
 	fcitx-frontend-qt5 \
 	fcitx-modules \
 	fcitx-module-dbus \
+	libclang-dev \
 	libedit2 \
 	libgl1-mesa-dri \
 	libgl1-mesa-glx \
@@ -50,11 +48,25 @@ RUN apt-get update && apt-get install -y \
 	&& echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
 	&& locale-gen en_US.utf8 \
 	&& /usr/sbin/update-locale LANG=en_US.UTF-8 \
-	&& dpkg -i '/src/rstudio.deb' \
-	&& apt-get install -fy \
+	&& rm -rf /var/lib/apt/lists/*
+
+# https://www.rstudio.com/products/rstudio/download/#download
+ENV RSTUDIO_VERSION 1.2.1335
+
+# Download the source
+RUN buildDeps=' \
+		ca-certificates \
+		curl \
+	' \
+	&& set -x \
+	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/* \
-	&& rm -rf /src/*.deb \
-	&&  ln -f -s /usr/lib/rstudio/bin/rstudio /usr/bin/rstudio
+	&& curl -sSL "https://download1.rstudio.org/desktop/trusty/amd64/rstudio-${RSTUDIO_VERSION}-amd64.deb" -o /tmp/rstudio-amd64.deb \
+	&& dpkg -i /tmp/rstudio-amd64.deb \
+	&& rm -rf /tmp/*.deb \
+	&& apt-get purge -y --auto-remove $buildDeps \
+	&& ln -f -s /usr/lib/rstudio/bin/rstudio /usr/bin/rstudio
+
 
 ENV LC_ALL en_US.UTF-8
 ENV LANG en_US.UTF-8

@@ -1,33 +1,28 @@
-FROM alpine:latest
+FROM golang:alpine as builder
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
+
+RUN	apk --no-cache add \
+	ca-certificates \
+	git
 
 ENV PATH /go/bin:/usr/local/go/bin:$PATH
 ENV GOPATH /go
 
-RUN	apk --no-cache add \
-	ca-certificates
+ENV OAUTH2_PROXY_VERSION v3.2.0
 
-ENV OAUTH2_VERSION v2.2
+RUN go get github.com/golang/dep/cmd/dep
 
-RUN buildDeps=' \
-		go \
-		git \
-		gcc \
-		g++ \
-		libc-dev \
-		libgcc \
-	' \
-	set -x \
-	&& apk --no-cache add --repository https://dl-3.alpinelinux.org/alpine/edge/community $buildDeps \
-	&& go get github.com/bitly/oauth2_proxy \
-	&& cd /go/src/github.com/bitly/oauth2_proxy \
-	&& git checkout "${OAUTH2_VERSION}" \
-	&& go get -d github.com/bitly/oauth2_proxy \
-	&& go build \
-	&& mv oauth2_proxy /usr/bin/ \
-	&& apk del $buildDeps \
-	&& rm -rf /go \
-	&& echo "Build complete."
+RUN go get github.com/pusher/oauth2_proxy || true \
+	&& cd /go/src/github.com/pusher/oauth2_proxy \
+	&& git checkout "${OAUTH2_PROXY_VERSION}" \
+	&& dep ensure --vendor-only \
+	&& go build . \
+	&& mv oauth2_proxy /usr/bin/
 
+
+FROM alpine:latest
+
+COPY --from=builder /usr/bin/oauth2_proxy /usr/bin/oauth2_proxy
+COPY --from=builder /etc/ssl/certs/ /etc/ssl/certs
 
 ENTRYPOINT [ "oauth2_proxy" ]

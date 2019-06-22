@@ -1,0 +1,36 @@
+#!/bin/bash
+set -e
+set -o pipefail
+set -x
+
+if [[ -z "$MAILGUN_API_KEY" ]]; then
+	echo "Set the MAILGUN_API_KEY env variable."
+	exit 1
+fi
+
+if [[ ! -z "$MAILGUN_DOMAIN" ]]; then
+	MAILGUN_DOMAIN_NAME=$MAILGUN_DOMAIN
+fi
+
+if [[ -z "$MAILGUN_DOMAIN_NAME" ]]; then
+	echo "Set the MAILGUN_DOMAIN_NAME env variable."
+	exit 1
+fi
+
+if [[ -z "$TO_NAME" ]]; then
+	echo "Set the TO_NAME env variable."
+	exit 1
+fi
+
+if [[ -z "$TO_EMAIL" ]]; then
+	echo "Set the TO_EMAIL env variable."
+	exit 1
+fi
+
+curl -sSL --user "api:${MAILGUN_API_KEY}" \
+	"https://api.mailgun.net/v3/${MAILGUN_DOMAIN_NAME}/messages" \
+	-F 'from="Mailgun API <mailgun@'"${MAILGUN_DOMAIN_NAME}"'>"' \
+	-F "to=${TO_NAME}" \
+	-F "to=${TO_EMAIL}" \
+	-F 'subject="[github action]: Release '"${GITHUB_REPOSITORY}"':'"${GITHUB_REF}"' uploaded"' \
+	-F 'text="The release has been uploaded for https://github.com/'"${GITHUB_REPOSITORY}"'/releases"'

@@ -15,6 +15,7 @@ RUN apt-get update && apt-get install -y \
 	add-apt-repository ppa:yubico/stable && \
 	apt-get update && apt-get install -y \
 	pcscd \
+	procps \
 	usbutils \
 	yubico-piv-tool \
 	&& rm -rf /var/lib/apt/lists/*

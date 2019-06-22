@@ -9,7 +9,7 @@
 #    --name vscode \
 #    jess/vscode
 
-FROM debian:buster
+FROM debian:buster-slim
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 # Tell debconf to run in non-interactive mode
@@ -28,6 +28,7 @@ RUN echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable ma
 
 RUN apt-get update && apt-get -y install \
 	code \
+	git \
 	libasound2 \
 	libatk1.0-0 \
 	libcairo2 \
@@ -48,6 +49,7 @@ RUN apt-get update && apt-get -y install \
 	libxrender1 \
 	libxss1 \
 	libxtst6 \
+	openssh-client \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 

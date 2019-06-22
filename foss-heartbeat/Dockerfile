@@ -1,13 +1,11 @@
-FROM alpine:latest
+FROM python:2-alpine
 
 RUN apk add --no-cache \
 	ca-certificates \
 	bash \
 	gfortran \
 	openjdk8-jre-base \
-	lapack \
-	python \
-	py2-pip
+	lapack
 
 # Install the requirements
 RUN set -x \
@@ -16,8 +14,7 @@ RUN set -x \
 		git \
 		lapack-dev \
 		libffi-dev \
-		libressl-dev \
-		python-dev \
+		openssl-dev \
 	&& ln -s /usr/include/locale.h /usr/include/xlocale.h \
 	&& git clone --depth 1 https://github.com/sarahsharp/foss-heartbeat.git /usr/src/foss-heartbeat \
 	&& ( \

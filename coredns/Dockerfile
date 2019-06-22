@@ -1,32 +1,27 @@
-FROM alpine:latest
+FROM golang:alpine as builder
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 ENV PATH /go/bin:/usr/local/go/bin:$PATH
 ENV GOPATH /go
 
-RUN	apk --no-cache add \
-	ca-certificates
+RUN apk --no-cache add \
+	bash \
+	ca-certificates \
+	git \
+	make
 
-ENV COREDNS_VERSION v1.0.3
+ENV COREDNS_VERSION v1.5.0
 
-RUN buildDeps=' \
-		go \
-		git \
-		gcc \
-		g++ \
-		libc-dev \
-		libgcc \
-		make \
-	' \
-	set -x \
-	&& apk --no-cache add $buildDeps \
-	&& git clone --depth 1 --branch ${COREDNS_VERSION} https://github.com/coredns/coredns /go/src/github.com/coredns/coredns \
-	&& cd /go/src/github.com/coredns/coredns \
-	&& make \
-	&& mv coredns /usr/bin/coredns \
-	&& apk del $buildDeps \
-	&& rm -rf /go \
-	&& echo "Build complete."
+RUN git clone --depth 1 --branch ${COREDNS_VERSION} https://github.com/coredns/coredns /go/src/github.com/coredns/coredns
 
+WORKDIR /go/src/github.com/coredns/coredns
+
+RUN make all \
+	&& mv coredns /usr/bin/coredns
+
+FROM alpine:latest
+
+COPY --from=builder /usr/bin/coredns /usr/bin/coredns
+COPY --from=builder /etc/ssl/certs/ /etc/ssl/certs
 
 ENTRYPOINT [ "coredns", "-log" ]

@@ -8,7 +8,7 @@
 # 	--name tor-router \
 # 	jess/tor-router
 #
-FROM debian:sid
+FROM debian:sid-slim
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 RUN apt-get update && apt-get install -y \

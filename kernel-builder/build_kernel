@@ -3,98 +3,148 @@ set -e
 set -o pipefail
 
 linux_next(){
-	(
-	cd /usr/src
+	local dir="/usr/src/linux-next"
 
-	# check if we already have the source checked out
-	if [[ -d linux ]]; then
-		cd linux
+	# Check if we already have the source for linux-next checked out.
+	if [[ -d "$dir" ]]; then
+		echo "Updating linux-next tree git remotes..."
+		(
+		cd "$dir"
 
 		git checkout master
-
 		git remote update
+		)
 	else
-		# clone the source files
-		git clone https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git
+		echo "Cloning the git source for linux..."
+		git clone https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git "$dir"
 
-		# add the linux-next remote
-		cd linux
+		echo "Adding the linux-next git remote..."
+		(
+		cd "$dir"
+
 		git remote add linux-next https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
-		# fetch linux-next and tags
-		git fetch linux-next
-		git fetch --tags linux-next
+		)
 	fi
 
-	git checkout -b next-$(date +%Y%m%d) next-$(date +%Y%m%d)
+	echo "Fetching the linux-next remote and updating tags..."
+	(
+	cd "$dir"
 
-	if [[ ! -f .config ]] && [[ -f ../config ]]; then
-		cp ../config .config
-	fi
+	git fetch linux-next
+	git fetch --tags linux-next
+	)
 
-	nice -19 make -j$JOBS KDEB_PKGVERSION=$PKGVERSION INSTALL_MOD_STRIP=1 deb-pkg
+	local branch
+	branch="next-$(date +%Y%m%d)"
+	echo "Checking out the correct branch ${branch}..."
+	(
+	cd "$dir"
+
+	git checkout -b "$branch" "$branch"
 	)
 }
 
 install_kernel(){
 	local VERSION=$1
 	local OPT=$2
+	local DIR="/usr/src/linux-${VERSION}"
 
 	if [[ -z $VERSION ]]; then
 		echo "Please specify a kernel version."
 		exit 1
 	elif [[ "$VERSION" == "next" ]]; then
+		DIR="/usr/src/linux-next"
 		linux_next
-		exit 0
 	fi
 
-	local MAJOR_VERSION=${VERSION:0:1}
-	local V=( ${VERSION//./ } )
-	local MAJOR_MINOR_VERSION="${V[0]}.${V[1]}"
+	if [[ "$VERSION" != "next" ]]; then
+		local MAJOR_VERSION=${VERSION:0:1}
+		local V=( "${VERSION//./ }" )
+		local MAJOR_MINOR_VERSION="${V[0]}.${V[1]}"
 
-	# get the kernel source
-	if [[ "$VERSION" == *-rc* ]]; then
-		[ -d /usr/src/linux-${VERSION} ] || curl -sSL "https://git.kernel.org/torvalds/t/linux-${VERSION}.tar.gz" | tar -v -C /usr/src -xz
+		# Get the kernel source.
+		echo "Getting the kernel source for linux-${VERSION}..."
+		echo "This might take a bit to download. Hang tight!"
+		if [[ "$VERSION" == *-rc* ]]; then
+			[ -d "$DIR" ] || curl -sSL "https://git.kernel.org/torvalds/t/linux-${VERSION}.tar.gz" | tar -C /usr/src -xz
 
-		MAJOR_MINOR_VERSION="${MAJOR_VERSION}.x-rcN"
-	else
-		[ -d /usr/src/linux-${VERSION} ] || curl -sSL "https://cdn.kernel.org/pub/linux/kernel/v${MAJOR_VERSION}.x/linux-${VERSION}.tar.xz" | tar -v -C /usr/src -xJ
-	fi
-
-	if [[ "$OPT" == "aufs" ]]; then
-		# get the aufs standalone source
-		aufsdir=/tmp/aufs4-standalone
-		if [[ -d $aufsdir ]]; then
-			rm -rf $aufsdir
+			MAJOR_MINOR_VERSION="${MAJOR_VERSION}.x-rcN"
+		else
+			[ -d "/usr/src/linux-${VERSION}" ] || curl -sSL "https://cdn.kernel.org/pub/linux/kernel/v${MAJOR_VERSION}.x/linux-${VERSION}.tar.xz" | tar -C /usr/src -xJ
 		fi
-		git clone --depth 1 --branch aufs${MAJOR_MINOR_VERSION} --single-branch https://github.com/sfjro/aufs4-standalone.git $aufsdir
+
+		# Git clone and apply the patches for the aufs filesystem.
+		if [[ "$OPT" == "aufs" ]] && [[ ! -d "${DIR}/fs/aufs" ]]; then
+			aufsdir=/aufs4-standalone
+
+			echo "Cloning the git patches for the aufs filesystem..."
+			git clone --depth 1 --branch "aufs${MAJOR_MINOR_VERSION}" --single-branch https://github.com/sfjro/aufs4-standalone.git "$aufsdir"
+
+			(
+			cd "$DIR"
+
+			echo "Applying patch for the aufs filesystem..."
+			git apply $aufsdir/aufs4-kbuild.patch
+			git apply $aufsdir/aufs4-base.patch
+			git apply $aufsdir/aufs4-mmap.patch
+			cp -r $aufsdir/{Documentation,fs} .
+			cp $aufsdir/include/uapi/linux/aufs_type.h include/uapi/linux/
+			)
+		fi
 	fi
 
-	# apply the patches and compile the kernel
-	cd /usr/src/linux-${VERSION}
 
-	# apply the patches
-	if [[ "$OPT" == "aufs" ]]; then
-		git apply $aufsdir/aufs4-kbuild.patch
-		git apply $aufsdir/aufs4-base.patch
-		git apply $aufsdir/aufs4-mmap.patch
-		cp -r $aufsdir/{Documentation,fs} .
-		cp $aufsdir/include/uapi/linux/aufs_type.h include/uapi/linux/
+	# Install Wireguard VPN into the kernel.
+	if [[ "$OPT" == "wireguard" ]] && [[ ! -f "${DIR}/net/wireguard/allowedips.c" ]]; then
+		echo "Applying patch for Wireguard VPN..."
+		(
+		cd "$DIR"
+		/wireguard/contrib/kernel-tree/create-patch.sh | patch -p1
+		)
+		echo "Patch for Wireguard VPN successfully applied!"
 	fi
 
-	if [[ "$OPT" == "aufs" ]]; then
-		# remove aufs source
-		rm -rf $aufsdir
-	fi
+	# Copy the config from /usr/src/config if it does not already exist.
+	if [[ ! -f "${DIR}/.config" ]] && [[ -f "/usr/src/config" ]]; then
+		(
+		cd "$DIR"
 
-	if [[ ! -f .config ]] && [[ -f ../config ]]; then
 		cp ../config .config
+
+		# Add the config options for the aufs filesystem.
 		if [[ "$OPT" == "aufs" ]]; then
 			echo "CONFIG_AUFS_FS=y" >> .config
 		fi
+
+		# Add the config options for Wireguard VPN.
+		if [[ "$OPT" == "wireguard" ]]; then
+			echo "CONFIG_WIREGUARD=y" >> .config
+		fi
+		)
 	fi
 
-	nice -19 make -j$JOBS KDEB_PKGVERSION=$PKGVERSION DISABLE_PAX_PLUGINS=y INSTALL_MOD_STRIP=1 deb-pkg
+	(
+	cd "$DIR"
+
+	echo "Building the kernel..."
+	make -j"$JOBS"
+	echo "Installing the modules..."
+	make modules_install
+	echo "Installing the kernel..."
+	make install
+	)
+	(
+	echo "Stripping the modules..."
+	find /lib/modules/ -name "*.ko" -exec strip --strip-unneeded {} +
+	)
 }
 
+# shellcheck disable=SC2068
 install_kernel $@
+
+echo "Kernel successfully installed!"
+echo "You will now want to run:"
+echo "    update-initramfs -u -k all"
+echo "and"
+echo "    update-grub2"
+echo "or the equivalent for your system."

@@ -1,36 +1,30 @@
-FROM debian:jessie
+FROM alpine:latest
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
-RUN apt-get update && apt-get install -y \
-	libgmp10 \
-	libgomp1 \
-	libkrb5-3 \
-	libnss3 \
-	libssl1.0.0 \
-	openssl \
-	--no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache \
+	ca-certificates \
+	gmp \
+	libgomp
 
-RUN buildDeps=' \
-		ca-certificates \
+RUN set -x \
+	&& apk add --no-cache --virtual .build-deps \
+		build-base \
 		gcc \
 		git \
-		libgmp-dev \
-		libkrb5-dev \
-		libnss3-dev \
-		libssl-dev \
+		gmp-dev \
+		krb5-dev \
+		libressl-dev \
 		make \
-	' \
-	&& set -x \
-	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/* \
+		perl \
 	&& git clone --depth 1 https://github.com/magnumripper/JohnTheRipper.git /usr/src/johntheripper \
-	&& cd /usr/src/johntheripper/src \
-	&& ./configure || cat config.log \
-	&& make \
-	&& cp -r ../run/* /usr/local/bin/ \
+	&& ( \
+		cd /usr/src/johntheripper/src \
+		&& ./configure || cat config.log \
+		&& make \
+		&& cp -r ../run/* /usr/local/bin/ \
+	) \
 	&& rm -rf /usr/src/johntheripper \
-	&& apt-get purge -y --auto-remove $buildDeps
+	&& apk del .build-deps
 
 COPY john.ini /root/john.ini
 COPY passwd.lst /root/passwd.lst

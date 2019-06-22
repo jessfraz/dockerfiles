@@ -1,0 +1,84 @@
+#!/bin/bash
+
+if [[ ! -z "$TOKEN" ]]; then
+	GITHUB_TOKEN=$TOKEN
+fi
+
+if [[ -z "$GITHUB_TOKEN" ]]; then
+	echo "Set the GITHUB_TOKEN env variable."
+	exit 1
+fi
+
+if [[ -z "$GITHUB_REPOSITORY" ]]; then
+	echo "Set the GITHUB_REPOSITORY env variable."
+	exit 1
+fi
+
+if [[ -z "$GITHUB_REF" ]]; then
+	echo "Set the GITHUB_REF env variable."
+	exit 1
+fi
+
+URI=https://api.github.com
+API_VERSION=v3
+API_HEADER="Accept: application/vnd.github.${API_VERSION}+json"
+AUTH_HEADER="Authorization: token ${GITHUB_TOKEN}"
+
+main(){
+	local files
+
+	if [ "$#" -eq 0 ]; then
+		echo "Must pass files to be uploaded..."
+		exit 1
+	fi
+	files=( "$@" )
+
+	# Validate the GitHub token.
+	curl -o /dev/null -sSL -H "${AUTH_HEADER}" -H "${API_HEADER}" "${URI}/repos/${GITHUB_REPOSITORY}" || { echo "Error: Invalid repo, token or network issue!";  exit 1; }
+
+	echo "Github ref: ${GITHUB_REF}"
+
+	# Get the tags.
+	tag_response=$(curl -sSL -H "${AUTH_HEADER}" -H "${API_HEADER}" "${URI}/repos/${GITHUB_REPOSITORY}/tags")
+
+	tag_name=$(echo "$tag_response" | jq -e --raw-output .[0].name)
+
+	# Get the latest release.
+	latest_response=$(curl -sSL -H "${AUTH_HEADER}" -H "${API_HEADER}" "${URI}/repos/${GITHUB_REPOSITORY}/releases/latest")
+	latest_release=$(echo "$latest_response" | jq -e --raw-output .tag_name)
+	release_id=$(echo "$latest_response" | jq -e --raw-output .id)
+
+	if [[ "$tag_name" != "$latest_release" ]] || [[ "$release_id" == "null" ]]; then
+		# Create the release.
+		echo "Creating release for tag name: ${tag_name}"
+		response=$(curl -XPOST -sSL -H "${AUTH_HEADER}" -H "${API_HEADER}" "${URI}/repos/${GITHUB_REPOSITORY}/releases" --data '{"tag_name": "'"${tag_name}"'","name":"'"${tag_name}"'","draft":false,"prerelease":false}')
+		release_id=$(echo "$response" | jq -e --raw-output .id)
+	fi
+
+	if [[ "$release_id" == "null" ]]; then
+		echo "Release ID cannot be null."
+		exit 1
+	fi
+
+
+	# Upload the files.
+	echo "Uploading files: ${files[*]}"
+	echo "For tag name: ${tag_name}"
+
+	# shellcheck disable=SC2068
+	for file in ${files[@]}; do
+		filename=$(basename "$file")
+		rp=$(realpath "$file")
+
+		curl -sSL -H "${AUTH_HEADER}" \
+			--data-binary @"$rp" \
+			-H "Content-Type: application/octet-stream" \
+			"https://uploads.github.com/repos/${GITHUB_REPOSITORY}/releases/${release_id}/assets?name=${filename}&access_token=${GITHUB_TOKEN}"
+
+		echo "Successfully uploaded: ${rp}"
+	done
+
+	echo "Uploading assets to ${tag_name} complete!"
+}
+
+main "$@"

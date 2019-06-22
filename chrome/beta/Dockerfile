@@ -19,19 +19,17 @@
 # 	wget https://raw.githubusercontent.com/jfrazelle/dotfiles/master/etc/docker/seccomp/chrome.json -O ~/chrome.json
 
 # Base docker image
-FROM debian:sid
+FROM debian:sid-slim
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
-
-ADD https://dl.google.com/linux/direct/google-talkplugin_current_amd64.deb /src/google-talkplugin_current_amd64.deb
 
 # Install Chrome
 RUN apt-get update && apt-get install -y \
 	apt-transport-https \
-        libcanberra-gtk* \
 	ca-certificates \
 	curl \
 	gnupg \
 	hicolor-icon-theme \
+	libcanberra-gtk* \
 	libgl1-mesa-dri \
 	libgl1-mesa-glx \
 	libpango1.0-0 \
@@ -44,10 +42,20 @@ RUN apt-get update && apt-get install -y \
 	&& apt-get update && apt-get install -y \
 	google-chrome-beta \
 	--no-install-recommends \
-	&& dpkg -i '/src/google-talkplugin_current_amd64.deb' \
 	&& apt-get purge --auto-remove -y curl \
+	&& rm -rf /var/lib/apt/lists/*
+
+# Download the google-talkplugin
+RUN set -x \
+	&& apt-get update \
+	&& apt-get install -y --no-install-recommends \
+		ca-certificates \
+		curl \
 	&& rm -rf /var/lib/apt/lists/* \
-	&& rm -rf /src/*.deb
+	&& curl -sSL "https://dl.google.com/linux/direct/google-talkplugin_current_amd64.deb" -o /tmp/google-talkplugin-amd64.deb \
+	&& dpkg -i /tmp/google-talkplugin-amd64.deb \
+	&& rm -rf /tmp/*.deb \
+	&& apt-get purge -y --auto-remove curl
 
 # Add chrome user
 RUN groupadd -r chrome && useradd -r -g chrome -G audio,video chrome \

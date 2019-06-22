@@ -6,14 +6,14 @@
 # Go tests use this curl binary for integration tests.
 #
 
-FROM alpine:edge
+FROM alpine:latest
 
 RUN apk add --no-cache \
 	ca-certificates \
 	nghttp2 \
 	openssl
 
-ENV CURL_VERSION 7.57.0
+ENV CURL_VERSION 7.65.0
 
 RUN set -x \
     && apk add --no-cache --virtual .build-deps \

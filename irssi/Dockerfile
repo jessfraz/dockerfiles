@@ -1,7 +1,6 @@
 FROM alpine:latest
 
 RUN apk --no-cache add \
-	--repository https://dl-3.alpinelinux.org/alpine/latest-stable/community \
 	ca-certificates \
 	perl-datetime \
 	perl-timedate
@@ -13,7 +12,7 @@ RUN adduser -u 1001 -D user \
 
 ENV LANG C.UTF-8
 
-ENV IRSSI_VERSION 1.1.0
+ENV IRSSI_VERSION 1.2.0
 # https://otr.cypherpunks.ca/index.php#downloads
 ENV LIB_OTR_VERSION 4.1.1
 # https://github.com/cryptodotis/irssi-otr/releases

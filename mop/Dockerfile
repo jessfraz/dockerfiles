@@ -5,28 +5,18 @@
 # 	--name mop \
 # 	r.j3ss.co/mop
 #
-FROM alpine:latest
+FROM golang:alpine as builder
 
 RUN apk --no-cache add \
-	ca-certificates
+	ca-certificates \
+	git
 
 ENV PATH /go/bin:/usr/local/go/bin:$PATH
 ENV GOPATH /go
 
-RUN buildDeps=' \
-		go \
-		git \
-		gcc \
-		g++ \
-		libc-dev \
-		libgcc \
-	' \
-	set -x \
-	&& apk --no-cache add $buildDeps \
-	&& go get github.com/mop-tracker/mop/cmd/mop \
-	&& mv /go/bin/mop /usr/bin/mop \
-	&& apk del $buildDeps \
-	&& rm -rf /go \
-	&& echo "Build complete."
+RUN go get github.com/mop-tracker/mop/cmd/mop
 
+FROM alpine:latest
+COPY --from=builder /go/bin/mop /usr/bin/mop
+COPY --from=builder /etc/ssl/certs/ /etc/ssl/certs
 ENTRYPOINT [ "mop" ]

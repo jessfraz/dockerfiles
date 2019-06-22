@@ -9,7 +9,7 @@ RUN apk add --no-cache \
 	openjdk8
 
 # https://github.com/bazelbuild/bazel/releases
-ENV BAZEL_VERSION 0.5.0
+ENV BAZEL_VERSION 0.12.0
 # https://gerrit.googlesource.com/gitiles/
 ENV GITILES_VERSION v0.2-1
 
@@ -39,7 +39,7 @@ RUN set -x \
 	&& git clone --depth 1 --branch "${GITILES_VERSION}" https://gerrit.googlesource.com/gitiles /usr/src/gitiles \
 	&& ( \
 		cd /usr/src/gitiles \
-		&& bazel build gitiles-dev:dev \
+		&& bazel build --incompatible_disallow_uncalled_set_constructor=false gitiles-dev:dev \
 		&& cp -rL bazel-bin bin \
 		&& rm -rf bazel-bin \
 	) \

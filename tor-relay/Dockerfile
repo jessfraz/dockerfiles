@@ -20,6 +20,7 @@ FROM alpine:latest
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 RUN apk --no-cache add \
+	bash \
 	tor
 
 # default port to used for incoming Tor connections
@@ -31,6 +32,17 @@ COPY torrc.bridge /etc/tor/torrc.bridge
 COPY torrc.middle /etc/tor/torrc.middle
 COPY torrc.exit /etc/tor/torrc.exit
 
+# copy the run script
+COPY run.sh /run.sh
+RUN chmod ugo+rx /run.sh
+
+# default environment variables
+ENV RELAY_NICKNAME hacktheplanet
+ENV RELAY_TYPE middle
+ENV RELAY_BANDWIDTH_RATE 100 KBytes
+ENV RELAY_BANDWIDTH_BURST 200 KBytes
+ENV RELAY_PORT 9001
+
 # make sure files are owned by tor user
 RUN chown -R tor /etc/tor
 
@@ -40,4 +52,4 @@ RUN mkdir /var/lib/tor/.tor
 VOLUME /var/lib/tor/.tor
 RUN chown -R tor /var/lib/tor/.tor
 
-ENTRYPOINT [ "tor" ]
+ENTRYPOINT [ "/run.sh" ]

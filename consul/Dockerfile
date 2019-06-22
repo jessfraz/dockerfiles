@@ -1,50 +1,61 @@
-FROM alpine:3.5
-LABEL maintainer "Jessie Frazelle <jess@linux.com>"
+FROM golang:latest as builder
+MAINTAINER Jessica Frazelle <jess@linux.com>
 
 ENV PATH /go/bin:/usr/local/go/bin:$PATH
 ENV GOPATH /go
-#ENV GO15VENDOREXPERIMENT 1
 
-RUN	apk --no-cache add \
-	ca-certificates
+RUN apt-get update && apt-get install -y \
+	apt-transport-https \
+	ca-certificates \
+	curl \
+	gcc \
+	git \
+	make \
+	ruby-dev \
+	ruby \
+	--no-install-recommends \
+	&& rm -rf /var/lib/apt/lists/*
 
-ENV CONSUL_VERSION v1.0.2
+# Add yarn to apt repos.
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 
-RUN buildDeps=' \
-		bash \
-		go \
-		git \
-		gcc \
-		g++ \
-		libc-dev \
-		libgcc \
-		make \
-		nodejs \
-		ruby \
-		ruby-dev \
-		zip \
-	' \
-	set -x \
-	&& apk --no-cache add --repository https://dl-3.alpinelinux.org/alpine/edge/community $buildDeps \
-	&& mkdir -p /go/src/github.com/hashicorp /etc/consul.d \
-	&& git clone --depth 1 --branch ${CONSUL_VERSION} https://github.com/hashicorp/consul /go/src/github.com/hashicorp/consul \
-	&& cd /go/src/github.com/hashicorp/consul \
-	&& XC_ARCH="amd64" XC_OS="linux" make all \
-	&& mv bin/consul /usr/bin/ \
-	&& cd ui \
-	&& gem install \
-		bundler \
-		io-console \
-		--no-ri --no-rdoc \
-	&& bundle install \
-	&& make dist \
-	&& mkdir -p /usr/src/consul \
-	&& mv index.html /usr/src/consul \
-	&& mv static /usr/src/consul/ \
-	&& mv javascripts /usr/src/consul/ \
-	&& apk del $buildDeps \
-	&& rm -rf /go \
-	&& echo "Build complete."
+# Setup node install.
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
 
+RUN apt-get update && apt-get install -y \
+	nodejs \
+	yarn \
+	--no-install-recommends \
+	&& rm -rf /var/lib/apt/lists/*
+
+ENV CONSUL_VERSION v1.5.1
+
+RUN go get github.com/hashicorp/consul
+
+WORKDIR /go/src/github.com/hashicorp/consul
+
+RUN git checkout "${CONSUL_VERSION}"
+
+# Install deps for UI.
+RUN gem install \
+	bundler \
+	--no-ri --no-rdoc
+
+RUN cd ui-v2 \
+	&& yarn install \
+	&& make \
+	&& rm -rf ../pkg/web_ui \
+	&& mkdir -p ../pkg \
+	&& cp -r dist ../pkg/web_ui
+
+RUN TERM=xterm XC_ARCH="amd64" XC_OS="linux" LD_FLAGS=" -extldflags -static" make tools static-assets bin \
+	&& mv bin/consul /usr/bin/consul
+
+FROM alpine:latest
+
+COPY --from=builder /usr/bin/consul /usr/bin/consul
+COPY --from=builder /etc/ssl/certs/ /etc/ssl/certs
 
 ENTRYPOINT [ "consul" ]
+CMD [ "--help" ]
