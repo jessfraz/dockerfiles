@@ -88,11 +88,7 @@ RUN apt-get update && apt-get install -y \
 
 # unifi version
 # From: https://www.ubnt.com/download/unifi/
-<<<<<<< HEAD
-ENV UNIFI_VERSION "5.6.29"
-=======
-ENV UNIFI_VERSION "5.10.23"
->>>>>>> 422abc52575513ce54e0f3c1f00b1ca9c29419df
+ENV UNIFI_VERSION "5.10.25"
 
 # install unifi
 RUN apt-get update && apt-get install -y \
