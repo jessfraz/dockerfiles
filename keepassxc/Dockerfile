@@ -51,9 +51,12 @@ RUN	apk --no-cache add \
 		libcurl \
 		libmicrohttpd \
 		libgcrypt \
+		libqrencode \
+		libsodium \
 		mesa-dri-intel \
 		qt5-qtbase \
 		qt5-qtbase-x11 \
+		qt5-qtsvg \
 		qt5-qttools \
 		ttf-dejavu
 
