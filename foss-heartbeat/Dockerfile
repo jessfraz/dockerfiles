@@ -4,8 +4,9 @@ RUN apk add --no-cache \
 	ca-certificates \
 	bash \
 	gfortran \
+	lapack \
 	openjdk8-jre-base \
-	lapack
+	py3-numpy
 
 # Install the requirements
 RUN set -x \
