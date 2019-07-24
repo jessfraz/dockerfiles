@@ -11,7 +11,7 @@
 FROM alpine:latest
 LABEL maintainer "Christian Koep <christiankoep@gmail.com>"
 
-ENV KEEPASSXC_VERSION 2.4.1
+ENV KEEPASSXC_VERSION 2.4.3
 
 RUN buildDeps=' \
 		automake \
@@ -26,6 +26,7 @@ RUN buildDeps=' \
 		libgcrypt-dev \
 		libmicrohttpd-dev \
 		libqrencode-dev	\
+		libsodium-dev \
 		make \
 		qt5-qtbase-dev \
 		qt5-qtsvg-dev \

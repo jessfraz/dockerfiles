@@ -150,6 +150,7 @@ containrrr/watchtower
 wireguard/wireguard
 znc/znc
 apache/zookeeper
+tianon/gosu
 )
 
 other_projects=(
