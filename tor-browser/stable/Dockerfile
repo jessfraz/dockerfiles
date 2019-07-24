@@ -38,7 +38,7 @@ ENV TOR_FINGERPRINT 0x4E2C6E8793298290
 
 # download tor and check signature
 RUN cd /tmp \
-	&& curl -sSOL "https://www.torproject.org/dist/torbrowser/${TOR_VERSION}/tor-browser-linux64-${TOR_VERSION}_en-US.tar.xz" \
+	&& curl -sSOL "https://dist.torproject.org/torbrowser/${TOR_VERSION}/tor-browser-linux64-${TOR_VERSION}_en-US.tar.xz" \
 	&& curl -sSOL "https://www.torproject.org/dist/torbrowser/${TOR_VERSION}/tor-browser-linux64-${TOR_VERSION}_en-US.tar.xz.asc" \
 	&& export GNUPGHOME="$(mktemp -d)" \
 	&& for server in $(shuf -e \
