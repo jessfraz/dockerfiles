@@ -1,5 +1,5 @@
 # Wine docker image base
-FROM debian:buster-slim
+FROM debian:bullseye-slim
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 # install wine
