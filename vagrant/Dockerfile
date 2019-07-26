@@ -1,4 +1,4 @@
-FROM debian:jessie-slim
+FROM debian:bullseye-slim
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 RUN	apt-get update && apt-get install -y \
@@ -14,7 +14,6 @@ RUN	apt-get update && apt-get install -y \
 	pkg-config \
 	qemu-kvm \
 	ruby-dev \
-	ruby-fog \
 	zlib1g-dev \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*

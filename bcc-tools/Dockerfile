@@ -6,7 +6,7 @@
 #	-v /etc/localtime:/etc/localtime:ro \
 #	r.j3ss.co/bcc-tools
 #
-FROM debian:stretch-slim
+FROM debian:bullseye-slim
 MAINTAINER Jessica Frazelle <jess@linux.com>
 
 ENV PATH /usr/share/bcc/tools:$PATH
