@@ -20,7 +20,7 @@ WORKDIR /go/src/github.com/agl/pond
 RUN go build -o /usr/bin/pond-client ./client \
 	&& go build -o /usr/bin/pond-server ./server
 
-FROM debian:buster-slim
+FROM debian:bullseye-slim
 
 RUN	apt-get update && apt-get install -y \
 	ca-certificates \

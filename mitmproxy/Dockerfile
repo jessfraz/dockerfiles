@@ -1,4 +1,4 @@
-FROM debian:buster-slim
+FROM debian:bullseye-slim
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 ENV LANG=en_US.UTF-8
