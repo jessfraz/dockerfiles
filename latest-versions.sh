@@ -103,6 +103,7 @@ compare() {
 
 projects=(
 iovisor/bcc
+iovisor/bpftrace
 browsh-org/browsh
 certbot/certbot
 cloudflare/cfssl
