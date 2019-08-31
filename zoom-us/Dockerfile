@@ -41,6 +41,7 @@ RUN apt-get update && apt-get install -y \
 	libxcb-image0 \
 	libxcb-keysyms1 \
 	libxcb-xtest0 \
+	libxtst6 \
 	libnss3 \
 	libxss1 \
 	sudo \

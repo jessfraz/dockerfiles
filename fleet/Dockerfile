@@ -12,11 +12,13 @@ RUN apk add --no-cache \
 	npm \
 	yarn
 
-ENV FLEET_VERSION 2.2.0
+ENV FLEET_VERSION 2.3.0
 
 RUN git clone --depth 1 --branch "${FLEET_VERSION}" https://github.com/kolide/fleet.git /go/src/github.com/kolide/fleet
 
 WORKDIR /go/src/github.com/kolide/fleet
+
+ENV GO111MODULE on
 
 RUN make deps generate
 

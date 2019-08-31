@@ -8,14 +8,13 @@ RUN	apk --no-cache add \
 ENV PATH /go/bin:/usr/local/go/bin:$PATH
 ENV GOPATH /go
 
-ENV OAUTH2_PROXY_VERSION v3.2.0
+ENV OAUTH2_PROXY_VERSION v4.0.0
 
 RUN go get github.com/golang/dep/cmd/dep
 
 RUN go get github.com/pusher/oauth2_proxy || true \
 	&& cd /go/src/github.com/pusher/oauth2_proxy \
 	&& git checkout "${OAUTH2_PROXY_VERSION}" \
-	&& dep ensure --vendor-only \
 	&& go build . \
 	&& mv oauth2_proxy /usr/bin/
 
