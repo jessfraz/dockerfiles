@@ -1,8 +1,9 @@
 #!/usr/local/bin/python
 
-import boto
+import boto3
 import os
 import sys
+import uuid
 
 
 access_key = os.getenv("AWS_ACCESS_KEY")
@@ -24,20 +25,29 @@ elif bucket == "" or bucket is None:
     sys.exit(1)
 
 # get the paths from s3
-s3_conn = boto.connect_s3(access_key, access_secret)
-docs = s3_conn.get_bucket(bucket)
+s3_conn = boto3.client('s3', aws_access_key_id=access_key, aws_secret_access_key=access_secret)
+docs = s3_conn.list_objects(Bucket=bucket)
 items = []
 
-for key in docs.list():
-    index_file = "/index.html"
-    if key.name.endswith((index_file)):
+for key in docs['Contents']:
+    name = key['Key'].encode('utf-8')
+    index_file = "index.html"
+    if name.endswith((index_file)):
         # append the file without the postfix as well
-        items.append(key.name.replace(index_file, ""))
-        items.append(key.name.replace(index_file, "/"))
-    items.append(key.name)
+        items.append(name.replace(index_file, "/"))
+    items.append('/{}'.format(name))
 
-cf_conn = boto.connect_cloudfront(access_key, access_secret)
-inval_req = cf_conn.create_invalidation_request(cloudfront_dist, items)
+cf_conn = boto3.client('cloudfront', aws_access_key_id=access_key, aws_secret_access_key=access_secret)
+inval_req = cf_conn.create_invalidation(
+    DistributionId=cloudfront_dist,
+    InvalidationBatch={
+        'Paths': {
+            'Quantity': len(items),
+            'Items': items,
+        },
+        'CallerReference': str(uuid.uuid4())
+    }
+)
 
 print "Invalidating these files: "
 print items
