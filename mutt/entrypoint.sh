@@ -47,7 +47,7 @@ if [ -d "$HOME/.gnupg" ]; then
 		if [ -f "/usr/share/doc/mutt/examples/gpg.rc" ]; then
 			echo 'source /usr/share/doc/mutt/examples/gpg.rc'
 		fi
-		if [ ! -z "$GPG_ID" ]; then
+		if [ -n "$GPG_ID" ]; then
 			echo "set pgp_sign_as = $GPG_ID"
 		fi
 		echo 'set crypt_replysign=yes'
