@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ ! -z "$TOKEN" ]]; then
+if [[ -n "$TOKEN" ]]; then
 	GITHUB_TOKEN=$TOKEN
 fi
 
