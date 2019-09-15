@@ -1,13 +1,11 @@
 FROM alpine:latest
 
 RUN apk add --no-cache \
-	weechat \
-	weechat-perl \
-	weechat-python
+	weechat
 
 ENV HOME /home/user
 
-RUN adduser -S user \
+RUN adduser -D user \
 	&& chown -R user $HOME
 
 WORKDIR $HOME
