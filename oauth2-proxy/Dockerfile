@@ -1,4 +1,4 @@
-FROM golang:alpine as builder
+FROM golang:1.12-alpine as builder
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 RUN	apk --no-cache add \

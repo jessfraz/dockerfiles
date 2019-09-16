@@ -6,7 +6,7 @@
 #	-v /etc/localtime:/etc/localtime:ro \
 #	r.j3ss.co/bcc-tools
 #
-FROM debian:bullseye-slim
+FROM debian:sid-slim
 MAINTAINER Jessica Frazelle <jess@linux.com>
 
 ENV PATH /usr/share/bcc/tools:$PATH

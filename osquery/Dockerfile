@@ -1,21 +1,31 @@
-FROM debian:bullseye-slim
+FROM ubuntu:bionic
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
-RUN apt-get update && apt-get install -y \
-	ca-certificates \
-	libc++1-7 \
-	--no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/*
+ENV DEBIAN_FRONTEND noninteractive
 
-ENV OSQUERY_VERSION 4.0.0
+RUN apt-get update && apt-get install -y \
+	apt-transport-https \
+	ca-certificates \
+	curl \
+	gnupg2 \
+	libc++1 \
+	--no-install-recommends \
+	&& rm -rf /var/lib/apt/lists/* \
+	&& curl -sSL https://apt.kitware.com/keys/kitware-archive-latest.asc | apt-key add - \
+	&& echo 'deb https://apt.kitware.com/ubuntu/ bionic main' > /etc/apt/sources.list.d/cmake.list
+
+ENV OSQUERY_VERSION 4.0.2
 
 RUN buildDeps=' \
+		bison \
 		clang \
 		cmake \
+		flex \
 		git \
 		libc++-dev \
 		libc++abi-dev \
 		liblzma-dev \
+		libssl-dev \
 		llvm \
 		make \
 		python \
