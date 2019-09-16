@@ -9,6 +9,8 @@ RUN apt-get update && apt-get install -y \
 	curl \
 	gnupg2 \
 	libc++1 \
+	tar \
+	xz-utils \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& curl -sSL https://apt.kitware.com/keys/kitware-archive-latest.asc | apt-key add - \
@@ -39,8 +41,9 @@ RUN buildDeps=' \
 	&& cd /usr/src/osquery \
 	&& ls -la src/ \
 	&& cd build \
-	&& cmake ../src -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ \
-	&& cmake --build . -j \
+	&& curl -sSL https://github.com/osquery/osquery-toolchain/releases/download/1.0.0/osquery-toolchain-1.0.0.tar.xz | tar -xJ -C /usr/local \
+	&& cmake -DOSQUERY_TOOLCHAIN_SYSROOT=/usr/local/osquery-toolchain ../src  \
+	&& cmake --build . \
 	&& mv osquery/osqueryd /usr/bin \
 	&& mv package/linux/osqueryctl /usr/bin \
 	&& apt-get purge -y --auto-remove $buildDeps \
