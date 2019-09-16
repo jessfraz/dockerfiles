@@ -108,8 +108,9 @@ WORKDIR /config
 # 8843 - guest portal (https)
 # 8880 - guest portal (http)
 # 6789 - throughput / mobile speedtest (tcp)
+# 10001 - device discovery (udp)
 # ref https://help.ubnt.com/hc/en-us/articles/218506997-UniFi-Ports-Used
-EXPOSE 3478/udp 8080 8081 8443 8843 8880 6789
+EXPOSE 3478/udp 8080 8081 8443 8843 8880 6789 10001/udp
 
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 
