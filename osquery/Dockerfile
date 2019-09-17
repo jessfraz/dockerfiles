@@ -46,6 +46,8 @@ RUN buildDeps=' \
 	&& cmake --build . \
 	&& mv osquery/osqueryd /usr/bin \
 	&& mv package/linux/osqueryctl /usr/bin \
+	&& mkdir -p /usr/share/osquery/certs \
+	&& cp ../src/tools/deployment/certs.pem /usr/share/osquery/certs/ \
 	&& apt-get purge -y --auto-remove $buildDeps \
 	&& chmod a+x /usr/bin/osquery* \
 	&& cp -r /usr/src/osquery/src/packs /usr/share/osquery/
