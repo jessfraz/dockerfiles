@@ -114,7 +114,6 @@ curl/curl
 kolide/fleet
 GoogleCloudPlatform/cloud-sdk-docker
 google/gitiles
-bazelbuild/bazel
 google/guetzli
 irssi/irssi
 cryptodotis/irssi-otr
