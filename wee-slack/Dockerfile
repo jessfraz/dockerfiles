@@ -23,11 +23,13 @@ RUN apk add --no-cache \
 
 RUN pip install websocket-client
 
+ARG RUNTIME_UID
+ENV RUNTIME_UID ${UID:-1000}
 ENV HOME /home/user
 
 ADD https://raw.githubusercontent.com/rawdigits/wee-slack/master/wee_slack.py /home/user/.weechat/python/autoload/wee_slack.py
 
-RUN adduser -S user -h $HOME \
+RUN adduser -S user -u ${RUNTIME_UID} -h $HOME \
 	&& chown -R user $HOME
 
 WORKDIR $HOME

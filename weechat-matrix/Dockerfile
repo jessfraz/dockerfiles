@@ -28,9 +28,11 @@ RUN apk add --no-cache \
 	weechat-python \
 	--repository https://dl-4.alpinelinux.org/alpine/edge/testing
 
+ARG RUNTIME_UID
+ENV RUNTIME_UID ${UID:-1000}
 ENV HOME /home/user
 
-RUN adduser -S user -h $HOME \
+RUN adduser -S user -u ${RUNTIME_UID} -h $HOME \
 	&& chown -R user $HOME \
 	&& cd $HOME \
 	&& git clone https://github.com/poljar/weechat-matrix.git \
