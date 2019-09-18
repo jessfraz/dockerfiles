@@ -18,7 +18,7 @@ ARG RUNTIME_UID
 ENV RUNTIME_UID ${UID:-1000}
 ENV HOME /home/user
 
-RUN adduser -D user -u ${RUNTIME_UID} \
+RUN adduser -D user -u ${RUNTIME_UID} -h $HOME \
 	&& chown -R user $HOME
 
 WORKDIR $HOME
