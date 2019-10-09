@@ -1,5 +1,5 @@
 FROM alpine:latest as builder
-MAINTAINER Jessica Frazelle <jess@linux.com>
+LABEL maintainer "Jessica Frazelle <jess@linux.com>"
 
 RUN	apk add --no-cache \
 	ca-certificates \

@@ -1,5 +1,5 @@
 FROM r.j3ss.co/bcc
-MAINTAINER Jessica Frazelle <jess@linux.com>
+LABEL maintainer "Jessica Frazelle <jess@linux.com>"
 
 ENV PATH /usr/share/bcc/tools:$PATH
 

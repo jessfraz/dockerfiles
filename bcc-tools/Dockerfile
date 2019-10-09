@@ -7,7 +7,7 @@
 #	r.j3ss.co/bcc-tools
 #
 FROM debian:sid-slim
-MAINTAINER Jessica Frazelle <jess@linux.com>
+LABEL maintainer "Jessica Frazelle <jess@linux.com>"
 
 ENV PATH /usr/share/bcc/tools:$PATH
 
