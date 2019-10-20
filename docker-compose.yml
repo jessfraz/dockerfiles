@@ -4,4 +4,4 @@ services:
   auto-doc:
     image: mattgleich/auto-doc-dockerfiles
     volumes: 
-      - ~/Documents/Github/dockerfiles-1:/src/repo
+      - .:/src/repo
