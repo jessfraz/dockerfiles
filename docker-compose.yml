@@ -2,6 +2,6 @@ version: "3"
 
 services:
   auto-doc:
-    image: mattgleich/auto-doc-dockerfiles
+    image: mattgleich/doc-dockerfiles
     volumes: 
       - .:/src/repo
