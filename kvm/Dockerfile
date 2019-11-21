@@ -11,6 +11,7 @@ LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 RUN apt-get update && apt-get install -y \
 	iptables \
+	iproute2 \
 	libgl1-mesa-dri \
 	libgl1-mesa-glx \
 	libvirt-daemon-system \
