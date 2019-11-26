@@ -20,6 +20,7 @@ RUN apt-get update && apt-get install -y \
 	python-ipaddr \
 	qemu-kvm \
 	virtinst \
+	virt-manager \
 	virt-viewer \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
