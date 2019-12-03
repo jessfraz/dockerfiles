@@ -11,11 +11,13 @@ LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 RUN apt-get update && apt-get install -y \
 	dnsmasq \
+	gir1.2-spiceclientgtk-3.0 \
 	iproute2 \
 	iptables \
 	libgl1-mesa-dri \
 	libgl1-mesa-glx \
 	libvirt-daemon-system \
+	procps \
 	python-gi \
 	python-ipaddr \
 	qemu-kvm \
@@ -28,4 +30,4 @@ RUN apt-get update && apt-get install -y \
 COPY ./start.sh /start.sh
 
 ENTRYPOINT ["/start.sh"]
-CMD ["libvirtd"]
+CMD ["virt-manager", "--no-fork"]
