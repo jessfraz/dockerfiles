@@ -14,11 +14,11 @@ bridge link
 ip addr add dev virt0 172.20.0.1/16
 iptables -t nat -A POSTROUTING -s 172.20.0.1/16 -j MASQUERADE
 
-# start the default networking
-virsh net-start default
-
 # start the virtlogd daemon
 exec virtlogd --daemon &
+
+# start the default networking
+virsh net-start default || true
 
 # shellcheck disable=SC2068
 exec $@
