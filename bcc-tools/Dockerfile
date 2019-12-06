@@ -39,7 +39,7 @@ RUN apt-get update && apt-get install -y \
 	clang-format \
 	python \
 	python-netaddr \
-	python-pyroute2 \
+	python3-pyroute2 \
 	luajit \
 	libluajit-5.1-dev \
 	arping \

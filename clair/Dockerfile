@@ -2,7 +2,8 @@ FROM golang:alpine as builder
 
 RUN apk --no-cache add \
 	ca-certificates \
-	git
+	git \
+	make
 
 ENV PATH /go/bin:/usr/local/go/bin:$PATH
 ENV GOPATH /go
@@ -15,7 +16,7 @@ WORKDIR /go/src/github.com/quay/clair
 
 RUN git checkout "${CLAIR_VERSION}"
 
-RUN make build
+RUN go install ./cmd/clair
 
 FROM alpine:latest
 
@@ -25,6 +26,6 @@ RUN apk --no-cache add \
 	rpm \
 	xz
 
-COPY --from=builder /go/src/github.com/coreos/clair/cmd/clair /usr/bin/clair
+COPY --from=builder /go/bin/clair /usr/bin/clair
 
 ENTRYPOINT [ "clair" ]
