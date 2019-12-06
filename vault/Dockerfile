@@ -14,7 +14,7 @@ RUN	apk add --no-cache \
 	yarn \
 	zip
 
-ENV VAULT_VERSION v1.2.3
+ENV VAULT_VERSION v1.3.0
 
 RUN go get github.com/hashicorp/vault || true
 
