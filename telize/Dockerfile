@@ -10,9 +10,9 @@ ENV NGX_DEVEL_KIT_VERSION v0.3.1rc1
 # https://github.com/openresty/lua-nginx-module/releases
 ENV LUA_NGINX_MODULE_VERSION v0.10.15
 # https://github.com/leev/ngx_http_geoip2_module/releases
-ENV NGX_HTTP_GEOIP2_MODULE_VERSION 3.2
+ENV NGX_HTTP_GEOIP2_MODULE_VERSION 3.3
 # https://github.com/maxmind/libmaxminddb/releases
-ENV LIBMAXMINDDB_VERSION 1.3.2
+ENV LIBMAXMINDDB_VERSION 1.4.2
 
 # Tell nginx's build system where to find LuaJIT 2.1:
 ENV LUAJIT_LIB=/usr/lib/

@@ -9,7 +9,7 @@ RUN apk --no-cache add \
 		libc-dev
 
 
-ENV CFSSL_VERSION 1.3.4
+ENV CFSSL_VERSION 1.4.1
 
 RUN git clone --depth 1 --branch "$CFSSL_VERSION" https://github.com/cloudflare/cfssl.git /go/src/github.com/cloudflare/cfssl
 

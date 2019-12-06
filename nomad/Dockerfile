@@ -29,7 +29,7 @@ RUN apt-get update && apt-get install -y \
     --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
-ENV NOMAD_VERSION v0.9.5
+ENV NOMAD_VERSION v0.10.2
 
 RUN go get github.com/hashicorp/nomad
 
