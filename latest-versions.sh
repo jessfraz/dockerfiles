@@ -49,8 +49,6 @@ get_latest() {
 		dir="zookeeper/3.5"
 	elif [[ "$dir" == "oauth2_proxy" ]]; then
 		dir="oauth2-proxy"
-	elif [[ "$dir" == "now-cli" ]]; then
-		dir="now"
 	elif [[ "$dir" == "wireguard" ]]; then
 		dir="wireguard/install"
 	fi
@@ -123,7 +121,6 @@ MidnightCommander/mc
 zyedidia/micro
 mitmproxy/mitmproxy
 hashicorp/nomad
-zeit/now-cli
 nzbget/nzbget
 pusher/oauth2_proxy
 facebook/osquery
