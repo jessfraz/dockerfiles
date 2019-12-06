@@ -10,7 +10,6 @@ RUN dpkg --add-architecture i386 \
 	bc \
 	binutils-dev \
 	bison \
-	bsdtar \
 	build-essential \
 	bzip2 \
 	ca-certificates \

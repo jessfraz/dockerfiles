@@ -28,14 +28,14 @@
 # then you can remove all the shit you copied
 # 	rm -rf /usr/share/virtualbox /usr/lib/virtualbox
 #
-FROM debian:bullseye-slim
+FROM debian:buster-slim
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && apt-get install -y \
 	libcurl4 \
-	libvpx6 \
+	libvpx5 \
 	procps \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
