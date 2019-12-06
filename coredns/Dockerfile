@@ -1,4 +1,4 @@
-FROM golang:1.12-alpine as builder
+FROM golang:alpine as builder
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 ENV PATH /go/bin:/usr/local/go/bin:$PATH

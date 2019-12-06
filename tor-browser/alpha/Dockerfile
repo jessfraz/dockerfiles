@@ -33,7 +33,7 @@ RUN useradd --create-home --home-dir $HOME user \
 ENV LANG C.UTF-8
 
 # https://www.torproject.org/download/alpha/
-ENV TOR_VERSION 9.0a6
+ENV TOR_VERSION 9.5a3
 ENV TOR_FINGERPRINT 0x4E2C6E8793298290
 
 # download tor and check signature

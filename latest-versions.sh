@@ -105,6 +105,7 @@ iovisor/bpftrace
 browsh-org/browsh
 certbot/certbot
 cloudflare/cfssl
+quay/clair
 hashicorp/consul
 coredns/coredns
 CouchPotato/CouchPotatoServer

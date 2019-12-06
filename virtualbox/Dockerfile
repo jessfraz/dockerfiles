@@ -35,7 +35,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && apt-get install -y \
 	libcurl4 \
-	libvpx5 \
+	libvpx6 \
 	procps \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
