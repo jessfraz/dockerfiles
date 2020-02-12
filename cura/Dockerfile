@@ -2,6 +2,8 @@ FROM ubuntu:bionic
 
 RUN apt-get update && apt-get install -y \
 	ca-certificates \
+	libgfortran4 \
+	libssl-dev \
 	wget \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
