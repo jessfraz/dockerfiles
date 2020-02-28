@@ -32,7 +32,8 @@ RUN apt-get update && LC_ALL=C DEBIAN_FRONTEND=noninteractive \
 	ldap-utils \
 	slapd \
 	--no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/*
+	apt-get clean && \
+	rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Just some default values for fun!
 ENV LDAP_ROOTPASS=fsociety LDAP_ORGANIZATION="E CORP" LDAP_DOMAIN=mr.robot.com
