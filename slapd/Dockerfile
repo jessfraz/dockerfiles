@@ -31,7 +31,7 @@ RUN apt-get update && LC_ALL=C DEBIAN_FRONTEND=noninteractive \
 	apt-get install -y \
 	ldap-utils \
 	slapd \
-	--no-install-recommends \
+	--no-install-recommends && \
 	apt-get clean && \
 	rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
