@@ -31,7 +31,9 @@ RUN apt-get update && apt-get install -y \
 	ca-certificates \
 	gnupg \
 	wget \
-	--no-install-recommends
+	--no-install-recommends \
+	apt-get clean && \
+	rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Add the atom debian repo
 RUN wget -qO- https://packagecloud.io/AtomEditor/atom/gpgkey | apt-key add -
@@ -56,7 +58,8 @@ RUN apt-get update && apt-get install -y \
 	libx11-xcb-dev \
 	xdg-utils \
 	--no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/*
+	apt-get clean && \
+	rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Autorun atom
 ENTRYPOINT [ "atom", "--foreground" ]
