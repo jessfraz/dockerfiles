@@ -12,17 +12,15 @@
 FROM r.j3ss.co/wine
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
-ADD https://desktop.figma.com/win/FigmaSetup.exe /usr/src/FigmaSetup.exe
-
 ENV HOME /home/user
 RUN useradd --create-home --home-dir $HOME user \
-	&& chown -R user:user $HOME \
-	&& chown user:user /usr/src/FigmaSetup.exe
+	&& curl -sSL "https://desktop.figma.com/win/FigmaSetup.exe" > ${HOME}/FigmaSetup.exe \
+	&& chown -R user:user $HOME
 
 WORKDIR $HOME
 USER user
 
-RUN echo "wine /usr/src/FigmaSetup.exe" > /home/user/.bash_history
+RUN echo "wine runas /trustlevel:0x20000 FigmaSetup.exe" > /home/user/.bash_history
 RUN echo "winetricks dotnet45" >> /home/user/.bash_history
 RUN echo "winecfg" >> /home/user/.bash_history
 
