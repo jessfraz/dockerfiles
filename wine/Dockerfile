@@ -3,7 +3,8 @@ FROM debian:sid-slim
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 # install wine
-RUN apt-get update && apt-get install -y \
+RUN echo "deb http://deb.debian.org/debian sid main contrib" > /etc/apt/sources.list \
+	&& apt-get update && apt-get install -y \
 	wine \
 	winetricks \
 	--no-install-recommends && \
