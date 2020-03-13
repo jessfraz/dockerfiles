@@ -14,6 +14,13 @@ LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 ADD https://desktop.figma.com/win/FigmaSetup.exe /usr/src/FigmaSetup.exe
 
-RUN echo "wine /usr/src/FigmaSetup.exe" > /root/.bash_history
+ENV HOME /home/user
+RUN useradd --create-home --home-dir $HOME user \
+	&& chown -R user:user $HOME
+
+WORKDIR $HOME
+USER user
+
+RUN echo "wine /usr/src/FigmaSetup.exe" > /home/user/.bash_history
 
 CMD [ "bash" ]
