@@ -23,5 +23,7 @@ WORKDIR $HOME
 USER user
 
 RUN echo "wine /usr/src/FigmaSetup.exe" > /home/user/.bash_history
+RUN echo "winetricks dotnet45" >> /home/user/.bash_history
+RUN echo "winecfg" >> /home/user/.bash_history
 
 CMD [ "bash" ]
