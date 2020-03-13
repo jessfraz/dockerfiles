@@ -5,12 +5,12 @@ LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 # install wine
 RUN apt-get update && apt-get install -y \
 	wine \
+	winetricks \
 	--no-install-recommends && \
 	dpkg --add-architecture i386 && \
 	apt-get update && \
 	apt-get install -y \
-	wine \
-	winetricks \
+	wine32 \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
