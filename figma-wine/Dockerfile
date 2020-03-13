@@ -16,7 +16,8 @@ ADD https://desktop.figma.com/win/FigmaSetup.exe /usr/src/FigmaSetup.exe
 
 ENV HOME /home/user
 RUN useradd --create-home --home-dir $HOME user \
-	&& chown -R user:user $HOME
+	&& chown -R user:user $HOME \
+	&& chown user:user /usr/src/FigmaSetup.exe
 
 WORKDIR $HOME
 USER user
