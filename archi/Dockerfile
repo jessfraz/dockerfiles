@@ -1,6 +1,6 @@
-FROM store/oracle/jdk:11
+FROM oraclelinux:7.7
 
-ENV ARCHI_VERSION 4.4.0
+ENV ARCHI_VERSION 4.6.0
 ENV PATH $PATH:/opt/archi/
 
 # the start files for archi use bash
@@ -13,9 +13,11 @@ RUN yum install -y libXtst
 RUN yum install -y unzip
 RUN yum install -y git
 RUN yum install -y vim
+RUN yum install -y gtk3
 
 WORKDIR /etc/yum.repos.d
-RUN curl -LJ0 http://yum.oracle.com/public-yum-ol7.repo | sed 's/enabled=0/enabled=1/' > public-yum-ol7.repo
+RUN curl -LJ0 http://yum.oracle.com/public-yum-ol7.repo
+RUN yum-config-manager --enable ol7_optional_developer
 # RUN yum update -y
 RUN yum install -y xorg-x11-server-Xvfb
 
