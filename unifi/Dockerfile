@@ -95,7 +95,7 @@ RUN apt-get update && apt-get install -y \
 		curl \
 		--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/* \
-	&& curl -o /tmp/unifi.deb -L "http://dl.ubnt.com/unifi/${UNIFI_VERSION}/unifi_sysvinit_all.deb" \
+	&& curl -o /tmp/unifi.deb -L "https://dl.ubnt.com/unifi/${UNIFI_VERSION}/unifi_sysvinit_all.deb" \
 	&& dpkg -i /tmp/unifi.deb \
 	&& rm -rf /tmp/unifi.deb \
 	&& echo "Build complete."
