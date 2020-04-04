@@ -9,7 +9,8 @@
 #       -e DISPLAY=unix$DISPLAY \
 #       keepassxc_dev \
 #       /usr/local/bin/keepassxc
-#
+# macos:
+# $ docker run -it --rm -e DISPLAY=192.168.1.110:0 -v $HOME/Documents:/home/me/Documents -v $HOME/.config/keepassxc:/home/me/.config/keepassxc keepassxc_dev
 FROM alpine:latest
 
 ENV KEEPASSXC_VERSION 2.5.3
@@ -55,11 +56,10 @@ RUN apk --no-cache add \
         qt5-qttools \
         ttf-dejavu
 
-RUN mkdir /${HOMEDIR}
 RUN adduser --disabled-password \
             --gecos "" \
             -h /${HOMEDIR}/${USER} ${USER}
 
 USER ${USER}
 
-ENTRYPOINT [ "/usr/bin/bash" ]
+ENTRYPOINT [ "bash" ]
