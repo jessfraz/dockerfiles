@@ -23,6 +23,9 @@ FROM debian:buster-slim
 
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
+ARG USER_INSIDE_THE_CONTAINER=me
+ARG HOME_INSIDE_THE_CONTAINER=home
+
 # Tell debconf to run in non-interactive mode
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -57,6 +60,16 @@ RUN apt-get update && apt-get install -y \
 	xdg-utils \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
+
+RUN mkdir -p /${HOME_INSIDE_THE_CONTAINER}/${USER_INSIDE_THE_CONTAINER}/repos
+
+RUN useradd -rm -d /${HOME_INSIDE_THE_CONTAINER}/${USER_INSIDE_THE_CONTAINER} -s /bin/bash -g root \
+-p "$(openssl passwd -1 ${USER_INSIDE_THE_CONTAINER})" -G sudo -u 1000 ${USER_INSIDE_THE_CONTAINER}
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
+RUN chown -R ${USER_INSIDE_THE_CONTAINER}: /${HOME_INSIDE_THE_CONTAINER}/${USER_INSIDE_THE_CONTAINER}/
+
+USER ${USER_INSIDE_THE_CONTAINER}
 
 # Autorun atom
 ENTRYPOINT [ "atom", "--foreground" ]
