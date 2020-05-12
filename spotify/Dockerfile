@@ -4,7 +4,7 @@
 #	-v /etc/localtime:/etc/localtime:ro \
 #	-v /tmp/.X11-unix:/tmp/.X11-unix \
 #	-e DISPLAY=unix$DISPLAY \
-#	--device /dev/snd:/dev/snd \
+#	--device /dev/snd \
 #	-v $HOME/.spotify/config:/home/spotify/.config/spotify \
 #	-v $HOME/.spotify/cache:/home/spotify/spotify \
 #	--name spotify \
@@ -29,8 +29,12 @@ RUN	apt-get update && apt-get install -y \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
+ARG HOSTUID=1000
+ARG HOSTGID=1000
+
 ENV HOME /home/spotify
-RUN useradd --create-home --home-dir $HOME spotify \
+RUN groupadd -g $HOSTGID spotify \
+	&& useradd -u $HOSTUID -g $HOSTGID --create-home --home-dir $HOME spotify \
 	&& gpasswd -a spotify audio \
 	&& chown -R spotify:spotify $HOME
 
