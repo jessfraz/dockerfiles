@@ -5,7 +5,7 @@
 #	-v /tmp/.X11-unix:/tmp/.X11-unix \
 #	-e DISPLAY=unix$DISPLAY \
 #	--device /dev/snd \
-#	-v $HOME/.spotify/config:/home/spotify/.config/spotify \
+#	-v $HOME/.spotify/config:/home/spotify/.config \
 #	-v $HOME/.spotify/cache:/home/spotify/spotify \
 #	--name spotify \
 #	jess/spotify
