@@ -19,14 +19,13 @@ RUN apk add --no-cache \
 	git \
 	libffi-dev \
 	libressl-dev \
-	olm-dev \
 	python \
 	python-dev \
 	py2-pip \
 	weechat \
 	weechat-perl \
 	weechat-python \
-	--repository https://dl-4.alpinelinux.org/alpine/edge/testing
+	--repository https://dl-4.alpinelinux.org/alpine/edge/community
 
 ENV HOME /home/user
 

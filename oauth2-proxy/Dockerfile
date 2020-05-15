@@ -1,4 +1,4 @@
-FROM golang:1.12-alpine as builder
+FROM golang:alpine as builder
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 RUN	apk --no-cache add \
@@ -9,8 +9,6 @@ ENV PATH /go/bin:/usr/local/go/bin:$PATH
 ENV GOPATH /go
 
 ENV OAUTH2_PROXY_VERSION v5.1.1
-
-RUN go get github.com/golang/dep/cmd/dep
 
 RUN go get github.com/pusher/oauth2_proxy || true \
 	&& cd /go/src/github.com/pusher/oauth2_proxy \
