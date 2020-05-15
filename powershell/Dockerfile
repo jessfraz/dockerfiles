@@ -20,6 +20,7 @@ RUN cd /usr/src \
 	&& dpkg -i /tmp/powershell.deb \
 	&& ln -snf "/opt/microsoft/powershell/7/pwsh" /usr/bin/pwsh \
 	&& apt-get install -fy \
-	&& rm -rf /var/lib/apt/lists/* /usr/src/* /tmp/powershell.deb
+	&& rm -rf /var/lib/apt/lists/* /usr/src/* /tmp/powershell.deb \
+	&& which pwsh
 
 ENTRYPOINT [ "/usr/bin/pwsh" ]

@@ -1,4 +1,4 @@
-FROM golang:1.12 as builder
+FROM golang:latest as builder
 MAINTAINER Jessica Frazelle <jess@linux.com>
 
 ENV PATH /go/bin:/usr/local/go/bin:$PATH
