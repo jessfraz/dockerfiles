@@ -46,7 +46,7 @@ get_latest() {
 	elif [[ "$dir" == "Tautulli" ]]; then
 		dir="plexpy"
 	elif [[ "$dir" == "zookeeper" ]]; then
-		dir="zookeeper/3.5"
+		dir="zookeeper/3.6"
 	elif [[ "$dir" == "oauth2_proxy" ]]; then
 		dir="oauth2-proxy"
 	fi
@@ -92,7 +92,7 @@ get_latest_unifi() {
 
 compare() {
 	local name="$1" dir="$2" tag="$3" current="$4" releases="$5"
-	ignore_dirs=( "mc" "zookeeper/3.5" )
+	ignore_dirs=( "mc" )
 
 	if [[ "$tag" =~ $current ]] || [[ "$name" =~ $current ]] || [[ "$current" =~ $tag ]] || [[ "$current" == "master" ]]; then
 		echo -e "\\e[36m${dir}:\\e[39m current ${current} | ${tag} | ${name}"
