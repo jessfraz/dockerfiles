@@ -38,7 +38,6 @@ RUN apt-get update && apt-get install -y \
 	libedit-dev \
 	clang-format \
 	python \
-	python-netaddr \
 	python3-pyroute2 \
 	luajit \
 	libluajit-5.1-dev \
