@@ -2,7 +2,7 @@ FROM ubuntu:bionic
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 # https://gerrit.googlesource.com/gitiles/
-ENV GITILES_VERSION v0.3
+ENV GITILES_VERSION v0.4
 
 RUN apt-get update && apt-get install -y \
 	apt-transport-https \

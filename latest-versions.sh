@@ -49,7 +49,7 @@ get_latest() {
 		dir="zookeeper/3.5"
 	elif [[ "$dir" == "oauth2_proxy" ]]; then
 		dir="oauth2-proxy"
-	elif [[ "$dir" == "wireguard" ]]; then
+	elif [[ "$dir" == "wireguard-linux-compat" ]]; then
 		dir="wireguard/install"
 	fi
 
@@ -59,6 +59,11 @@ get_latest() {
 	# Replace dashes (-) with underscores (_)
 	udir=${udir//-/_}
 	udir=${udir%/*}
+
+	if [[ "$dir" == "wireguard-tools" ]]; then
+		dir="wireguard/install"
+		udir="WIREGUARD_TOOLS_VERSION"
+	fi
 
 	local current
 	if [[ ! -d "$dir" ]]; then
@@ -100,60 +105,61 @@ compare() {
 }
 
 projects=(
-iovisor/bcc
-iovisor/bpftrace
-browsh-org/browsh
-certbot/certbot
-cloudflare/cfssl
-quay/clair
-hashicorp/consul
-coredns/coredns
-CouchPotato/CouchPotatoServer
-curl/curl
-kolide/fleet
-GoogleCloudPlatform/cloud-sdk-docker
-google/gitiles
-google/guetzli
-irssi/irssi
-cryptodotis/irssi-otr
-keepassxreboot/keepassxc
-robertdavidgraham/masscan
-MidnightCommander/mc
-zyedidia/micro
-mitmproxy/mitmproxy
-hashicorp/nomad
-nzbget/nzbget
-pusher/oauth2_proxy
-facebook/osquery
-hashicorp/packer
-Tautulli/Tautulli
-perkeep/perkeep
-pomerium/pomerium
-powershell/powershell
-Radarr/Radarr
-cesanta/docker_auth
-ricochet-im/ricochet
-reverse-shell/routersploit
-rstudio/rstudio
-tarsnap/tarsnap
-nginx/nginx
-simplresty/ngx_devel_kit
-openresty/lua-nginx-module
-leev/ngx_http_geoip2_module
-maxmind/libmaxminddb
-hashicorp/terraform
-kdlucas/byte-unixbench
-mitchellh/vagrant
-hashicorp/vault
-containrrr/watchtower
-wireguard/wireguard
-znc/znc
-apache/zookeeper
-tianon/gosu
+	iovisor/bcc
+	iovisor/bpftrace
+	browsh-org/browsh
+	certbot/certbot
+	cloudflare/cfssl
+	quay/clair
+	hashicorp/consul
+	coredns/coredns
+	CouchPotato/CouchPotatoServer
+	curl/curl
+	kolide/fleet
+	GoogleCloudPlatform/cloud-sdk-docker
+	google/gitiles
+	google/guetzli
+	irssi/irssi
+	cryptodotis/irssi-otr
+	keepassxreboot/keepassxc
+	robertdavidgraham/masscan
+	MidnightCommander/mc
+	zyedidia/micro
+	mitmproxy/mitmproxy
+	hashicorp/nomad
+	nzbget/nzbget
+	pusher/oauth2_proxy
+	facebook/osquery
+	hashicorp/packer
+	Tautulli/Tautulli
+	perkeep/perkeep
+	pomerium/pomerium
+	powershell/powershell
+	Radarr/Radarr
+	cesanta/docker_auth
+	ricochet-im/ricochet
+	reverse-shell/routersploit
+	rstudio/rstudio
+	tarsnap/tarsnap
+	nginx/nginx
+	simplresty/ngx_devel_kit
+	openresty/lua-nginx-module
+	leev/ngx_http_geoip2_module
+	maxmind/libmaxminddb
+	hashicorp/terraform
+	kdlucas/byte-unixbench
+	mitchellh/vagrant
+	hashicorp/vault
+	containrrr/watchtower
+	wireguard/wireguard-tools
+	wireguard/wireguard-linux-compat
+	znc/znc
+	apache/zookeeper
+	tianon/gosu
 )
 
 other_projects=(
-unifi
+	unifi
 )
 
 bad_versions=()

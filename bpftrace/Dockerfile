@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Build bpftrace
-ENV BPFTRACE_VERSION v0.9.3
+ENV BPFTRACE_VERSION v0.10.0
 RUN git clone --depth 1 --branch "$BPFTRACE_VERSION" https://github.com/iovisor/bpftrace.git /usr/src/bpftrace \
 	&& ( \
 		cd /usr/src/bpftrace \
