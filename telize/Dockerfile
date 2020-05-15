@@ -4,11 +4,11 @@ RUN apk add --no-cache \
 	lua5.1-cjson \
 	luajit
 
-ENV NGINX_VERSION 1.17.6
+ENV NGINX_VERSION 1.18.0
 # https://github.com/simplresty/ngx_devel_kit/releases
 ENV NGX_DEVEL_KIT_VERSION v0.3.1rc1
 # https://github.com/openresty/lua-nginx-module/releases
-ENV LUA_NGINX_MODULE_VERSION v0.10.15
+ENV LUA_NGINX_MODULE_VERSION v0.10.16rc5
 # https://github.com/leev/ngx_http_geoip2_module/releases
 ENV NGX_HTTP_GEOIP2_MODULE_VERSION 3.3
 # https://github.com/maxmind/libmaxminddb/releases
