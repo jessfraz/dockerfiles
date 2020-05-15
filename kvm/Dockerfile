@@ -19,7 +19,6 @@ RUN apt-get update && apt-get install -y \
 	libvirt-daemon-system \
 	procps \
 	python-gi \
-	python-ipaddr \
 	qemu-kvm \
 	virtinst \
 	virt-manager \
