@@ -19,9 +19,10 @@ RUN apk add --no-cache \
 	git \
 	libffi-dev \
 	libressl-dev \
-	python \
-	python-dev \
-	py2-pip \
+	olm-dev \
+	python3 \
+	python3-dev \
+	py3-pip \
 	weechat \
 	weechat-perl \
 	weechat-python \
@@ -34,8 +35,8 @@ RUN adduser -S user -h $HOME \
 	&& cd $HOME \
 	&& git clone https://github.com/poljar/weechat-matrix.git \
 	&& cd weechat-matrix \
-	&& pip install -r requirements.txt \
-	&& pip install websocket-client \
+	&& pip3 install -r requirements.txt \
+	&& pip3 install websocket-client \
 	&& make install \
 	&& chown -R user $HOME
 
