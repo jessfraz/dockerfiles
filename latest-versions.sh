@@ -49,8 +49,6 @@ get_latest() {
 		dir="zookeeper/3.5"
 	elif [[ "$dir" == "oauth2_proxy" ]]; then
 		dir="oauth2-proxy"
-	elif [[ "$dir" == "wireguard-linux-compat" ]]; then
-		dir="wireguard/install"
 	fi
 
 	# Change to upper case for grep
@@ -62,7 +60,10 @@ get_latest() {
 
 	if [[ "$dir" == "wireguard-tools" ]]; then
 		dir="wireguard/install"
-		udir="WIREGUARD_TOOLS_VERSION"
+		udir="WIREGUARD_TOOLS"
+	elif [[ "$dir" == "wireguard-linux-compat" ]]; then
+		dir="wireguard/install"
+		udir="WIREGUARD"
 	fi
 
 	local current
