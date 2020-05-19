@@ -147,6 +147,8 @@ projects=(
 	openresty/lua-nginx-module
 	leev/ngx_http_geoip2_module
 	maxmind/libmaxminddb
+	openresty/lua-resty-core
+	openresty/lua-resty-lrucache
 	hashicorp/terraform
 	kdlucas/byte-unixbench
 	mitchellh/vagrant
