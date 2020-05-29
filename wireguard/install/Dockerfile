@@ -23,7 +23,7 @@ RUN apt update && apt -y install \
 	&& rm -rf /var/lib/apt/lists/*
 
 # https://git.zx2c4.com/wireguard-linux-compat/
-ENV WIREGUARD_VERSION v1.0.20200506
+ENV WIREGUARD_VERSION v1.0.20200520
 # https://git.zx2c4.com/wireguard-tools
 ENV WIREGUARD_TOOLS_VERSION v1.0.20200513
 
