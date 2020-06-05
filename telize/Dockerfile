@@ -15,6 +15,8 @@ ENV LUA_RESTY_CORE_VERSION v0.1.18rc4
 ENV LUA_RESTY_LRUCACHE_VERSION v0.10rc1
 # https://github.com/openresty/luajit2/releases
 ENV LUAJIT2_VERSION v2.1.0-beta3
+# https://github.com/openresty/lua-cjson/releases
+ENV LUA_CJSON_VERSION 2.1.0.8rc1
 
 # Tell nginx's build system where to find LuaJIT 2:
 ENV LUAJIT_LIB=/usr/lib/
@@ -88,7 +90,6 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 		libxslt-dev \
 		gd-dev \
 		geoip-dev \
-		luajit-dev \
 		musl-utils \
 		file \
 	&& git clone --depth 1 --branch "${NGX_DEVEL_KIT_VERSION}" https://github.com/simplresty/ngx_devel_kit.git /usr/src/ngx_devel_kit \
@@ -97,8 +98,14 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 	&& git clone --depth 1 --branch "${LUAJIT2_VERSION}" https://github.com/openresty/luajit2.git /usr/src/luajit2 \
 	&& ( \
 		cd /usr/src/luajit2 \
-		&& make \
-		&& make install \
+		&& make DPREFIX=/usr \
+		&& make install DPREFIX=/usr  \
+	) \
+	&& git clone --depth 1 --branch "${LUA_CJSON_VERSION}" https://github.com/openresty/lua-cjson.git /usr/src/lua-cjson \
+	&& ( \
+		cd /usr/src/lua-cjson \
+		&& LIBRARY_PATH="${LUAJIT_LIB}:${LIBRARY_PATH}" CPATH="${LUAJIT_INC}:${CPATH}" make \
+		&& make install  \
 	) \
 	&& git clone --depth 1 --branch "${LUA_RESTY_CORE_VERSION}" https://github.com/openresty/lua-resty-core.git /usr/src/lua-resty-core \
 	&& ( \
