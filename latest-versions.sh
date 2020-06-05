@@ -144,6 +144,7 @@ projects=(
 	tarsnap/tarsnap
 	nginx/nginx
 	simplresty/ngx_devel_kit
+	openresty/luajit2
 	openresty/lua-nginx-module
 	leev/ngx_http_geoip2_module
 	maxmind/libmaxminddb

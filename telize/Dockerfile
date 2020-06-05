@@ -1,10 +1,6 @@
 FROM alpine:latest
 
-RUN apk add --no-cache \
-	lua5.1-cjson \
-	luajit
-
-ENV NGINX_VERSION 1.18.0
+ENV NGINX_VERSION 1.19.0
 # https://github.com/simplresty/ngx_devel_kit/releases
 ENV NGX_DEVEL_KIT_VERSION v0.3.1rc1
 # https://github.com/openresty/lua-nginx-module/releases
@@ -17,8 +13,10 @@ ENV LIBMAXMINDDB_VERSION 1.4.2
 ENV LUA_RESTY_CORE_VERSION v0.1.18rc4
 # https://github.com/openresty/lua-resty-lrucache/releases
 ENV LUA_RESTY_LRUCACHE_VERSION v0.10rc1
+# https://github.com/openresty/luajit2/releases
+ENV LUAJIT2_VERSION v2.1.0-beta3
 
-# Tell nginx's build system where to find LuaJIT 2.1:
+# Tell nginx's build system where to find LuaJIT 2:
 ENV LUAJIT_LIB=/usr/lib/
 ENV LUAJIT_INC=/usr/include/luajit-2.1/
 
@@ -96,6 +94,12 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 	&& git clone --depth 1 --branch "${NGX_DEVEL_KIT_VERSION}" https://github.com/simplresty/ngx_devel_kit.git /usr/src/ngx_devel_kit \
 	&& git clone --depth 1 --branch "${LUA_NGINX_MODULE_VERSION}" https://github.com/openresty/lua-nginx-module.git /usr/src/lua-nginx-module \
 	&& git clone --depth 1 --branch "${NGX_HTTP_GEOIP2_MODULE_VERSION}" https://github.com/leev/ngx_http_geoip2_module.git /usr/src/ngx_http_geoip2_module \
+	&& git clone --depth 1 --branch "${LUAJIT2_VERSION}" https://github.com/openresty/luajit2.git /usr/src/luajit2 \
+	&& ( \
+		cd /usr/src/luajit2 \
+		&& make \
+		&& make install \
+	) \
 	&& git clone --depth 1 --branch "${LUA_RESTY_CORE_VERSION}" https://github.com/openresty/lua-resty-core.git /usr/src/lua-resty-core \
 	&& ( \
 		cd /usr/src/lua-resty-core \
