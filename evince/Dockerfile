@@ -1,18 +1,22 @@
 # Evince in a container
 #
-# docker run -it \
-#	-v $HOME/documents/:/root/documents/ \
+# docker run -it --rm \
+#	-v $HOME/documents/:/home/user/documents \
 #	-v /tmp/.X11-unix:/tmp/.X11-unix \
-#	-e DISPLAY=$DISPLAY \
+#	-e DISPLAY \
 #	evince
 #
 
 FROM alpine:latest
 LABEL maintainer "Christian Koep <christiankoep@gmail.com>"
 
-RUN apk --no-cache add \
-	--repository http://dl-cdn.alpinelinux.org/alpine/edge/community \
-	evince \
-	ttf-opensans
+RUN apk update && apk add shadow evince ttf-opensans
+
+ENV HOME /home/user
+RUN useradd --create-home --home-dir $HOME user \
+	&& mkdir $HOME/documents && chown -R user:user $HOME
+
+WORKDIR $HOME
+USER user
 
 CMD ["/usr/bin/evince"]
