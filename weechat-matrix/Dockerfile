@@ -35,6 +35,7 @@ RUN adduser -S user -h $HOME \
 	&& cd $HOME \
 	&& git clone https://github.com/poljar/weechat-matrix.git \
 	&& cd weechat-matrix \
+	&& pip3 install wheel \
 	&& pip3 install -r requirements.txt \
 	&& pip3 install websocket-client \
 	&& make install \
