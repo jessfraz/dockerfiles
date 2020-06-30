@@ -12,6 +12,7 @@
 # 			weechat-matrix
 #
 FROM alpine:latest
+LABEL maintainer "Jeffrey Serio <serio.jeffrey@gmail.com>"
 
 RUN apk add --no-cache \
 	build-base \
@@ -43,5 +44,8 @@ RUN adduser -S user -h $HOME \
 
 WORKDIR $HOME
 USER user
+
+# For urlserver plugin
+EXPOSE 8080
 
 CMD [ "weechat" ]
