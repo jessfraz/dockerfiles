@@ -1,9 +1,8 @@
-FROM debian:bullseye-slim
-LABEL maintainer "Jessie Frazelle <jess@linux.com>"
+FROM debian:testing-slim
+LABEL maintainer "Jeffrey Serio <serio.jeffrey@gmail.com>"
 
-RUN apt-get update && apt-get install -y \
-	nmap \
-	--no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/*
+RUN apt update \
+    && apt install -y nmap --no-install-recommends \
+    && rm -rf /var/lib/apt/lists/*
 
 ENTRYPOINT [ "nmap" ]
