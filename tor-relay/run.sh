@@ -12,6 +12,7 @@ for relaytype in bridge middle exit; do
 	sed -i "s/RELAY_BANDWIDTH_RATE/${RELAY_BANDWIDTH_RATE}/g" "$file"
 	sed -i "s/RELAY_BANDWIDTH_BURST/${RELAY_BANDWIDTH_BURST}/g" "$file"
 	sed -i "s/RELAY_PORT/${RELAY_PORT}/g" "$file"
+	sed -i "s/RELAY_ADDRESS/${RELAY_ADDRESS}/g" "$file"
 done
 
 exec tor -f "/etc/tor/torrc.${RELAY_TYPE}"
