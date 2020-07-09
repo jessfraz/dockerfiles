@@ -7,15 +7,15 @@
 
 # custom body highlights -----------------------------------------------
 # highlight my name and other personally relevant strings
-color body          yellow          default         "(jessie|jessica|frazelle|jfrazelle|jessfraz|jess)"
+color body          yellow          default         "(jeff|jeffrey|serio)"
 # custom index highlights ----------------------------------------------
 # messages which mention my name in the body
-color index         yellow          default         "~b \"jessie|jessfraz|jfrazelle\" !~N !~T !~F !~p !~P"
+color index         yellow          default         "~b \"jeff|jeffrey|serio\" !~N !~T !~F !~p !~P"
 #color index         J_cream         brightwhite     "~b \"phil(_g|\!| gregory| gold)|pgregory\" ~N !~T !~F !~p !~P"
 #color index         yellow          cyan            "~b \"phil(_g|\!| gregory| gold)|pgregory\" ~T !~F !~p !~P"
 #color index         yellow          J_magent        "~b \"phil(_g|\!| gregory| gold)|pgregory\" ~F !~p !~P"
 ## messages which are in reference to my mails
-color index         brightmagenta        default         "~x \"(jess|jessie|jessica.frazelle)\\.docker\\.com\" !~N !~T !~F !~p !~P"
+color index         brightmagenta        default         "~x \"(serio.jeffrey)\\.gmail\\.com\" !~N !~T !~F !~p !~P"
 #color index         J_magent        brightwhite     "~x \"(mithrandir|aragorn)\\.aperiodic\\.net|thorin\\.hillmgt\\.com\" ~N !~T !~F !~p !~P"
 #color index         J_magent        cyan            "~x \"(mithrandir|aragorn)\\.aperiodic\\.net|thorin\\.hillmgt\\.com\" ~T !~F !~p !~P"
 #color index         J_magent        red             "~x \"(mithrandir|aragorn)\\.aperiodic\\.net|thorin\\.hillmgt\\.com\" ~F !~p !~P"

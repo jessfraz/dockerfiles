@@ -10,14 +10,14 @@ set realname = "%GMAIL_NAME%"
 set signature = "~/.mutt/signature"
 
 # Change the following line to a different editor you prefer (and update the Dockerfile accordingly, of course).
-set editor = "vim"
+set editor = "nvim"
 
 # I like seeing some headers. :)
 ignore *
 unignore date subject x- user-agent posted-to content-type
 unignore to cc bcc reply-to from
 set edit_headers = yes
-my_hdr X-Docker-Image: jess/mutt
+my_hdr X-Docker-Image: hyperreal/mutt
 my_hdr X-Hack-The-Planet: Yes
 my_hdr X-Acid-Burn: Yes
 

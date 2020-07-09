@@ -9,7 +9,7 @@
 #	jess/mutt
 #
 FROM alpine:latest
-LABEL maintainer "Jessie Frazelle <jess@linux.com>"
+LABEL maintainer "Jeffrey Serio <serio.jeffrey@gmail.com>"
 
 RUN addgroup -g 1000 user \
 	&& adduser -D -h /home/user -G user -u 1000 user
@@ -22,7 +22,7 @@ RUN apk --no-cache add \
 	lynx \
 	mutt \
 	mutt-doc \
-	vim \
+	neovim \
 	--repository http://dl-cdn.alpinelinux.org/alpine/edge/main
 
 # a browser is necessary!
@@ -34,10 +34,11 @@ ENV TERM xterm-256color
 RUN mkdir -p $HOME/.mutt/cache/headers $HOME/.mutt/cache/bodies \
 	&& touch $HOME/.mutt/certificates
 
-# vim settings
-RUN git clone --depth 1 https://github.com/jessfraz/.vim.git $HOME/.vim \
-	&& git clone --depth 1 https://github.com/altercation/vim-colors-solarized $HOME/.vim/bundle/vim-colors-solarized \
-	&& cp $HOME/.vim/vimrc $HOME/.vimrc
+# nvim settings
+RUN mkdir -p $HOME/.config/nvim \
+    && wget https://gitlab.com/hyperreal42/chezmoi/-/raw/master/dot_config/nvim/init.vim -O $HOME/.config/nvim/init.vim \
+    && sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 ENV LANG C.UTF-8
 
