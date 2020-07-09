@@ -23,6 +23,7 @@ RUN apk --no-cache add \
 	mutt \
 	mutt-doc \
 	neovim \
+    curl \
 	--repository http://dl-cdn.alpinelinux.org/alpine/edge/main
 
 # a browser is necessary!

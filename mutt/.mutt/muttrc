@@ -14,12 +14,8 @@ set editor = "nvim"
 
 # I like seeing some headers. :)
 ignore *
-unignore date subject x- user-agent posted-to content-type
-unignore to cc bcc reply-to from
+unignore date subject to from
 set edit_headers = yes
-my_hdr X-Docker-Image: hyperreal/mutt
-my_hdr X-Hack-The-Planet: Yes
-my_hdr X-Acid-Burn: Yes
 
 # TODO figure out how to use the sidebar more effectively :)
 #set sidebar_visible = no
@@ -77,5 +73,6 @@ macro index,pager +  <save-message>=[Gmail]/Important<enter><enter> "Mark as Imp
 macro index,pager *  <save-message>=[Gmail]/Starred<enter><enter> "Star Message"
 
 # colors
-source ~/.mutt/mutt-colors-solarized-dark-16.muttrc
+#source ~/.mutt/mutt-colors-solarized-dark-16.muttrc
+source ~/.mutt/dracula.muttrc
 source ~/.mutt/mutt-patch-highlighting.muttrc
