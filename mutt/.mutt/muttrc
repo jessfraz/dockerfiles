@@ -3,7 +3,7 @@
 # Change the following six lines to match your Gmail account details
 set imap_user = "%GMAIL_LOGIN%"
 set imap_pass = "%GMAIL_PASS%" # leave blank for prompt
-set smtp_url = "smtps://$imap_user@%SMTP_SERVER%:465/"
+set smtp_url = "smtps://$imap_user@%SMTP_SERVER%"
 set smtp_pass = "$imap_pass" # leave blank for prompt
 set from = "%GMAIL_FROM%"
 set realname = "%GMAIL_NAME%"
@@ -33,7 +33,8 @@ set hostname = gmail.com
 set mail_check = 60
 set timeout = 300
 set imap_keepalive = 300
-set postponed = "+[Gmail]/Drafts"
+set ssl_force_tls
+set ssl_starttls
 set record = "" # gmail automatically handles saving sent emails
 
 set header_cache=~/.mutt/cache/headers
