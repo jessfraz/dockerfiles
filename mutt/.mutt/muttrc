@@ -3,7 +3,7 @@
 # Change the following six lines to match your account details
 set imap_user = "%PMAIL_LOGIN%"
 set imap_pass = "%PMAIL_PASS%" # leave blank for prompt
-set smtp_url = "smtps://$imap_user@%SMTP_SERVER%"
+set smtp_url = "smtps://$imap_user@%SMTP_SERVER%:1025"
 set smtp_pass = "$imap_pass" # leave blank for prompt
 set from = "%PMAIL_FROM%"
 set realname = "%PMAIL_NAME%"
@@ -22,7 +22,7 @@ bind pager <down> next-line
 set resolve = no # uh, don't randomly take me to other messages when I do things
 
 # Basic config, you can leave this as is
-set folder = "imaps://%IMAP_SERVER%"
+set folder = "imaps://%IMAP_SERVER%:1143"
 set spoolfile = "+INBOX"
 set imap_check_subscribed
 set hostname = pm.me
