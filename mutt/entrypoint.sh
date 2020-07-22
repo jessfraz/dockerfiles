@@ -1,35 +1,35 @@
 #!/bin/sh
 set -e
 
-if [ -z "$GMAIL" ]; then
-	echo >&2 'error: missing GMAIL environment variable'
-	echo >&2 '  try running again with -e GMAIL=your-email@gmail.com'
-	echo >&2 '    optionally, you can also specify -e GMAIL_PASS'
-	echo >&2 '    -e GMAIL_NAME="Your Name" and GMAIL_FROM=email@your-domain.com'
-	echo >&2 '      if not specified, both default to the value of GMAIL'
+if [ -z "$PMAIL" ]; then
+	echo >&2 'error: missing PMAIL environment variable'
+	echo >&2 '  try running again with -e PMAIL=your-email@your-domain.com'
+	echo >&2 '    optionally, you can also specify -e PMAIL_PASS'
+	echo >&2 '    -e PMAIL_NAME="Your Name" and PMAIL_FROM=email@your-domain.com'
+	echo >&2 '      if not specified, both default to the value of PMAIL'
 	exit 1
 fi
 
-if [ -z "$GMAIL_NAME" ]; then
-	GMAIL_NAME="$GMAIL"
+if [ -z "$PMAIL_NAME" ]; then
+	PMAIL_NAME="$PMAIL"
 fi
 
-if [ -z "$GMAIL_FROM" ]; then
-	GMAIL_FROM="$GMAIL"
+if [ -z "$PMAIL_FROM" ]; then
+	PMAIL_FROM="$PMAIL"
 fi
 
 if [ -z "$IMAP_SERVER" ]; then
-	IMAP_SERVER="imap.gmail.com:993"
+	IMAP_SERVER="127.0.0.1:1143"
 fi
 
 if [ -z "$SMTP_SERVER" ]; then
-	SMTP_SERVER="smtp.gmail.com"
+	SMTP_SERVER="127.0.0.1:1025"
 fi
 
-sed -i "s/%GMAIL_LOGIN%/$GMAIL/g"       "$HOME/.mutt/muttrc"
-sed -i "s/%GMAIL_NAME%/$GMAIL_NAME/g"   "$HOME/.mutt/muttrc"
-sed -i "s/%GMAIL_PASS%/$GMAIL_PASS/g"   "$HOME/.mutt/muttrc"
-sed -i "s/%GMAIL_FROM%/$GMAIL_FROM/g"   "$HOME/.mutt/muttrc"
+sed -i "s/%PMAIL_LOGIN%/$PMAIL/g"       "$HOME/.mutt/muttrc"
+sed -i "s/%PMAIL_NAME%/$PMAIL_NAME/g"   "$HOME/.mutt/muttrc"
+sed -i "s/%PMAIL_PASS%/$PMAIL_PASS/g"   "$HOME/.mutt/muttrc"
+sed -i "s/%PMAIL_FROM%/$PMAIL_FROM/g"   "$HOME/.mutt/muttrc"
 sed -i "s/%IMAP_SERVER%/$IMAP_SERVER/g" "$HOME/.mutt/muttrc"
 sed -i "s/%SMTP_SERVER%/$SMTP_SERVER/g" "$HOME/.mutt/muttrc"
 
