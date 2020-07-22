@@ -22,6 +22,7 @@ FROM debian:bullseye-slim
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 # Install Chromium
+# Yes, including the Google API Keys sucks but even debian does the same: https://packages.debian.org/stretch/amd64/chromium/filelist
 RUN apt-get update && apt-get install -y \
       chromium \
       chromium-l10n \
