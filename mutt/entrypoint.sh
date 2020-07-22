@@ -18,12 +18,13 @@ if [ -z "$PMAIL_FROM" ]; then
 	PMAIL_FROM="$PMAIL"
 fi
 
+# Requires ProtonMail bridge
 if [ -z "$IMAP_SERVER" ]; then
-	IMAP_SERVER="127.0.0.1:1143"
+	IMAP_SERVER="127.0.0.1"
 fi
 
 if [ -z "$SMTP_SERVER" ]; then
-	SMTP_SERVER="127.0.0.1:1025"
+	SMTP_SERVER="127.0.0.1"
 fi
 
 sed -i "s/%PMAIL_LOGIN%/$PMAIL/g"       "$HOME/.mutt/muttrc"
