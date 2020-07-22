@@ -1,5 +1,5 @@
 # Run Mutt from a container
-
+# Based on github.com/jess/dockerfiles/mutt
 # docker run -it \
 #	-v /etc/localtime:/etc/localtime:ro \
 #	-e GMAIL -e GMAIL_NAME \ # pass env variables to config
@@ -26,7 +26,6 @@ RUN apk --no-cache add \
     curl \
 	--repository http://dl-cdn.alpinelinux.org/alpine/edge/main
 
-# a browser is necessary!
 ENV BROWSER lynx
 
 USER user
