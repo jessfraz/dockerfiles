@@ -23,7 +23,7 @@ RUN apk --no-cache add \
 	mutt \
 	mutt-doc \
 	neovim \
-    curl \
+        curl \
 	--repository http://dl-cdn.alpinelinux.org/alpine/edge/main
 
 ENV BROWSER lynx
@@ -42,8 +42,8 @@ RUN mkdir -p $HOME/.config/nvim \
 
 ENV LANG C.UTF-8
 
-COPY	entrypoint.sh	/entrypoint.sh
-COPY	.mutt			$HOME/.mutt
+COPY entrypoint.sh /entrypoint.sh
+COPY .mutt $HOME/.mutt
 
 ENTRYPOINT ["/entrypoint.sh"]
 
