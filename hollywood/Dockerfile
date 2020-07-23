@@ -1,17 +1,11 @@
-FROM ubuntu:16.04
+FROM ubuntu:20.04
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
-RUN apt-get update && apt-get install -y \
-	software-properties-common \
-	--no-install-recommends && \
-	add-apt-repository ppa:hollywood/ppa && \
-	apt-get update && \
-	apt-get install -y \
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
 	byobu \
 	hollywood \
 	locate \
 	mlocate \
-	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& updatedb
 
