@@ -80,7 +80,7 @@ get_latest() {
 
 get_latest_unifi() {
 	local latest current
-	latest=$(curl -sSL http://www.ubnt.com/downloads/unifi/debian/dists/cloudkey-stable/ubiquiti/binary-armhf/Packages \
+	latest=$(curl -sSL https://www.ubnt.com/downloads/unifi/debian/dists/cloudkey-stable/ubiquiti/binary-armhf/Packages \
 		| awk 'BEGIN {FS="\n"; RS="";} /^Package: unifi/' \
 		| awk '/^Version:/ {print $2}' \
 		| cut -d- -f1)

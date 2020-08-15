@@ -26,7 +26,7 @@
 # 	set-inform http://ip_of_docker_host:8080/inform
 #
 
-FROM ubuntu:16.04
+FROM ubuntu:20.04
 
 # environment settings
 ENV DEBIAN_FRONTEND="noninteractive"
@@ -64,7 +64,7 @@ RUN set -ex; \
         gpg --keyserver "$server" --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 && break || : ; \
     done && \
 	gpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu; \
-	rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc; \
+	rm -fr "$GNUPGHOME" /usr/local/bin/gosu.asc; \
 	\
 	chmod +x /usr/local/bin/gosu; \
 # verify that the binary works
@@ -72,23 +72,20 @@ RUN set -ex; \
 	\
 	apt-get purge -y --auto-remove $fetchDeps
 
-# add mongo repo
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6 \
-	&& echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" >> /etc/apt/sources.list.d/mongo.list
-
-
 # install packages
 RUN apt-get update && apt-get install -y \
 	binutils \
 	jsvc \
-	mongodb-org-server \
+	mongodb-server \
 	openjdk-8-jre-headless \
+	logrotate \
+	libcap2 \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
 # unifi version
 # From: https://www.ubnt.com/download/unifi/
-ENV UNIFI_VERSION "5.12.72"
+ENV UNIFI_VERSION "5.13.32"
 
 # install unifi
 RUN apt-get update && apt-get install -y \
