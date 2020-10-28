@@ -23,6 +23,7 @@ RUN apt-get update && apt-get install -y \
 	libx11-xcb1 \
 	libxt6 \
 	xz-utils \
+	file \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
@@ -33,7 +34,7 @@ RUN useradd --create-home --home-dir $HOME user \
 ENV LANG C.UTF-8
 
 # https://www.torproject.org/download/alpha/
-ENV TOR_VERSION 9.5a3
+ENV TOR_VERSION 9.5a12
 ENV TOR_FINGERPRINT 0x4E2C6E8793298290
 
 # download tor and check signature

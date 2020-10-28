@@ -6,7 +6,6 @@ RUN apt-get update && apt-get install -y \
 	curl \
 	distcc \
 	git \
-	kernel-package \
 	make \
 	libncurses5-dev \
 	libssl-dev \

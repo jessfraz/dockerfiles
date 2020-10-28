@@ -1,4 +1,4 @@
-FROM golang:1.11 as builder
+FROM golang:latest as builder
 MAINTAINER Jessica Frazelle <jess@linux.com>
 
 ENV PATH /go/bin:/usr/local/go/bin:$PATH
@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
 	&& curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
 	&& echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 
 RUN apt-get update && apt-get install -y \
 	gcc \
@@ -21,7 +21,6 @@ RUN apt-get update && apt-get install -y \
 	g++ \
 	make \
 	nodejs \
-	npm \
 	pkgconf \
 	python \
 	yarn \
@@ -29,7 +28,7 @@ RUN apt-get update && apt-get install -y \
     --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
-ENV NOMAD_VERSION v0.10.2
+ENV NOMAD_VERSION v0.11.2
 
 RUN go get github.com/hashicorp/nomad
 

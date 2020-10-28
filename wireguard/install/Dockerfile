@@ -8,29 +8,34 @@
 # 	-v /usr/src:/usr/src:ro \
 # 	r.j3ss.co/wireguard:install
 #
-FROM alpine:latest
+FROM debian:sid-slim
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
-RUN apk add --no-cache \
-	build-base \
+RUN apt update && apt -y install \
+	build-essential \
 	ca-certificates \
-	elfutils-libelf \
-	libmnl-dev
+	git \
+	kmod \
+	libelf-dev \
+	libmnl-dev \
+	pkg-config \
+	--no-install-recommends \
+	&& rm -rf /var/lib/apt/lists/*
 
-# https://git.zx2c4.com/WireGuard/refs/
-ENV WIREGUARD_VERSION 0.0.20191205
+# https://git.zx2c4.com/wireguard-linux-compat/
+ENV WIREGUARD_VERSION v1.0.20200520
+# https://git.zx2c4.com/wireguard-tools
+ENV WIREGUARD_TOOLS_VERSION v1.0.20200513
 
 RUN set -x \
-	&& apk add --no-cache --virtual .build-deps \
-		git \
-	&& git clone --depth 1 --branch "${WIREGUARD_VERSION}" https://git.zx2c4.com/WireGuard.git /wireguard \
+	&& git clone --depth 1 --branch "${WIREGUARD_VERSION}" https://git.zx2c4.com/wireguard-linux-compat.git /wireguard \
+	&& git clone --depth 1 --branch "${WIREGUARD_TOOLS_VERSION}" https://git.zx2c4.com/wireguard-tools.git /wireguard-tools \
 	&& ( \
-		cd /wireguard/src \
-		&& make tools \
-		&& make -C tools install \
-		&& make -C tools clean \
-	) \
-	&& apk del .build-deps
+		cd /wireguard-tools/src \
+		&& make -j$(nproc) \
+		&& make install \
+		&& make clean \
+	)
 
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 

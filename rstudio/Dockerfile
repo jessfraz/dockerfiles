@@ -57,7 +57,7 @@ RUN apt-get update && apt-get install -y \
 	&& rm -rf /var/lib/apt/lists/*
 
 # https://www.rstudio.com/products/rstudio/download/#download
-ENV RSTUDIO_VERSION 1.2.5019
+ENV RSTUDIO_VERSION 1.3.959
 
 # Download the source
 RUN curl -sSL "https://download1.rstudio.org/desktop/bionic/amd64/rstudio-${RSTUDIO_VERSION}-amd64.deb" -o /tmp/rstudio-amd64.deb \

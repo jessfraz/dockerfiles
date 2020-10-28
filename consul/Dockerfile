@@ -1,4 +1,4 @@
-FROM golang:1.12 as builder
+FROM golang:latest as builder
 MAINTAINER Jessica Frazelle <jess@linux.com>
 
 ENV PATH /go/bin:/usr/local/go/bin:$PATH
@@ -29,7 +29,7 @@ RUN apt-get update && apt-get install -y \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
-ENV CONSUL_VERSION v1.6.2
+ENV CONSUL_VERSION v1.8.0-beta2
 
 RUN go get github.com/hashicorp/consul || true
 

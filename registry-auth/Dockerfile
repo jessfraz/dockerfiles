@@ -14,7 +14,7 @@ RUN apk add --no-cache \
 ENV PATH /go/bin:/usr/local/go/bin:$PATH
 ENV GOPATH /go
 
-ENV DOCKER_AUTH_VERSION 1.3.1
+ENV DOCKER_AUTH_VERSION 1.5.0
 
 RUN git clone --depth 1 --branch ${DOCKER_AUTH_VERSION} https://github.com/cesanta/docker_auth /go/src/github.com/cesanta/docker_auth
 
