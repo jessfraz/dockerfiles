@@ -13,7 +13,7 @@ RUN	apk add --no-cache \
 	musl-dev \
 	zip
 
-ENV TERRAFORM_VERSION v0.12.17
+ENV TERRAFORM_VERSION v0.12.28
 
 RUN go get github.com/hashicorp/terraform || true
 

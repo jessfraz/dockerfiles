@@ -7,7 +7,7 @@ RUN apk --no-cache add \
 	libressl \
 	python3
 
-ENV CERTBOT_VERSION 1.0.0
+ENV CERTBOT_VERSION 1.5.0
 
 RUN buildDeps=' \
 		build-base \

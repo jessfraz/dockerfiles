@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y \
 	&& curl -sSL https://apt.kitware.com/keys/kitware-archive-latest.asc | apt-key add - \
 	&& echo 'deb https://apt.kitware.com/ubuntu/ bionic main' > /etc/apt/sources.list.d/cmake.list
 
-ENV OSQUERY_VERSION 4.0.2
+ENV OSQUERY_VERSION 4.3.0
 
 RUN buildDeps=' \
 		bison \

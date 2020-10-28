@@ -7,12 +7,10 @@
 # 	-v ${HOME}/.ssh:/root/.ssh:ro \
 # 	ansible all -m ping
 #
-FROM alpine:latest
+FROM python:3-alpine
 LABEL maintainer "Christian Koep <christiankoep@gmail.com>"
 
 RUN builddeps=' \
-		python-dev \
-		py2-pip \
 		musl-dev \
 		openssl-dev \
 		libffi-dev \
@@ -20,16 +18,9 @@ RUN builddeps=' \
 		' \
 	&& apk --no-cache add \
 	ca-certificates \
-	python \
-	py-paramiko \
-	py-yaml \
-	py-jinja2 \
-	py-httplib2 \
 	$builddeps \
-	&& pip install --upgrade pip \
 	&& pip install \
 		ansible \
-		six \
 	&& apk del --purge $builddeps
 
 ENTRYPOINT [ "ansible" ]

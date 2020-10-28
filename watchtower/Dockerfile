@@ -10,7 +10,7 @@ RUN apk --no-cache add \
 ENV PATH /go/bin:/usr/local/go/bin:$PATH
 ENV GOPATH /go
 
-ENV WATCHTOWER_VERSION v0.3.9
+ENV WATCHTOWER_VERSION v1.0.2
 
 RUN git clone --depth 1 --branch ${WATCHTOWER_VERSION} https://github.com/containrrr/watchtower /go/src/github.com/containrrr/watchtower
 

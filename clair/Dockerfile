@@ -10,7 +10,7 @@ ENV GOPATH /go
 
 RUN go get github.com/quay/clair/cmd/clair || true
 
-ENV CLAIR_VERSION v2.1.1
+ENV CLAIR_VERSION v2.1.4
 
 WORKDIR /go/src/github.com/quay/clair
 

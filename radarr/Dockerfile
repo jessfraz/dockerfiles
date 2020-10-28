@@ -14,7 +14,7 @@ RUN apk add --no-cache \
 		--repository https://dl-4.alpinelinux.org/alpine/edge/testing
 
 # https://github.com/Radarr/Radarr/releases
-ENV RADARR_VERSION 0.2.0.1450
+ENV RADARR_VERSION 0.2.0.1480
 RUN mkdir -p /opt/radarr \
 	&& wget "https://github.com/Radarr/Radarr/releases/download/v${RADARR_VERSION}/Radarr.develop.${RADARR_VERSION}.linux.tar.gz" -O /tmp/radarr.tar.gz \
 	&& tar -xzvf /tmp/radarr.tar.gz -C /opt/radarr --strip-components 1 \

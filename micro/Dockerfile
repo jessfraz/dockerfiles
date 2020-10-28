@@ -9,7 +9,7 @@ RUN apk --no-cache add \
 ENV PATH /go/bin:/usr/local/go/bin:$PATH
 ENV GOPATH /go
 
-ENV MICRO_VERSION v1.4.1
+ENV MICRO_VERSION v2.0.4
 
 RUN git clone --depth 1 --branch "$MICRO_VERSION" https://github.com/zyedidia/micro /go/src/github.com/zyedidia/micro
 
