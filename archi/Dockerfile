@@ -1,11 +1,11 @@
-FROM oraclelinux:7.7
+FROM oraclelinux:8.2
 
 ENV ARCHI_VERSION 4.6.0
 ENV PATH $PATH:/opt/archi/
 
 # the start files for archi use bash
 RUN yum update -y
-RUN yum install -y oracle-softwarecollection-release-el7
+# RUN yum install -y oracle-softwarecollection-release-el8
 RUN yum install -y tar
 RUN yum install -y less
 RUN yum install -y gtk2
@@ -15,9 +15,9 @@ RUN yum install -y git
 RUN yum install -y vim
 RUN yum install -y gtk3
 
-WORKDIR /etc/yum.repos.d
-RUN curl -LJ0 http://yum.oracle.com/public-yum-ol7.repo
-RUN yum-config-manager --enable ol7_optional_developer
+# WORKDIR /etc/yum.repos.d
+# RUN curl -LJ0 http://yum.oracle.com/public-yum-ol8.repo
+# RUN yum-config-manager --enable ol8_optional_developer
 # RUN yum update -y
 RUN yum install -y xorg-x11-server-Xvfb
 
