@@ -1,21 +1,25 @@
-# Run Libreoffice in a container
-
-# docker run -d \
-#	-v /etc/localtime:/etc/localtime:ro \
-#	-v /tmp/.X11-unix:/tmp/.X11-unix \
-#	-e DISPLAY=unix$DISPLAY \
-#	-v $HOME/slides:/root/slides \
-#	-e GDK_SCALE \
-#	-e GDK_DPI_SCALE \
-#	--name libreoffice \
-#	jess/libreoffice
+# Run Libreoffice in a Ubuntu 20.04 container
+# Example launch:
+# docker run -it --rm -d -v /tmp/.X11-unix:/tmp/.X11-unix \
+# 			 -v $HOME:/home/me -e DISPLAY=$DISPLAY tsanov/libreoffice
 #
-FROM alpine:latest
-LABEL maintainer "Jessie Frazelle <jess@linux.com>"
+FROM ubuntu:20.04
+LABEL maintainer "Nikolay Tsanov <hitechsmes@gmail.com>"
 
-RUN apk --no-cache add \
-	--repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
-	libreoffice \
-	ttf-dejavu
+ENV DEBIAN_FRONTEND noninteractive
 
+RUN apt update && apt install -y sudo apt-utils bash xterm
+RUN apt install -y -q libreoffice
+RUN apt install -y -q openjdk-8-jre \
+				fonts-opensymbol \
+				hyphen-fr \
+				hyphen-en-us \
+				fonts-dejavu \
+				fonts-dejavu-core \
+				fonts-dejavu-extra \
+				fonts-freefont-ttf \
+				fonts-liberation
+RUN useradd -ms /bin/bash me
+USER me
+WORKDIR /home/me
 ENTRYPOINT [ "libreoffice" ]
