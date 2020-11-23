@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+docker run -it --rm -d \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -v $HOME:/home/me \
+    -e DISPLAY=$DISPLAY \
+    tsanov/archi
