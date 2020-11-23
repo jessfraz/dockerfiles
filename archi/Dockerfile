@@ -21,4 +21,8 @@ RUN echo "==> Downloading Archi..." \
         && mkdir -p /opt \
         && curl -LJ0 https://www.archimatetool.com/downloads/archive/4.6.0/Archi-Linux64-4.6.0.tgz | tar -vxzf - -C /opt
 
-CMD ["/opt/archi/Archi"]
+RUN useradd -ms /bin/bash me
+USER me
+WORKDIR /home/me
+
+CMD ["/opt/Archi/Archi"]
