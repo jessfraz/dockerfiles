@@ -17,7 +17,7 @@
 #
 
 # Base docker image
-FROM debian:buster-slim
+FROM debian:bullseye-slim
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 # Install transmission and its dependencies

@@ -1,7 +1,7 @@
 FROM r.j3ss.co/wireguard:install
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
-RUN apk add --no-cache \
+RUN apt update && apt -y install \
 	bash \
 	bc \
 	bison \
@@ -10,14 +10,12 @@ RUN apk add --no-cache \
 	fakeroot \
 	flex \
 	git \
-	gmp-dev \
-	libressl-dev \
-	mpc1-dev \
-	mpfr-dev \
-	ncurses-dev \
+	libgmp-dev \
+	libncurses-dev \
 	perl \
 	tar \
-	xz
+	--no-install-recommends \
+	&& rm -rf /var/lib/apt/lists/*
 
 ENV HOME /root
 WORKDIR $HOME

@@ -2,7 +2,7 @@
 set -e
 set -o pipefail
 
-if [[ ! -z "$TOKEN" ]]; then
+if [[ -n "$TOKEN" ]]; then
 	GITHUB_TOKEN=$TOKEN
 fi
 

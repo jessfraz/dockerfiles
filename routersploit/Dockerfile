@@ -1,4 +1,4 @@
-FROM debian:sid-slim
+FROM debian:buster-slim
 LABEL maintainer "Christian Koep <christiankoep@gmail.com>"
 
 ENV ROUTERSPLOIT_VERSION v3.4.0

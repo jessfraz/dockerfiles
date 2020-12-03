@@ -10,23 +10,27 @@
 #
 
 # Base docker image
-FROM debian:jessie-slim
+FROM debian:bullseye-slim
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 # Install Rstudio deps
 RUN apt-get update && apt-get install -y \
+	ca-certificates \
+	curl \
 	fcitx-frontend-qt5 \
 	fcitx-modules \
 	fcitx-module-dbus \
+	libasound2 \
+	libclang-dev \
 	libedit2 \
 	libgl1-mesa-dri \
 	libgl1-mesa-glx \
-	libgstreamer0.10-0 \
-	libgstreamer-plugins-base0.10-0 \
+	libgstreamer1.0-0 \
+	libgstreamer-plugins-base1.0-0 \
 	libjpeg-dev \
 	libjpeg62-turbo \
 	libjpeg62-turbo-dev \
-	libpresage1 \
+	libpresage1v5 \
 	libpresage-data \
 	libqt5core5a \
 	libqt5dbus5 \
@@ -35,9 +39,12 @@ RUN apt-get update && apt-get install -y \
 	libqt5printsupport5 \
 	libqt5webkit5 \
 	libqt5widgets5 \
+	libnss3 \
 	libtiff5 \
 	libxcomposite1 \
+	libxcursor1 \
 	libxslt1.1 \
+	libxtst6 \
 	littler \
 	locales \
 	r-base \
@@ -50,20 +57,12 @@ RUN apt-get update && apt-get install -y \
 	&& rm -rf /var/lib/apt/lists/*
 
 # https://www.rstudio.com/products/rstudio/download/#download
-ENV RSTUDIO_VERSION 1.1.463
+ENV RSTUDIO_VERSION 1.3.959
 
 # Download the source
-RUN buildDeps=' \
-		ca-certificates \
-		curl \
-	' \
-	&& set -x \
-	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/* \
-	&& curl -sSL "https://download1.rstudio.org/rstudio-${RSTUDIO_VERSION}-amd64.deb" -o /tmp/rstudio-amd64.deb \
+RUN curl -sSL "https://download1.rstudio.org/desktop/bionic/amd64/rstudio-${RSTUDIO_VERSION}-amd64.deb" -o /tmp/rstudio-amd64.deb \
 	&& dpkg -i /tmp/rstudio-amd64.deb \
 	&& rm -rf /tmp/*.deb \
-	&& apt-get purge -y --auto-remove $buildDeps \
 	&& ln -f -s /usr/lib/rstudio/bin/rstudio /usr/bin/rstudio
 
 
@@ -71,7 +70,8 @@ ENV LC_ALL en_US.UTF-8
 ENV LANG en_US.UTF-8
 
 # Set default CRAN repo
-RUN echo 'options(repos = c(CRAN = "https://cran.rstudio.com/"), download.file.method = "libcurl")' >> /etc/R/Rprofile.site \
+RUN mkdir -p /etc/R \
+	&& echo 'options(repos = c(CRAN = "https://cran.rstudio.com/"), download.file.method = "libcurl")' >> /etc/R/Rprofile.site \
     && echo 'source("/etc/R/Rprofile.site")' >> /etc/littler.r \
 	&& ln -s /usr/share/doc/littler/examples/install.r /usr/local/bin/install.r \
 	&& ln -s /usr/share/doc/littler/examples/install2.r /usr/local/bin/install2.r \
@@ -80,6 +80,14 @@ RUN echo 'options(repos = c(CRAN = "https://cran.rstudio.com/"), download.file.m
 	&& rm -rf /tmp/downloaded_packages/ /tmp/*.rds \
 	&& echo '"\e[5~": history-search-backward' >> /etc/inputrc \
 	&& echo '"\e[6~": history-search-backward' >> /etc/inputrc
+
+ENV HOME /home/user
+RUN useradd --create-home --home-dir $HOME user \
+    && chown -R user:user $HOME
+
+WORKDIR $HOME
+
+USER user
 
 # Autorun Rstudio
 ENTRYPOINT [ "rstudio" ]

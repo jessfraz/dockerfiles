@@ -8,7 +8,7 @@ if [[ -z "$MAILGUN_API_KEY" ]]; then
 	exit 1
 fi
 
-if [[ ! -z "$MAILGUN_DOMAIN" ]]; then
+if [[ -n "$MAILGUN_DOMAIN" ]]; then
 	MAILGUN_DOMAIN_NAME=$MAILGUN_DOMAIN
 fi
 

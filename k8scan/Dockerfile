@@ -1,4 +1,4 @@
-FROM golang:alpine as builder
+FROM golang:1.12-alpine as builder
 MAINTAINER Jessica Frazelle <jess@linux.com>
 
 ENV PATH /go/bin:/usr/local/go/bin:$PATH
@@ -24,10 +24,10 @@ COPY *.go /go/src/k8scan/
 RUN set -x \
 	&& go get -d . \
 	&& gofmt -s -l . \
+	&& go test ./... \
 	&& go vet ./... \
 	&& golint ./... \
 	&& staticcheck ./... \
-	&& go test ./... \
 	&& CGO_ENABLED=0 go build -a -tags netgo -ldflags '-w -extldflags "-static"' -o /usr/bin/k8scan *.go \
 	&& echo "Build complete."
 

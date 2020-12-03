@@ -22,7 +22,6 @@ LABEL "docker_run_flags"="-d \
 	--link transmission:transmission \
  	--name couchpotato"
 
-
 RUN apk add --no-cache \
 	ca-certificates \
 	gcc \

@@ -6,7 +6,7 @@
 #	-v /etc/localtime:/etc/localtime:ro \
 #	r.j3ss.co/bcc-tools
 #
-FROM debian:buster-slim
+FROM debian:sid-slim
 MAINTAINER Jessica Frazelle <jess@linux.com>
 
 ENV PATH /usr/share/bcc/tools:$PATH
@@ -38,8 +38,7 @@ RUN apt-get update && apt-get install -y \
 	libedit-dev \
 	clang-format \
 	python \
-	python-netaddr \
-	python-pyroute2 \
+	python3-pyroute2 \
 	luajit \
 	libluajit-5.1-dev \
 	arping \
@@ -52,7 +51,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Build libbcc
-ENV BCC_VERSION v0.9.0
+ENV BCC_VERSION v0.14.0
 RUN git clone --depth 1 --branch "$BCC_VERSION" https://github.com/iovisor/bcc.git /usr/src/bcc \
 	&& ( \
 		cd /usr/src/bcc \

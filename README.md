@@ -1,6 +1,6 @@
 ## dockerfiles
 
-[![Travis CI](https://img.shields.io/travis/jessfraz/dockerfiles.svg?style=for-the-badge)](https://travis-ci.org/jessfraz/dockerfiles)
+[![make test](https://github.com/jessfraz/dockerfiles/workflows/make%20test/badge.svg)](https://github.com/jessfraz/dockerfiles/actions?query=workflow%3A%22make+test%22+branch%3Amaster)
 
 This is a repo to hold various Dockerfiles for images I create.
 

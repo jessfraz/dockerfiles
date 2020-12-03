@@ -1,0 +1,14 @@
+on:
+  push
+name: make test
+jobs:
+  test:
+    name: make test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+        with:
+          fetch-depth: '2'
+      - name: make test
+        run: make test
+        shell: bash
