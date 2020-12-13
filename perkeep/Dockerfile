@@ -8,7 +8,7 @@ RUN	apk --no-cache add \
 ENV PERKEEP_VERSION 0.10
 
 RUN mkdir -p /go/src/perkeep.org \
-	&& git clone --depth 1 --branch "${PERKEEP_VERSION}" https://camlistore.googlesource.com/camlistore.git /go/src/perkeep.org \
+	&& git clone --depth 1 --branch "${PERKEEP_VERSION}" https://github.com/perkeep/perkeep.git /go/src/perkeep.org \
 	&& cd /go/src/perkeep.org \
 	&& go run make.go \
 	&& cp -vr /go/bin/* /usr/local/bin/ \

@@ -5,17 +5,18 @@ ENV PATH /go/bin:/usr/local/go/bin:$PATH
 ENV GOPATH /go
 
 RUN apk --no-cache add \
+	bash \
 	ca-certificates \
 	git \
 	make
 
-ENV COREDNS_VERSION v1.4.0
+ENV COREDNS_VERSION v1.6.9
 
 RUN git clone --depth 1 --branch ${COREDNS_VERSION} https://github.com/coredns/coredns /go/src/github.com/coredns/coredns
 
 WORKDIR /go/src/github.com/coredns/coredns
 
-RUN make CHECKS="godeps" \
+RUN make all \
 	&& mv coredns /usr/bin/coredns
 
 FROM alpine:latest

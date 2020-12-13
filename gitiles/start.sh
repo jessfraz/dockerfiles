@@ -28,4 +28,4 @@ fi
 PROPERTIES="$PROPERTIES --jvm_flag=-Dcom.google.gitiles.sourcePath=$ROOT"
 
 # shellcheck disable=SC2086
-exec "${ROOT}/bin/gitiles-dev/dev" $PROPERTIES
+exec "${ROOT}/bin/java/com/google/gitiles/dev/dev" $PROPERTIES

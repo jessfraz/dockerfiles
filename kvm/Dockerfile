@@ -10,14 +10,18 @@ FROM debian:sid-slim
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 RUN apt-get update && apt-get install -y \
+	dnsmasq \
+	gir1.2-spiceclientgtk-3.0 \
+	iproute2 \
 	iptables \
 	libgl1-mesa-dri \
 	libgl1-mesa-glx \
 	libvirt-daemon-system \
+	procps \
 	python-gi \
-	python-ipaddr \
 	qemu-kvm \
 	virtinst \
+	virt-manager \
 	virt-viewer \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
@@ -25,4 +29,4 @@ RUN apt-get update && apt-get install -y \
 COPY ./start.sh /start.sh
 
 ENTRYPOINT ["/start.sh"]
-CMD ["libvirtd"]
+CMD ["virt-manager", "--no-fork"]

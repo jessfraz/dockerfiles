@@ -13,11 +13,13 @@
 #
 #	docker run -v /tmp/.X11-unix:/tmp/.X11-unix \
 #		--device=/dev/sda:/dev/sda \
+#		--device=/dev/mem:/dev/mem \
+#		--cap-add SYS_RAWIO \
 #		-e DISPLAY=unix$DISPLAY gparted
 #
 
 # Base docker image
-FROM debian:buster-slim
+FROM debian:bullseye-slim
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 # Install Gparted and its dependencies
@@ -25,6 +27,7 @@ RUN apt-get update && apt-get install -y \
 	dosfstools \
 	gparted \
 	libcanberra-gtk-module \
+	procps \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 

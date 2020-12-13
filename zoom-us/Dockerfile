@@ -5,7 +5,7 @@
 #	--device /dev/snd:/dev/snd \
 #	--device /dev/dri \
 #	-v /dev/shm:/dev/shm \
-#	zoom-us
+#	jess/zoom-us
 
 FROM debian:sid-slim
 
@@ -18,7 +18,6 @@ RUN apt-get update && apt-get install -y \
 	desktop-file-utils \
 	ibus \
 	ibus-gtk \
-	ibus-qt4 \
 	lib32z1 \
 	libx11-6 \
 	libasound2-dev \
@@ -42,7 +41,7 @@ RUN apt-get update && apt-get install -y \
 	libxcb-image0 \
 	libxcb-keysyms1 \
 	libxcb-xtest0 \
-	libibus-qt1 \
+	libxtst6 \
 	libnss3 \
 	libxss1 \
 	sudo \

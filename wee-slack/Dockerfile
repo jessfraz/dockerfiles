@@ -33,4 +33,4 @@ RUN adduser -S user -h $HOME \
 WORKDIR $HOME
 USER user
 
-ENTRYPOINT [ "weechat" ]
+CMD [ "weechat" ]

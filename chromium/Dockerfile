@@ -18,10 +18,11 @@
 # 	wget https://raw.githubusercontent.com/jfrazelle/dotfiles/master/etc/docker/seccomp/chrome.json -O ~/chrome.json
 
 # Base docker image
-FROM debian:sid-slim
+FROM debian:bullseye-slim
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 # Install Chromium
+# Yes, including the Google API Keys sucks but even debian does the same: https://packages.debian.org/stretch/amd64/chromium/filelist
 RUN apt-get update && apt-get install -y \
       chromium \
       chromium-l10n \
@@ -32,26 +33,13 @@ RUN apt-get update && apt-get install -y \
       libexif-dev \
       libgl1-mesa-dri \
       libgl1-mesa-glx \
-      libpango1.0-0 \
+      libpangox-1.0-0 \
       libv4l-0 \
       fonts-symbola \
       --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* \
     && mkdir -p /etc/chromium.d/ \
     && /bin/echo -e 'export GOOGLE_API_KEY="AIzaSyCkfPOPZXDKNn8hhgu3JrA62wIgC93d44k"\nexport GOOGLE_DEFAULT_CLIENT_ID="811574891467.apps.googleusercontent.com"\nexport GOOGLE_DEFAULT_CLIENT_SECRET="kdloedMFGdGla2P1zacGjAQh"' > /etc/chromium.d/googleapikeys
-
-# Download the google-talkplugin
-RUN buildDeps=' \
-		ca-certificates \
-		curl \
-	' \
-	&& set -x \
-	&& apt-get update && apt-get install -y $buildDeps --no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/* \
-	&& curl -sSL "https://dl.google.com/linux/direct/google-talkplugin_current_amd64.deb" -o /tmp/google-talkplugin-amd64.deb \
-	&& dpkg -i /tmp/google-talkplugin-amd64.deb \
-	&& rm -rf /tmp/*.deb \
-	&& apt-get purge -y --auto-remove $buildDeps
 
 # Add chromium user
 RUN groupadd -r chromium && useradd -r -g chromium -G audio,video chromium \

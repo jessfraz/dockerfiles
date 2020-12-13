@@ -1,4 +1,4 @@
-FROM debian:jessie-slim
+FROM debian:bullseye-slim
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 RUN	apt-get update && apt-get install -y \
@@ -14,12 +14,12 @@ RUN	apt-get update && apt-get install -y \
 	pkg-config \
 	qemu-kvm \
 	ruby-dev \
-	ruby-fog \
+	ssh \
 	zlib1g-dev \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
-ENV	VAGRANT_VERSION 2.2.4
+ENV	VAGRANT_VERSION 2.2.9
 
 # download the source
 RUN curl -sSL "https://releases.hashicorp.com/vagrant/${VAGRANT_VERSION}/vagrant_${VAGRANT_VERSION}_x86_64.deb" -o /tmp/vagrant-amd64.deb \

@@ -16,7 +16,7 @@ FONT=
 
 scrot /tmp/scrot.png
 convert /tmp/scrot.png \
-    -level 0%,100%,0.6 -blur $BLURTYPE $FONT \
+    -level 0%,100%,0.6 -blur "$BLURTYPE" "$FONT" \
     -pointsize 26 -fill white -gravity center \
     -annotate +0+200 'Type password to unlock' \
     /tmp/conv.png
