@@ -19,8 +19,10 @@
 # 	wget https://raw.githubusercontent.com/jfrazelle/dotfiles/master/etc/docker/seccomp/chrome.json -O ~/chrome.json
 
 # Base docker image
-FROM debian:bullseye-slim
+FROM ubuntu:20.04
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
+
+ENV DEBIAN_FRONTEND noninteractive
 
 # Install Chrome
 RUN apt-get update && apt-get install -y \
@@ -55,5 +57,6 @@ COPY local.conf /etc/fonts/local.conf
 USER chrome
 
 # Autorun chrome
-ENTRYPOINT [ "google-chrome" ]
-CMD [ "--user-data-dir=/data" ]
+# ENTRYPOINT [ "google-chrome" ]
+CMD [ "google-chrome" ]
+# CMD [ "--user-data-dir=/data" ]
