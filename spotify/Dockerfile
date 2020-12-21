@@ -29,6 +29,9 @@ RUN	apt-get update && apt-get install -y \
 	libsm6 \
 	spotify-client \
 	xdg-utils \
+	fonts-noto \
+	fonts-noto-cjk \
+	fonts-noto-color-emoji \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
