@@ -23,8 +23,6 @@ RUN apt-get update && apt-get install -y \
 	libasound2-dev \
 	libegl1-mesa \
 	libxcb-shm0 \
-	libxcb-xinerama0 \
-	libxkbcommon-x11-0 \
 	libglib2.0-0 \
 	libgl1-mesa-glx \
 	libxrender1 \
