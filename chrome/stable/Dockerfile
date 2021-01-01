@@ -20,7 +20,7 @@
 
 # Base docker image
 FROM ubuntu:20.04
-LABEL maintainer "Jessie Frazelle <jess@linux.com>"
+LABEL maintainer "Nikolay Tsanov <hitechsmes@gmail.com>"
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -48,15 +48,19 @@ RUN apt-get update && apt-get install -y \
 	&& rm -rf /var/lib/apt/lists/*
 
 # Add chrome user
-RUN groupadd -r chrome && useradd -r -g chrome -G audio,video chrome \
-    && mkdir -p /home/chrome/Downloads && chown -R chrome:chrome /home/chrome
+# RUN groupadd -r chrome && useradd -r -g chrome -G audio,video chrome \
+#    && mkdir -p /home/chrome/Downloads && chown -R chrome:chrome /home/chrome
+RUN groupadd -r chrome && useradd -r -g chrome -G audio,video chrome
 
 COPY local.conf /etc/fonts/local.conf
 
 # Run Chrome as non privileged user
-USER chrome
+RUN useradd -ms /bin/bash me
+USER me
+WORKDIR /home/me
 
 # Autorun chrome
-# ENTRYPOINT [ "google-chrome" ]
-CMD [ "google-chrome" ]
+ENTRYPOINT [ "google-chrome" ]
+CMD [ "--no-sandbox" ]
+# CMD [ "google-chrome", "--no-sandbox" ]
 # CMD [ "--user-data-dir=/data" ]

@@ -8,8 +8,8 @@
 #	--name remmina \
 #	jess/remmina
 #
-FROM ubuntu:16.04
-LABEL maintainer "Jessie Frazelle <jess@linux.com>"
+FROM ubuntu:20.04
+LABEL maintainer "Nikolay Tsanov <hitechsmes@gmail.com>"
 
 RUN apt-get update && apt-get install -y \
 	software-properties-common \
@@ -22,4 +22,7 @@ RUN apt-get update && apt-get install -y \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
+RUN useradd -ms /bin/bash me
+USER me
+WORKDIR /home/me
 ENTRYPOINT [ "remmina" ]
