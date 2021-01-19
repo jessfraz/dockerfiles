@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 docker run -it --rm -d \
+	--network host \
 	-v /tmp/.X11-unix:/tmp/.X11-unix \
 	-e DISPLAY=$DISPLAY \
 	-v $HOME:/home/me \
