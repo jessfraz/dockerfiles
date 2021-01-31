@@ -1,18 +1,11 @@
-FROM python:3-alpine
-LABEL maintainer "Jessie Frazelle <jess@linux.com>"
+FROM mcr.microsoft.com/azure-cli:latest
 
-RUN apk add --no-cache \
-	bash
+ENV USER me
+ENV HOME /home/$USER
 
-RUN set -x \
-	&& apk add --no-cache --virtual .build-deps \
-		build-base \
-		libffi-dev \
-		openssl-dev \
-	&& pip install --upgrade \
-		--pre azure-cli \
-		--extra-index-url https://azurecliprod.blob.core.windows.net/edge \
-		--no-cache-dir \
-	&& apk del .build-deps
+RUN adduser -u 1000 -D $USER
 
-ENTRYPOINT	[ "az" ]
+WORKDIR $HOME
+USER $USER
+
+ENTRYPOINT	[ "bash" ]
