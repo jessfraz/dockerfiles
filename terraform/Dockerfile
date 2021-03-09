@@ -13,7 +13,7 @@ RUN	apk add --no-cache \
 	musl-dev \
 	zip
 
-ENV TERRAFORM_VERSION v0.12.28
+ENV TERRAFORM_VERSION v0.14.7
 
 RUN go get github.com/hashicorp/terraform || true
 
@@ -21,8 +21,9 @@ WORKDIR /go/src/github.com/hashicorp/terraform
 
 RUN git checkout "${TERRAFORM_VERSION}"
 
-RUN XC_ARCH="amd64" XC_OS="linux" LD_FLAGS=" -extldflags -static" make fmt bin \
-	&& mv bin/terraform /usr/bin/terraform
+RUN CGO_ENABLED=0 go build -a -tags netgo -ldflags '-w -extldflags "-static"' \
+	-o bin/terraform && \
+	mv bin/terraform /usr/bin/terraform
 
 FROM alpine:latest
 
