@@ -15,11 +15,9 @@ RUN	apk add --no-cache \
 
 ENV TERRAFORM_VERSION v0.14.7
 
-RUN go get github.com/hashicorp/terraform || true
+RUN git clone --depth 1 --branch ${TERRAFORM_VERSION} https://github.com/hashicorp/terraform.git /go/src/github.com/hashicorp/terraform
 
 WORKDIR /go/src/github.com/hashicorp/terraform
-
-RUN git checkout "${TERRAFORM_VERSION}"
 
 RUN CGO_ENABLED=0 go build -a -tags netgo -ldflags '-w -extldflags "-static"' \
 	-o bin/terraform && \
