@@ -19,6 +19,7 @@ RUN apt-get update && apt-get install -y \
 	hicolor-icon-theme \
 	remmina \
 	remmina-plugin-rdp \
+	remmina-plugin-vnc \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
