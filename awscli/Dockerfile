@@ -14,6 +14,7 @@ RUN apk --no-cache add \
 	groff \
 	less \
 	python3 \
+	py3-pip \
 	&& pip3 install awscli \
 	&& mkdir -p /root/.aws \
 	&& { \
