@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y \
 	gir1.2-spiceclientgtk-3.0 \
 	iproute2 \
 	iptables \
+	iproute2 \
 	libgl1-mesa-dri \
 	libgl1-mesa-glx \
 	libvirt-daemon-system \
