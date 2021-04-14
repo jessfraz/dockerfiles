@@ -91,6 +91,7 @@ ORPort RELAY_PORT
 ## The IP address or full DNS name for incoming connections to your
 ## relay. Leave commented out and Tor will guess.
 #Address noname.example.com
+Address RELAY_ADDRESS
 
 ## If you have multiple network interfaces, you can specify one for
 ## outgoing traffic to use.
