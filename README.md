@@ -7,9 +7,3 @@ topped up with some Dockerfiles for spinning development environments.
 
 I use mostly tmux&vim instead of IDE, you may also want to checkout [jessfraz/dotfiles](https://github.com/jessfraz/dotfiles)
 which I personally am using
-
-The sections below describe only Dockerfiles which are not part of the upstream [jessfraz/dockerfiles](https://github.com/jessfraz/dockerfiles).
-
-### keepassxc_dev
-
-

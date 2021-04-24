@@ -7,11 +7,13 @@ ENV GOPATH /go
 RUN	apk add --no-cache \
 	bash \
 	ca-certificates \
+	gcc \
 	git \
 	make \
+	musl-dev \
 	zip
 
-ENV TERRAFORM_VERSION v0.11.11
+ENV TERRAFORM_VERSION v0.12.28
 
 RUN go get github.com/hashicorp/terraform || true
 

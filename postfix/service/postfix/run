@@ -14,7 +14,7 @@ EOF
 # shellcheck disable=SC1091
 [ -f /etc/service/postfix/run.config ] && source /etc/service/postfix/run.config
 
-if [[ ! -z "$MAILNAME" ]]; then
+if [[ -n "$MAILNAME" ]]; then
 	echo "$MAILNAME" > /etc/mailname
 	postconf -e myorigin="/etc/mailname"
 
@@ -25,15 +25,15 @@ if [[ ! -z "$MAILNAME" ]]; then
 	EOF
 fi
 
-if [[ ! -z "$MY_NETWORKS" ]]; then
+if [[ -n "$MY_NETWORKS" ]]; then
 	postconf -e mynetworks="$MY_NETWORKS"
 fi
 
-if [[ ! -z "$MY_DESTINATION" ]]; then
+if [[ -n "$MY_DESTINATION" ]]; then
 	postconf -e mydestination="$MY_DESTINATION"
 fi
 
-if [[ ! -z "$ROOT_ALIAS" ]]; then
+if [[ -n "$ROOT_ALIAS" ]]; then
 	if [[ -f /etc/aliases ]]; then
 		sed -i '/^root:/d' /etc/aliases
 	fi
@@ -41,7 +41,7 @@ if [[ ! -z "$ROOT_ALIAS" ]]; then
 	newaliases
 fi
 
-if [[ ! -z "$RELAY" ]]; then
+if [[ -n "$RELAY" ]]; then
 	# setup the relay
 	cat >> /etc/postfix/main.cf <<- EOF
 	relayhost = $RELAY
@@ -52,7 +52,7 @@ if [[ ! -z "$RELAY" ]]; then
 	EOF
 fi
 
-if [[ ! -z "$TLS" ]]; then
+if [[ -n "$TLS" ]]; then
 	# setup tls
 	cat >> /etc/postfix/main.cf <<- EOF
 	smtp_use_tls = yes
@@ -60,7 +60,7 @@ if [[ ! -z "$TLS" ]]; then
 	EOF
 fi
 
-if [[ ! -z "$SASL_AUTH" ]]; then
+if [[ -n "$SASL_AUTH" ]]; then
 	cat >> /etc/postfix/main.cf <<- EOF
 	smtp_sasl_auth_enable = yes
 	smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd

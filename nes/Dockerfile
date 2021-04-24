@@ -19,6 +19,7 @@ RUN apt-get update && apt-get install -y \
 	libgl1-mesa-dev \
 	libgl1-mesa-dri \
 	libxcursor-dev \
+	libxxf86vm-dev \
 	libxi-dev \
 	libxinerama-dev \
 	libxrandr-dev \

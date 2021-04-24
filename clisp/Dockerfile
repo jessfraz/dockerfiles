@@ -3,13 +3,15 @@ RUN apk add --no-cache \
 	git
 RUN git clone https://github.com/brendandburns/cl-k8s.git /cl-k8s
 
-FROM alpine:latest
+FROM debian:bullseye-slim
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
-RUN apk --no-cache add \
-	--repository http://dl-cdn.alpinelinux.org/alpine/edge/testing/ \
+RUN apt-get update && apt-get install -y \
 	ca-certificates \
-	clisp
+	clisp \
+	wget \
+	--no-install-recommends \
+	&& rm -rf /var/lib/apt/lists/*
 
 COPY .clisprc.lisp /home/user/.clisprc.lisp
 COPY --from=cl-k8s /cl-k8s /home/user/quicklisp/local-projects/cl-k8s
@@ -18,7 +20,7 @@ COPY --from=cl-k8s /cl-k8s /home/user/quicklisp/local-projects/cl-k8s
 RUN wget -O /home/user/quicklisp.lisp https://beta.quicklisp.org/quicklisp.lisp
 
 ENV HOME /home/user
-RUN adduser -u 1001 -D user \
+RUN useradd --create-home --home-dir $HOME user \
 	&& chown -R user:user $HOME
 
 USER user

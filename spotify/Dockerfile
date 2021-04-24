@@ -14,15 +14,19 @@ FROM debian:sid-slim
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 RUN	apt-get update && apt-get install -y \
+	ca-certificates \
+	curl \
 	dirmngr \
 	gnupg \
 	--no-install-recommends \
-	&& apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 931FF8E79F0876134EDDBDCCA87FF9DF48BF1C90 \
+	&& curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | apt-key add -  \
 	&& echo "deb http://repository.spotify.com stable non-free" >> /etc/apt/sources.list.d/spotify.list \
 	&& apt-get update && apt-get install -y \
 	alsa-utils \
 	libgl1-mesa-dri \
 	libgl1-mesa-glx \
+	libpulse0 \
+	libsm6 \
 	spotify-client \
 	xdg-utils \
 	--no-install-recommends \

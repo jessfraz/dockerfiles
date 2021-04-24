@@ -8,7 +8,7 @@
 #	--name gimp \
 #	jess/gimp
 #
-FROM debian:buster-slim
+FROM debian:bullseye-slim
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 RUN apt-get update && apt-get install -y \

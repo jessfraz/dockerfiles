@@ -1,4 +1,4 @@
-FROM debian:buster-slim
+FROM debian:bullseye-slim
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
 # Install bash and other deps so we have them.
@@ -41,7 +41,7 @@ RUN set -x \
 	&& firefox --version
 
 # Install browsh.
-ENV BROWSH_VERSION 1.5.0
+ENV BROWSH_VERSION 1.6.4
 RUN wget "https://github.com/browsh-org/browsh/releases/download/v${BROWSH_VERSION}/browsh_${BROWSH_VERSION}_linux_amd64" -O /home/browsh/bin/browsh \
 	&& chmod a+x /home/browsh/bin/browsh
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [[ -e /dev/snd ]]; then
-	exec apulse firefox
+	exec apulse firefox "$@"
 else
-	exec firefox
+	exec firefox "$@"
 fi

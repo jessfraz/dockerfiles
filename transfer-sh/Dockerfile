@@ -14,7 +14,7 @@ RUN	git clone --depth 1 --branch ${TRANSFER_SH_VERSION} https://github.com/dutch
 
 WORKDIR /go/src/github.com/dutchcoders/transfer.sh
 
-RUN go build -o /usr/bin/transfer.sh
+RUN GO111MODULE=on go build -o /usr/bin/transfer.sh
 
 # Create a clean image without build dependencies
 FROM alpine:latest
