@@ -81,6 +81,7 @@ RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14
 RUN apt-get update && apt-get install -y \
 	binutils \
 	jsvc \
+	logrotate \
 	mongodb-org-server \
 	openjdk-8-jre-headless \
 	--no-install-recommends \
@@ -88,7 +89,7 @@ RUN apt-get update && apt-get install -y \
 
 # unifi version
 # From: https://www.ubnt.com/download/unifi/
-ENV UNIFI_VERSION "5.12.72"
+ENV UNIFI_VERSION "6.1.71"
 
 # install unifi
 RUN apt-get update && apt-get install -y \
