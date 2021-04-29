@@ -83,12 +83,13 @@ RUN apt-get update && apt-get install -y \
 	jsvc \
 	mongodb-org-server \
 	openjdk-8-jre-headless \
+	logrotate \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
 # unifi version
 # From: https://www.ubnt.com/download/unifi/
-ENV UNIFI_VERSION "5.12.72"
+ENV UNIFI_VERSION "6.0.28"
 
 # install unifi
 RUN apt-get update && apt-get install -y \
