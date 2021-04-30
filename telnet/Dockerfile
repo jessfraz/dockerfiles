@@ -6,7 +6,7 @@
 FROM alpine:latest
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
-RUN apk add --no-cache --virtual \
+RUN apk add --no-cache \
 	busybox-extras
 
 ENTRYPOINT [ "telnet" ]
