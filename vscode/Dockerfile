@@ -33,12 +33,15 @@ RUN apt-get update && apt-get -y install \
 	libatk1.0-0 \
 	libcairo2 \
 	libcups2 \
+	libdrm2 \
 	libexpat1 \
 	libfontconfig1 \
 	libfreetype6 \
+	libgbm1 \
 	libgtk2.0-0 \
 	libpango-1.0-0 \
 	libx11-xcb1 \
+	libxcb-dri3-0 \
 	libxcomposite1 \
 	libxcursor1 \
 	libxdamage1 \
