@@ -29,8 +29,9 @@ RUN echo "deb [arch=amd64] https://repo.skype.com/deb stable main" > /etc/apt/so
 
 RUN apt-get update && apt-get -y install \
 	skypeforlinux \
-	--no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/*
+	--no-install-recommends && \
+	apt-get clean && \
+	rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 COPY run-skype-and-wait-for-exit /usr/local/bin
 

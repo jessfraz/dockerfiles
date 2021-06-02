@@ -26,8 +26,7 @@ RUN apt-get update && apt-get install -y \
 	curl \
 	gnupg \
 	locales \
-	--no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/*
+	--no-install-recommends
 
 RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
 	&& locale-gen en_US.utf8 \
@@ -37,13 +36,14 @@ RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
 RUN curl -sSL https://packagecloud.io/slacktechnologies/slack/gpgkey | apt-key add -
 RUN echo "deb https://packagecloud.io/slacktechnologies/slack/debian/ jessie main" > /etc/apt/sources.list.d/slacktechnologies_slack.list
 
-RUN apt-get update && apt-get -y install \
+RUN apt-get -y install \
 	libasound2 \
 	libgtk-3-0 \
 	libx11-xcb1 \
 	libxkbfile1 \
 	slack-desktop \
-	--no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/*
+	--no-install-recommends && \
+	apt-get clean && \
+	rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENTRYPOINT ["/usr/lib/slack/slack"]
