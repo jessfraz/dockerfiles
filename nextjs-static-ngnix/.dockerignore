@@ -1,0 +1,10 @@
+.git
+node_modules
+out
+.next
+.vscode
+.prettier*
+/eslintrc*
+TODO
+.editorconfig
+**.log
