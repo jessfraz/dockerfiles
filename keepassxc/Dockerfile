@@ -11,11 +11,12 @@
 FROM alpine:latest
 LABEL maintainer "Christian Koep <christiankoep@gmail.com>"
 
-ENV KEEPASSXC_VERSION 2.5.4
+ENV KEEPASSXC_VERSION "release/2.6.1"
 
 RUN buildDeps=' \
 		automake \
 		argon2-dev \
+		asciidoctor \
 		bash \
 		cmake \
 		curl-dev \
