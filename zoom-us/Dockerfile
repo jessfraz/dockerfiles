@@ -45,6 +45,8 @@ RUN apt-get update && apt-get install -y \
 	libnss3 \
 	libxss1 \
 	sudo \
+	libxcb-xinerama0 \
+	libxkbcommon-x11-0 \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
