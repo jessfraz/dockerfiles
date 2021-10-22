@@ -53,7 +53,7 @@ RUN apt-get update && apt-get install -y \
 
 # unifi version
 # From: https://www.ubnt.com/download/unifi/
-ENV UNIFI_VERSION "6.2.26"
+ENV UNIFI_VERSION "6.4.54"
 
 # install unifi
 RUN apt-get update && apt-get install -y \
