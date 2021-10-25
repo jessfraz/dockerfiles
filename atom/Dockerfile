@@ -46,10 +46,13 @@ RUN apt-get update && apt-get install -y \
 	gvfs-bin \
 	libasound2 \
 	libcap2 \
+        libdrm2 \
+        libgbm1 \
 	libgconf-2-4 \
 	libgtk2.0-0 \
 	libnotify4 \
 	libnss3 \
+        libxcb-dri3-0 \
 	libxkbfile1 \
 	libxss1 \
 	libxtst6 \
@@ -59,4 +62,4 @@ RUN apt-get update && apt-get install -y \
 	&& rm -rf /var/lib/apt/lists/*
 
 # Autorun atom
-ENTRYPOINT [ "atom", "--foreground" ]
+ENTRYPOINT [ "atom", "--no-sandbox", "--foreground" ]
