@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  ansiblecontrol:
+    image: ansibleubi8
+    container_name: ansiblecontrol
+    restart: always
+    volumes:
+      - $HOME:/home/ansibleuser
+    network_mode: "bridge"
