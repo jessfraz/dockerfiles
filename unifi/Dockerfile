@@ -31,38 +31,21 @@ FROM ubuntu:20.04
 # environment settings
 ENV DEBIAN_FRONTEND="noninteractive"
 
-# install deps
-RUN apt-get update && apt-get install -y \
-	ca-certificates \
-	dirmngr \
-	gnupg \
-	--no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/*
-
-# install packages
-RUN apt-get update && apt-get install -y \
-	binutils \
-	jsvc \
-	mongodb-server \
-	openjdk-8-jre-headless \
-	logrotate \
-	libcap2 \
-	gosu \
-	--no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/*
-
 # unifi version
 # From: https://www.ubnt.com/download/unifi/
-ENV UNIFI_VERSION "6.5.54"
+ENV UNIFI_VERSION "7.0.25-43e7fc6711"
 
-# install unifi
+# install unifi and deps
 RUN apt-get update && apt-get install -y \
+		ca-certificates \
+		openjdk-8-jre-headless \
+		gosu \
 		curl \
 		--no-install-recommends \
-	&& rm -rf /var/lib/apt/lists/* \
 	&& curl -o /tmp/unifi.deb -L "https://dl.ubnt.com/unifi/${UNIFI_VERSION}/unifi_sysvinit_all.deb" \
-	&& dpkg -i /tmp/unifi.deb \
+	&& apt-get install -y /tmp/unifi.deb --no-install-recommends \
 	&& rm -rf /tmp/unifi.deb \
+	&& rm -rf /var/lib/apt/lists/* \
 	&& echo "Build complete."
 
 WORKDIR /config
