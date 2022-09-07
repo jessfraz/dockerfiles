@@ -33,7 +33,7 @@ ENV DEBIAN_FRONTEND="noninteractive"
 
 # unifi version
 # From: https://www.ubnt.com/download/unifi/
-ENV UNIFI_VERSION "7.1.61"
+ENV UNIFI_VERSION "7.2.92"
 
 # install unifi and deps
 RUN apt-get update && apt-get install -y \
@@ -63,4 +63,4 @@ EXPOSE 3478/udp 8080 8081 8443 8843 8880 6789 10001/udp
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 
 ENTRYPOINT [ "entrypoint.sh" ]
-CMD ["java", "-Xmx1024M", "-jar", "/usr/lib/unifi/lib/ace.jar", "start"]
+CMD ["java", "-Dfile.encoding=UTF-8", "-Djava.awt.headless=true", "-Xmx1024M", "-XX:+UseParallelGC", "-XX:+ExitOnOutOfMemoryError", "-XX:+CrashOnOutOfMemoryError", "-jar", "/usr/lib/unifi/lib/ace.jar", "start"]
