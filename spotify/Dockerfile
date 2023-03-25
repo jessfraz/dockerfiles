@@ -5,23 +5,22 @@
 #	-v /tmp/.X11-unix:/tmp/.X11-unix \
 #	-e DISPLAY=unix$DISPLAY \
 #	--device /dev/snd:/dev/snd \
-#	-v $HOME/.spotify/config:/home/spotify/.config/spotify \
-#	-v $HOME/.spotify/cache:/home/spotify/spotify \
+#	-v $HOME/.config/spotify:/home/spotify/.config/spotify \
+#	-v $HOME/.cache/spotify:/home/spotify/.cache/spotify \
 #	--name spotify \
 #	jess/spotify
 #
 FROM debian:sid-slim
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
-RUN	apt-get update && apt-get install -y \
+RUN	apt-get update && apt-get install --no-install-recommends --yes \
 	ca-certificates \
 	curl \
 	dirmngr \
 	gnupg \
-	--no-install-recommends \
-	&& curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | apt-key add -  \
+	&& curl -sS https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg | gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg \
 	&& echo "deb http://repository.spotify.com stable non-free" >> /etc/apt/sources.list.d/spotify.list \
-	&& apt-get update && apt-get install -y \
+	&& apt-get update && apt-get install --no-install-recommends --yes \
 	alsa-utils \
 	libgl1-mesa-dri \
 	libgl1-mesa-glx \
@@ -29,12 +28,20 @@ RUN	apt-get update && apt-get install -y \
 	libsm6 \
 	spotify-client \
 	xdg-utils \
-	--no-install-recommends \
+	fonts-droid-fallback \
+	libcanberra-gtk3-module \
+	&& apt-get remove --yes \
+	ca-certificates \
+	curl \
+	dirmngr \
+	gnupg \
+	&& apt-get autoremove --yes \
 	&& rm -rf /var/lib/apt/lists/*
 
 ENV HOME /home/spotify
 RUN useradd --create-home --home-dir $HOME spotify \
 	&& gpasswd -a spotify audio \
+	&& mkdir $HOME/.config $HOME/.cache \
 	&& chown -R spotify:spotify $HOME
 
 WORKDIR $HOME
