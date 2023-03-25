@@ -19,7 +19,7 @@ RUN	apt-get update && apt-get install -y \
 	dirmngr \
 	gnupg \
 	--no-install-recommends \
-	&& curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | apt-key add -  \
+	&& curl -sS https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg | gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg \
 	&& echo "deb http://repository.spotify.com stable non-free" >> /etc/apt/sources.list.d/spotify.list \
 	&& apt-get update && apt-get install -y \
 	alsa-utils \
