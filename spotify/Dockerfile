@@ -29,6 +29,7 @@ RUN	apt-get update && apt-get install -y \
 	libsm6 \
 	spotify-client \
 	xdg-utils \
+	fonts-droid-fallback \
 	libcanberra-gtk3-module \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
