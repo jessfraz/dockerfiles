@@ -13,15 +13,14 @@
 FROM debian:sid-slim
 LABEL maintainer "Jessie Frazelle <jess@linux.com>"
 
-RUN	apt-get update && apt-get install -y \
+RUN	apt-get update && apt-get install --no-install-recommends --yes \
 	ca-certificates \
 	curl \
 	dirmngr \
 	gnupg \
-	--no-install-recommends \
 	&& curl -sS https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg | gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg \
 	&& echo "deb http://repository.spotify.com stable non-free" >> /etc/apt/sources.list.d/spotify.list \
-	&& apt-get update && apt-get install -y \
+	&& apt-get update && apt-get install --no-install-recommends --yes \
 	alsa-utils \
 	libgl1-mesa-dri \
 	libgl1-mesa-glx \
@@ -31,7 +30,12 @@ RUN	apt-get update && apt-get install -y \
 	xdg-utils \
 	fonts-droid-fallback \
 	libcanberra-gtk3-module \
-	--no-install-recommends \
+	&& apt-get remove --yes \
+	ca-certificates \
+	curl \
+	dirmngr \
+	gnupg \
+	&& apt-get autoremove --yes \
 	&& rm -rf /var/lib/apt/lists/*
 
 ENV HOME /home/spotify
