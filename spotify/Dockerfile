@@ -5,8 +5,8 @@
 #	-v /tmp/.X11-unix:/tmp/.X11-unix \
 #	-e DISPLAY=unix$DISPLAY \
 #	--device /dev/snd:/dev/snd \
-#	-v $HOME/.spotify/config:/home/spotify/.config/spotify \
-#	-v $HOME/.spotify/cache:/home/spotify/spotify \
+#	-v $HOME/.config/spotify:/home/spotify/.config/spotify \
+#	-v $HOME/.cache/spotify:/home/spotify/.cache/spotify \
 #	--name spotify \
 #	jess/spotify
 #
@@ -35,6 +35,7 @@ RUN	apt-get update && apt-get install -y \
 ENV HOME /home/spotify
 RUN useradd --create-home --home-dir $HOME spotify \
 	&& gpasswd -a spotify audio \
+	&& mkdir $HOME/.config $HOME/.cache \
 	&& chown -R spotify:spotify $HOME
 
 WORKDIR $HOME
