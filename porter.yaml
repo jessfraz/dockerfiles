@@ -1,57 +1,30 @@
-version: v1stack # on launch, from the front-end, and on update, from the release
+version: v1stack
 
-# on launch, from the front-end, and on update, from the DB
 build:
   method: pack
   builder: heroku/buildpacks:20
   context: "/Users/ferozemohideen/Desktop/js-test-app"
 
-# type Build struct {
-#   Context    *string   `yaml:"context" validate:"dir"`
-#   Method     *string   `yaml:"method" validate:"required,oneof=pack docker registry"`
-#   Builder    *string   `yaml:"builder" validate:"required_if=Method pack"`
-#   Buildpacks []*string `yaml:"buildpacks"`
-#   Dockerfile *string   `yaml:"dockerfile" validate:"required_if=Method docker"`
-#   Image      *string   `yaml:"image" validate:"required_if=Method registry"`
-# }
-
-env: # on launch, from the front-end, and on update, from the release
+env:
   API_CLIENT_ID: foobar
   API_CLIENT_SECRET: foobaz
 
-# user specifies these
 apps:
   web-1:
     run: launcher node index.js
-    config: # on launch, from the front-end and on update, from the release
+    config:
       resources:
         requests:
           cpu: 200m
           memory: 256Mi
-    type: web # on launch, from the front-end and on update, from the release
-  worker-1:
-    run: yarn start worker-1
+    type: web
+  web-2:
+    run: launcher node index.js
     config:
       resources:
         requests:
           cpu: 100m
           memory: 512Mi
-    type: worker
-  worker-2:
-    run: yarn start worker-2
-    config:
-      resources:
-        requests:
-          cpu: 50m
-          memory: 256Mi
-    type: worker
-  worker-3:
-    run: yarn start worker-3
-    config:
-      resources:
-        requests:
-          cpu: 20m
-          memory: 512Mi
-    type: worker
+    type: web
 
 release: yarn release
