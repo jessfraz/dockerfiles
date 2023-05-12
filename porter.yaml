@@ -1,30 +1,15 @@
-version: v1stack
-
-build:
-  method: pack
-  builder: heroku/buildpacks:20
-  context: "/Users/ferozemohideen/Desktop/js-test-app"
-
-env:
-  API_CLIENT_ID: foobar
-  API_CLIENT_SECRET: foobaz
-
-apps:
-  web-1:
-    run: launcher node index.js
+version: v1
+resources:
+  - name: web
+    source:
+      name: web
     config:
-      resources:
-        requests:
-          cpu: 200m
-          memory: 256Mi
-    type: web
-  web-2:
-    run: launcher node index.js
-    config:
-      resources:
-        requests:
-          cpu: 100m
-          memory: 512Mi
-    type: web
-
-release: yarn release
+      build:
+        method: pack
+        builder: heroku/buildpacks:20
+      values:
+        ingress:
+          enabled: false
+        container:
+          command: node index.js
+          port: 3000
