@@ -1,0 +1,45 @@
+"on":
+  workflow_dispatch:
+    inputs:
+      pr_branch_from:
+        description: Pull request head branch
+        required: true
+        type: string
+      pr_branch_into:
+        description: Pull request base branch
+        required: true
+        type: string
+      pr_number:
+        description: Pull request number
+        required: true
+        type: string
+      pr_title:
+        description: Pull request title
+        required: true
+        type: string
+name: Porter Preview Environment
+jobs:
+  porter-preview:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    - name: Create Porter preview env
+      timeout-minutes: 30
+      uses: porter-dev/porter-preview-action@v0.2.1
+      with:
+        action_id: ${{ github.run_id }}
+        cluster: "2489"
+        host: https://dashboard.getporter.dev
+        installation_id: "37438318"
+        namespace: pr-${{ github.event.inputs.pr_number }}-dockerfiles
+        pr_branch_from: ${{ github.event.inputs.pr_branch_from }}
+        pr_branch_into: ${{ github.event.inputs.pr_branch_into }}
+        pr_id: ${{ github.event.inputs.pr_number }}
+        pr_name: ${{ github.event.inputs.pr_title }}
+        project: "6680"
+        repo_name: dockerfiles
+        repo_owner: sdess09
+        token: ${{ secrets.PORTER_PREVIEW_6680_2489 }}
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.event.inputs.pr_number }}
