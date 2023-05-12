@@ -29,17 +29,17 @@ jobs:
       uses: porter-dev/porter-preview-action@v0.2.1
       with:
         action_id: ${{ github.run_id }}
-        cluster: "2489"
-        host: https://dashboard.getporter.dev
-        installation_id: "37438318"
+        cluster: "1"
+        host: https://b927-2600-4040-2300-d400-44e8-7ef-dd78-6a59.ngrok-free.app
+        installation_id: "37440376"
         namespace: pr-${{ github.event.inputs.pr_number }}-dockerfiles
         pr_branch_from: ${{ github.event.inputs.pr_branch_from }}
         pr_branch_into: ${{ github.event.inputs.pr_branch_into }}
         pr_id: ${{ github.event.inputs.pr_number }}
         pr_name: ${{ github.event.inputs.pr_title }}
-        project: "6680"
+        project: "1"
         repo_name: dockerfiles
         repo_owner: sdess09
-        token: ${{ secrets.PORTER_PREVIEW_6680_2489 }}
+        token: ${{ secrets.PORTER_PREVIEW_1_1 }}
     concurrency:
       group: ${{ github.workflow }}-${{ github.event.inputs.pr_number }}
